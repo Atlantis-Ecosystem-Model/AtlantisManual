@@ -12,9 +12,9 @@ website:
         href: index.qmd
       - text: "User Guides"
         menu:
-          - text: "Part I - Atlantis User Guide"
+          - text: "Part I - Setup, Physics, and Biology"
             href: user_guides/quarto_site/part1/index.qmd
-          - text: "Part II - [Coming Soon]"
+          - text: "Part II - Fisheries, Management, and Economics"
             href: user_guides/quarto_site/part2/index.qmd
       - text: "Confluence Wiki"
         href: confluence/index.qmd
@@ -64,7 +64,24 @@ website:
           href: user_guides/quarto_site/part1/16-references.qmd
         - text: "Appendix 1: Tips for Calibrating Biological Model"
           href: user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biological-model-n.qmd
-
+    - id: part2
+      title: "Atlantis User Guide - Part II"
+      style: "docked"
+      background: light
+      collapse-level: 2
+      contents:
+        - text: "Overview"
+          href: user_guides/quarto_site/part2/index.qmd
+        - text: "15. Fishing Mortality"
+          href: user_guides/quarto_site/part2/01-15-fishing-mortality.qmd
+        - text: "16. Introduction"
+          href: user_guides/quarto_site/part2/02-16-management.qmd
+        - text: "17. Installation and Running"
+          href: user_guides/quarto_site/part2/03-17-economics.qmd
+        - text: "18. Geometry of the Model Domain"
+          href: user_guides/quarto_site/part2/04-18-other-industries.qmd
+        - text: "References"
+          href: user_guides/quarto_site/part2/05-references.qmd
 format:
   html:
     theme: cosmo

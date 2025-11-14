@@ -1,0 +1,23 @@
+---
+title: "**REFERENCES**"
+---
+
+Deporte N., Ulrich C., Mahévas S., Demanèche S., Bastardie F. (2012) Regional métier definition: a comparative investigation of statistical methods using a workflow applied to international otter trawl fisheries in the North Sea. ICES Journal of Marine Science 69: 331-342.
+
+Dichmont SM, Fulton EA, Punt AE, Little LR, Dowling N, Gorton R, Sporcic M, Smith DC, Haddon M, Klaer N (2017). Operationalising the risk-cost-catch trade-off. CSIRO Oceans and Atmosphere. Fisheries Research and Development Corporation Project 2012-202, Brisbane, October 138pp.
+
+Fulton EA, Smith ADM, Smith DC (2007) Alternative management strategies for Southeast Australian Commonwealth fisheries. Australian Fisheries Management Authority and Fisheries Research and Development Corporation report
+
+Hutton T, Thebaud O, Fulton B, Pascoe S, Innes J, Kulmala S, Tudman M (2010) Use of economic incentives to manage fisheries bycatch: An application to key sectors in Australia's Southern and Eastern Scalefish and Shark Fisheries. Australian Fisheries Management Authority report (economic incentives to minimise bycatch and discards, deemed values, taxes on bycatch)
+
+Kaplan IC, Holland DS, Fulton EA (2014) Finding the accelerator and brake in an individual quota fishery: linking ecology, economics, and fleet dynamics of US West Coast trawl fisheries. ICES Journal of Marine Science (Dan Holland economics model version, fish prices and quota trading)
+
+Little et al. (2009) An agent-based model for simulating trading of multi-species fisheries quota. Ecological Modelling 220, 3404--3412 -- quota trading study implemented in Atlantis.
+
+Newell RG, Sanchirico JN, Kerr S (2005) Fishing quota markets. Journal of Environ. Econ. Manag. 49: 437--462 -- an alternative quota trading version implemented in Atlantis
+
+Pelletier D, Ferraris J. (2000) A multivariate approach for defining fishing tactics from commercial catch and effort data. Canadian Journal of Fisheries and Aquatic Sciences, 57:51-65.
+
+Squires et al (1998) Individual transferable quotas in multispecies fisheries. Marine Policy 22: 135-159.
+
+van Putten EI, Gorton B, Fulton B, Thebaud O (2013) The role of behavioural flexibility in a whole of ecosystem model. ICES journal of Marine Science, 70(1), 150-163. doi:10.1093/icesjms/fss175 (fisher behaviour, flexibility and historical information use)

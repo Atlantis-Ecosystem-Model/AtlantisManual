@@ -1,9 +1,7 @@
 #!/bin/bash
-
 # Pandoc Word to Markdown Conversion Script
 # This script converts Word documents to Markdown with inline images
 # Run from the AtlantisWiki root directory
-
 set -e  # Exit on any error
 
 # Colors for output
@@ -16,8 +14,8 @@ NC='\033[0m' # No Color
 echo -e "${BLUE}=== Pandoc Word to Markdown Conversion ===${NC}"
 
 # Check if we're in the right directory
-if [ ! -d "word_sept_2025" ]; then
-    echo -e "${RED}Error: word_sept_2025 directory not found. Are you in the AtlantisWiki root?${NC}"
+if [ ! -d "../user_guides/word_sept_2025" ]; then
+    echo -e "${RED}Error: ../user_guides/word_sept_2025 directory not found.${NC}"
     exit 1
 fi
 
@@ -29,9 +27,9 @@ if ! command -v pandoc &> /dev/null; then
 fi
 
 # Define file paths
-WORD_FILE="word_sept_2025/AtlantisUserGuide_PartI.docx"
-MARKDOWN_DIR="markdown_output"
-MARKDOWN_FILE="${MARKDOWN_DIR}/AtlantisUserGuide_PartI.md"
+WORD_FILE="../user_guides/word_sept_2025/AtlantisUserGuide_PartII.docx"
+MARKDOWN_DIR="../user_guides/markdown_output"
+MARKDOWN_FILE="${MARKDOWN_DIR}/AtlantisUserGuide_PartII.md"
 
 echo -e "${YELLOW}Setting up directories...${NC}"
 mkdir -p "$MARKDOWN_DIR"
@@ -53,20 +51,20 @@ pandoc "$WORD_FILE" \
 
 if [ $? -eq 0 ]; then
     echo ""
-    echo -e "${GREEN}✓ Pandoc conversion successful!${NC}"
+    echo -e "${GREEN}Pandoc conversion successful!${NC}"
     echo ""
     echo -e "${BLUE}Created files:${NC}"
-    echo "  📄 $MARKDOWN_FILE"
+    echo "  $MARKDOWN_FILE"
     
     if [ -d "$MARKDOWN_DIR/media" ]; then
         media_count=$(find "$MARKDOWN_DIR/media" -type f | wc -l)
-        echo "  📁 $MARKDOWN_DIR/media/ ($media_count files)"
+        echo "  $MARKDOWN_DIR/media/ ($media_count files)"
     fi
     
     # Show file size info
     if [ -f "$MARKDOWN_FILE" ]; then
         file_size=$(du -h "$MARKDOWN_FILE" | cut -f1)
-        echo "  📊 Markdown file size: $file_size"
+        echo "  Markdown file size: $file_size"
     fi
     
     echo ""
@@ -76,7 +74,7 @@ if [ $? -eq 0 ]; then
     echo "3. Preview with 'quarto preview' in quarto_site directory"
     
 else
-    echo -e "${RED}✗ Pandoc conversion failed${NC}"
+    echo -e "${RED}Pandoc conversion failed${NC}"
     echo "Check the error messages above for details"
     exit 1
 fi

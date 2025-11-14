@@ -1,0 +1,293 @@
+---
+title: "Front Matter"
+---
+
+**Atlantis User's Guide**
+
+**Part II: Socio-Economics**
+
+**\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**
+
+Asta Audzijonyte, Rebecca Gorton, Isaac Kaplan,
+
+Jacob M. Kasper, Elizabeth A. Fulton
+
+April 2017
+
+Current Update: June 2025
+
+![](media/image1.jpg){width="1.8694444444444445in" height="1.8694444444444445in"}
+
+© 2017 CSIRO and Asta Audzijonyte. To the extent permitted by law, all rights are reserved and no part of this publication covered by copyright may be reproduced or copied in any form or by any means except with the permission of CSIRO.
+
+Table of contents
+
+[**15. Fishing mortality** [7](#fishing-mortality)](#fishing-mortality)
+
+[15.1 General description of the fishing mortality [7](#general-description-of-the-fishing-mortality)](#general-description-of-the-fishing-mortality)
+
+[15.2. Setting up fishing mortality through imposed catch [9](#_Toc162809038)](#_Toc162809038)
+
+[15.3. Setting up fishing mortality through user defined non-dynamic fishing mortality [15](#_Toc162809039)](#_Toc162809039)
+
+[**15.3.1. Defining the fishing mortality level** [15](#defining-the-fishing-mortality-level)](#defining-the-fishing-mortality-level)
+
+[**15.3.2. Age or size selectivity when using a specified fishing mortality** [16](#age-or-size-selectivity-when-using-a-specified-fishing-mortality)](#age-or-size-selectivity-when-using-a-specified-fishing-mortality)
+
+[**15.3.3. Other optional factors that can affect user defined fishing mortality rates** [17](#other-optional-factors-that-can-affect-user-defined-fishing-mortality-rates)](#other-optional-factors-that-can-affect-user-defined-fishing-mortality-rates)
+
+[**15.3.4. Temporal changes in the user defined fishing mortality** [19](#temporal-changes-in-the-user-defined-fishing-mortality)](#temporal-changes-in-the-user-defined-fishing-mortality)
+
+[15.4. General introduction to dynamic fishing [21](#_Toc162809044)](#_Toc162809044)
+
+[15.5. Defining effort in dynamic fishing [23](#_Toc162809045)](#_Toc162809045)
+
+[**15.5.1. Constant effort per season (quarter) in each box (efformodel=0)** [24](#_Toc162809046)](#_Toc162809046)
+
+[**15.5.2. Constant effort per season adjusted by the relative box area (efformodel=1)** [24](#_Toc162809047)](#_Toc162809047)
+
+[**15.5.3. Constant effort given by prescribed spatial effort matrices (effortmodel=3)** [24](#_Toc162809048)](#_Toc162809048)
+
+[**15.5.4. Human population-based recreational fishing (efformodel=6, effortmodel=12)** [25](#human-population-based-recreational-fishing-efformodel6-effortmodel12)](#human-population-based-recreational-fishing-efformodel6-effortmodel12)
+
+[**15.5.5. Constant or dynamic effort with spatial distribution based on the relative CPUE in the box (efformodel=2, effortmodel=10)** [26](#_Toc162809050)](#_Toc162809050)
+
+[**15.5.6. Constant effort based on ideal knowledge of target fish distributions (effortmodel=9)** [28](#constant-effort-based-on-ideal-knowledge-of-target-fish-distributions-effortmodel9)](#constant-effort-based-on-ideal-knowledge-of-target-fish-distributions-effortmodel9)
+
+[**15.5.7. Effort read from forced time series files (effortmodel=11)** [29](#effort-read-from-forced-time-series-files-effortmodel11)](#effort-read-from-forced-time-series-files-effortmodel11)
+
+[**15.5.8. Dynamic effort exponentially related to previous CPUE and boat speed (efformodel=4)** [29](#dynamic-effort-exponentially-related-to-previous-cpue-and-boat-speed-efformodel4)](#dynamic-effort-exponentially-related-to-previous-cpue-and-boat-speed-efformodel4)
+
+[**15.5.9. Dynamic effort exponentially related to previous CPUE and distance to ports (efformodel=5)** [31](#dynamic-effort-exponentially-related-to-previous-cpue-and-distance-to-ports-efformodel5)](#dynamic-effort-exponentially-related-to-previous-cpue-and-distance-to-ports-efformodel5)
+
+[**15.5.10. Dynamic effort based on relative CPUE and distance to ports (effortmodel=7)** [32](#dynamic-effort-based-on-relative-cpue-and-distance-to-ports-effortmodel7)](#dynamic-effort-based-on-relative-cpue-and-distance-to-ports-effortmodel7)
+
+[**15.5.11. Dynamic effort based on relative CPUE, relative distance to ports and boat speed with explicit effort (de)growth (effortmodel=8)** [34](#dynamic-effort-based-on-relative-cpue-relative-distance-to-ports-and-boat-speed-with-explicit-effort-degrowth-effortmodel8)](#dynamic-effort-based-on-relative-cpue-relative-distance-to-ports-and-boat-speed-with-explicit-effort-degrowth-effortmodel8)
+
+[**15.5.12. Dynamic effort time series as calculated in the economics model** [36](#dynamic-effort-time-series-as-calculated-in-the-economics-model)](#dynamic-effort-time-series-as-calculated-in-the-economics-model)
+
+[**15.5.13. Prescribed changes in fishing effort** [36](#_Toc162809058)](#_Toc162809058)
+
+[15.6. Effort displacement, caps and effort drop [39](#_Toc162809059)](#_Toc162809059)
+
+[**15.6.1. Effort displacement** [39](#_Toc162809060)](#_Toc162809060)
+
+[**15.6.2. Effort caps** [40](#_Toc162809061)](#_Toc162809061)
+
+[**15.6.3. Effort drop** [41](#_Toc162809062)](#_Toc162809062)
+
+[15.7. Vertical, positional and habitat scalars of the fishing effort [41](#_Toc162809063)](#_Toc162809063)
+
+[**15.7.1. Vertical distribution of fishing effort** [41](#_Toc162809064)](#_Toc162809064)
+
+[**15.7.2. Accounting for pelagic/demersal mismatch - positional availability** [42](#_Toc162809065)](#_Toc162809065)
+
+[**15.7.3. Habitat scalar for fisheries availability** [42](#_Toc162809066)](#_Toc162809066)
+
+[15.8. Fisheries gear selectivity, swept area and conflict [44](#_Toc162809067)](#_Toc162809067)
+
+[**15.8.1. Setting up changes in fisheries gear selectivity** [45](#setting-up-changes-in-fisheries-gear-selectivity)](#setting-up-changes-in-fisheries-gear-selectivity)
+
+[**15.8.2. Constant selectivity (selcurve=0)** [45](#constant-selectivity-selcurve0)](#constant-selectivity-selcurve0)
+
+[**15.8.3. Constant selectivity for juveniles and adults (selcurve=1)** [45](#constant-selectivity-for-juveniles-and-adults-selcurve1)](#constant-selectivity-for-juveniles-and-adults-selcurve1)
+
+[**15.8.4. Calculation of length for length-based selectivity** [46](#calculation-of-length-for-length-based-selectivity)](#calculation-of-length-for-length-based-selectivity)
+
+[**15.8.5. Logistic length-based selectivity curve (selcurve=2)** [46](#logistic-length-based-selectivity-curve-selcurve2)](#logistic-length-based-selectivity-curve-selcurve2)
+
+[**15.8.6. Normal length-based selectivity curve (selcurve=3)** [47](#normal-length-based-selectivity-curve-selcurve3)](#normal-length-based-selectivity-curve-selcurve3)
+
+[**15.8.7. Lognormal length-based selectivity curve (selcurve=4)** [48](#lognormal-length-based-selectivity-curve-selcurve4)](#lognormal-length-based-selectivity-curve-selcurve4)
+
+[**15.8.8. Gamma length-based selectivity curve (selcurve=5)** [49](#gamma-length-based-selectivity-curve-selcurve5)](#gamma-length-based-selectivity-curve-selcurve5)
+
+[**15.8.9. Knife-edge length-based selectivity curve (selcurve=6)** [50](#knife-edge-length-based-selectivity-curve-selcurve6)](#knife-edge-length-based-selectivity-curve-selcurve6)
+
+[**15.8.10. Bimodal length-based selectivity curve (selcurve=7)** [50](#bimodal-length-based-selectivity-curve-selcurve7)](#bimodal-length-based-selectivity-curve-selcurve7)
+
+[**15.8.11. Binormal length-based selectivity curve (selcurve=8)** [51](#binormal-length-based-selectivity-curve-selcurve8)](#binormal-length-based-selectivity-curve-selcurve8)
+
+[**15.8.12 Volume swept by the fishing gear** [52](#_Toc162809079)](#_Toc162809079)
+
+[**15.8.13. Changes in the YYY_sweptarea parameter** [53](#changes-in-the-yyy_sweptarea-parameter)](#changes-in-the-yyy_sweptarea-parameter)
+
+[**15.8.14. Fishing gear conflict** [53](#_Toc162809081)](#_Toc162809081)
+
+[15.9 Fisheries discarding [54](#fisheries-discarding)](#fisheries-discarding)
+
+[**15.9.1 Key factors determining discarding** [54](#key-factors-determining-discarding)](#key-factors-determining-discarding)
+
+[**15.9.2. Temporal changes in discarding practices** [55](#temporal-changes-in-discarding-practices)](#temporal-changes-in-discarding-practices)
+
+[**15.9.3. Discarding waste** [56](#discarding-waste)](#discarding-waste)
+
+[**15.9.4. Constant discarding (flagdiscard=0)** [56](#constant-discarding-flagdiscard0)](#constant-discarding-flagdiscard0)
+
+[**15.9.5. Constant proportion of an age group discarded (flagdiscard=1)** [56](#constant-proportion-of-an-age-group-discarded-flagdiscard1)](#constant-proportion-of-an-age-group-discarded-flagdiscard1)
+
+[**15.9.6. Length-based discarding (flagdiscard=2)** [57](#length-based-discarding-flagdiscard2)](#length-based-discarding-flagdiscard2)
+
+[**15.9.7. Discarding imposed through time series (flagdiscard=3)** [57](#discarding-imposed-through-time-series-flagdiscard3)](#discarding-imposed-through-time-series-flagdiscard3)
+
+[**15.9.8. Density dependent discarding (flagdiscard=4)** [58](#density-dependent-discarding-flagdiscard4)](#density-dependent-discarding-flagdiscard4)
+
+[**15.9.9. Highgrading** [58](#highgrading)](#highgrading)
+
+[**15.9.10. Market based discarding** [58](#market-based-discarding)](#market-based-discarding)
+
+[15.10 Temporal changes in harvest parameters [61](#_Toc162809093)](#_Toc162809093)
+
+[**16. MANAGEMENT** [63](#_Toc162809094)](#_Toc162809094)
+
+[16.1. General introduction to management [63](#_Toc162809095)](#_Toc162809095)
+
+[16.2. Stock adaptive and TAC-based management [64](#_Toc162809096)](#_Toc162809096)
+
+[**16.2.1. No management on effort or catch applied** [64](#_Toc162809097)](#_Toc162809097)
+
+[**16.2.2. Adaptive management based on reference limits of stock biomass** [65](#_Toc162809098)](#_Toc162809098)
+
+[**16.2.3. Overview of the TAC based management** [65](#overview-of-the-tac-based-management)](#overview-of-the-tac-based-management)
+
+[**16.2.4. Species level TAC allocation** [67](#species-level-tac-allocation)](#species-level-tac-allocation)
+
+[**16.2.5. Spatial TAC allocation: global or regional** [70](#spatial-tac-allocation-global-or-regional)](#spatial-tac-allocation-global-or-regional)
+
+[**16.2.6. Shared total allowable catch allocation across fisheries** [72](#shared-total-allowable-catch-allocation-across-fisheries)](#shared-total-allowable-catch-allocation-across-fisheries)
+
+[**16.2.7. Multi-year TACs** [73](#multi-year-tacs)](#multi-year-tacs)
+
+[**16.2.8. Trading closure after exceeding TAC with MPAs** [73](#_Toc162809104)](#_Toc162809104)
+
+[**16.2.9. Temporal changes in TAC** [73](#_Toc162809105)](#_Toc162809105)
+
+[**16.2.10. Frame based TAC** [74](#_Toc162809106)](#_Toc162809106)
+
+[16.3. Broken stick harvest control rules and broken stick scalar [75](#broken-stick-harvest-control-rules-and-broken-stick-scalar)](#broken-stick-harvest-control-rules-and-broken-stick-scalar)
+
+[16.4. Spatial management through MPAs [80](#_Toc162809108)](#_Toc162809108)
+
+[16.5. Management through seasonal closures [82](#_Toc162809109)](#_Toc162809109)
+
+[16.6. Management of endangered species [83](#management-of-endangered-species)](#management-of-endangered-species)
+
+[16.7. Closing fisheries due to contaminants [85](#_Toc162738163)](#_Toc162738163)
+
+[**17. ECONOMICS** [85](#economics)](#economics)
+
+[17.1. Introduction into the Economics submodel and its main principles [85](#_Toc162809113)](#_Toc162809113)
+
+[17.2. Key routines of the Economics submodel [88](#_Toc162809114)](#_Toc162809114)
+
+[17.3. Calculating prices and costs [90](#_Toc162809115)](#_Toc162809115)
+
+[**17.3.1. Fish prices** [90](#_Toc162809116)](#_Toc162809116)
+
+[**17.3.2. Deemed value prices** [92](#_Toc162809117)](#_Toc162809117)
+
+[**17.3.3. Fishing costs** [93](#_Toc162809118)](#_Toc162809118)
+
+[**17.3.4. Quota trading** [94](#_Toc162809119)](#_Toc162809119)
+
+[**17.3.5. Quota prices** [98](#quota-prices)](#quota-prices)
+
+[17.4 Economic responses [99](#_Toc162809121)](#_Toc162809121)
+
+[**17.4.1. Monthly updating of boat numbers** [99](#_Toc162809122)](#_Toc162809122)
+
+[**17.4.2. Port growth** [101](#_Toc162809123)](#_Toc162809123)
+
+[17.5. Scheduling of fishing effort and final effort allocation [102](#_Toc162809124)](#_Toc162809124)
+
+[**17.5.1. Annual fishing plan** [102](#_Toc162809125)](#_Toc162809125)
+
+[**17.5.2. Monthly updates to the fishing plan** [104](#_Toc162809126)](#_Toc162809126)
+
+[**17.5.3. Final effort allocations** [105](#_Toc162809127)](#_Toc162809127)
+
+[**18. OTHER INDUSTRIES** [109](#other-industries)](#other-industries)
+
+[18.1. Pollution [109](#_Toc162809129)](#_Toc162809129)
+
+[At present this is done via forcing. Details on how to do this is under forcing in Volume 1 of the manual. [109](#_Toc162809130)](#_Toc162809130)
+
+[18.1. Other industries [109](#_Toc162809131)](#_Toc162809131)
+
+[Code exists for other coastal industries and will be added to the publicly available Atlantis in future. Please contact the development group for more details. [109](#_Toc162809132)](#_Toc162809132)
+
+[**REFERENCES** [110](#references)](#references)
+
+**NOTE**. The table numbering begins within 1 in each part of the manual, there is no continuity of numbering of figures and tables across the two documents even though the chapter numbers flow from one document to the other. This will be updated in future versions of the manual when the editors figure out how to drive Microsoft Word with more grace.
+
+**Tables**
+
+[**Table 1.** General fisheries parameters [8](#_Toc498434971)](#_Toc498434971)
+
+[**Table 2.** Parameters required for imposed catch setup [14](#_Toc498434972)](#_Toc498434972)
+
+[**Table 3.** Parameters required to setup a user defined fishing mortality rate. [20](#_Toc498434973)](#_Toc498434973)
+
+[**Table 4.** Hypothetical example of changes in spatial ideal effort distribution in five boxes when effort is weighed by the previous day's (or other "memory" period) CPUE. Each box's distance to a port (only one port assumed) is indicated. [33](#_Toc498434974)](#_Toc498434974)
+
+[**Table 5.** Parameters used to setup different effort options [37](#_Toc498434975)](#_Toc498434975)
+
+[**Table 6.** Parameters used to setup other fishery relevant different options [41](#_Toc498434976)](#_Toc498434976)
+
+[**Table 7.** Parameters used to setup habitat scalar options [44](#_Toc498434977)](#_Toc498434977)
+
+[**Table 8.** Parameters used to setup fishing gear selectivity and swept area. [54](#_Toc498434978)](#_Toc498434978)
+
+[**Table 9.** Parameters used to setup fisheries discarding. [59](#_Toc498434979)](#_Toc498434979)
+
+[**Table 10.** Parameters and description of main fisheries features that can change through time. [62](#_Toc498434980)](#_Toc498434980)
+
+[**Table 11.** Options for the YYY_flagmanage parameter [66](#_Toc498434981)](#_Toc498434981)
+
+[**Table 12.** An example of how shared TACs among three fisheries might affect catch and fishery closures. Grey columns show species for which TAC has been reached. The three fisheries target different species but all participate in a shared common pool TAC. [72](#_Toc498434982)](#_Toc498434982)
+
+[**Table 13.** Parameters used in stock adaptive and TAC based management. [73](#_Toc498434983)](#_Toc498434983)
+
+[**Table 14.** Options for the YYY_flagmpa parameter showing which of the five available MPA varieties are included. [80](#_Toc498434984)](#_Toc498434984)
+
+[**Table 15.** General Economics and subfleet parameters [86](#_Toc498434985)](#_Toc498434985)
+
+[**Table 16.** Parameters relating to fish prices and fishing costs [91](#_Toc498434986)](#_Toc498434986)
+
+[**Table 17.** Parameters relating to quota trading and quota prices [96](#_Toc498434987)](#_Toc498434987)
+
+[**Table 18.** Parameters determining economic responses through gear switching and changes in the number of boats. [99](#_Toc498434988)](#_Toc498434988)
+
+[**Table 19.** Parameters related to effort allocation [106](#_Toc498434989)](#_Toc498434989)
+
+**\**
+
+**NOTE**. The figure numbering begins within 1 in each part of the manual, there is no continuity of numbering of figures and tables across the two documents even though the chapter numbers flow from one document to the other. This will be updated in future versions of the manual when the editors figure out how to drive Microsoft Word with more grace.
+
+**Figures**
+
+[**Figure 1.** Ideal effort allocation in YYY_effortmodel=4, where previous day's CPUE (tons day-1 per box) varies from 0 to 1000. [30](#_Toc498434128)](#_Toc498434128)
+
+[**Figure 2.** The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e. the mFCscale would be rescaled by the average distance of 520 on read-in). [32](#_Toc498434129)](#_Toc498434129)
+
+[**Figure 3.** Shape of the habitat scalar as a function of habitat overlap between a species and a fishery, when k_pattern=-1 [44](#_Toc498434130)](#_Toc498434130)
+
+[**Figure 4.** Shape of the logistic gear selectivity curve. The inflection point (sel_lsm) is set at 50cm. [47](#_Toc498434131)](#_Toc498434131)
+
+[**Figure 5.** Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm. [48](#_Toc498434132)](#_Toc498434132)
+
+[**Figure 6.** Shape of the lognormal gear selectivity curve for an organism of length 1-100cm. [49](#_Toc498434133)](#_Toc498434133)
+
+[**Figure 7.** Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm. [50](#_Toc498434134)](#_Toc498434134)
+
+[**Figure 8.** Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity point (*lsm1* and *lsm2*) are set at 30cm and 60cm [51](#_Toc498434135)](#_Toc498434135)
+
+[**Figure 9.** Shape of the binormal gear selectivity curve for an organism of length 1-100cm. [52](#_Toc498434136)](#_Toc498434136)
+
+[**Figure 10.** The main algorithm in the *Get_Discards()* routine explaining what determines the final discard proportion of a given species and age group by a given fishery. [60](#_Toc498434137)](#_Toc498434137)
+
+[**Figure 11.** The shape of the broken stick harvest control rule with reference points marked on. [75](#_Toc498434138)](#_Toc498434138)
+
+[**Figure 12.** The monthly effort scalar calculation. See explanation in the text above. [103](#_Toc498434139)](#_Toc498434139)
+
+**\**

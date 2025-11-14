@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Atlantis Documentation – 16. MANAGEMENT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Atlantis Documentation</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-user-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">User Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-user-guides">    
+        <li>
+    <a class="dropdown-item" href="../../../user_guides/quarto_site/part1/index.html">
+ <span class="dropdown-text">Part I - Atlantis User Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../user_guides/quarto_site/part2/index.html">
+ <span class="dropdown-text">Part II - [Coming Soon]</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../confluence/index.html"> 
+<span class="menu-text">Confluence Wiki</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../resources/index.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#general-introduction-to-management" id="toc-general-introduction-to-management" class="nav-link active" data-scroll-target="#general-introduction-to-management"><strong>16.1. General introduction to management</strong></a></li>
+  <li><a href="#stock-adaptive-and-tac-based-management" id="toc-stock-adaptive-and-tac-based-management" class="nav-link" data-scroll-target="#stock-adaptive-and-tac-based-management"><strong>16.2. Stock adaptive and TAC-based management</strong></a>
+  <ul>
+  <li><a href="#no-management-on-effort-or-catch-applied" id="toc-no-management-on-effort-or-catch-applied" class="nav-link" data-scroll-target="#no-management-on-effort-or-catch-applied"><strong><em>16.2.1. No management on effort or catch applied</em></strong></a></li>
+  <li><a href="#adaptive-management-based-on-reference-limits-of-stock-biomass" id="toc-adaptive-management-based-on-reference-limits-of-stock-biomass" class="nav-link" data-scroll-target="#adaptive-management-based-on-reference-limits-of-stock-biomass"><strong><em>16.2.2. Adaptive management based on reference limits of stock biomass</em></strong></a></li>
+  <li><a href="#overview-of-the-tac-based-management" id="toc-overview-of-the-tac-based-management" class="nav-link" data-scroll-target="#overview-of-the-tac-based-management"><strong><em>16.2.3. Overview of the TAC based management</em></strong></a></li>
+  <li><a href="#species-level-tac-allocation" id="toc-species-level-tac-allocation" class="nav-link" data-scroll-target="#species-level-tac-allocation"><strong><em>16.2.4. Species level TAC allocation</em></strong></a></li>
+  <li><a href="#spatial-tac-allocation-global-or-regional" id="toc-spatial-tac-allocation-global-or-regional" class="nav-link" data-scroll-target="#spatial-tac-allocation-global-or-regional"><strong><em>16.2.5. Spatial TAC allocation: global or regional</em></strong></a></li>
+  <li><a href="#shared-total-allowable-catch-allocation-across-fisheries" id="toc-shared-total-allowable-catch-allocation-across-fisheries" class="nav-link" data-scroll-target="#shared-total-allowable-catch-allocation-across-fisheries"><strong><em>16.2.6. Shared total allowable catch allocation across fisheries</em></strong></a></li>
+  <li><a href="#multi-year-tacs" id="toc-multi-year-tacs" class="nav-link" data-scroll-target="#multi-year-tacs"><strong>16.2.7. Multi-year TACs</strong></a></li>
+  <li><a href="#trading-closure-after-exceeding-tac-with-mpas" id="toc-trading-closure-after-exceeding-tac-with-mpas" class="nav-link" data-scroll-target="#trading-closure-after-exceeding-tac-with-mpas"><strong><em>16.2.8. Trading closure after exceeding TAC with MPAs</em></strong></a></li>
+  <li><a href="#temporal-changes-in-tac" id="toc-temporal-changes-in-tac" class="nav-link" data-scroll-target="#temporal-changes-in-tac"><strong><em>16.2.9. Temporal changes in TAC</em></strong></a></li>
+  <li><a href="#frame-based-tac" id="toc-frame-based-tac" class="nav-link" data-scroll-target="#frame-based-tac"><strong><em>16.2.10. Frame based TAC</em></strong></a></li>
+  </ul></li>
+  <li><a href="#broken-stick-harvest-control-rules-and-broken-stick-scalar" id="toc-broken-stick-harvest-control-rules-and-broken-stick-scalar" class="nav-link" data-scroll-target="#broken-stick-harvest-control-rules-and-broken-stick-scalar"><strong>16.3. Broken stick harvest control rules and broken stick scalar</strong></a></li>
+  <li><a href="#spatial-management-through-mpas" id="toc-spatial-management-through-mpas" class="nav-link" data-scroll-target="#spatial-management-through-mpas"><strong>16.4. Spatial management through MPAs</strong></a></li>
+  <li><a href="#management-through-seasonal-closures" id="toc-management-through-seasonal-closures" class="nav-link" data-scroll-target="#management-through-seasonal-closures"><strong>16.5. Management through seasonal closures</strong></a></li>
+  <li><a href="#management-of-endangered-species" id="toc-management-of-endangered-species" class="nav-link" data-scroll-target="#management-of-endangered-species"><strong>16.6. Management of endangered species</strong></a></li>
+  <li><a href="#closing-fisheries-due-to-contaminants" id="toc-closing-fisheries-due-to-contaminants" class="nav-link" data-scroll-target="#closing-fisheries-due-to-contaminants"><strong>16.7. Closing fisheries due to contaminants</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><strong>16. MANAGEMENT</strong></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="general-introduction-to-management" class="level2">
+<h2 class="anchored" data-anchor-id="general-introduction-to-management"><strong>16.1. General introduction to management</strong></h2>
+<p>Fisheries management is an optional feature in Atlantis. Its role is to regulate the fishing effort according to a set list of rules and options, such as ensuring that stocks don’t fall below a certain threshold, implementing total allowable catch (TAC) rules, or protecting endangered species. Management comprises various measures of effort reduction through limitation on fishing and spatial closures (temporal or permanent). The limitations on fishing typically start applying once a set trigger has been reached, for example total allowable catch (TAC) has been reached, stock is below a threshold biomass, a certain amount of engendered species biomass has been caught, and so on (see full list below). Annual management actions such as setting TACs or scaling the effort if stocks decline below a set level occur on the first timestep of each year and are typically in place for the entire year.</p>
+<p>In some cases (stock adaptive management), the re-evaluation of the fishing restriction can be done earlier than the start of the next year.</p>
+<p>The management options available to regulate fishing mortality depend on whether fishing is done through imposed catch, user defined fishing mortality or dynamic fishing.</p>
+<p>For harvesting set through <strong>imposed catch</strong> the management options include</p>
+<ol type="1">
+<li><p><strong><em>Stock adaptive management</em></strong> (set with YYY_flagmanage=1). In this option the actual catch taken will be decreased if stocks fall below a set threshold (see below). Note that even though YYY_flagmanage has many options, only YYY_flagmanage=1 can be applied to the imposed catch. If YYY_flagmanage &gt; 1, no management scalar will be applied to the imposed catch</p></li>
+<li><p><strong><em>Spatial management</em></strong> through MPAs (set if flagmpa=1)</p></li>
+</ol>
+<p>For harvesting set as a user defined <strong>fishing mortality</strong> the management options include</p>
+<ol type="1">
+<li><p><strong><em>Yearly and weekly catch limits</em></strong> set in TAC_XXX and TripLimit_XXX parameters and the flag_stop_F_tac parameter, which determines whether fishing is closed when limits are reached (see chapter 15.9.1).</p></li>
+<li><p><strong><em>Spatial management</em></strong> through MPAs (set if flagmpa=1)</p></li>
+<li><p>Harvest control rules set as “<strong><em>broken stick” scalar</em></strong> on the mFC value (see chapter 16.2.8)</p></li>
+<li><p><strong><em>Frame based management</em></strong>, where fishing is allowed once biomass has passed a threshold level (fishing level is set by TAC_XXX and the biomass threshold is set as a scalar on the initial biomass using FC_high_thresh)</p></li>
+</ol>
+<p>For <strong>dynamic fishing</strong> the management includes</p>
+<ol type="1">
+<li><p><strong><em>Stock adaptive management</em></strong> or <strong><em>TAC management</em></strong> (set with YYY_flagmanage)</p></li>
+<li><p><strong><em>Spatial management</em></strong> through MPAs (set if flagmpa=1)</p></li>
+<li><p>Seasonal closures (set in YYY_flagseasonal)</p></li>
+<li><p>Control rules based on the bycatch of endangered species</p></li>
+<li><p>Extra options that come through the economic incentives if the Economics submodel is used</p></li>
+</ol>
+<p>The adaptive or TAC based management, and management based on endangered species controls the overall effort or fishing intensity by the fishery, i.e.&nbsp;it is not spatial. In contrast, MPA applies spatial management, by closing a proportion of a box to fishing. Finally, seasonal closures are temporal management, which means that fishing effort is stopped for a set period of time within each calendar year.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><p><strong>Note!</strong></p>
+<p><strong>Management, stock assessments and dynamic TACs</strong></p>
+<p>A lot of management decisions are based on TACs – when a fishery exceeds its TAC (counted in one of many different ways) it will be closed. It is important to understand that the TAC can be either set in the <em>harvest.prm</em> file or calculated dynamically during the simulation process. The dynamic calculation aims to simulate fisheries stock assessments and the TAC allocation process made in real life situations. Dynamic TACs require that one of three available stock assessment options are turned on:</p>
+<ol type="1">
+<li><p><strong>Pseudo assessments</strong> (done if pseudo_assess=1 in <em>harvest.prm</em>) are the simplest version of stock assessments. It uses Atlantis biomasses and a random error added to them as inputs into the fishing mortality estimator and harvest control rule calculations.</p></li>
+<li><p><strong>Full integrated assessment</strong>, done in the <strong>Assessment</strong> submodel. This is done only if the <em>run.bat</em> file has a set –a parameter with <em>assessment.prm</em> parameter file. A number of assessment options are possible: Schafer production model, ADAPT , MSVPA Integrated assessment model (CAB) and R-based assessment calls (please see the <a href="https://confluence.csiro.au/display/Atlantis/2022/12/22/Calling+R+from+Atlantis+-+Stock+Assessment+and+TAC+setting">wiki</a>).</p></li>
+<li><p><strong>Recommended biological catch based assessment</strong> using tiered harvest control rules (applied if useRBCTiers=1 in <em>harvest.prm</em>). The tier based assessment follows the harvest control rule hierarchy used in Australia and is specified in the <em>CallTierAssessment()</em> routine. It includes a (i) full quantitative population model based (e.g.&nbsp;SS3), (ii) catch curves, (iii) CPUE, (iv) surplus production, (v), average length, (vi) trigger points, and (vii) catch composition. The parameters for these options are specified in <em>assessment.prm</em>.</p></li>
+</ol>
+<p>The stock assessment options are not further described in the manual. For further details on the application of different assessment options see <a href="https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155606/43156986/AMS_Final_Report_v6.pdf">Fulton et al 2007</a> or Dichmont et al 2017.</p></th>
+</tr>
+</thead>
+
+</table>
+</section>
+<section id="stock-adaptive-and-tac-based-management" class="level2">
+<h2 class="anchored" data-anchor-id="stock-adaptive-and-tac-based-management"><strong>16.2. Stock adaptive and TAC-based management</strong></h2>
+<p>Stock adaptive and total allowable catch (TAC) based management is set through flagmanage flags. These settings limit, or completely stop, the fishing effort if stocks fall below a set threshold (stock adaptive management) or if the TAC has been reached. To allow for this management for each fishery select the specific management option with the YYY_flagmanage parameter.</p>
+<section id="no-management-on-effort-or-catch-applied" class="level3">
+<h3 class="anchored" data-anchor-id="no-management-on-effort-or-catch-applied"><strong><em>16.2.1. No management on effort or catch applied</em></strong></h3>
+<p>When YYY_flagmanage = 0, the fishery will not be affected by stock size related management actions or TACs. The effort of the fishery is set based on effortmodel options only (or imposed catch or user defined fishing mortality) and will stay in place regardless of the stock abundance or quotas.</p>
+</section>
+<section id="adaptive-management-based-on-reference-limits-of-stock-biomass" class="level3">
+<h3 class="anchored" data-anchor-id="adaptive-management-based-on-reference-limits-of-stock-biomass"><strong><em>16.2.2. Adaptive management based on reference limits of stock biomass</em></strong></h3>
+<p>When YYY_flagmanage = 1, fishing effort is controlled by the stock abundance. The effort reduction is triggered when the stock falls below the level given by the FC_threshold_XXX – a proportion of the “virgin” biomass. This virgin biomass can be either the biomass at the start of the run or after a burn-in period. To setup the burn-in period set the global flagreinitpop=1 and give the day (in the days of simulation run) which should be used as the point in the simulation to define virgin biomass in the reinit_pop_day parameter. The burn-in period might be useful if biomasses fluctuate a lot during the early years of the simulation and are not useful as a stock management reference point.</p>
+<p>If the biomass of a species XXX falls below the FC_threshold_XXX proportion, the effort will be reduced by the FC_restrict_XXX scalar and reductions will take place over the XXX_FC_period number of days.</p>
+<p>Remember, that the catch will be reduced via the mechanism of reducing effort (if using the effortmodel options) or the imposed catch. The assessment of the stock level is <strong>done once per year</strong> and the effort scalar is set and applied for the rest of the year. If more frequent assessments are desired, a user can set the second period after which the stock health will be assessed (XXX_FC_period2). If, after the time set in XXX_FC_period2, the biomass of a species XXX is above the FC_high_threshold_XXX proportion of the virgin biomass, the reduction in effort is lifted and the effort reverts to the original value before the restrictions. Note, the FC_high_threshold_XXX is often larger than the FC_threshold_XXX, which means that after a fishery has had effort restrictions imposed, a stock must recover to higher levels to allow for a return to the original effort.</p>
+</section>
+<section id="overview-of-the-tac-based-management" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-the-tac-based-management"><strong><em>16.2.3. Overview of the TAC based management</em></strong></h3>
+<p>All other options of effort management involves some form of TAC or other catch constraint and apply complete closures of relevant fishery(ies) when it(they) exceed the allocated TAC. The management options are set through YYY_flagmanage = 2 to 8 and only apply when fishing mortality is set through dynamic fishing. Unlike the stock adaptive management, where stock status is evaluated once per year, assessment of whether a fishery has reached its TAC is done <strong>at every time step</strong> of the simulation. The original TACs for all relevant species and fishery combination are set in the TAC_XXX parameter. However, these values may be modified if TACs for a fishery are based on several species, such as in the case of companion species or basket species quota. Also, TACs can be updated dynamically if stock assessment options are included in the model (see NOTE! below).</p>
+<p>The management response to reaching the quota will depend on whether the TACs are set on a global level or for different fisheries regions. The options for the allocation of a TAC to single or multiple species, and at global or regional levels, defines seven options for the YYY_flagmanage parameter, shown in Table 11.</p>
+<p>The cumulative catch compared against the TAC can be calculated either based on landed catch only (flagTACincludeDiscard = 0) or based on both landed catch and discards (flagTACincludeDiscard = 1). Only the catch (and discards) accumulated in the current calendar year are used in the TAC comparison (i.e.&nbsp;the cumulative catch is zeroed at the start of each new calendar year in the simulation).</p>
+<p>All groups for which TACs are to be applied should have a value 1 in the isTAC parameter in the <em>functional_groups.csv</em> file, or else the TAC routine for the species is skipped. Also, all functional groups which are to be managed with TACs should be identified as isFished=1 in the functional_groups.csv file; otherwise Atlantis overwrites their TACs with a very large number (10<sup>12</sup>) and considers them as non-quota species.</p>
+<p>The TAC calculations are done by the <em>TAC_Check()</em> routine in <strong>atManage.c</strong>.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>NOTE!</strong></p>
+<p><strong>How are TACs set and how can they change during the simulation?</strong></p>
+<p>The TACs for set for each species and fishery combination. They are initially set in the TACXXX parameter. In the simplest version the TACs are static and remain the same throughout the simulation. However, it is also possible to have forced or dynamic changes in the TAC.</p>
+<p>Forced changes are implemented in the same way as other forced changes in Atlantis parameters, where users have to set the dates and magnitude of the change. This is described in chapter 16.2.9.</p>
+<p>Dynamic changes are applied if users have at least one of the three available stock assessment versions applied. This means that Atlantis will try to simulate the real-world situation where stocks are assessed at set time intervals (typically annually) and the TACs are updated dynamically based on the stock status, set stock biomass targets and harvest control rules (see Note! in chapter 16.1)</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><span id="_Toc498434981" class="anchor"></span><strong>Table 11.</strong> Options for the YYY_flagmanage parameter</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th colspan="3"><strong>Species level TAC allocation</strong></th>
+<th colspan="2"><strong>Spatial TAC allocation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>YYY_flagmanage value and its “name” in the code</em></td>
+<td><em>TAC: one species</em></td>
+<td><em>TAC: companion species</em></td>
+<td><em>TAC: basket quota</em></td>
+<td><em>Global TAC</em></td>
+<td><em>Regional TAC</em></td>
+</tr>
+<tr class="even">
+<td>2 TAC_mgmt</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3 basketTAC_mgmt</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4 regionalTAC_mgmt</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>5 coTAC_mgmt</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6 coBTAC_mgmt</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7 RbasketTAC_mgmt</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>8 coBRTAC_mgmt</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>The YYY_flagmanage=10 sets the USA-style management that was applied in the early 2000s (see Kaplan et al.&nbsp;2013 for an example study). It involved cumulative trip limits based off TACs (often regional), and once the TAC was exhausted then spatial management actions were triggered. This system was deemed to be complicated and was replaced with transferable quotas in 2011. The option is not described here in further detail as it is specific to the historical fisheries management of the West Coast of the US. If its use is desired for historical hindcasts consult Kaplan et al.&nbsp;2013 for explanations.</p>
+</section>
+<section id="species-level-tac-allocation" class="level3">
+<h3 class="anchored" data-anchor-id="species-level-tac-allocation"><strong><em>16.2.4. Species level TAC allocation</em></strong></h3>
+<p>The TAC for each species XXX and fishery is given in the TAC_XXX array, which must have as many values as there are fisheries. However, the TAC_XXX parameter can be used differently depending on whether a species is managed through a single or multiple species TAC.</p>
+<ol type="1">
+<li><strong>Single species based TAC (YYY_flagmanage =2 or 4)</strong></li>
+</ol>
+<p>The TAC is set for one species and its TAC limits are assessed only against its cumulative catch (or only based on landings, if flagTACincludeDiscard = 0) for that year. If a fishery targets only one species XXX (set in target_YYY parameter), it will be closed when the TAC for the species XXX is reached. If a fishery targets several species, it will be closed when it exceeds the TAC for as many species as specified by the YYY_num_max_sp parameter (see other options below on how the TAC can still be modified); in this way multispecies fleet management can be mimicked.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>How to setup simple TAC management?</strong></p>
+<ol type="1">
+<li><p>Set isTAC to 1 in the <em>functional_groups.csv</em> file for the TAC managed species XXX</p></li>
+<li><p>Set a fishery specific flag YYY_flagmanage=2 (or to another value, see Table 11)</p></li>
+<li><p>Give TACs in the TAC_XXX parameter for the fisheries that catch species XXX and should be limited by its TAC (tons per year for the entire model domain)</p></li>
+<li><p>Set the number of species for which the TAC must be meet/exceeded before a multispecies fishery is closed (YYY_max_num_sp)</p></li>
+</ol>
+<p>Remember, the <strong>management parameters apply to a fishery and not to a species</strong>! If the user wants to apply a TAC for a given species and ensure that no fishing is conducted once the TAC for that species is exceeded, the species should only be targeted by one fishery and the YYY_max_num_sp for that fishery should be set to 1.</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li><strong>Companion species based TAC (YYY_flagmanage =5, 6 or 8)</strong></li>
+</ol>
+<p>This approach is used in situations where catch of one species result in bycatch of other species under management. In this case the original TACs, given in the TAC_XXX parameter (and presumably based on single species stock assessments) are modified based on the ratio of the companion species bycatch. For example, it is estimated that for each 100 tons of ling a fishery Y catches 20 tons of redfish, which is the ratio of 0.2. Let’s say that based on single species assessments the TAC for ling is 200 tons, but for redfish it is only 10 tons. These values are then set in TAC_LIN as 200 and TAC_RED as 10. In the companion species TAC approach, Atlantis will recalculate the TAC for each species based on the ratio of bycatch and based on whether the TACs are marked as being based on the strongest or weakest (most vulnerable) species (set coType_XXX parameter, where =0 weakest, =1 strongest). So if coType_LIN = 0, it means that the TAC of ling will be decreased to 50 tons, since the co-catch ratio will lead to 10 tons of redfish catch, which is the TAC for redfish. If coType_LIN = 1, the TAC_RED will be increased from 10 to 40, because the fishery in fulfilling its 200 ton quota of ling and will also take 40 tons of redfish bycatch. See the box below for a step by step explanation on how to set the companion species management.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>How to setup companion TAC management?</strong></p>
+<ol type="1">
+<li><p>Set isTAC to 1 in the <em>functional_groups.csv</em> file for both target and companion species</p></li>
+<li><p>Set a fishery specific flag YYY_flagmanage=5 (or other value, see Table 11)</p></li>
+<li><p>Give TACs in the TAC_XXX parameter for each fishery for target and companion species</p></li>
+<li><p>Set the number of species for which the TAC must be meet/exceeded before a multispecies fishery is closed (YYY_max_num_sp)</p></li>
+<li><p>Set the maximum number of companion species (i.e.&nbsp;highest number of companion species across all species in the model). This is a global parameter and applies to all fisheries (K_max_co_sp), it is often set to 2. This basically tells Atlantis whether to bother reading in any of the other parameters and the size of the arrays to initialise before read-in.</p></li>
+<li><p>For each species set their individual number of companion species max_co_sp_XXX. This needs to be less than or equal to K_max_co_sp. This controls the loops for the individual species so as to maximise speed of execution.</p></li>
+<li><p>For each target species give the ID numbers (in the <em>functional_groups.csv</em> order) of the companion species in the co_sp_XXX vector. This parameter can be seen as a representation of which species usually school or occur together and hence will be caught together (fisheries data is sometimes available on this, either from catch composition records or observers). These parameters are vectors and must have as many values as the number given by the max_co_sp_XXX parameter (it will actually tell you that it needs K_max_co_sp entries, but it only uses the first max_co_sp_XXX. If you want to play it safe enter K_max_co_sp and if max_co_sp_XXX is less than K_max_co_sp fill up the spare entries either with -1 or a number larger than the ID of the companion species with the largest ID. So for example, if you only had one companion species occurs for species XXX and K_max_co_sp is set to 2, then the second value in the parameter co_sp_XXX should be set to -1, e.g.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>co_sp_XXX 2</p>
+</blockquote>
+<p>2 -1</p>
+<blockquote class="blockquote">
+<p>shows that only species ID 2 is caught together with species XXX. Alternatively, if across all the species the highest ID of any companion species was (say) 46. Then you could put</p>
+<p>co_sp_XXX 2</p>
+</blockquote>
+<p>2 48</p>
+<blockquote class="blockquote">
+<p>Either of these case will be treated in the same way – the second entry will never execute on the code, only the companion species with ID 2 will be processed.</p>
+</blockquote>
+<ol start="8" type="1">
+<li><p>Indicate whether the TAC is dictated by the weakest or strongest link among the companion TAC species in the coType_XXX parameter (=0 weakest, =1 strongest). See main text above for the explanation.</p></li>
+<li><p>Give the assumed ratio of the catch of companion species accidentally caught by each fishery while targeting a species XXX in XXX_co_sp_catchZZ where ZZ is the number associated with the position of the companion species in the co_sp_XXX vector – so for the first species (ID 2 in the example given under (7) above) it would be XXX_co_sp_catch1, for the second species XXX_co_sp_catch2 etc. Due to the complexity involved in reading in multli-dimensional arrays K_max_co_sp vectors must be supplied for XXX_co_sp_catch – that is if K_max_co_sp is 3 then XXX_co_sp_catch1, XXX_co_sp_catch2 and XXX_co_sp_catch3 must be given even if XXX has max_co_sp_XXX less than 3. Just fill the extra vectors with zeros. These vectors will never be used (as the code running the TAC setting only loops to max_co_sp_XXX) but it is too difficult to get the code to initially read only as many vectors out of the <em>harvest.prm</em> file as needed based on max_co_sp_XXX. Sorry for the inconvenience. Note that the values given fin the vector XXX_co_sp_catchZZ indicate how many kg of the companion species is taken for every 1 kg of the target species XXX taken. This vector must have as many values as there are fisheries. This means that different fisheries (gear, selectivity) will have a different ratio of companion species bycatch even when targeting the same species XXX.</p></li>
+<li><p>The ratio of species cocatch given in the co_sp_catch_XXX parameter can stay fixed throughout the run or be updated dynamically according to the actual catches of the companion species by a fishery. If a dynamic value is wanted this is set with a global parameter flagdyn_coupdate = 1</p></li>
+</ol></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li><strong>Basket species TAC (YYY_flagmanage =3, 6, 7 or 8)</strong></li>
+</ol>
+<p>Basket species TACs are often issued for data poor species, where TACs are identified for different groups, such as demersal sharks or small pelagics. The user still provides a TAC_XXX for individual species and sets the routines as described in the box for individual species, but Atlantis will pool the TACs for all species listed as being in one basket into one large TAC and will only assess the overall catch of all species in the basket against this basket TAC. So for example if the basket TAC for three demersal sharks is 1000 tons, all three options below will give the same TAC (the example assumes only one fishery in the model)</p>
+<table class="caption-top" style="width:97%;">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 31%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>Option 1:</strong></p>
+<p>TAC_sharkA 1</p>
+<p>1000</p>
+<p>TAC_sharkB 1</p>
+<p>0</p>
+<p>TAC_sharkC 1</p>
+<p>0</p></th>
+<th><p><strong>Option 2:</strong></p>
+<p>TAC_sharkA 1</p>
+<p>0</p>
+<p>TAC_sharkB 1</p>
+<p>500</p>
+<p>TAC_sharkC 1</p>
+<p>500</p></th>
+<th><p><strong>Option 3:</strong></p>
+<p>TAC_sharkA 1</p>
+<p>0</p>
+<p>TAC_sharkB 1</p>
+<p>0</p>
+<p>TAC_sharkC 1</p>
+<p>1000</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Irrespective of how the basket is made up, if the cumulative catch of shark (i.e.&nbsp;the sum of the catch of sharkA, sharkB and sharkC) exceeds the basket then the fishery is closed even if the cumulative catch is made up of a single species and the other species are largely untouched.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>How to setup basket TAC management?</strong></p>
+<ol type="1">
+<li><p>Set the size of a basket quota (the maximum number of groups in the quota) using K_num_basket in <em>run.prm</em>.</p></li>
+<li><p>Set isTAC to 1 in the <em>functional_groups.csv</em> file for all the basket TAC species</p></li>
+<li><p>Set a fishery specific flag YYY_flagmanage=3 (or 6, 7, or 8 if combined with other management options, see Table 11)</p></li>
+<li><p>Give TACs in the TAC_XXX parameter for each fishery for species</p></li>
+<li><p>Set the number of species for which the TAC must be meet/exceeded before a multispecies fishery is closed (YYY_max_num_sp)</p></li>
+<li><p>Indicate which species are members of the basket TAC with basketSPXXX set to 1.</p></li>
+<li><p>For each basket species XXX give the number of other species that are in the same basket using the basket_sizeXXX parameter.</p></li>
+<li><p>Then provide ID numbers of the species that are in the basket with species XXX. This is given in the parameter basketTAC_XXX. If a species is not in a basket with any other species, put the ID number larger than the ID of the last species in the <em>functional_groups.csv</em> file. This means that if there are 41 functional groups and the last ID number is 40 (since Atlantis counts from zero!), then for a single quota species basketTAC_XXX should say 41 (or 42 or any other number greater than 40).</p></li>
+<li><p>Make sure that the parameters above are consistent for all basket species, as currently Atlantis does not have internal checks for this. This means that if species A is in a basket with species B and C, the parameters for all three species should show that they are in the basket quota with each other.</p></li>
+</ol></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="spatial-tac-allocation-global-or-regional" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-tac-allocation-global-or-regional"><strong><em>16.2.5. Spatial TAC allocation: global or regional</em></strong></h3>
+<p>TAC based management also allows users to either use a basic global TAC applied to the entire model domain (e.g.&nbsp;YYY_flagmanage=2, see Table 11), or use regional TAC management (e.g.&nbsp;YYY_flagmanage=4, see Table 11). The <strong>regions can be defined based on fisheries stocks</strong> identified in the biology.prm file <strong>or based on management areas</strong> (see NOTE! below). Parameter manage_reg identifies whether regional fisheries management is done based on stocks (manage_reg =0) or based on regions (manage_reg =1).</p>
+<p>In global TAC cases, a species TAC applies to its total catch (or landing) over the entire model domain. In the case of the regional management TACs are assessed for separate stocks or regions independently (see NOTE! below on how to set up different stocks or regions). In this case the TAC for a species/fishery is still set as usual for the entire domain in TAC_XXX parameter.</p>
+<p>If <strong>regions are defined by stocks,</strong> then allocation of the TAC among stocks is simply based on proportional biomass of each stock and is done once per year. If the regional management option is chosen (e.g.&nbsp;YYY_flagmanage=4) for the fishery YYY, then Atlantis will automatically apply stock specific TACs to all species that are caught by fishery YYY that also have several stocks identified (see NOTE! below). Note this means regional management is used regardless of the regionalSPXXX setting.</p>
+<p>Alternatively, if TACs are based on <strong>management areas</strong>, then users must identify whether species XXX should be managed by regional quotas in the parameter regionalSPXXX (where a value of 1 means regional management is in place). Then the TACs (in tons per year) for each region are given in the RegTAC_XXX parameter, which must have as many value as there are regions or management areas. Note, even if some regions are managed through a TAC, it does not mean that ALL regions must participate in the TAC management. Such situations exist in real life, where for example, different regions belong to different jurisdictions (countries or states). To allow for this situation, regions that do not have a quota should have a TAC value of 10<sup>12</sup> in the RegTAC_XXX parameter. For example, for a species that is managed through 4 regions the parameter may look like:</p>
+<p>RegTAC_XXX</p>
+<p>500 1000 5000 10E+12</p>
+<p>When regional management is in place, the TAC limit is assessed for each region separately. If the TAC in a region is exceeded, then any catch of species XXX taken in that region is discarded (remember, the discards can survive, and this setting will affect the final fishing mortality). However, the fishery itself is not closed at this point. The fishery is only closed when the overall TAC is exceeded and a <strong>fishery is considered as over TAC only when it exceeds TAC in ALL regions</strong> for the number of species given in the YYY_max_num_sp parameter. If fishing effort is distributed proportionally to biomass and relative box biomass of the species does not change through time, then regional TACs will lead to the same catch as the global TAC. However, this is not usually the case, which means that applying regional TACs can lead to higher fishing mortality than applying a global TAC depending on species and fleet movements. For instance, if the fishery is required to land all the catch rather than discard anything (YYY_landallTAC_sp=1), the landings for some regions will usually exceed that regional TACs.</p>
+<p>The regional TACs are calculated in <em>Apply_Annual_Fisheries_Mgmt()</em> routine in <strong>atImplementation Annual.</strong>c</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>NOTE!</strong></p>
+<p><strong>What is a stock and how to define it?</strong></p>
+<p>Each functional group can have different stocks. These stocks are not spatially overlapping and therefore must occur in different boxes or at least in different vertical layers (e.g.&nbsp;deep water and shallow water stock). The number of stocks for each species is given in NumStocks in the <em>functional_groups.csv</em> and the spatial distribution of the stocks in the <em>biology.prm</em>, where XXX_stock_struct indicates which stock lives in each of the model boxes and XXX_vert_stock_struct shows which stock lives in each vertical layer (with the same vertical stock structure assumed to apply in all boxes).</p>
+<p>Stocks can have different biological parameters, such as predation vulnerability scalar (pSTOCK_XXX) and stock-specific recruitment scalar (recSTOCK_XXX). Stocks can also have stock specific fisheries catchability qSTOCK_XXX.</p>
+<p>Setting up different stocks can have its pros and cons. Using stocks can better represent real-world population structure with a minimum of additional parameters. However, if different “stocks” have different biological characteristics, it might be better to define them as different functional groups. Although, setting stocks as different species will increase computation time.</p>
+<p>Remember that even if one defines separate stocks, they can still be managed as one large stock, if they are targeted by one fishery and the management of that fishery is set to YYY_flagmanage=2</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>NOTE!</strong></p>
+<p><strong>What is a management region and how to define it?</strong></p>
+<p>The management regions are defined in the <em>biology.prm</em> in regID file where one box can be assigned only to one region. The management region can represent a separate TAC based region or other management unit. The biomass per group per region is output in the <em>BiomReg.txt</em> file.</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="shared-total-allowable-catch-allocation-across-fisheries" class="level3">
+<h3 class="anchored" data-anchor-id="shared-total-allowable-catch-allocation-across-fisheries"><strong><em>16.2.6. Shared total allowable catch allocation across fisheries</em></strong></h3>
+<p>The TAC_XXX parameter is given for each species and fishery combination, and usually each fishery is only affected by its own TAC. However, it is possible to set up a shared TAC for several (or all) fisheries using flagTACparticipate_YYY=1 parameter. In that case only one common TAC pool is allowed, so a fishery can either participate in this pool or have its own independent TAC (flagTACparticipate _YYY=0). The shared TAC is independent of the YYY_flagmanage options discussed above.</p>
+<p>Table 12 gives a hypothetical example of three fisheries participating in a common TAC pool. The TACs for each targeted species by each fishery are given in the first three rows. The total TAC for a given species across all participating fisheries is then just a sum of their individual TACs. It is likely that different fisheries have different efficiencies at catching a species, so a fishery with a small TAC can benefit by “stealing” some of the TAC from other fisheries. This is because the fishery will not be closed when it exceeds its own TAC, but only when the total TAC has been exceeded. The last row shows the total catch by the three fisheries; for species A, C and F the catch has reached the total TAC. The maximum number of species for which each fishery can exceed its TAC is set to 2 (max_num_sp_ YYY=2) for all fisheries. The first two fisheries have reached the TAC for two species and will be closed, while the third fishery can still operate and catch both species C and D, even though the TAC for species C has been reached (because it will be closed only when it reaches its TAC for 2 species).</p>
+<p><span id="_Toc498434982" class="anchor"></span>****</p>
+<p><strong>Table 12.</strong> An example of how shared TACs among three fisheries might affect catch and fishery closures. Grey columns show species for which TAC has been reached. The three fisheries target different species but all participate in a shared common pool TAC.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">SpecA</th>
+<th style="text-align: center;">SpecB</th>
+<th style="text-align: center;">SpecC</th>
+<th style="text-align: center;">SpecD</th>
+<th style="text-align: center;">SpecE</th>
+<th style="text-align: center;">SpecF</th>
+<th style="text-align: center;">SpecG</th>
+<th style="text-align: center;">Species &gt;TAC</th>
+<th style="text-align: center;">Closed?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TAC of fishery I</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">200</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">200</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td>TAC of fishery II</td>
+<td style="text-align: center;">200</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td>TAC of fishery III</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">1000</td>
+<td style="text-align: center;">1000</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td><strong>Total TAC (sum)</strong></td>
+<td style="text-align: center;"><strong>300</strong></td>
+<td style="text-align: center;"><strong>200</strong></td>
+<td style="text-align: center;"><strong>1000</strong></td>
+<td style="text-align: center;"><strong>1100</strong></td>
+<td style="text-align: center;"><strong>250</strong></td>
+<td style="text-align: center;"><strong>150</strong></td>
+<td style="text-align: center;"><strong>100</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td><em>Catch</em></td>
+<td style="text-align: center;"><em>320</em></td>
+<td style="text-align: center;"><em>180</em></td>
+<td style="text-align: center;"><em>1000</em></td>
+<td style="text-align: center;"><em>1000</em></td>
+<td style="text-align: center;"><em>200</em></td>
+<td style="text-align: center;"><em>160</em></td>
+<td style="text-align: center;"><em>20</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multi-year-tacs" class="level3">
+<h3 class="anchored" data-anchor-id="multi-year-tacs"><strong>16.2.7. Multi-year TACs</strong></h3>
+<p>Typically TACs set a yearly catch limit and are re-assessed annually, but it is possible to also set multi-year TACs as well. The number of years for which the TACs are allocated are given in the tac_resetperiodYYY parameter. This value is most often set to 1, but could be any number of years.</p>
+<p>The multi-year TAC can be applied in two cases:</p>
+<ol type="1">
+<li><p>Fisheries are allocated a total catch over a several year period, set with a global parameter bulkTAC =1. For example, a 3-year bulk TAC can be set to 600 tons, which makes an average yearly TAC of 200. The TAC_XXX parameter should still give yearly values, as Atlantis resets them based on the tac_resetperiodYYY parameter for that species and fishery. However, if a fishery catches 300 or even 550 tons in the first year it will still not be closed, until the 3-year TAC quota has been reached. If the fishery catches all its multi-year TAC in the first year, it will remain closed for the rest of the tac_resetperiod_YYY.</p></li>
+<li><p>If some form of assessment model is used (see Note! in chapter 16.1) TACs are dynamic. In this case the multi year TAC option with bulkTAC=0 means that TACs are annual, as usual, but new assessments and new TACs are only done every few years, with the frequency given in the tac_resetperiodYYY parameter.</p></li>
+</ol>
+</section>
+<section id="trading-closure-after-exceeding-tac-with-mpas" class="level3">
+<h3 class="anchored" data-anchor-id="trading-closure-after-exceeding-tac-with-mpas"><strong><em>16.2.8. Trading closure after exceeding TAC with MPAs</em></strong></h3>
+<p>When some form of assessment is used (see Note! in chapter 16.1) and TACs are dynamic, then a fishery might be given an option of imposed MPAs instead of reduction in TACs. This is based on the real-life situation where fishers prefer an imposition of MPAs instead of a reduction in TACs. To simulate this option in Atlantis, one must have dynamic TACs (and some form of stock assessment included) and set parameter flagTradeTACvsMPA=1. Further, to set up this option properly it is important to check that the correct options for YYY_flagmpa have been selected (see chapter 16.4).</p>
+</section>
+<section id="temporal-changes-in-tac" class="level3">
+<h3 class="anchored" data-anchor-id="temporal-changes-in-tac"><strong><em>16.2.9. Temporal changes in TAC</em></strong></h3>
+<p>As with other harvest and management parameters, the user can allow for temporal changes in TACs. This can be done in a standard forced way (YYY_TACchange=2) or dynamically through the Assessment or pseudoassessment submodel (YYY_TACchange=1). The dynamic TAC change through the Assessment submodel aims to simulate real world assessment and decision making processes, where TACs are updated based on the stock assessments. The Assessment submodel is currently not covered in this version of the manual. Users are currently advised to consult the wiki, the Atlantis code and Atlantis developers for further details – as assessment type, parameters, frequency of data collection and meta-rules around TAC setting (e.g.&nbsp;degree of political lobbying, buffers imposed at various decision steps) must also be set.</p>
+<p>When changes in TAC are forced, the changes are implemented in the same way as with other temporal changes in a parameter. XXX_TAC_changes indicates the number of TAC changes for each fishery and species XXX. The start day of each change is given in TACchange_start_XXX, the period over which the change occurs is given in TACchange_period_XXX and the multiplier for the TAC change to be achieved by the end of the change period is given in TACchange_mult_XXX. <strong>At the end of the change period, the new TAC scalar applies for the rest of the simulation (or until another change takes place).</strong></p>
+</section>
+<section id="frame-based-tac" class="level3">
+<h3 class="anchored" data-anchor-id="frame-based-tac"><strong><em>16.2.10. Frame based TAC</em></strong></h3>
+<p>Some species are managed using biomass thresholds, if biomass is above a specific level then fishing is allowed. To represent that in Atlantis for fishery YYY:</p>
+<ol type="1">
+<li><p>Set the species to be a TAC managed in the <em>functional_groups.csv</em> file</p></li>
+<li><p>Set YYY_flag_framebased to 1 for the fishery.</p></li>
+<li><p>Set up the period for which this form of management should apply for the fishery - using the YYY_start_manage and YYY_end_manage parameters (in days of the simulation run).</p></li>
+<li><p>Set the allowed level of fishing for when the fishery is active. To do this set the TAC_XXX parameter for each species in that fishery.</p></li>
+<li><p>To set the biomass level at which fishing is allowed for the fishery set the value for FC_high_thresh_XXX for each species in the fishery. This scalar will be applied to the initial biomass to give the threshold biomass. Above this threshold fishing will be allowed.</p></li>
+</ol>
+<table class="caption-top table">
+<caption><span id="_Toc498434983" class="anchor"></span><strong>Table 13.</strong> Parameters used in stock adaptive and TAC based management.</caption>
+<colgroup>
+<col style="width: 7%">
+<col style="width: 92%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>YYY_flagmanage</td>
+<td>Fisheries management options (ranging from 0 to 8).</td>
+</tr>
+<tr class="even">
+<td>flagreinitpop</td>
+<td>If set to 1, the virgin biomass for management and stock assessment will not be calculated from the initial conditions, but after a burn-in period given in reinit_pop_day parameter (in days of simulation run)</td>
+</tr>
+<tr class="odd">
+<td>FC_thresh_XXX</td>
+<td>Proportion of the population of species XXX when effort of ALL fisheries fishing of XXX is restricted. This is used in rule based stock management, set by YYY_flagmanage = 1</td>
+</tr>
+<tr class="even">
+<td>YYY_FC_restrict</td>
+<td>Proportion of effort allowed once restrictions begin</td>
+</tr>
+<tr class="odd">
+<td>YYY_FC_period</td>
+<td>Period of time over which effort reduction occurs</td>
+</tr>
+<tr class="even">
+<td>YYY_FC_period2</td>
+<td>Period of time before stock status is re-checked. If the stock has recovered at this time restrictions are removed. If the stock remains depleted the time counter is reset (i.e.&nbsp;the restrictions are triggered afresh).</td>
+</tr>
+<tr class="odd">
+<td>FC_high_thresh_XXX</td>
+<td><p>This parameter can be used in two ways.</p>
+<p>If frame-based fishing is <strong>not</strong> being used, this is the proportion of the population species XXX has to reach when existing fishing restrictions are in place due to low stock biomass (set by FC_thresh_XXX) are lifted and original TAC levels are reinstituted.</p>
+<p>If frame-based fishing is <strong>allowed</strong> then FC_high_thresh_XXX * initial_biomass gives the threshold biomass above which fishing is allowed to happen (set using TAC_XXX).</p></td>
+</tr>
+<tr class="even">
+<td>TAC_XXX</td>
+<td>Total allowable catch (in tons per year) for species XXX by each fishery (must have as many values as there are fisheries). If set to 10<sup>12</sup> then no TAC is applied for that species/fishery combination.</td>
+</tr>
+<tr class="odd">
+<td>flagTACincludeDiscard</td>
+<td>If set to 1, TAC calculations include all discarded biomass.</td>
+</tr>
+<tr class="even">
+<td>YYY_landallTAC_sp</td>
+<td>If set to 1, fisheries YYY is not allowed to discard, but must land of catches.</td>
+</tr>
+<tr class="odd">
+<td><p>pseudo_assess</p>
+<p>useRBCTiers</p></td>
+<td>Flags determining which fisheries stock assessments are applied to calculated dynamic TACs (see Note! in chapter 16.1)</td>
+</tr>
+<tr class="even">
+<td>YYY_max_num_sp</td>
+<td>A maximum number of species a multi-species fishery YYY can exceed it’s TAC for, before it is closed (when simple TACs are applied, see chapter 16)</td>
+</tr>
+<tr class="odd">
+<td><p>co_sp_XXX vector</p>
+<p>co_sp_catch_XXX</p></td>
+<td>Vectors giving the ID numbers and ratios of companion species (species that are caught together) caught with each biomass unit of species XXX. Used when YYY_flagmanage=5. See chapter 16.2.4 for further details and related parameters.</td>
+</tr>
+<tr class="even">
+<td>basketSPXXX</td>
+<td>A vector of 0 or 1 values indicating which species are included in the basket TACs together with species XXX. Used when YYY_flagmanage=3 (or other value, see Table 11). See chapter 16.2.4 for further details and related parameters.</td>
+</tr>
+<tr class="odd">
+<td>manage_reg</td>
+<td>If set to 1, TACs management will be based on regional rather than global biomasses, with regional TACs given in RegTAC_XXX vector. See chapter 16.2.5 for further details and related parameters.</td>
+</tr>
+<tr class="even">
+<td>flagTACparticipate_YYY</td>
+<td>If set to 1, a fishery YYY shares its TAC with other fisheries (see chapter 16.2.6. for further details)</td>
+</tr>
+<tr class="odd">
+<td>bulkTAC</td>
+<td>If set to 1, some fisheries can be allocated multi-year TACs rather than TACs set for each (see chapter 16.2.7)</td>
+</tr>
+<tr class="even">
+<td>YYY_TACchange</td>
+<td>If &gt;0 TACs can change during the simulation run. If YYY_TACchange=2 then forced changes are applied as described in chapter 15.10 and 16.2.9. If YYY_TACchange=1, then dynamic changes in TACs are used, but this option must have some form of the stock assessment applied (see Note! in chapter 16.1).</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="broken-stick-harvest-control-rules-and-broken-stick-scalar" class="level2">
+<h2 class="anchored" data-anchor-id="broken-stick-harvest-control-rules-and-broken-stick-scalar"><strong>16.3. Broken stick harvest control rules and broken stick scalar</strong></h2>
+<p>The “broken stick” scalar management is similar to the stock adaptive management option described in chapter 16.2.2. However, while the stock adaptive management is applied for the dynamic fishing option, the broken stick management is only available for the user defined fishing mortality option described in chapter 15.3. The setup of broken stick management is not affected by the YYY_flagmanage options used for dynamic fishing options described in chapter 16.2.</p>
+<p>Broken stick management is based on a broadly applied fisheries concepts of maximum sustainable yield (MSY), maximum economic yield (MEY) and limit reference points. Usually, in fisheries management the stock biomass and consequently the fishing mortality that would result in the target biomass is calculated in different versions of stock assessments. The biomass and fishing mortality values that lead to MEY, MSY and critically low stock status are referred to as reference point A, reference point B and limit reference points. A very broad rule of thumb is that stock biomass required for MEY is 48% of the virgin biomass, for MSY is about 40% and limit reference point is close to 20% of the virgin biomass. The general idea is that once a stock falls below the target reference point(s), some management action to reduce fishing mortality is required. However, there is a lot of variation and controversies about these reference points, so here they are only given for general illustration! Not all countries use three reference points, and in fact the most conservative reference point A is often ignored and does not lead to any action. Currently, in Atlantis the MEY (reference point A) is considered the primary “target reference point”, but effort reductions do not come in to place until stock sizes slip below MSY (reference point B) as that was the form of management rule in place in Australia at the time the code was developed.</p>
+<p><img src="media/image12.tiff" style="width:3.36875in;height:2.93333in"></p>
+<p><span id="_Toc498434138" class="anchor"></span><strong>Figure 11.</strong> The shape of the broken stick harvest control rule with reference points marked on.</p>
+<p>To set up the basic broken stick management in Atlantis, the user should provide parameters for the three target reference points (targ_refA, targ_refB and lim_ref). The user also should provide estimated fishing mortality that would lead to the biomass at the reference point A/B, and estimated virgin biomasses in estBo parameter. Note, that these estimated virgin biomasses are different from the way virgin biomasses are used in some harvest routines (through flagreinitpop=1 and reinit_pop_day parameters). The estBo virgin biomasses to be used in this option are provided in the <em>harvest.prm</em> file. In this way the users can explore what happens if estimated virgin biomasses used in assessments and decision making are very different from the actual virgin biomasses in the simulations. The parameters Frestart_scalar also needs to be set as this is the multiplier for mFC_XXX to use as the default starting F once the fishery is reopened.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>How to set up broken stick management?</strong></p>
+<ol type="1">
+<li><p>Set the species as isFished=1 in the <em>functional_groups.csv</em> file</p></li>
+<li><p>Set fishing through the user defined fishing mortality as described in chapter 15.3</p></li>
+<li><p>Set parameter tierXXX to a value larger than 0. The tierXXX parameter tells Atlantis which assessment option to use. However, in the case of broken stick management, no specific assessment is necessary (as a pseudo assessment can be used). Setting up tierXXX&gt;0 just tells Atlantis that broken stick management option should be applied for the species if its fishing is done through a user defined fishing mortality.</p></li>
+<li><p>Set the limit, A and B reference points in targ_refA, targ_refB and lim_ref parameters. Note, that these are NOT species specific, which means that same reference points will be applied for all species managed under the broken stick management option.</p></li>
+<li><p>Give a list of virgin biomasses for the species in the estBo parameter. These biomasses can be the same as the initial biomasses in the simulation, or they can be completely different (if consequences in virgin biomass misspecification are to be explored)</p></li>
+<li><p>It is possible to have two sets of reference points. This was implemented to simulate the situation where fishing of forage species required different reference points. To set up the second set of reference points, give their values in forage_refA, forage_refB and forage_lim_ ref parameters. Also in parameter whichref identify which of the two reference points should be applied to each species (0 – forage reference points, 1 – target reference points)</p></li>
+<li><p>Provide Atlantis with the annual fishing mortality rates Fref (F year<sup>-1</sup>) that would result in the stock biomass equilibrating to either targ_refA or targ_refB (this choice is up to the user, based on the specifics of the harvest strategy in their location, remember that currently there is no reduction in fishing pressure until biomasses drop below the level specified by refB). These values are typically estimated in stock assessments, and are independent of the fishing mortality values set in the mFC_XXX parameter (see chapter 15.3). If using tier8 then it is also necessary to supply the fishing mortality value to use at high biomass levels (when biomass is greater than targ_refA).</p></li>
+<li><p>The parameters Frestart_scalar also needs to be set as this is the multiplier for mFC_XXX to use as the default starting F once the fishery is reopened.</p></li>
+<li><p>Set up the period for which the broken stick management of fishery YYY should apply in YYY_start_manage and YYY_end_manage parameters (in days of the simulation run).</p></li>
+<li><p>You can also provide reference points for byproduct and bycatch groups using byproduct_refA, byproduct_refB, byproduct_refC, byproduct_refD, byproduct_lim_ref, bycatch_refA, bycatch_refB, bycatch_refC, bycatch_refD, bycatch_lim_ref – all of which have the same definition as for target and forage groups, but applied to byproduct and bycatch groups. You can also provide discardTAC, which is used once B &lt; Blim for TAC managed groups (this is currently only used for tiered management options).</p></li>
+</ol>
+<p><strong>Note:</strong> If do_sumB_HCR is set to 0 then the Broken Stick is applied per species. If do_sumB_HCR is set to 1 then the harvest control rule will be applied at the guild level. The guild is defined by co_sp_XXX.</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>The broken stick management routine is run once per year and implemented in the routine <em>Check_F_ Harvest_Control_Rules()</em> in <strong>atManageAnnual.c</strong>. It assesses the current stock biomass against the reference points. The routine <strong>assumes perfect knowledge about the stock</strong> and uses actual biomasses in the model domain as the current assessed biomass (use of stock assessment processes and assessment biomasses can be implemented upon request).</p>
+<p>In both cases, to drive F to the desired levels the new <em>F<sub>current</sub></em> (calculated as defined below) is found by rescaling the base F (mFC_XXX) appropriately, as noted below (as it is slightly different in each option).</p>
+<p><strong><em><u>Australian option – usually triggered using tierXXX set to 1 (tier1)</u></em></strong></p>
+<p>While biomasses are above reference point B the target fishing mortality <em>F<sub>target</sub></em> is used so that the currently implemented fishing mortality rate (<em>F<sub>current</sub></em>) is given by:</p>
+<p><span class="math display">\[F_{current} = F_{ref}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{cur} &gt; B_{ref\mathbf{B}}\]</span></p>
+<p>where <em>B<sub>cur</sub></em> is the current stock biomass (assuming perfect knowledge); <em>B<sub>refB</sub></em> is the stock biomass at reference point B (estimated as targ_refB * virgin biomass); and <em>F<sub>ref</sub></em> is the fishing mortality that should lead to the biomass at the reference point B (Fref parameter).</p>
+<p>If the stock biomass falls below the reference point B, management kicks-in and the fishing mortality provided in the mFC_XXX parameter is overwritten so that the current fishing mortality is given by:</p>
+<p><span class="math display">\[F_{current} = F_{ref} \bullet \frac{B_{cur} - B_{\lim}}{B_{ref\mathbf{B}} - B_{\lim}}\ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{\lim} \leq B_{cur} &lt; B_{ref\mathbf{B}}\ \]</span></p>
+<p><span class="math display">\[F_{current} = 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{cur} &lt; B_{\lim}\]</span></p>
+<p>Here <em>B<sub>lim</sub></em> is the stock biomass at the limit reference point (estimated as targ_lim * virgin biomass). These equations show that if, for example, current stock biomass is half way between the target and limit reference points, the fishing mortality will be set to half of the reference fishing mortality <em>Fref</em> given in the parameter file (note that this reference fishing mortality is NOT the same as the user defined fishing mortality given in mFC_XXX parameter). If the stock biomass falls below the limit reference point, then fishing mortality is set to 0.</p>
+<p>In the harvest code this is implemented as</p>
+<p><span class="math display">\[F_{realised} = mFC \bullet \frac{F_{current}}{F_{\max}}\]</span></p>
+<p><strong><em><u>US and Norwegian option – usually triggered using tierXXX set to 8 (tier8) or 9 (tier 9)</u></em></strong></p>
+<p>While biomasses are above reference point A the target fishing mortality <em>F<sub>target_high</sub></em> is used so that the currently implemented fishing mortality rate (<em>F<sub>current</sub></em>) is given by:</p>
+<p><span class="math display">\[F_{current} = F_{ref\_ high}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{cur} &gt; B_{ref\mathbf{A}}\]</span></p>
+<p>where <em>B<sub>cur</sub></em> is the current stock biomass (assuming perfect knowledge); <em>B<sub>refA</sub></em> is the stock biomass at reference point A (estimated as targ_refA * virgin biomass); and <em>F<sub>ref_high</sub></em> is the fishing mortality that is applied at high biomass levels (Fref_high parameter).</p>
+<p>When biomasses are below reference point A but above reference point B the target fishing mortality <em>F<sub>target</sub></em> is used so that <em>F<sub>current</sub></em> is given by:</p>
+<p><span class="math display">\[F_{current} = F_{ref}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{ref\mathbf{B}} \leq B_{cur} &lt; B_{ref\mathbf{A}}\]</span></p>
+<p>where <em>B<sub>refB</sub></em> is the stock biomass at reference point B (estimated as targ_refB * virgin biomass); and <em>F<sub>ref</sub></em> is the fishing mortality that should lead to the biomass at the reference point B (Fref parameter).</p>
+<p>If the stock biomass falls below the reference point B, management kicks-in and the fishing mortality provided in the mFC_XXX parameter is overwritten so that the current fishing mortality is given by:</p>
+<p><span class="math display">\[F_{current} = {F_{ref\_ lim} \bullet \left( B_{ref\mathbf{B}} - B_{cur} \right) + F}_{ref} \bullet \frac{B_{cur} - B_{\lim}}{B_{ref\mathbf{B}} - B_{\lim}}\ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{\lim} \leq B_{cur} &lt; B_{ref\mathbf{B}}\ \]</span></p>
+<p><span class="math display">\[F_{current} = \ \ F_{ref\_ lim}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{cur} &lt; B_{\lim}\]</span></p>
+<p>Here <em>B<sub>lim</sub></em> is the stock biomass at the limit reference point (estimated as targ_lim * virgin biomass). These equations show that if, for example, current stock biomass is half way between the target and limit reference points, the fishing mortality will be set to half of the reference fishing mortality <em>Fref</em> given in the parameter file (note that this reference fishing mortality is NOT the same as the user defined fishing mortality given in mFC_XXX parameter!). If the stock biomass falls below the limit reference point, then fishing mortality is set to 0. Note in the <em>harvest.prm</em> the parameters <em>Fref and FrefLim</em> are entered as a vector with one value per group.</p>
+<p>If tierXXX is set to 8 then in the harvest code this is implemented as</p>
+<p><span class="math display">\[F_{realised} = mFC \bullet \frac{F_{current}}{F_{\max}}\]</span></p>
+<p>whereas if tierXXX is set to 9 then it is</p>
+<p><span class="math display">\[F_{realised} = mFC \bullet \frac{F_{t - 1}}{F_{\max}} \bullet \frac{F_{current}}{F_{ref}}\]</span></p>
+<p><strong><em><u>Escapement option –triggered using tierXXX set to 13 (tier13)</u></em></strong></p>
+<p>This escapement based method comes from Iceland. It is calculated as:</p>
+<p><span class="math display">\[F_{current} = 1 - \frac{B_{\lim}}{B_{ref\mathbf{B}}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{\lim} &lt; B_{cur}\ \]</span></p>
+<p><span class="math display">\[F_{current} = 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ,\ if\ B_{cur} \leq B_{\lim}\]</span></p>
+<p>In the harvest code this is also implemented as</p>
+<p><span class="math display">\[F_{realised} = mFC \bullet \frac{F_{current}}{F_{\max}}\]</span></p>
+<p><strong><em><u>Adding error</u></em></strong></p>
+<p>The broken stick case can be applied with perfect knowledge or with error (noise) added. The parameters for setting this up are added to <em>harvest.prm</em> file. There are three error options – set using estError (a vector with one entry per functional group): uniform (0), normal (1), lognormal (2). The specification of the error is set using estCV (the variance of the error as a proportion of the true value) and estBias (also as a proportion of the true value). Both of these parameters are entered as a vector, with one value per functional group.</p>
+<p>If the error is uniform then the biomass used in the broken stick calculations is given by:</p>
+<p><span class="math display">\[B_{est} = B_{true} + \mathcal{B}_{error}\]</span></p>
+<p>where <span class="math inline">\(\mathcal{B}_{error}\)</span> is a uniform random number drawn from <span class="math inline">\(\lbrack - B_{estCV},B_{estCV}\rbrack\)</span>. Whereas if the biomass is of the normal type then the biomass used in the broken stick calculations is given by:</p>
+<p><span class="math display">\[B_{est} = \sqrt{- 2*log\left( \beta_{1} \right)} \bullet cos\left( 2\pi \bullet \beta_{2} \right) \bullet \sqrt{estCV} + {estBias \bullet B}_{true}\]</span></p>
+<p>where both the <em>β</em>&nbsp;are random numbers drawn form [0,1]. Lastly, if the lognormal form is chosen then the biomass is of the normal type then the biomass used in the broken stick calculations is given by:</p>
+<p><span class="math display">\[{B_{est} = B_{true} \bullet estBias \bullet e}^{\sqrt{- 2 \bullet log\left( \beta_{1} \right)} \bullet cos\left( 2\pi \bullet \beta_{2} \right) \bullet \sqrt{estCV} - \frac{estCV}{2}}\]</span></p>
+</section>
+<section id="spatial-management-through-mpas" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-management-through-mpas"><strong>16.4. Spatial management through MPAs</strong></h2>
+<p>Marine protected areas (MPAs) allow permanent or temporary closures of some model spatial domains to fishing. They are set as a proportion of the box that is covered by the MPA, which is treated as a scalar on box-specific effort, fishing mortality or imposed catch. The MPA scalar is fishery specific and is given in the MPAYYY parameter, listing scalars for each box of the model domain – this scalar represents the proportion of the fishable habitat within the box that remains <strong>open</strong> to fishing.</p>
+<p>Note, that even though MPA scalar is usually &lt;1 (which means that MPAs reduces the fishing pressure in the box), it is possible to set it to values &gt;1. This would mean that the presence of MPA in a box (or perhaps an adjacent box) actually attracts fishing to the areas just outside the MPA and the end result is that the presence of the MPA increases local fishing pressure. This is a very simplified representation of real-world fisher behaviour that can see concentration of effort around MPAs (attracted by “spill-over” from within the MPA). This simplest representation is used because the exact location of fish within a box is not tracked, rather functional groups are assumed to be uniformly distributed within all suitable habitat within a box and the MPA parameter simply acts as a scalar on the box biomass available to fishing. In reality, even if MPAs attract increased fishing effort to its perimeter, the actual fishing mortality will depend on the movement of a species. If movements are slow and a species stays mostly within the MPA, increased effort around the MPA perimeter will not result in the total increases in fishing mortality. As Atlantis does not explicitly represent these fine scale interactions they must be kept in mind by the modeller when setting the MPA parameter values.</p>
+<p>To activate MPAs in your simulations, set the global flagmpa = 1 and then select the MPA option for each fishery in the YYY_flagmpa parameter. Currently there are 15 different ways to set up MPAs, which include different combinations of the following options for setting MPAs:</p>
+<ol type="1">
+<li><p>MPA scalar set in MPAYYY parameter, indicating the proportion of the box open to fishing or more specifically a scalar on the available species biomass. These MPAs can be set for the entire model run or the MPA implementation can start and end at different times during the simulation run. If the latter option is wanted, set flagSimpleStartStopMPA=1, and give the year number (NOT day number!) for when MPAs start and end (All_MPAstartyr and All_MPAendyr). Note, this option only allows for the start and end years to be set for <strong>ALL MPAs at the same time</strong>.</p></li>
+<li><p>For more complex MPAs scalars are provided through an external TS forcing file. This option is useful when MPAs change through time. To use this option the user needs to provide time series files for desired model boxes, indicating an MPA scalar value through time. To indicate that external MPA forcing is provided, set nMPAts to value &gt;0 in the <em>force.prm</em> file (see Chapter 8 on the general format of forcing files) and the correct MPA option is set in the YYY_flagmpa parameter (see Table 14 for the available options).</p></li>
+<li><p>MPAs are set up when the biomass of endangered species drops below a set level. These MPAs act in the same way as other MPAs, but their box-specific scalars are provided in a separate MPAendangeredYYY parameter. This means that users can specifically target boxes that are important for endangered species. Also, unlike fixed MPAs, the endangered species triggered MPAs will only be in place when biomasses of endangered species are below a set level. To identify which species will be used to trigger such species set the SP_Concern parameter to 1 for that species (with the order of the species assumed to match that in the <em>functional_groups.csv</em> file). See chapter 16.5 on how the endangered species are assessed.</p></li>
+<li><p>The MPA scalars supplied through either MPAYYY or external TS forcing files, but applied only when stocks fall below a set level. This is done in case where YYY_flagmanage=2 and stock adaptive management is used and an appropriate selection for YYY_flagmpa is done (see Table 14 below).</p></li>
+<li><p>Closure of fisheries during the spawning season – applied in any spawning area – and set using YYY_flagmpa = 13.</p></li>
+<li><p>The partial or complete closure of spawning areas traded in exchange for reduced TAC. This is only applied in cases where dynamic TACs are used and set through some sort of stock assessment process. This is used to imitate a situation (indeed applied in some fisheries management cases), where instead of reductions in TAC when stock levels are low, fishing is closed during the spawning season. For further details on setting this option see chapter 16.2.8.</p></li>
+<li><p>MPAs defined in the MPAoverfishedYYY parameter are triggered when trip limits are exceeded for target species and YYY_flagmpa is set to 11.</p></li>
+<li><p>In any one year, once the total catch taken exceeds the value set in TripLimit_XXX that box is closed – this option is set using YYY_flagmpa = 14.</p></li>
+</ol>
+<p>These seven options for setting up MPAs can be used separately or in combination in one of the 13 currently available options of the YYY_flagmpa parameter. Because the YYY_flagmpa parameter is fishery specific, different fisheries can be affected by different spatial management (MPA) routines.</p>
+<p><span id="_Toc498434984" class="anchor"></span><strong>Table 14.</strong> Options for the YYY_flagmpa parameter showing which of the five available MPA varieties are included.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">YYY_flagmpa parameter option (and name of the option used in the Atlantis code)</th>
+<th style="text-align: center;">Fixed MPA applied all the time</th>
+<th style="text-align: center;">Time-series box-specific MPA read from forcing files</th>
+<th style="text-align: center;">Special MPAs applied only if endanger- ed species fall below a threshold</th>
+<th style="text-align: center;">Fixed or time-series MPA applied only if stocks fall below a threshold</th>
+<th style="text-align: center;">Spawning closures; including trading TAC reductions for spawning closures</th>
+<th style="text-align: center;">Closures once catch exceeds values set in the TripLimit parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 no mpas</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1 fix_mpa</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2 cycle_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3 stock_mpa</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4 pet_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5 stock_pet_mpa</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6 cycle_stock_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7 cycle_pet_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8 cycle_stock_pet_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9 mix_fix_rolling_mpa</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10 mix_f_r-spawn_mpa</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">11 depth_stock_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12 council_stock_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">13 spawn_closure</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">14 catch_mpa</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+</tr>
+</tbody>
+</table>
+<p>* These options are currently only available if using historical west coast US management processes (i.e.&nbsp;generally not used, but can be made available if required).</p>
+<p>The MPAs are setup in the routine <em>Setup_MPA_Lists()</em> in <strong>atManageMPATS.c</strong> which creates a calendar of any fixed or time specific closures that is refered to throughout the course of the run. The list of active mpas is updated at each time step in the <em>Check_for_active_MPA()</em> routine in <strong>atManage.c</strong>. The <em>Check_for_active_MPA()</em> routine is called at each time step from <em>Manage_Calculate_Total_Effort()</em> routine, which scales down the effort according to the different management scalars.</p>
+<p>It is possible to <strong>allow for infringement of MPAs</strong>. See chapter 15.3.3. and the NOTE! in it on how to set the infringement up.</p>
+</section>
+<section id="management-through-seasonal-closures" class="level2">
+<h2 class="anchored" data-anchor-id="management-through-seasonal-closures"><strong>16.5. Management through seasonal closures</strong></h2>
+<p>Another management leaver can be applied through seasonal closures. This management is independent of the stock adaptive or TAC management set with YYY_flagmanage parameter or spatial management through MPAs. Seasonal closures refer to a complete halt of fishing activity for a set period of time every calendar year. Such seasonal closures are used to protect stocks during spawning seasons or to limit fishing effort for other reasons.</p>
+<p>In Atlantis it is best to think of seasonal closures as the length of a fishing season. This means that a fishery’s season opens and closes at a set day of the year. Also the length of the fishing season can change through time.</p>
+<p>To activate seasonal fishing for a given fishery set YYY_flagseasonal =1. Then indicate the day of the year when the fishing season opens and closes (YYY_seasonopen and YYY_seasonclose). Remember that Atlantis counts from 0, so the first day of the calendar year is 0 and the last day is 364.</p>
+<p>If a fishery operates through several management regions (see chapter 16.2.5 on how to set up management regions), users should also indicate whether seasonal closures apply to each management region. This is set with parameter RegSeason which must have as many entries as there are management regions, and where entries of 1 indicate that seasonal closures apply.</p>
+<p>If the length of the fishing season changes during the simulation set YYY_changeseason = 1. However, unlike the other temporal changes in the harvest parameter file, the user does not provide specific scalars to set the new length of the fishing season, but the scalars are taken from the effort scalar used for the stock adaptive management (see chapter 16.2.2) or the management of endangered species (chapter 16.6). If both scalars are available, then the smaller scalar is used. This basically means that if YYY_changeseason=1 then season will be REDUCED in length when stocks of fished species or endangered species fall below threshold levels. This is because stock adaptive management scalar or endangered species is scalar is set to the value &lt;1 when the trigger is tripped (biomasses go below threshold levels). This option will only be applied when either stock adaptive (YYY_flagmanage =1) or endangered species (flagendangered=1) management is used. This handling of the changing season link is because this is how fisheries using season length to control effort operate. If more direct control is required over fishing season please contact the Atlantis developers.</p>
+</section>
+<section id="management-of-endangered-species" class="level2">
+<h2 class="anchored" data-anchor-id="management-of-endangered-species"><strong>16.6. Management of endangered species</strong></h2>
+<p>Management of endangered species means that fishing effort will be reduced when stocks of endangered species fall below a set threshold level. The procedure is very similar to stock adaptive management described in chapter 16.2.1. This management option is independent of other management options, such as MPAs, seasonal closures, stock adaptive or TAC based management.</p>
+<p>To apply the endangered species management option set the global flagendangered =1. The list of endangered species is given in the SP_Concern parameter, which has as many entries as there are groups in the <em>functional_groups.csv</em> file and where the value of 1 indicates that a group is endangered.</p>
+<p>The threshold level of endangered species (compared to virgin biomasses) below which the trigger is started is given in the same FC_thresh_XXX parameter that is used for stock adaptive management. This parameter gives threshold values of species XXX abundance for each fishery – if a species XXX is harvested then the parameter is used for stock adaptive management, if it is endangered it is used for endangered species management.</p>
+<p>When the abundance of endangered species XXX falls below the threshold given in the FC_thresh_XXX, the fishery effort will be reduced to the proportion of the original effort given in the YYY_FC_restrict_endangered parameter (the value is set between 0 and 1). The period over which reductions take place is given in the YYY_FC_endanger_period, which means that the effort is not reduced in one time step but gradually.</p>
+<p><img src="media/image13.jpeg" style="width:6.03542in;height:9.92153in"></p>
+</section>
+<section id="closing-fisheries-due-to-contaminants" class="level2">
+<h2 class="anchored" data-anchor-id="closing-fisheries-due-to-contaminants"><strong>16.7. Closing fisheries due to contaminants</strong></h2>
+<p>If contaminants are functional in the model then fisheries closures can be triggered. To activate such closures set flag_contam_fisheries_mgmt to 1 for closures to be triggered on a set day (contam_fishery_closure_day) and last a set period (contam_fishery_closure_period in days) – the location of the closure is defined in the vector ContamClosed. This vector is nbox long. If the box is closed due to the contaminant set the value for the cell to 1.0, leave it as 0.0 if the box remains open.</p>
+<p>If flag_contam_fisheries_mgmt is set to 2 then the closure is based on contaminants in the cells of groups in the model – any cohort of any group with contaminant content greater than ZZZZ_fishery_thresh_level (where ZZZZ is the contaminant name) will trigger a closure. If contam_fishery_closure_option is set to 0 only the immediate box is closed, if set to 1 then adjacent boxes are also closed.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,9 +1,10 @@
 ---
-title: "Part II - Coming Soon"
+title: "Atlantis User Guide - Part II"
+sidebar: part2
 ---
 
-# Atlantis User Guide - Part II
-
-*Coming soon*
-
-[← Back to main site](../../../index.qmd)
+-   [15. FISHING MORTALITY](01-15-fishing-mortality.qmd)
+-   [16. MANAGEMENT](02-16-management.qmd)
+-   [17. ECONOMICS](03-17-economics.qmd)
+-   [18. OTHER INDUSTRIES](04-18-other-industries.qmd)
+-   [REFERENCES](05-references.qmd)

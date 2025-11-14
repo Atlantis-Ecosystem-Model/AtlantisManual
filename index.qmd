@@ -4,8 +4,8 @@ title: "Atlantis Documentation Portal"
 
 ## User Guides
 
-- **[Part I - Atlantis User Guide](user_guides/quarto_site/part1/index.qmd)** - Complete user guide covering model setup, configuration, and biological processes
-- **[Part II - Advanced Topics](user_guides/quarto_site/part2/index.qmd)** - *Coming soon*
+- **[Part I - Setup, Physics, and Biology](user_guides/quarto_site/part1/index.qmd)** - User guide covering model setup, configuration, input and output files, physical, biogeochemical, and biological processes.
+- **[Part II - Fisheries, Management, and Economics](user_guides/quarto_site/part2/index.qmd)** - User guide covering the human components of the Atlantis model: fishing, management, and economics.
 
 ## Additional Resources
 
