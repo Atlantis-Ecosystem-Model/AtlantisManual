@@ -332,83 +332,83 @@ Caution
 <p>he choice between the user defined fishing mortality and dynamic fishing is determined by whether the user is mostly interested in the biological dynamics given a set fishing pressure, or whether fishery development and socio-economic aspects are of more interest. Of course, the actual fishery is never just a fixed annual pressure and biological dynamics will be determined by complex fisher behaviour and a range of socio-economic aspects that will determine the actual fishing pressure. Yet, all models are just a simplified version of reality and the level of simplification is determined by the questions that are to be addressed.</p>
 </div>
 </div>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434971" class="anchor"></span><strong>Table 1.</strong> General fisheries parameters</caption>
 <colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Parameter</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>flag_fisheries_on in run.prm</td>
-<td>Flag indicating that the Harvest submodel should be loaded. Must be set to 1 when applying fisheries</td>
+<td style="text-align: left;">flag_fisheries_on in run.prm</td>
+<td style="text-align: left;">Flag indicating that the Harvest submodel should be loaded. Must be set to 1 when applying fisheries</td>
 </tr>
 <tr class="even">
-<td>isImpacted in functional_groups.csv</td>
-<td>Flag indicated that the group is impacted by fisheries and other human activities. Must be set to 1 for any group that can be impacted through fishing, bycatch or incidental fishing mortality (e.g.&nbsp;where benthic habitat is crushed by fishing gear)</td>
+<td style="text-align: left;">isImpacted in functional_groups.csv</td>
+<td style="text-align: left;">Flag indicated that the group is impacted by fisheries and other human activities. Must be set to 1 for any group that can be impacted through fishing, bycatch or incidental fishing mortality (e.g.&nbsp;where benthic habitat is crushed by fishing gear)</td>
 </tr>
 <tr class="odd">
-<td>YYY_tStart</td>
-<td>Day of the model run when a fishery YYY starts operating</td>
+<td style="text-align: left;">YYY_tStart</td>
+<td style="text-align: left;">Day of the model run when a fishery YYY starts operating</td>
 </tr>
 <tr class="even">
-<td>YYY_tEnd</td>
-<td>Day of the model run when a fishery YYY ends operations</td>
+<td style="text-align: left;">YYY_tEnd</td>
+<td style="text-align: left;">Day of the model run when a fishery YYY ends operations</td>
 </tr>
 <tr class="odd">
-<td>flagYYYday</td>
-<td><p>Period of activity in fisheries YYY. 0 – fishery only operates at night, 1 – fishery operates during the day, 2 – fishery operates all the time. Note, this has implications for scaling of imposed catch (see chapter 15.2.1).</p>
-<p>Species activity (set in flagXXXday in <em>biology.prm</em>) files does not affect its availability to fisheries – an inactive species will still be fished.</p></td>
+<td style="text-align: left;">flagYYYday</td>
+<td style="text-align: left;">Period of activity in fisheries YYY. 0 – fishery only operates at night, 1 – fishery operates during the day, 2 – fishery operates all the time. Note, this has implications for scaling of imposed catch (see chapter 15.2.1).<br><br>Species activity (set in flagXXXday in <em>biology.prm</em>) files does not affect its availability to fisheries – an inactive species will still be fished.</td>
 </tr>
 <tr class="even">
-<td>flagfishXXX</td>
-<td>Flag indicating whether a species XXX is actively fished. This flag is similar to isImpacted in the .csv file, and is partly the legacy of earlier development. Currently flagfishXXX indicates that a species is directly affected by fishing, whereas isImpacted includes also other impacts, such as bycatch or incidental mortality. The flagfishXXX should be set to 1 for all fished species.</td>
+<td style="text-align: left;">flagfishXXX</td>
+<td style="text-align: left;">Flag indicating whether a species XXX is actively fished. This flag is similar to isImpacted in the .csv file, and is partly the legacy of earlier development. Currently flagfishXXX indicates that a species is directly affected by fishing, whereas isImpacted includes also other impacts, such as bycatch or incidental mortality. The flagfishXXX should be set to 1 for all fished species.</td>
 </tr>
 <tr class="odd">
-<td>flagfinfish</td>
-<td><p>A global flag indicating that fisheries are operating.</p>
-<p>Turning on fisheries through flag_fisheries_on in <em>run.prm</em> means that Atlantis will apply either direct fishing (flagfinfish=1) or incidental mortality (flagincidmort=1). So if flagfinfish =0, incidental mortality can still occur through bycatch if flagincidmort=1, meaning a species might still be affected by fishing activities.</p></td>
+<td style="text-align: left;">flagfinfish</td>
+<td style="text-align: left;">A global flag indicating that fisheries are operating.<br><br>Turning on fisheries through flag_fisheries_on in <em>run.prm</em> means that Atlantis will apply either direct fishing (flagfinfish=1) or incidental mortality (flagincidmort=1). So if flagfinfish =0, incidental mortality can still occur through bycatch if flagincidmort=1, meaning a species might still be affected by fishing activities.</td>
 </tr>
 <tr class="even">
-<td>flagincidmort</td>
-<td>A flag indicating whether fisheries can cause incidental mortality through bycatch. The bycatch will be determined depending on how a fishery is set: if imposed catches are used or user defined fishing mortality is set species in the model then bycatch of other species can be generated with the FCcocatchXXX parameter; whereas in dynamic fishing bycatch is determined by a range of parameters.</td>
+<td style="text-align: left;">flagincidmort</td>
+<td style="text-align: left;">A flag indicating whether fisheries can cause incidental mortality through bycatch. The bycatch will be determined depending on how a fishery is set: if imposed catches are used or user defined fishing mortality is set species in the model then bycatch of other species can be generated with the FCcocatchXXX parameter; whereas in dynamic fishing bycatch is determined by a range of parameters.</td>
 </tr>
 <tr class="odd">
-<td>flag_access_thru_wc_XXX</td>
-<td>Whether a fishery has access to fish in the entire water column (e.g.&nbsp;do trawl doors remain open as the gear moves up/down through the water column there by interacting with species who do not live at the depth the trawl is most actively being towed)</td>
+<td style="text-align: left;">flag_access_thru_wc_XXX</td>
+<td style="text-align: left;">Whether a fishery has access to fish in the entire water column (e.g.&nbsp;do trawl doors remain open as the gear moves up/down through the water column there by interacting with species who do not live at the depth the trawl is most actively being towed)</td>
 </tr>
 <tr class="even">
-<td>flaghabitat_XXX</td>
-<td>Vectors indicate which habitat patchiness equation to use when undertaking dynamic fishing. 0=standard % overlap, 1=Ellis and Pantus based subgrid scale model</td>
+<td style="text-align: left;">flaghabitat_XXX</td>
+<td style="text-align: left;">Vectors indicate which habitat patchiness equation to use when undertaking dynamic fishing. 0=standard % overlap, 1=Ellis and Pantus based subgrid scale model</td>
 </tr>
 <tr class="odd">
-<td>YYY_flagdempelfishery</td>
-<td>This sets the flag for each group and fishery to show whether it is benthic or pelagic. 0 = pelagic, 1 = demersal. This will influence the vertical distribution scalar in dynamic fishing when the box is in shallow water (so there are less than the maximum number of layers); in this case the vertical distribution is contracted with a bias to bottom water column layers if defined as demersal or to surface layers if defined as pelagic.</td>
+<td style="text-align: left;">YYY_flagdempelfishery</td>
+<td style="text-align: left;">This sets the flag for each group and fishery to show whether it is benthic or pelagic. 0 = pelagic, 1 = demersal. This will influence the vertical distribution scalar in dynamic fishing when the box is in shallow water (so there are less than the maximum number of layers); in this case the vertical distribution is contracted with a bias to bottom water column layers if defined as demersal or to surface layers if defined as pelagic.</td>
 </tr>
 <tr class="even">
-<td>k_mismatch</td>
-<td>Reduction in effectiveness of gear due to mismatch in water column distribution of gear and vertebrates. This positional scalar downscales the availability of target species if they are marked as demersal (pelagic) and the gear is marked as pelagic (demersal).</td>
+<td style="text-align: left;">k_mismatch</td>
+<td style="text-align: left;">Reduction in effectiveness of gear due to mismatch in water column distribution of gear and vertebrates. This positional scalar downscales the availability of target species if they are marked as demersal (pelagic) and the gear is marked as pelagic (demersal).</td>
 </tr>
 <tr class="odd">
-<td>habitat_YYY</td>
-<td>Array of values indicating if fishery is excluded from certain habitats (0)</td>
+<td style="text-align: left;">habitat_YYY</td>
+<td style="text-align: left;">Array of values indicating if fishery is excluded from certain habitats (0)</td>
 </tr>
 <tr class="even">
-<td>YYY_mindepth</td>
-<td>Minimum seafloor depths fishery will act over (so if won't fish shallower than 1500m put 1500 here)</td>
+<td style="text-align: left;">YYY_mindepth</td>
+<td style="text-align: left;">Minimum seafloor depths fishery will act over (so if won’t fish shallower than 1500m put 1500 here)</td>
 </tr>
 <tr class="odd">
-<td>YYY_maxdepth</td>
-<td>Maximum seafloor depths fishery will act over (so if won't fish deeper than 1500m put 1500 here)</td>
+<td style="text-align: left;">YYY_maxdepth</td>
+<td style="text-align: left;">Maximum seafloor depths fishery will act over (so if won’t fish deeper than 1500m put 1500 here)</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434971" class="anchor"></span><strong>Table 1.</strong> General fisheries parameters</p>
 </section>
 <section id="setting-up-fishing-mortality-through-imposed-catch" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-fishing-mortality-through-imposed-catch"><strong>15.2. Setting up fishing mortality through imposed catch</strong></h2>
@@ -471,106 +471,93 @@ Caution
 <p>For the imposed catch the final catch <em>H</em> (mgN day<sup>-1</sup>) to be taken by fishery Y from species CX age group <em>i</em> in a specific box <em>j</em> is calculated as</p>
 <p><span class="math display">\[H_{CX,Y,i,j} = m_{CX,Y,j} \cdot {p\_ age}_{i} \cdot {repsc}_{CX,Y} \cdot {managesc}_{Y} \cdot {mpasc}_{Y,j} \cdot {activesc}_{Y}\]</span></p>
 <p>where <em>m<sub>CX,Y,j</sub></em> is the total biomass (over all age groups) to be taken out from the box given in the forcing files (mgN day<sup>-1</sup>); <em>p_age<sub>i</sub></em> is the distribution of forced catch over the age groups of species XXX (CatchTS_agedistribXXX); <em>repsc<sub>CX,Y</sub></em> is the scalar for underreporting (reportscale_XXX) by fishery Y on species CX; <em>managsc<sub>Y</sub></em> is the optional adaptive management scalar for the fishery Y (when YYY_flagmanage &gt; 0, see chapter 16); <em>mpasc<sub>Y,j</sub></em> is the optional scalar due to MPA presence in the box <em>j</em> (when YYY_flagmpa &gt;0, see chapter 16.4); and <em>activesc<sub>Y</sub></em> is the activity scalar (set to 0.5 if fishery YY is active during the day and night (flagYYYday=2 )).</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Example of the box-specific catch forcing TS file for two species</strong></p>
-<p># Historical catch time series file until 2000 for box 2</p>
-<p>#</p>
-<p>## COLUMNS 3</p>
-<p>##</p>
-<p>## COLUMN1.name Time</p>
-<p>## COLUMN1.long_name Time</p>
-<p>## COLUMN1.units days since 1910-01-01 00:00:00 +10</p>
-<p>## COLUMN1.missing_value 0</p>
-<p>##</p>
-<p>## COLUMN2.name FPL</p>
-<p>## COLUMN2.long_name FPL</p>
-<p>## COLUMN2.units mg s-1</p>
-<p>## COLUMN2.missing_value 0</p>
-<p>##</p>
-<p>## COLUMN3.name FPO</p>
-<p>## COLUMN3.long_name FPO</p>
-<p>## COLUMN3.units mg s-1</p>
-<p>## COLUMN3.missing_value 0</p>
-<p>##</p>
-<p>0 0.000000e+000 0.000000e+000</p>
-<p>1 0.000000e+000 0.000000e+000</p>
-<p>2 0.000000e+000 0.000000e+000</p>
-<p>3 0.000000e+000 0.000000e+000</p>
-<p>4 0.000000e+000 0.000000e+000</p>
-<p>5 0.000000e+000 0.000000e+000</p>
-<p>6 0.000000e+000 0.000000e+000</p>
-<p>… list days of the run and the catch imposed</p>
-<p>14654 5.886416e-004 5.316763e-004</p>
-<p>14655 5.886416e-004 5.316763e-004</p>
-<p>14656 5.886416e-004 5.316763e-004</p>
-<p>14657 5.886416e-004 5.316763e-004</p>
-<p>14658 5.886416e-004 5.316763e-004</p>
-<p>14659 7.443469e-004 5.316763e-004</p>
-<p>14660 7.443469e-004 5.316763e-004</p>
-<p>… and so on</p>
-<p>Note that this file gives the <strong>total catch per box in mg per secon</strong>d over all age groups of a species. The age distribution of the imposed catch is given separately in the CatchTS_agedistribXXX parameter.</p>
-<p>It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the typeCatchts parameter in <em>force.prm</em> whether to use the last valid value (typeCatchts set to 1) or to interpolate between the two provided values (typeCatchts set to 0). See “Format of the time series (TS) forcing files” box in Chapter 8.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p><strong>Example of the box-specific catch forcing TS file for two species</strong></p>
+<pre><code># Historical catch time series file until 2000 for box 2
+#
+## COLUMNS 3
+##
+## COLUMN1.name Time
+## COLUMN1.long_name Time
+## COLUMN1.units days since 1910-01-01 00:00:00 +10
+## COLUMN1.missing_value 0
+##
+## COLUMN2.name FPL
+## COLUMN2.long_name FPL
+## COLUMN2.units mg s-1
+## COLUMN2.missing_value 0
+##
+## COLUMN3.name FPO
+## COLUMN3.long_name FPO
+## COLUMN3.units mg s-1
+## COLUMN3.missing_value 0
+##
+0 0.000000e+000 0.000000e+000
+1 0.000000e+000 0.000000e+000
+2 0.000000e+000 0.000000e+000
+3 0.000000e+000 0.000000e+000
+4 0.000000e+000 0.000000e+000
+5 0.000000e+000 0.000000e+000
+6 0.000000e+000 0.000000e+000
+... list days of the run and the catch imposed
+14654 5.886416e-004 5.316763e-004
+14655 5.886416e-004 5.316763e-004
+14656 5.886416e-004 5.316763e-004
+14657 5.886416e-004 5.316763e-004
+14658 5.886416e-004 5.316763e-004
+14659 7.443469e-004 5.316763e-004
+14660 7.443469e-004 5.316763e-004
+... and so on</code></pre>
+<p>Note that this file gives the <strong>total catch per box in mg per second</strong> over all age groups of a species. The age distribution of the imposed catch is given separately in the CatchTS_agedistribXXX parameter.</p>
+<p>It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the typeCatchts parameter in <em>force.prm</em> whether to use the last valid value (typeCatchts set to 1) or to interpolate between the two provided values (typeCatchts set to 0). See “Format of the time series (TS) forcing files” box in Chapter 8.</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434972" class="anchor"></span><strong>Table 2.</strong> Parameters required for imposed catch setup</caption>
 <colgroup>
-<col style="width: 6%">
-<col style="width: 93%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Parameter</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>flagimposeglobal</td>
-<td>If &gt;0 imposed catches are applied for at least one species-fishery combination and a forcing TS file must be supplied (or else Atlantis will quit). Values of 1 to 4 indicate which option of imposed catch to use</td>
+<td style="text-align: left;">flagimposeglobal</td>
+<td style="text-align: left;">If &gt;0 imposed catches are applied for at least one species-fishery combination and a forcing TS file must be supplied (or else Atlantis will quit). Values of 1 to 4 indicate which option of imposed catch to use</td>
 </tr>
 <tr class="even">
-<td>flagimposecatch_XXX</td>
-<td><p>A vector with as many values as there are fisheries (with the order assumed to match the order in the <em>fisheries.csv</em> file).</p>
-<p>If &gt;0 imposed catch is applied for species XXX for that fishery. Values of 1 to 4 indicate which option of imposed catch to use</p></td>
+<td style="text-align: left;">flagimposecatch_XXX</td>
+<td style="text-align: left;">A vector with as many values as there are fisheries (with the order assumed to match the order in the <em>fisheries.csv</em> file).<br><br>If &gt;0 imposed catch is applied for species XXX for that fishery. Values of 1 to 4 indicate which option of imposed catch to use</td>
 </tr>
 <tr class="odd">
-<td>CatchTS_agedistribXXX</td>
-<td>Proportion of the imposed catch to take from the age group (if there is sufficient biomass over all fished age classes to cover the imposed catch). A vector should have as many values as there are age groups in the species XXX and should sum to 1.0.</td>
+<td style="text-align: left;">CatchTS_agedistribXXX</td>
+<td style="text-align: left;">Proportion of the imposed catch to take from the age group (if there is sufficient biomass over all fished age classes to cover the imposed catch). A vector should have as many values as there are age groups in the species XXX and should sum to 1.0.</td>
 </tr>
 <tr class="even">
-<td>imposecatchstart_XXX</td>
-<td><p>A vector with as many value as there are fisheries</p>
-<p>Day of the model run that the imposed catch starts for a species XXX and the specified fishery</p></td>
+<td style="text-align: left;">imposecatchstart_XXX</td>
+<td style="text-align: left;">A vector with as many value as there are fisheries<br><br>Day of the model run that the imposed catch starts for a species XXX and the specified fishery</td>
 </tr>
 <tr class="odd">
-<td>imposecatchend_XXX</td>
-<td><p>A vector with as many value as there are fisheries</p>
-<p>Day of the model run that the imposed catch ends for a species XXX and the specified fishery</p></td>
+<td style="text-align: left;">imposecatchend_XXX</td>
+<td style="text-align: left;">A vector with as many value as there are fisheries<br><br>Day of the model run that the imposed catch ends for a species XXX and the specified fishery</td>
 </tr>
 <tr class="even">
-<td>reportscale_XXX</td>
-<td><p>A vector with as many value as there are fisheries</p>
-<p>A scalar for imposed catches to scale from reported catches to total catches when accounting for misreporting by each fishery. For example if there was an additional 25% of the catch that was not reported, so that total catch was equal to 125% of official reported catch, then the scalar should be set to 1.25 for that fishery</p></td>
+<td style="text-align: left;">reportscale_XXX</td>
+<td style="text-align: left;">A vector with as many value as there are fisheries<br><br>A scalar for imposed catches to scale from reported catches to total catches when accounting for misreporting by each fishery. For example if there was an additional 25% of the catch that was not reported, so that total catch was equal to 125% of official reported catch, then the scalar should be set to 1.25 for that fishery</td>
 </tr>
 <tr class="odd">
-<td>YYY_flagmanage</td>
-<td>If &gt;0, management options will be applied to the fishery YYY and imposed catch may be scaled by a management scalar.</td>
+<td style="text-align: left;">YYY_flagmanage</td>
+<td style="text-align: left;">If &gt;0, management options will be applied to the fishery YYY and imposed catch may be scaled by a management scalar.</td>
 </tr>
 <tr class="even">
-<td>YYY_flagmpa</td>
-<td>If &gt;0, the fishery YYY will be affected by MPAs and imposed catch will be scaled by the MPA scalar.</td>
+<td style="text-align: left;">YYY_flagmpa</td>
+<td style="text-align: left;">If &gt;0, the fishery YYY will be affected by MPAs and imposed catch will be scaled by the MPA scalar.</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434972" class="anchor"></span><strong>Table 2.</strong> Parameters required for imposed catch setup</p>
 </section>
 <section id="setting-up-fishing-mortality-through-user-defined-non-dynamic-fishing-mortality" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-fishing-mortality-through-user-defined-non-dynamic-fishing-mortality"><strong>15.3. Setting up fishing mortality through user defined non-dynamic fishing mortality</strong></h2>
@@ -685,9 +672,8 @@ Caution
 <p>The user defined fishing mortality set through mFC parameter can <strong>change during the simulation</strong>. This is triggered by setting the global parameter flagchangeF=1 and setting flagFchange_XXX to 1 for the species and fishery combinations where changes in the F values are desired.</p>
 <p>If changes in F are required for a specific species and fishery combination, then the number of changes for that species-fishery combination is given in XXX_mFC_changes. Note that while XXX_mFC_changes are at present specified per species-fishery combination, the actual specifics of each change (timing and magnitude) are only specified at the species level and so all the changes are applied to ALL fisheries that catch species XXX using the fishing mortality option and have XXX_mFC_changes &gt; 1. If you require the changes to be specific to both the species and fishery please contact the Atlantis developers.</p>
 <p>The day(s) of the model run at which the change(s) in F start is set in mFCchange_start_XXX parameter. This parameter should have as many entries as there are number of changes given in the XXX_mFC_changes parameter. The time period over which the change will occur is set using the mFCchange_period_XXX parameter, which again must have as many values as there are changes. This means that the change will not be instant but will be applied slowly (linearly interpolating from the original value to the new value) through the number of days indicated in mFCchange_period_XXX. Once the change period is finished the scalar on F does not return to the original value but is applied for the rest of the simulation unless another change is applied. The multiplier by which the ORIGINAL fishing mortality should be multiplied for each of the implemented changes is given in the mFCchange_mult_XXX parameter. This multiplier determines the factor that the original mFC value will be multiplied by to give the new (changed) F. If you are making multiple changes remember that these values multiply fishing by the original mFC value, not by whatever the fishing pressure was after the previous change.</p>
-<p>****</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434973" class="anchor"></span><strong>Table 3.</strong> Parameters required to setup a user defined fishing mortality rate.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>Parameter</strong></th>
@@ -757,6 +743,8 @@ Caution
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434973" class="anchor"></span><strong>Table 3.</strong> Parameters required to setup a user defined fishing mortality rate.</p>
 </section>
 </section>
 <section id="general-introduction-to-dynamic-fishing" class="level2">
@@ -772,13 +760,16 @@ Caution
 <p>The <strong>proportion of biomass escaping the fishery</strong> set in flagescapement_XXX for each fishery can be either zero (flagescapement_XXX=0), constant (flagescapement_XXX =1 and proportions given in p_escape_XXX), or size-based (flagescapement_XXX =2). Constant escapement just gives a proportion of escapement applied uniformly for each age class. The size based escapement is determined by the length of the age group or a species (see NOTE! below on how length is calculated in vertebrates and non-vertebrates) and parameters Ka_escape_XXX and Kb_escape_XXX (giving values for each fishery, so different escapement options can be set up for each fishery). In the size based escapement option the proportion of individuals in an age group escaping a fishery is calculated as</p>
 <p><span class="math display">\[{p\_ esc}_{CX,Y} = Ka_{esc,CX,Y} \cdot {Length}_{i,CX} + Kb_{esc.CX,Y}\]</span></p>
 <p>Where Ka<sub>esc,CX,Y</sub> and Kb<sub>esc,CX,Y</sub> are Ka_escape_XXX and Kb_escape_XXX values for each species and fishery combination.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>How is catch calculated in dynamic fishing?</strong></p>
 <p>It is recommended users look at the <em>Get_Dynamic_Catch()</em> routine in the <strong>atHarvestCatch.c</strong> to familiarise themselves with the dynamic catch algorithm. The text below gives the general overview of it.</p>
 <p>When dynamic fishing is used, the amount of biomass that will be caught at each timestep is determined by the volume of a cell (one layer in a box) swept by the fishery gear and the biomass of the species in this cell that can be caught by the gear, given its selectivity.</p>
@@ -787,12 +778,9 @@ Caution
 <p>The <strong>catchability</strong> sets a proportion of the biomass (constant across all age groups, but potentially different between genetic stocks) of a species XXX that can be caught by each fishery. As the catchability is included in the habitat scalar calculations, if the “Ellis and Pantus” habitat scalar sub-models is used (flagbabitat_XXX=1) then it is also dependent on the other patchiness parameters used in the habitat scalar (see chapter 15.7.3). In case of a standard habitat scalar (flaghabitat_XXX=0) the catchability is a simple multiplier. In the example above, if the catchability of the species is 0.5 then the fishery will only have access to half of the available biomass. So instead of 50% of its cell selected biomass, it will only catch 25% of it. The catchability parameter aims to account for fish behaviour and other factors that help fish to avoid fishing gear. It is NOT size or age dependent and works as a simple scalar on the biomass available to the fishery.</p>
 <p>The proportion of caught biomass can be further modified by the <strong>escapement</strong>. All fish that escape the gear are assumed to survive in perfect health, they are not damaged by the gear in any way. In contrast to catchability, the escapement can be age or length specific. This allows the user to give different escapement probabilities and, for example, improve the survival of the largest individuals. In the example above, if the escapement of a selected age group is set to 50%, it means that only 12.5% of that age group will be caught in the cell.</p>
 <p>Finally the caught biomass will also be modified by the <strong>selectivity</strong>. The selectivity can be constant or length dependent. The selectivity will act as a further scalar reducing the biomass caught. In the example above, constant selectivity of 0.5 would mean that the final catch is further scaled and only 6.25% of the biomass or age group (depending on how selectivity is set) is caught in the cell.</p>
-<p>It might be easier to track the fishing outcomes if catchability or escapement are modified one at a time. So, for example, the catchability can be set to 1, but escapement can be set to a different age or length specific proportion. Alternatively, the user might want no escapement and modify the available biomass through catchability only. Finally, the simplest option would include no escapement and 100% catchability; then the available biomass of the target and bycatch species of fishery YYY, in the swept volume of the cell, would only be limited by the fishery’s gear selectivity.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>It might be easier to track the fishing outcomes if catchability or escapement are modified one at a time. So, for example, the catchability can be set to 1, but escapement can be set to a different age or length specific proportion. Alternatively, the user might want no escapement and modify the available biomass through catchability only. Finally, the simplest option would include no escapement and 100% catchability; then the available biomass of the target and bycatch species of fishery YYY, in the swept volume of the cell, would only be limited by the fishery’s gear selectivity.</p>
+</div>
+</div>
 </section>
 <section id="defining-effort-in-dynamic-fishing" class="level2">
 <h2 class="anchored" data-anchor-id="defining-effort-in-dynamic-fishing"><strong>15.5. Defining effort in dynamic fishing</strong></h2>
@@ -832,58 +820,62 @@ Caution
 <h3 class="anchored" data-anchor-id="constant-or-dynamic-effort-with-spatial-distribution-based-on-the-relative-cpue-in-the-box-efformodel2-effortmodel10"><strong><em>15.5.5. Constant or dynamic effort with spatial distribution based on the relative CPUE in the box (efformodel=2, effortmodel=10)</em></strong></h3>
 <p>This option is calculated as in the option YYY_effortmodel=1 described above using mEff_YYY and YYY_Effort parameters, but the effort for each box is not weighted by the relative area of the box but by the relative catch per unit effort (CPUE) in that box over the “<strong>memory” period</strong>. This aims to imitate the situation where fishers return to areas where earlier catch has been good.</p>
 <p>The “memory” period over which the CPUE is calculated is given in the K_num_catchqueue parameter in the <em>run.prm</em> file. It is often set to one day, which means that the CPUE effort matrices are updated every day, but it can be set for longer periods.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>How is CPUE calculated in Atlantis?</strong></p>
 <p>Catch per unit effort (CPUE) is calculated based on the catch and effort over the “memory” period. For a fishery YYY the CPUE can be calculated either based on all catch (set as YYY_flaguseall=1) or only on catch of target species (YYY_flaguseall=0). The calculation of CPUE based on target species only assumes that non target species are of no value and fishers don’t base their future effort allocation decisions on their catch. The target species of a fishery YYY are listed in the target_YYY parameter (where 1 indicates a target species and 0 indicates a non-target species).</p>
 <p>Recreational fishing is not handled in the same way as commercial fishing, which means that CPUE for recreational fishing will be very overstated, as catch is lumped for invertebrates, as well as pelagic and demersal species, but is counted in the CPUE for each component species. This was done for ease of computation and is acceptable as long as dynamic effort allocation is <strong>NOT</strong> used for the recreational fishing. A warning to this effect has been added to the model initialisation code.</p>
-<p>It is also possible to calculate shot by shot CPUE, which is used when trying to consider how to correct for changes in targeting and fishing behaviour through time. See the description <a href="https://confluence.csiro.au/display/Atlantis/2014/07/28/Shot+by+shot+CPUE+generation">here</a></p></th>
-</tr>
-</thead>
-
-</table>
+<p>It is also possible to calculate shot by shot CPUE, which is used when trying to consider how to correct for changes in targeting and fishing behaviour through time. See the description <a href="https://confluence.csiro.au/display/Atlantis/2014/07/28/Shot+by+shot+CPUE+generation">here</a></p>
+</div>
+</div>
 <p>There are two ways to apply the CPUE scaling. The first one applies constant effort through time and is set through YYY_effortmodel=2. In this option the relative scaling of effort per box is multiplied by the user provided total effort <em>TotEff<sub>Y</sub></em> (YYY_Effort) to get the actual effort per box:</p>
 <p><span class="math display">\[{Eff}_{Y,j} = {TotEff}_{Y} \cdot \left( \varepsilon \cdot \left( {Eff}_{Q + 1,Y} - {Eff}_{Q,Y} \right) + {Eff}_{Q,Y} \right) \cdot \frac{{cpue}_{Y,j}}{\sum_{j}^{}{cpue}_{Y,j}}\]</span></p>
 <p><em>TotEff<sub>Y</sub></em> can be altered through the course of the run via scenarios of changing effort. This option is selected through YYY_effortmodel=10 is quite similar, but allows for a more dynamic calculation of the total effort, which can change throughout the simulation in response to potential management restrictions not just enforced effort changes. This means that the relative scaling of effort per box is multiplied not by the user provided constant effort but by the total effort in the previous time step (which includes all the applied effort scalars).</p>
 <p><span class="math display">\[{Eff}_{Y,j} = {TotEff}_{Y,t - 1} \cdot \left( \varepsilon \cdot \left( {Eff}_{Q + 1,Y} - {Eff}_{Q,Y} \right) + {Eff}_{Q,Y} \right) \cdot \frac{{cpue}_{Y,j}}{\sum_{j}^{}{cpue}_{Y,j}}\]</span></p>
 <p>Here <em>TotEff<sub>Y-1</sub></em> is calculated dynamically; <em>cpue<sub>Y,j</sub></em> is the CPUE of fishery Y in box <em>j</em> during the last “memory” period (mg day<sup>-1</sup>); and ∑ <em>cpue<sub>Y,j</sub></em> is the total CPUE of the fishery Y over the entire model domain during the same time period.</p>
 <p>Note that for the burn-in period of the simulation (set using the tburn parameter in the <em>run.prm</em> file), the previous day’s CPUE is not known and the effort still needs to be set with the effort spatial distribution parameters (Effort_hdistribYYY and YYY_Effort), as described in the chapter 15.5.3.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Exploratory fishing is important when effort is scaled by CPUE</strong></p>
 <p>This scaling of effort based on the previous CPUE means that spatial distribution of the fishery can change a lot through time. In particular, once no catch has been obtained in a specific box, the relative CPUE of that box will be 0, and the <strong>fishery will not come to this box again</strong>, as all subsequent scaling of effort for that box will be multiplied by 0. This means that a fishery will contract to a smaller area of the model. Such spatial contraction of the fishing effort is corrected once per year, if exploratory fishing is allowed, set as YYY_explore = 1. Exploratory fishing means that some effort is allocated to every box of the model domain, and the CPUE matrix is reset.</p>
 <p>Exploratory fishing will only be done in boxes where the minimum and maximum depth are within the depth that a fishery can operate (YYY_maxdepth and YYY_mindepth parameters). The amount of fishing effort allocated in each box during exploratory fishing is set in the YYY_mEff_testfish parameter (days day<sup>-1</sup>), which sets the same amount of fishing effort for each box. However, this effort is only applied if a fishery is open and allowed to operate (due to management rules). In a fishery is closed due to quota limits (for example) or other management factors (see chapter 16), on the reopening of the fishery, the exploratory fishing in a box where the fishery has not operated is set at a default level of 1 effort day per day.</p>
-<p>Exploratory fishing is only carried out if no normal fishing is allocated to that box.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<p>Exploratory fishing is only carried out if no normal fishing is allocated to that box.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>The role of the target species parameter target_YYY</strong></p>
 <p>To set the dynamic fishing option the users first have to identify target species for each fishery, set in the target_YYY vector.</p>
 <p>The target_YYY and flagincidmort parameters determine which species in the cell are available to a fishery (see NOTE! in chapter 15.4).</p>
 <p>The target_YYY will also determine whether a fishery will be closed when exceeding the total allowable catch – if only one species is targeted, then it will be closed as soon as its TAC has been reached. However, if a fishery has several target species, it will be closed only when it has reached TAC for the number of target species set in the YYY_num_max_sp parameter.</p>
 <p>The catch and prices of the species identified as target species in target_YYY will also be used to <strong>calculate CPUE</strong> and in deciding where to concentrate the effort in dynamic effort allocations (prices are used only in the effort models that apply economics parameters).</p>
-<p>The relative box biomass of target species is also used when setting up relative spatial effort in the case for YYY_efformodel=9.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>The relative box biomass of target species is also used when setting up relative spatial effort in the case for YYY_efformodel=9.</p>
+</div>
+</div>
 </section>
 <section id="constant-effort-based-on-ideal-knowledge-of-target-fish-distributions-effortmodel9" class="level3">
 <h3 class="anchored" data-anchor-id="constant-effort-based-on-ideal-knowledge-of-target-fish-distributions-effortmodel9"><strong><em>15.5.6. Constant effort based on ideal knowledge of target fish distributions</em> (effortmodel=9)</strong>*</h3>
@@ -919,19 +911,19 @@ Caution
 <p>In the second step, the ideal effort is linearly interpolated across the model domain according to the speed of the fishery boats to obtain the realised new effort. This means that a fishery may not be able to switch to a new box immediately, if the boxes is large. The realised new effort is calculated as</p>
 <p><span class="math display">\[{newEff}_{Y,j} = \max\left( 1,\frac{{Speed}_{Y} \cdot dt}{width} \right) \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}\]</span></p>
 <p>where <em>Speed<sub>Y</sub></em> is the speed of commercial fishing (Speed_boat, m hour<sup>-1</sup>); <em>dt</em> is the number of hours in the main Atlantis timestep (usually 12, but 6 or 24 are also common); <em>width</em> is the width of the entire model domain along its the longest dimension (north–south or east-west); and <em>oldEff<sub>Y,j</sub></em> is the effort by the fishery Y in the box <em>j</em> in the previous timestep. The (<em>Speed*dt/width</em>) term simply calculates what distance a fishery Y can travel in one time step compared to the entire model domain (e.g.&nbsp;0.1 of the maximum possible distance in the model). It shows that if the fishery can cross the entire model domain in one timestep and therefore find itself in any box of the model domain in one timestep, then the scalar will be 1 and the new effort will be the same as the ideal effort. If the scalar is smaller than one, then new effort will be a combination of the old effort and the ideal effort determined above.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
-<p>When the exponential CPUE to new ideal effort equation is used, <strong>the amount of ideal effort in each box and in the entire model domain can change a lot through time.</strong> If this ideal effort is translated quickly into the realised new effort (which happens if the boat speed is high enough, see below) then the amount of box specific and total fishing effort can also fluctuate A LOT through time. Users who apply this approach are advised to determine the ideal effort by carefully exploring the outputs of the effort in each box and throughout the model domain to ensure they produce reasonable values. Such consideration is important for all models, but particularly so when using this option.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When the exponential CPUE to new ideal effort equation is used, <strong>the amount of ideal effort in each box and in the entire model domain can change a lot through time.</strong> If this ideal effort is translated quickly into the realised new effort (which happens if the boat speed is high enough, see below) then the amount of box specific and total fishing effort can also fluctuate A LOT through time. Users who apply this approach are advised to determine the ideal effort by carefully exploring the outputs of the effort in each box and throughout the model domain to ensure they produce reasonable values. Such consideration is important for all models, but particularly so when using this option.</p>
+</div>
+</div>
 <p>As with the majority of the other effortmodel cases, exploratory fishing can be used with this exponentially weighted effort distribution.</p>
 </section>
 <section id="dynamic-effort-exponentially-related-to-previous-cpue-and-distance-to-ports-efformodel5" class="level3">
@@ -962,144 +954,122 @@ Caution
 <p><span class="math display">\[{idEff}_{Y,j} = \frac{{cpue}_{Y,j}}{\sum_{j}^{}{cpue}_{Y,j}} \cdot {TotoldEff}_{Y}\]</span></p>
 <p>Changes in the distribution of the ideal fishing effort in response to the previous period CPUE can be illustrated with Table 1, showing a hypothetical example of fishing in five boxes. The initial effort in each box is 20 days and the first day’s CPUE varies from 1 to 50 tons/day. The new ideal effort on the next day will be heavily skewed towards boxes with highest CPUE, but the total effort will not change.</p>
 <p><span id="_Toc498434974" class="anchor"></span><strong>Table 4.</strong> Hypothetical example of changes in spatial ideal effort distribution in five boxes when effort is weighed by the previous day’s (or other “memory” period) CPUE. Each box’s distance to a port (only one port assumed) is indicated.</p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 46%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th><p><strong>Box 1</strong></p>
-<p>100km</p></th>
-<th><p><strong>Box 2</strong></p>
-<p>200km</p></th>
-<th><p><strong>Box 3</strong></p>
-<p>500km</p></th>
-<th><p><strong>Box 4</strong></p>
-<p>800km</p></th>
-<th><p><strong>Box 5</strong></p>
-<p>1000km</p></th>
-<th><strong>Total</strong></th>
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Box 1</strong><br>100km</th>
+<th style="text-align: center;"><strong>Box 2</strong><br>200km</th>
+<th style="text-align: center;"><strong>Box 3</strong><br>500km</th>
+<th style="text-align: center;"><strong>Box 4</strong><br>800km</th>
+<th style="text-align: center;"><strong>Box 5</strong><br>1000km</th>
+<th style="text-align: center;"><strong>Total</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><em>Effort day t (days day<sup>-1</sup>)</em></td>
-<td>20</td>
-<td>20</td>
-<td>20</td>
-<td>20</td>
-<td>20</td>
-<td><strong>100</strong></td>
+<td style="text-align: left;"><em>Effort day t (days day<sup>-1</sup>)</em></td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;"><strong>100</strong></td>
 </tr>
 <tr class="even">
-<td><em>CPUE day t (tons day<sup>-1</sup>)</em></td>
-<td>5</td>
-<td>10</td>
-<td>50</td>
-<td>20</td>
-<td>1</td>
-<td><strong>86</strong></td>
+<td style="text-align: left;"><em>CPUE day t (tons day<sup>-1</sup>)</em></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>86</strong></td>
 </tr>
 <tr class="odd">
-<td><em>relCPUE t</em></td>
-<td>0.058</td>
-<td>0.116</td>
-<td>0.581</td>
-<td>0.233</td>
-<td>0.012</td>
-<td></td>
+<td style="text-align: left;"><em>relCPUE t</em></td>
+<td style="text-align: center;">0.058</td>
+<td style="text-align: center;">0.116</td>
+<td style="text-align: center;">0.581</td>
+<td style="text-align: center;">0.233</td>
+<td style="text-align: center;">0.012</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td><em>Ideal effort on day t+1 (days day<sup>-1</sup>)</em></td>
-<td>5.8</td>
-<td>11.6</td>
-<td>58.1</td>
-<td>23.3</td>
-<td>1.2</td>
-<td><strong>100</strong></td>
+<td style="text-align: left;"><em>Ideal effort on day t+1 (days day<sup>-1</sup>)</em></td>
+<td style="text-align: center;">5.8</td>
+<td style="text-align: center;">11.6</td>
+<td style="text-align: center;">58.1</td>
+<td style="text-align: center;">23.3</td>
+<td style="text-align: center;">1.2</td>
+<td style="text-align: center;"><strong>100</strong></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td><p><em>mFCscale/distance</em></p>
-<p><em>(mFCscale = 0.004; rescaled on read in to 2)</em></p></td>
-<td>0.02</td>
-<td>0.01</td>
-<td>0.004</td>
-<td>0.0025</td>
-<td>0.002</td>
-<td></td>
+<td style="text-align: left;"><em>mFCscale/distance</em><br><em>(mFCscale = 0.004; rescaled on read in to 2)</em></td>
+<td style="text-align: center;">0.02</td>
+<td style="text-align: center;">0.01</td>
+<td style="text-align: center;">0.004</td>
+<td style="text-align: center;">0.0025</td>
+<td style="text-align: center;">0.002</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td><em>New effort day t+1</em></td>
-<td>19.72</td>
-<td>19.92</td>
-<td>20.15</td>
-<td>20.01</td>
-<td>19.96</td>
-<td><strong>99.76</strong></td>
+<td style="text-align: left;"><em>New effort day t+1</em></td>
+<td style="text-align: center;">19.72</td>
+<td style="text-align: center;">19.92</td>
+<td style="text-align: center;">20.15</td>
+<td style="text-align: center;">20.01</td>
+<td style="text-align: center;">19.96</td>
+<td style="text-align: center;"><strong>99.76</strong></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;"><em>mFCscale/distance (mFCscale = 0.1; rescaled on read in to 50)</em></td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0.25</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.063</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td><em>mFCscale/distance (mFCscale = 0.1; rescaled on read in to 50)</em></td>
-<td>0.5</td>
-<td>0.25</td>
-<td>0.1</td>
-<td>0.063</td>
-<td>0.05</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><em>New effort day t+1</em></td>
-<td>12.91</td>
-<td>17.91</td>
-<td>23.81</td>
-<td>20.20</td>
-<td>19.06</td>
-<td><strong>93.89</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;"><em>New effort day t+1</em></td>
+<td style="text-align: center;">12.91</td>
+<td style="text-align: center;">17.91</td>
+<td style="text-align: center;">23.81</td>
+<td style="text-align: center;">20.20</td>
+<td style="text-align: center;">19.06</td>
+<td style="text-align: center;"><strong>93.89</strong></td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>The new actual effort is then calculated as in YYY_effortmodel=5, where the speed by which the fishery can change the effort depends on the distance of the box to the ports and the mFCscale parameter</p>
 <p><span class="math display">\[{newEff}_{Y,j} = \sum_{Z}^{}\frac{{mFCscale}_{Y}}{{Z \cdot distance}_{Z,j}} \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}\]</span></p>
 <p>This new effort then can be capped, as described in chapter 15.5.9. Note that even though in the first step the total amount of effort does not change but is only redistributed spatially, the introduction of the mFCscalar and distance to port scalar can lead to the changes in the total amount of realised effort (see Table 3).</p>
