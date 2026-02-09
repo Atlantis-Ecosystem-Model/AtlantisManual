@@ -126,7 +126,7 @@ Dynamic prices can vary between markets (for instance reflecting domestic and ex
 
 The price of a species CX from a fishery Y sold in a market x at a time step *t* is calculated as
 
-$${Prc}_{CX,Y,x,t} = \left( Val_{CX,Y} \bullet a_{CX,x} + Trend_{CX,x} \bullet year + b_{month,CX,x} + c_{CX,x} \bullet residuals_{CX,x,t} \right) \bullet Wgt_{x}\ $$
+$${Prc}_{CX,Y,x,t} = \left( Val_{CX,Y} \cdot a_{CX,x} + Trend_{CX,x} \cdot year + b_{month,CX,x} + c_{CX,x} \cdot residuals_{CX,x,t} \right) \cdot Wgt_{x}\ $$
 
 Where *Val~CX,Y~* is the baseline sale price of a species (\$/kg) given in the XXXsaleprice parameter; and *a~CX,x~* is the market-specific scalar for each species given in the MARKET_intercept1 and MARKET_intercept2 parameters for the two markets. The scalar is used to reflect different demand for different species in different markets. The *Trend~CX,x~* is the price trend coefficient for each market and species in the MARKET_trend1 and MARKET_trend2 parameter and *year* is the year number in the simulation run. The trend term is intended to reflect long-term trends in the fish market prices (both inflation driven and otherwise) and is usually a small constant (\$/kg) (remember, it will be multiplied by the year number and added to the total price).
 
@@ -158,7 +158,7 @@ Deemed values can be simple or complex, set in YYY_flagDV parameter (0=no deemed
 
 Complex deemed values take into account the costs of fishing, and are calculated as
 
-$${DV}_{cx,Y,x,t} = {Prc}_{cx,Y,x,t} \bullet \left( 1 - {CrewPr}_{Y,J} - {deemed}_{CX,Y} \right) - Cost_{fixed,Y,J}\ $$
+$${DV}_{cx,Y,x,t} = {Prc}_{cx,Y,x,t} \cdot \left( 1 - {CrewPr}_{Y,J} - {deemed}_{CX,Y} \right) - Cost_{fixed,Y,J}\ $$
 
 Where *Prc~CX,Y,x,t~* is the dynamic market price as calculated above; *Cre~PrY,J~* is the proportion of profit that is a crew share in fishery Y subfleet J (YYY_crewshare); *deemed~CX,Y~* is the deemed value scalar given in the XXXdeemed parameter (for each fishery and species); and *Cost~fixed,Y,J~* is the fixed cost of fishing (\$/day) per fishery Y subfleet J.
 
@@ -166,13 +166,13 @@ Where *Prc~CX,Y,x,t~* is the dynamic market price as calculated above; *Cre~PrY,
 
 Costs are tracked at the subfleet level. The total operating costs (*Cost~J,Y,m,y~*) per subfleet *J* of fishery Y in month *m* of year *y* consists of fixed, market dependent, harvest dependent and effort dependent costs:
 
-$$Cost_{J,Y.m.y} = \left( Cost_{fix,J.Y} + Cost_{cap,J.Y} \right) + \ \left( Cost_{quota,J.Y,m.y} + Prc_{fuel,J.Y,m.y} \bullet Eff_{J,Y,m,y} \right) + \left( Cost_{unload,J.Y} \bullet H_{J.Y.m.y} \right) + \left( Cost_{gear,J.Y} \bullet {Eff}_{J.Y.m.y} \right)$$
+$$Cost_{J,Y.m.y} = \left( Cost_{fix,J.Y} + Cost_{cap,J.Y} \right) + \ \left( Cost_{quota,J.Y,m.y} + Prc_{fuel,J.Y,m.y} \cdot Eff_{J,Y,m,y} \right) + \left( Cost_{unload,J.Y} \cdot H_{J.Y.m.y} \right) + \left( Cost_{gear,J.Y} \cdot {Eff}_{J.Y.m.y} \right)$$
 
 where *Cost~fix,i,j~* are the fixed costs of subfleet J (YYY_fixedcost, \$/day), which represent boat licence, management, insurance and maintenance costs and *Cost~cap,i,j~* are capital costs (YYY_capitalcost, \$/day), mostly representing depreciation. These two costs are fixed during the simulation. The *Cost~quota,i,j~* are quota lease costs for subfleet *i* of fleet *j* for quota traded in month *m* of year *y* (calculated dynamically using quota price and quota trading routines, see below); *Prc~fuel~* is the fuel price calculated dynamically (see below); *Eff~J,Y,m,y~* is the effort (in days) that a subfleet has expended in the month *m* of the year *y*. The second term of the equation include dynamic costs determined by the market (quota and fuel price). The *Cost~unload,i,j~* are unloading costs (YYY_unloadcost, \$/tonne) and *H~i,j,m,y\ ~*is the landed catch by subfleet *i* of fleet *j* in month *m* of year *y* -- this is the harvest dependent component of the cost. *Cost~gear,i,j~* are gear maintenance costs (YYY_gearcost, \$/day of fishing effort) currently set to be stable during the simulation. Like the fuel related cost, the gear maintenance costs are related to the effort expended.
 
 The fuel price is calculated similarly to the fish price described in chapter 17.3.1.
 
-$${Prc}_{fuel,J,Y,m,y} = \left( a_{fuel} + Trend_{fuel} \bullet year + b_{fuel,month} + c_{fuel} \bullet residuals_{fuel} \right) \bullet \delta_{J,Y}\ $$
+$${Prc}_{fuel,J,Y,m,y} = \left( a_{fuel} + Trend_{fuel} \cdot year + b_{fuel,month} + c_{fuel} \cdot residuals_{fuel} \right) \cdot \delta_{J,Y}\ $$
 
 *a~fuel~* is the baseline fuel cost (fuel_intercept, cents/litre); *Trend~fuel~* is the price trend coefficient fuel_trend_coefft (cents/litre) to be multiplied by the year of the simulation; the *b~fuel,\ month~* is the monthly market constant given in the FuelMonthCoefft parameter; and *c~fuel~* is a constant (fuel_auto_coefft) to be applied to the externally read fuel price residuals *residuals~fuel~*. The *δ~J,Y~* is the subfleet's specific fuel consumption value (YYY_fuelcost, liters/day of effort).
 
@@ -298,7 +298,7 @@ Since quota trading is based on profit maximisation, the amount of quota traded 
 
 In the model that is based on Little et al. (2009) (flagLease=0), the price of a unit quota of a species CX is calculated as the average marginal profit (\$/kg) over the subfleets discounted by the interest rate (given in the global interest_rate parameter). The marginal profit is calculated as total profit divided by the total catch.
 
-$$\Pr c_{quota,CX} = MargProf_{CX} \bullet \left( 1 + \frac{1}{interest} \right)$$
+$$\Pr c_{quota,CX} = MargProf_{CX} \cdot \left( 1 + \frac{1}{interest} \right)$$
 
 In this model the quota prices change in response to the dynamic fish prices and fishing costs that determine the final marginal profits.
 
@@ -422,13 +422,13 @@ The historical harvest and CPUE information gives expected profit per species fo
 
 There are two ways to calculate the expected profit for each month, determined by the OrigEconCalc parameter. If OrigEconCalc=1 then expected profit *Pft~e~* for each species CX caught by subfleet J in the fishery Y in month *m* is calculated as
 
-$$Pft_{e,CX,Y,J,m =}{Prc}_{CX,Y,m} \bullet H_{e,CX,J.Y,m} - {Eff}_{h,J,Y,m} \bullet Cost_{Eff,J,Y,m}$$
+$$Pft_{e,CX,Y,J,m =}{Prc}_{CX,Y,m} \cdot H_{e,CX,J.Y,m} - {Eff}_{h,J,Y,m} \cdot Cost_{Eff,J,Y,m}$$
 
 where *Prc~CX,Y,m~* is the historical price for that species in month m got by subfleets in a fishery Y (prices can be fisheries specific!); *H~e,CX,J,Y,m~* is the expected harvest of species CX in month m (based on historical records); *Eff~h,J,Y,m~* is the historical effort by the subfleet in that month; and *Cost~Eff,J,Y,m~* is the fishing cost per unit effort in that month (\$/day) of the previous year. The fishing cost per unit effort is calculated as total cost minus fixed and capital costs (e.g. minus the first term in the equation given in chapter 17.3.3), divided by effort in that month.
 
 Alternatively, if OrigEconCalc=0, the expected profit calculation takes into account the proportional contribution of each species to the total profit and is also based on the historical CPUE rather than harvest information only. In this case the expected profit *R~e~* for each species CX caught by subfleet J in the fishery Y in month *m* is calculated as
 
-$$Pft_{e,CX,Y,J,m =}{Prc}_{CX,Y,m} \bullet \frac{H_{e,CX,J.Y,m}}{{Eff}_{h,J.Y,m}} - \gamma_{CX,J,Y,m} \bullet Cost_{Eff,J,Y,m}$$
+$$Pft_{e,CX,Y,J,m =}{Prc}_{CX,Y,m} \cdot \frac{H_{e,CX,J.Y,m}}{{Eff}_{h,J.Y,m}} - \gamma_{CX,J,Y,m} \cdot Cost_{Eff,J,Y,m}$$
 
 Here *Prc~CX,Y,m~* is multiplied by the harvest to effort ratio (so effectively the annual plan is based on CPUE information); and *ϒ~CX,J,Y,m~* is the proportional contribution of species CX to the total catch in that month.
 
@@ -436,7 +436,7 @@ If bycatch of endangered species (identified by SP_Concern parameter in *harvest
 
 In the next step, Atlantis allows for some human behavioural drivers to be included that are not directly economic. The final annual fishing plan is weighted by the fisher behavioural flexibility parameter YYY_flexweight set for each fishery and subfleet. The YYY_flexweight parameter reflects the flexibility of fishers to update their long term fishing tradition with new profit information. The final planned effort by subfleet J for each month *m* *Eff~planned,J,m~* is:
 
-$$Eff_{planed,J,m} = flexwgt_{J} \bullet \left( newEffort_{J,m} - oldEffort_{J,m} \right) + oldEffort_{J,m}$$
+$$Eff_{planed,J,m} = flexwgt_{J} \cdot \left( newEffort_{J,m} - oldEffort_{J,m} \right) + oldEffort_{J,m}$$
 
 Where *flexwgt~J~* is the subfleet behaviour flexibility (YYY_flexweight); *newEffort~J,m~* is the monthly effort schedule made above based on maximum profit and bycatch avoidance; and *oldEffort~J,m~* is the historical effort per month (read in from JanYYYEffort_sub1, etc and updated dynamically in "black books"). The equation above shows that if *flexwgt* parameter is 1 (very flexible) then the planned effort is equal to the new most profitable effort. Alternatively, if flexwgt is 0 (not flexible at all), then new information about the expected profits and bycatch is not taken into account at all, and planned effort is the same as historical effort. Some fishers seem to always go fishing to the usual places, no matter the profitability.
 
@@ -450,13 +450,13 @@ If the base economic model is used (MultiPlanEffort=1) the annual effort plan is
 
 At the monthly update Atlantis will calculate the planned effort scalar *EffScale~J,m\ ~*
 
-$$EffScale_{J,m} = \max\left( (1 - choiceBuff),\max_{CX}\left( \frac{H_{expected,CX,J}}{H_{realised,CX,J}} \bullet \frac{1}{\left( 1 + rank_{CX} \right)^{2}} \right) \right)$$
+$$EffScale_{J,m} = \max\left( (1 - choiceBuff),\max_{CX}\left( \frac{H_{expected,CX,J}}{H_{realised,CX,J}} \cdot \frac{1}{\left( 1 + rank_{CX} \right)^{2}} \right) \right)$$
 
 The complicated equation above can be understood as this:
 
 1)  Rank all species CX targeted by a subfleet J by their CPUE (or Value per Unit effort, if UseVPUE=1). The most valuable species gets a rank of 0, the next one a rank of 1 and so on.
 
-2)  Calculate $\frac{H_{expected,CX,J}}{H_{realised,CX,J}} \bullet \frac{1}{\left( 1 + rank_{CX} \right)^{2}}$ term for each species. This would be a species-specific effort scalar. The graph below shows the effort scalar for a range of expected to realised catch for the highest rank species (rank 0) shown in black, for the second one in blue, and for the third (rank 2) in green dashed line. Remember that in real simulations for each species only one value of the monthly effort scalar will be produced and it will depend on the expected versus realised catch of that species
+2)  Calculate $\frac{H_{expected,CX,J}}{H_{realised,CX,J}} \cdot \frac{1}{\left( 1 + rank_{CX} \right)^{2}}$ term for each species. This would be a species-specific effort scalar. The graph below shows the effort scalar for a range of expected to realised catch for the highest rank species (rank 0) shown in black, for the second one in blue, and for the third (rank 2) in green dashed line. Remember that in real simulations for each species only one value of the monthly effort scalar will be produced and it will depend on the expected versus realised catch of that species
 
 3)  Find the maximum monthly effort scalar across the species. If expected/realised catch \< 1 (realised catch is higher than the plan), then the monthly effort scalar is \<1 and the effort should be decreased. If the expected versus the realised catch of all species is the same, then the highest ranked species will give the maximum scalar. But the actual values across species will differ, e.g. if the ratio of expected to realised catch of rank 0 species is 1, then its effort scalar is 1. If the expected/realised catch ratio for the second ranked species is 5, then its effort scalar is 1.25. Here Atlantis will take the maximum value across species, i.e. 1.25 in this case.
 
@@ -464,11 +464,11 @@ The complicated equation above can be understood as this:
 
 5)  Contrain the maximum effort by the maximum monthly effort *Eff~monthly,max~* which is calculated as
 
-$$Eff_{mothly,max} = monthSc \bullet \left( 1 - downTime_{J} \right) \bullet Nboats_{J}\ $$
+$$Eff_{mothly,max} = monthSc \cdot \left( 1 - downTime_{J} \right) \cdot Nboats_{J}\ $$
 
 Where *monthSc* is the monthly scalar in the month_scalar global parameter giving a maximum number of days of effort a boat can apply (it can be bigger than 30 if for example one boat has several gears), and *downTime~J~* is the proportion of time a boat from a subfleet J must stay in the port for maintenance given in the YYY_minDownTime parameter. A hypothetical maximum monthly effort limit is shown with a dashed red horizontal line in the graph below.
 
-![[]{#_Toc498434139 .anchor}**Figure 12.** The monthly effort scalar calculation. See explanation in the text above.](media/image14.emf){width="5.004166666666666in" height="3.9270833333333335in"}
+![[]{#_Toc498434139 .anchor}**Figure 12.** The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){width="5.004166666666666in" height="3.9270833333333335in"}
 
 6)  Assess whether a subfleet has very high debt levels which will reduce its ability to fish. The tolerable debt levels for each subfleet are set in YYY_TolDebt parameter. If the expected monthly profit from fishing will not increase the debt above the tolerable levels then monthly planned effort is reduced by a proportion set in a global effort_reduction parameter.
 
@@ -486,23 +486,23 @@ If value per unit effort information is used (UseVPUE=1) then boxes will be rank
 
 2)  Next, each box is weighted by their *mpasc~J,j~* (MPAYYY parameter from the *harvest.prm* file, see chapter 16.4), which will change the actual CPUE in this box if some of the box area is closed to fishing. This scaled value is used to calculate the ideal CPUE based effort (*CPUE~eff~*) given the latest CPUE knowledge, monthly effort plan (as explained above) and fisher behavioural flexibility.
 
-$${CPUEeff}_{J,j} = {mpasc}_{J,j} \bullet Eff_{planned,J,j} \bullet \frac{Flexwgt_{J} \bullet \left( {cpue}_{t,j} - {cpue}_{t - 1,j}\  \right) + {cpue}_{t - 1,j}}{\sum_{j}^{}{cpue}_{J,j}}$$
+$${CPUEeff}_{J,j} = {mpasc}_{J,j} \cdot Eff_{planned,J,j} \cdot \frac{Flexwgt_{J} \cdot \left( {cpue}_{t,j} - {cpue}_{t - 1,j}\  \right) + {cpue}_{t - 1,j}}{\sum_{j}^{}{cpue}_{J,j}}$$
 
 Where *cpue~t,j~* is the CPUE of subfleet J in the latest memory period *t* (typically the latest month); and *cpue~t-1,j~* is the CPUE of the subfleet J in the previous memory period (typically a month). The flexwgtJ (YYY_flexweight) parameter reflects how quickly fishers respond to the changing CPUE information -- if flexwgt is 1 then effort is based entirely on the latest CPUE data, when flexwgt is 0 then new CPUE information is completely disregarded.
 
 3)  Next, the fisher flexibility parameter is used once again to weight the effort matrix, but this time it is not used to assess flexibility to the new CPUE information (old and new CPUE as in the step 2 above), but between the *CPUE~eff~* matrix calculated above (or VPUE, or DisPUE based effort, if appropriate flags are selected) and the monthly effort plan. This means that if fishers are flexible (YYY_flexweight is high or even 1), then the monthly effort plan is entirely overridden by the CPUE information, and if fishers are not flexible (flexweight = 0) they completely follow their monthly effort plan regardless of any information about CPUE.
 
-$${idEff}_{J,j} = Flexwgt_{J} \bullet \left( {CPUEeff}_{J,j} - Eff_{planned,J} \right) + Eff_{planned,J}$$
+$${idEff}_{J,j} = Flexwgt_{J} \cdot \left( {CPUEeff}_{J,j} - Eff_{planned,J} \right) + Eff_{planned,J}$$
 
 4)  The ideal spatial *idEff* effort matrix of subfleet J by box j should further be scaled according to box distance to ports and the scalar determining travel costs of each subfleet *FCwgt~J~* (YYY_FCwgtscale unitless, ranging rom 0 to a very high value) and the variable cost per each subfleet *Cost~var,J~* (YYY_varcost, \$/day of effort). This is used to account for the fact that fishers may be unwilling to go to the potentially profitable boxes, if they are too far from the ports. The scaling is done by the sufbleet-box distance matrix *DistanceWgt~J,j~*
 
-$${DistanceWgt}_{J,j} = \sum_{Z}^{}\frac{Speed_{Y} \bullet dt}{{Z \bullet distance}_{z,j}^{*} \bullet Cost_{var,J}} \bullet FCwgt_{J}$$
+$${DistanceWgt}_{J,j} = \sum_{Z}^{}\frac{Speed_{Y} \cdot dt}{{Z \cdot distance}_{z,j}^{*} \cdot Cost_{var,J}} \cdot FCwgt_{J}$$
 
 where *Speed~Y~* is the speed of the fishery boats, not defined specifically by fisheries but for the entire commercial fisheries (Speed_boat, m hour^-1^), *dt* is the number of hours between the timestep (usually 12, but can be 6 or 24), *distance~Z,J~* is a distance of the subfleet J to port Z, and Z is the total number of **ports active** for the subfleet J (a port is active if a fishery and subfleet operates from that port and the port is open, see chapter 15.5.9 for a similar case in dynamic fishing effort allocation).
 
 5)  Finally, the final effort matrix of subfleet J in each box j is calculated by interpolating between the ideal effort matrix calculated in step 3 versus the effort matrix in the previous step while accounting for boat speed and width of the model domain. This is
 
-$${finalEff}_{J,j} = {DistanceWgt}_{J,j} \bullet \max\left( 1,\frac{{Speed}_{Y} \bullet dt}{width} \right) \bullet \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}$$
+$${finalEff}_{J,j} = {DistanceWgt}_{J,j} \cdot \max\left( 1,\frac{{Speed}_{Y} \cdot dt}{width} \right) \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}$$
 
 The (*Speed\*dt/width*) term was explained in the chapter 15.5.8 and simply calculates what distance a fishery Y can travel in one time step compared to the entire model domain (e.g. 0.1 of the maximum possible distance in the model). It shows that if the fishery can cross the entire model domain in one timestep and therefore find itself in any box of the model domain in one timestep, then the scalar will be 1 and the new effort will be the same as the ideal effort. If the scalar is smaller than one, then new effort will be a combination of the old effort and the ideal effort determined above. The *DistanceWgt~J,j\ ~*matrix has been calculated in step 4.
 

@@ -74,11 +74,11 @@ website:
           href: user_guides/quarto_site/part2/index.qmd
         - text: "15. Fishing Mortality"
           href: user_guides/quarto_site/part2/01-15-fishing-mortality.qmd
-        - text: "16. Introduction"
+        - text: "16. Management"
           href: user_guides/quarto_site/part2/02-16-management.qmd
-        - text: "17. Installation and Running"
+        - text: "17. Economics"
           href: user_guides/quarto_site/part2/03-17-economics.qmd
-        - text: "18. Geometry of the Model Domain"
+        - text: "18. Other Industries"
           href: user_guides/quarto_site/part2/04-18-other-industries.qmd
         - text: "References"
           href: user_guides/quarto_site/part2/05-references.qmd

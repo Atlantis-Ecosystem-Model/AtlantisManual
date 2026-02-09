@@ -42,3 +42,5 @@ Thumbs.db
 # quarto_site/styles.css
 # quarto_site/media/     (images and figures)
 /.quarto/
+
+**/*.quarto_ipynb

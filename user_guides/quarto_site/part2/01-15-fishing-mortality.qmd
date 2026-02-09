@@ -491,7 +491,7 @@ $${idEff}_{Y,j} = \frac{{Effmax}_{Y}}{1 + e^{\left( - {Effa}_{Y} \cdot {cpue}_{Y
 
 where *Effmax*~Y~ is the maximum potential effort per box allowed per fishery Y (YYY_mEff_max, days day^-1^); *Effa~Y~* is the steepness of the effort increase to the maximum limit when CPUE is high (YYY_mEff_a, unitless and **typically in the range of 0.01 to 0.1**); and *Effoffs~Y\ ~*is the offset of the effort (YYY_mEff_offset, days day^-1^) to bring down effort in the lowest producibity boxes. This representation was originally developed for a location where fishing continued in locations even after CPUE had dropped to very low levels. In this approach if *Effoffs~Y~* is set to zero then the lowest possible effort levels is half of *Effmax*~Y~. If you do not want any effort in the boxes with very low CPUE levels (e.g. zero) then you will need to set *Effmax*~Y~ to twice the desired maximum effort level and *Effoffs~Y~* to half of that (i.e. the desired effort level). This approach may seem artificial, but it produces a range of fishing pressure with the desired spatial heterogeneity and magnitude. Figure 1 shows the ideal new effort given the previous day's CPUE and the *Effa* parameter setting the steepness of the effort increase.
 
-![[]{#_Toc498434128 .anchor}**Figure 1.** Ideal effort allocation in YYY_effortmodel=4, where previous day's CPUE (tons day-1 per box) varies from 0 to 1000.](media/image2.emf){width="4.625in" height="3.547222222222222in"}
+![[]{#_Toc498434128 .anchor}**Figure 1.** Ideal effort allocation in YYY_effortmodel=4, where previous day's CPUE (tons day-1 per box) varies from 0 to 1000.](media/image2.png){width="4.625in" height="3.547222222222222in"}
 
 mEff_max = 10 days day^-1^
 
@@ -529,7 +529,7 @@ where *mFCscale~Y~* (YYY_mFCscale, unitless) is a fishery specific scalar which 
 
 For this option the user must give the number of ports (K_num_ports) in the *run.prm* file. The association of each fishery YYY with each port is given in the parameter ports_YYY which has as many entries as there are ports. The coordinates of the ports are given in the ports_x and ports_y paramters, which simply gives the xy coordinates (in metres) within the model space (these coordinates must be in the same projection as the BGM file and thus in metres). The easiest way of setting these coordinates is by using a GIS tool and converting the latitude and longitude coordinates using the projection string given in the top of the BGM file (see chapter 3). The time of port activity is given in ports_start and ports_end parameters, which allows for different ports to be active at different times of the simulation (perhaps reflecting historical settlement patterns).
 
-![[]{#_Toc498434129 .anchor}**Figure 2.** The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e. the mFCscale would be rescaled by the average distance of 520 on read-in).](media/image3.emf){width="4.659722222222222in" height="4.355555555555555in"}
+![[]{#_Toc498434129 .anchor}**Figure 2.** The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e. the mFCscale would be rescaled by the average distance of 520 on read-in).](media/image3.png){width="4.659722222222222in" height="4.355555555555555in"}
 
 **Black**: mFCscale=0.004
 
@@ -791,7 +791,7 @@ If the spatial coverage of the fishery is **set to change through time**, as set
 
 People interested in either **flaghabitat_XXX=1 or 2 should read Ellis and Pantus (2001, 2014)** so they have a full understanding of what this option does. It is a powerful representation, but requires some thought in application and parameterisation (preferably done with spatially resolved logbook data).
 
-![](media/image4.emf){width="5.5in" height="4.697916666666667in"}
+![](media/image4.png){width="5.5in" height="4.697916666666667in"}
 
 []{#_Toc498434130 .anchor}**Figure 3.** Shape of the habitat scalar as a function of habitat overlap between a species and a fishery, when k_pattern=-1
 
@@ -872,7 +872,7 @@ $${psel}_{i} = \frac{1}{1 + exp( - selb \cdot ({len}_{i} - lsm)}$$
 
 where *len~i~* is the length of the age group i.
 
-![](media/image5.emf){width="5.114583333333333in" height="3.5in"}
+![](media/image5.png){width="5.114583333333333in" height="3.5in"}
 
 []{#_Toc498434131 .anchor}**Figure 4.** Shape of the logistic gear selectivity curve. The inflection point (sel_lsm) is set at 50cm.
 
@@ -896,7 +896,7 @@ $${psel}_{i} = exp\left( \frac{- \left( {len}_{i} - lsm \right)^{2}}{2 \cdot {si
 
 where *len~i~* is the length of the age group i. The figure 5 shows the shape of the normal selectivity curve given three values of the *sigma* parameter.
 
-![[]{#_Toc498434132 .anchor}**Figure 5.** Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.](media/image6.emf){width="5.072916666666667in" height="3.4270833333333335in"}
+![[]{#_Toc498434132 .anchor}**Figure 5.** Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.](media/image6.png){width="5.072916666666667in" height="3.4270833333333335in"}
 
 **Black**: sigma=2
 
@@ -946,7 +946,7 @@ $$\beta = \frac{\sqrt{{lsm}^{2} + 4 \cdot {sigma}^{2}} - lsm}{2}$$
 
 where *len~i~* is the length of the age group i. The figure 7 shows the shape of the gamma selectivity curve given three values of the *sigma* parameter.
 
-![](media/image8.emf){width="5.229166666666667in" height="3.1875in"}
+![](media/image8.png){width="5.229166666666667in" height="3.1875in"}
 
 []{#_Toc498434134 .anchor}**Figure 7.** Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.
 
@@ -980,7 +980,7 @@ $${psel}_{i} = \max\left( \exp\left( \frac{- \left( {len}_{i} - lsm1 \right)^{2}
 
 where *len~i~* is the length of the age group *i*. The figure 8 shows the shape of the selectivity curve given three values of the *sigma* parameter. Note that same *sigma* (spread) parameter is applied to both *lsm1* and *lsm2*.
 
-![[]{#_Toc498434135 .anchor}**Figure 8.** Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity point (*lsm1* and *lsm2*) are set at 30cm and 60cm](media/image9.emf){width="4.9375in" height="3.2708333333333335in"}
+![[]{#_Toc498434135 .anchor}**Figure 8.** Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity point (*lsm1* and *lsm2*) are set at 30cm and 60cm](media/image9.png){width="4.9375in" height="3.2708333333333335in"}
 
 **Black**: sigma=10
 
@@ -1006,7 +1006,7 @@ $${psel}_{i} = \max\left( \exp\left( \frac{- \left( {len}_{i} - lsm1 \right)^{2}
 
 where *len~i~* is the length of the age group *i*. The figure 9 shows the shape of the selectivity curve.
 
-![[]{#_Toc498434136 .anchor}**Figure 9.** Shape of the binormal gear selectivity curve for an organism of length 1-100cm.](media/image10.emf){width="5.145833333333333in" height="3.59375in"}
+![[]{#_Toc498434136 .anchor}**Figure 9.** Shape of the binormal gear selectivity curve for an organism of length 1-100cm.](media/image10.png){width="5.145833333333333in" height="3.59375in"}
 
 The highest right and left side selectivity point (*lsm1* and *lsm2*) are set at 30cm and 60cm, sigma1=5, sigma2=10 and the amplification = 1.5. The horizontal line shows that the selectivity is always capped at 1.
 

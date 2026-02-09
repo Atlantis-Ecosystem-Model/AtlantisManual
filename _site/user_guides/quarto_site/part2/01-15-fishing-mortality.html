@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.43">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Atlantis Documentation – 15. Fishing mortality</title>
+<title>15. Fishing mortality – Atlantis Documentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,15 +30,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-e802c3d2214aaab8f16d3640683e23b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,7 +83,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -100,13 +102,15 @@ window.Quarto = {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Atlantis Documentation</span>
     </a>
@@ -118,7 +122,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -165,6 +169,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -899,7 +907,7 @@ Caution
 <p>where <em>Effmax</em><sub>Y</sub> is the maximum potential effort per box allowed per fishery Y (YYY_mEff_max, days day<sup>-1</sup>); <em>Effa<sub>Y</sub></em> is the steepness of the effort increase to the maximum limit when CPUE is high (YYY_mEff_a, unitless and <strong>typically in the range of 0.01 to 0.1</strong>); and <em>Effoffs<sub>Y&nbsp;</sub></em>is the offset of the effort (YYY_mEff_offset, days day<sup>-1</sup>) to bring down effort in the lowest producibity boxes. This representation was originally developed for a location where fishing continued in locations even after CPUE had dropped to very low levels. In this approach if <em>Effoffs<sub>Y</sub></em> is set to zero then the lowest possible effort levels is half of <em>Effmax</em><sub>Y</sub>. If you do not want any effort in the boxes with very low CPUE levels (e.g.&nbsp;zero) then you will need to set <em>Effmax</em><sub>Y</sub> to twice the desired maximum effort level and <em>Effoffs<sub>Y</sub></em> to half of that (i.e.&nbsp;the desired effort level). This approach may seem artificial, but it produces a range of fishing pressure with the desired spatial heterogeneity and magnitude. Figure 1 shows the ideal new effort given the previous day’s CPUE and the <em>Effa</em> parameter setting the steepness of the effort increase.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/image2.emf" style="width:4.625in;height:3.54722in" class="figure-img"></p>
+<p><img src="media/image2.png" style="width:4.625in;height:3.54722in" class="figure-img"></p>
 <figcaption><span id="_Toc498434128" class="anchor"></span><strong>Figure 1.</strong> Ideal effort allocation in YYY_effortmodel=4, where previous day’s CPUE (tons day-1 per box) varies from 0 to 1000.</figcaption>
 </figure>
 </div>
@@ -936,7 +944,7 @@ Caution
 <p>For this option the user must give the number of ports (K_num_ports) in the <em>run.prm</em> file. The association of each fishery YYY with each port is given in the parameter ports_YYY which has as many entries as there are ports. The coordinates of the ports are given in the ports_x and ports_y paramters, which simply gives the xy coordinates (in metres) within the model space (these coordinates must be in the same projection as the BGM file and thus in metres). The easiest way of setting these coordinates is by using a GIS tool and converting the latitude and longitude coordinates using the projection string given in the top of the BGM file (see chapter 3). The time of port activity is given in ports_start and ports_end parameters, which allows for different ports to be active at different times of the simulation (perhaps reflecting historical settlement patterns).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/image3.emf" style="width:4.65972in;height:4.35556in" class="figure-img"></p>
+<p><img src="media/image3.png" style="width:4.65972in;height:4.35556in" class="figure-img"></p>
 <figcaption><span id="_Toc498434129" class="anchor"></span><strong>Figure 2.</strong> The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e.&nbsp;the mFCscale would be rescaled by the average distance of 520 on read-in).</figcaption>
 </figure>
 </div>
@@ -1099,20 +1107,20 @@ Caution
 \end{aligned} \right.\ \]</span></p>
 <p>Note that the spatial allocation of effort does not change, so the increased effort is not all allocated to the best box but is distributed proportionally to all boxes according to the new realised effort.</p>
 <p>Finally, if set with YYY_explore = 1, once per year the fisheries will do <strong>exploratory fishing</strong> to update the CPUE matrices. Remember that this option is recommended in all effort models that use CPUE approach (see NOTE! above).</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>“Overloaded” parameters</strong></p>
-<p>Occasionally in Atlantis the same parameter is used in different ways under different options, or has a double role (called overloading in programmer speak). YYY_mEff_thresh is one such parameter. Not only does it dictate the lower band of CPUE, below which effort may leave the fishery under the YYY_effortmodel=8 option, but it is also the level CPUE below which effort may be displaced (either by an MPA or poor stock status).</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>Occasionally in Atlantis the same parameter is used in different ways under different options, or has a double role (called overloading in programmer speak). YYY_mEff_thresh is one such parameter. Not only does it dictate the lower band of CPUE, below which effort may leave the fishery under the YYY_effortmodel=8 option, but it is also the level CPUE below which effort may be displaced (either by an MPA or poor stock status).</p>
+</div>
+</div>
 </section>
 <section id="dynamic-effort-time-series-as-calculated-in-the-economics-model" class="level3">
 <h3 class="anchored" data-anchor-id="dynamic-effort-time-series-as-calculated-in-the-economics-model"><strong><em>15.5.12. Dynamic effort time series as calculated in the economics model</em></strong></h3>
@@ -1122,176 +1130,175 @@ Caution
 <h3 class="anchored" data-anchor-id="prescribed-changes-in-fishing-effort"><strong><em>15.5.13. Prescribed changes in fishing effort</em></strong></h3>
 <p>As with some other fishing parameters, users can set up temporal changes in the fishing effort, which means that the effort can be forced to increase or decrease over a set period of time. Several changes in the effort can be applied. The prescribed change in fishing effort is activated with a global flag flagchangeeffort and with fishery specific parameters – YYY_num_changes indicating number of changes for each fishery, EffortChange_start_YYY giving the start date of each effort change, EffortChange_period_YYY giving the period over which each effort changes to the new desired level, Effort_mult_YYY giving the multiplier of the each change in the effort (&gt;1 if effort should increase and &lt;1 if it should decrease) and flagpulseYYY parameter to indicate whether each change in the effort is a pulse change (flagpulseYYY=1) or not. The pulse change means that after the change period the effort will return to the original value, while non-pulse change means that the changed effort will apply for the rest of the simulation or until the next change in the effort.</p>
 <p>For the effort models that use prescribed, i.e.&nbsp;constant total effort given in the YYY_Effort parameter (effortmodel 0, 1, 2, 3, 6, 9) the multiplier will be applied to this YYY_Effort parameter. This means that every new change in the effort will apply to the original effort value and NOT to the latest effort value. In the dynamic effort models, where total effort is determined dynamically based on CPUE, distance to ports or economic parameter, the effort change multiplier will be applied to the latest total effort calculated dynamically. This means that in addition to the dynamic change in the effort, the user can setup forced changes that will scale up or down the total effort over the set period. This could, for example, be used to simulate cases where some external factors not included in the model (fishery buy-outs, subsidies to fishers) might have affect the total effort. Remember that pulse change in the effort (flagpulseYYY=1) can be applied to both prescribed and dynamic effort models. If effort change is pulsed, for prescribed effort cases the effort will return to the values given in the parameter file (YYY_Effort) after the change period. For dynamic pulse effort, the total effort values after the change period will be divided by the change multiplier on the first time step after the pulse ends.</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434975" class="anchor"></span><strong>Table 5.</strong> Parameters used to setup different effort options</caption>
 <colgroup>
-<col style="width: 10%">
-<col style="width: 89%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Parameter</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>YYY_effortmodel</td>
-<td>Flag indicating which effort model determines the total effort by fishery YYY and its spatial distribution (options 0 to 13 available).</td>
+<td style="text-align: left;">YYY_effortmodel</td>
+<td style="text-align: left;">Flag indicating which effort model determines the total effort by fishery YYY and its spatial distribution (options 0 to 13 available).</td>
 </tr>
 <tr class="even">
-<td>Effort_vdistribYYY</td>
-<td>A vector giving relative distribution of effort for fishery YYY across the vertical layers in each box (applied in the same way as the vectors determining vertical distribution of functional groups)</td>
+<td style="text-align: left;">Effort_vdistribYYY</td>
+<td style="text-align: left;">A vector giving relative distribution of effort for fishery YYY across the vertical layers in each box (applied in the same way as the vectors determining vertical distribution of functional groups)</td>
 </tr>
 <tr class="odd">
-<td><p>Effort_hdistribYYY1</p>
-<p>Effort_hdistribYYY2</p>
-<p>Effort_hdistribYYY3</p>
-<p>Effort_hdistribYYY4</p></td>
-<td>A vector setting relative effort per box by the fishery YYY for each quarter of the year (1 to 4). It is used in combination with YYY_Effort to get the actual final effort per box in days per day</td>
+<td style="text-align: left;">Effort_hdistribYYY1<br>Effort_hdistribYYY2<br>Effort_hdistribYYY3<br>Effort_hdistribYYY4</td>
+<td style="text-align: left;">A vector setting relative effort per box by the fishery YYY for each quarter of the year (1 to 4). It is used in combination with YYY_Effort to get the actual final effort per box in days per day</td>
 </tr>
 <tr class="even">
-<td>YYY_sweptarea</td>
-<td>The swept volume of water by gear of fishery YYY, m<sup>3</sup> day<sup>-1</sup>. This is a volume, but called area to keep in line with the fisheries science usage.</td>
+<td style="text-align: left;">YYY_sweptarea</td>
+<td style="text-align: left;">The swept volume of water by gear of fishery YYY, m<sup>3</sup> day<sup>-1</sup>. This is a volume, but called area to keep in line with the fisheries science usage.</td>
 </tr>
 <tr class="odd">
-<td>flagescapement_XXX</td>
-<td>Flag setting which escapement formulation to use. 0 – no escapement, 1- constant escapement per age class, 2 – size based escapement.</td>
+<td style="text-align: left;">flagescapement_XXX</td>
+<td style="text-align: left;">Flag setting which escapement formulation to use. 0 – no escapement, 1- constant escapement per age class, 2 – size based escapement.</td>
 </tr>
 <tr class="even">
-<td>p_escape_XXX</td>
-<td>A vector giving proportions of each age class that will escape the fishing gear</td>
+<td style="text-align: left;">p_escape_XXX</td>
+<td style="text-align: left;">A vector giving proportions of each age class that will escape the fishing gear</td>
 </tr>
 <tr class="odd">
-<td>Ka_escape_XXX</td>
-<td>The constant in length-based escapement formulation for species XXX (when flagescapementXXX=2)</td>
+<td style="text-align: left;">Ka_escape_XXX</td>
+<td style="text-align: left;">The constant in length-based escapement formulation for species XXX (when flagescapementXXX=2)</td>
 </tr>
 <tr class="even">
-<td>Kb_escape_XXX</td>
-<td>The second constant in length-based escapement formulation for species XXX (when flagescapementXXX=2)</td>
+<td style="text-align: left;">Kb_escape_XXX</td>
+<td style="text-align: left;">The second constant in length-based escapement formulation for species XXX (when flagescapementXXX=2)</td>
 </tr>
 <tr class="odd">
-<td>YYY_maxdepth</td>
-<td>The maximum depth that a fishery can operate at, in meters. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regarless of the effort model applied</td>
+<td style="text-align: left;">YYY_maxdepth</td>
+<td style="text-align: left;">The maximum depth that a fishery can operate at, in meters. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regarless of the effort model applied</td>
 </tr>
 <tr class="even">
-<td>YYY_mindepth</td>
-<td>The minimum depth that a fishery can operate at, in metres. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regardless of the effort model applied</td>
+<td style="text-align: left;">YYY_mindepth</td>
+<td style="text-align: left;">The minimum depth that a fishery can operate at, in metres. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regardless of the effort model applied</td>
 </tr>
 <tr class="odd">
-<td>YYY_Effort</td>
-<td>Average effort by the fishery YYY across the entire model domain throughout the year (days per day). When applied to recreational fisheries this sets the average effort by one fisher and not by the entire fishery (so the value should be much smaller)</td>
+<td style="text-align: left;">YYY_Effort</td>
+<td style="text-align: left;">Average effort by the fishery YYY across the entire model domain throughout the year (days per day). When applied to recreational fisheries this sets the average effort by one fisher and not by the entire fishery (so the value should be much smaller)</td>
 </tr>
 <tr class="even">
-<td>mEff_YYY</td>
-<td>A vector of four values setting relative quarterly effort (used in combination with YYY_Effort to give the final effort in days per day)</td>
+<td style="text-align: left;">mEff_YYY</td>
+<td style="text-align: left;">A vector of four values setting relative quarterly effort (used in combination with YYY_Effort to give the final effort in days per day)</td>
 </tr>
 <tr class="odd">
-<td>ports_pop</td>
-<td>A vector giving the population of each port (should have the same number of values as there ports indicated in K_num_ports parameter in the <em>run.prm</em> file)</td>
+<td style="text-align: left;">ports_pop</td>
+<td style="text-align: left;">A vector giving the population of each port (should have the same number of values as there ports indicated in K_num_ports parameter in the <em>run.prm</em> file)</td>
 </tr>
 <tr class="even">
-<td>k_proprecfish</td>
-<td>Proportion of population in ALL ports that go recreational fishing. This parameter applies the same proportion to all ports</td>
+<td style="text-align: left;">k_proprecfish</td>
+<td style="text-align: left;">Proportion of population in ALL ports that go recreational fishing. This parameter applies the same proportion to all ports</td>
 </tr>
 <tr class="odd">
-<td>ports_popchange</td>
-<td>A vector of values indicating whether a port population changes during the simulation (0 – no, 1 – yes). It must have as many values as there are ports.</td>
+<td style="text-align: left;">ports_popchange</td>
+<td style="text-align: left;">A vector of values indicating whether a port population changes during the simulation (0 – no, 1 – yes). It must have as many values as there are ports.</td>
 </tr>
 <tr class="even">
-<td>ports_popnumchange</td>
-<td>A vector of values indicating how many population changes occur in each port. It must have as many values as there are ports</td>
+<td style="text-align: left;">ports_popnumchange</td>
+<td style="text-align: left;">A vector of values indicating how many population changes occur in each port. It must have as many values as there are ports</td>
 </tr>
 <tr class="odd">
-<td>PortPopChange_start_PortZ</td>
-<td>The day of the simulation when population change(s) in port Z start. There must be as many entries as there are changes in port Z.</td>
+<td style="text-align: left;">PortPopChange_start_PortZ</td>
+<td style="text-align: left;">The day of the simulation when population change(s) in port Z start. There must be as many entries as there are changes in port Z.</td>
 </tr>
 <tr class="even">
-<td>PortPopChange _period_PortZ</td>
-<td>Period of time (in days) over which the population of port Z changes. There must be as many entries as there are changes in port Z.</td>
+<td style="text-align: left;">PortPopChange_period_PortZ</td>
+<td style="text-align: left;">Period of time (in days) over which the population of port Z changes. There must be as many entries as there are changes in port Z.</td>
 </tr>
 <tr class="odd">
-<td>PortPopChange_mult_PortZ</td>
-<td>The multiplier for the final port population, to be reached at the end of the change period. There must be as many entries as there are changes in port Z.</td>
+<td style="text-align: left;">PortPopChange_mult_PortZ</td>
+<td style="text-align: left;">The multiplier for the final port population, to be reached at the end of the change period. There must be as many entries as there are changes in port Z.</td>
 </tr>
 <tr class="even">
-<td>Speed_recboat</td>
-<td>Speed of recreational boats (m hour<sup>-1</sup>)</td>
+<td style="text-align: left;">Speed_recboat</td>
+<td style="text-align: left;">Speed of recreational boats (m hour<sup>-1</sup>)</td>
 </tr>
 <tr class="odd">
-<td>YYY_mEff_max</td>
-<td>The maximum effort per box allowed per fishery YYY in the exponential CPUE related effort allocation option (days day<sup>-1</sup>), used in YYY_efformodel =4 and 5</td>
+<td style="text-align: left;">YYY_mEff_max</td>
+<td style="text-align: left;">The maximum effort per box allowed per fishery YYY in the exponential CPUE related effort allocation option (days day<sup>-1</sup>), used in YYY_efformodel =4 and 5</td>
 </tr>
 <tr class="even">
-<td>YYY_mEff_a</td>
-<td>Steepness of the effort increase in response to CPUE in the exponential CPUE related effort allocation option (unitless), used in YYY_efformodel =4 and 5</td>
+<td style="text-align: left;">YYY_mEff_a</td>
+<td style="text-align: left;">Steepness of the effort increase in response to CPUE in the exponential CPUE related effort allocation option (unitless), used in YYY_efformodel =4 and 5</td>
 </tr>
 <tr class="odd">
-<td>YYY_mEff_offset</td>
-<td>The effort offset (days day<sup>-1</sup>) to reduce the effort per box, used in YYY_efformodel=4 and 5</td>
+<td style="text-align: left;">YYY_mEff_offset</td>
+<td style="text-align: left;">The effort offset (days day<sup>-1</sup>) to reduce the effort per box, used in YYY_efformodel=4 and 5</td>
 </tr>
 <tr class="even">
-<td>K_num_catchqueue in <em>run.prm</em></td>
-<td>The length of the “memory” period to calculate the latest CPUE, used in all effort models that require CPUE estimates</td>
+<td style="text-align: left;">K_num_catchqueue in <em>run.prm</em></td>
+<td style="text-align: left;">The length of the “memory” period to calculate the latest CPUE, used in all effort models that require CPUE estimates</td>
 </tr>
 <tr class="odd">
-<td>target_YYY</td>
-<td>A Boolean vector indicating which species are targeted by the fishery YYY. The vector should have as many entries as there are values in the <em>functional_groups.csv</em> file. 1- species is targeted, 0 – species is not targeted (see NOTE! above on what this parameter means)</td>
+<td style="text-align: left;">target_YYY</td>
+<td style="text-align: left;">A Boolean vector indicating which species are targeted by the fishery YYY. The vector should have as many entries as there are values in the <em>functional_groups.csv</em> file. 1- species is targeted, 0 – species is not targeted (see NOTE! above on what this parameter means)</td>
 </tr>
 <tr class="even">
-<td>YYY_flaguseall</td>
-<td>A flag indicating whether to use all species caught to define CPUE of a fishery YYY for CPUE based effort models (1=yes) or target species only (0).</td>
+<td style="text-align: left;">YYY_flaguseall</td>
+<td style="text-align: left;">A flag indicating whether to use all species caught to define CPUE of a fishery YYY for CPUE based effort models (1=yes) or target species only (0).</td>
 </tr>
 <tr class="odd">
-<td>YYY_mFCscale</td>
-<td>A fishery specific distance scalar used in determining the effort distribution; it heightens or lessens the effects of distance between the optimal box and the ports (unitless)</td>
+<td style="text-align: left;">YYY_mFCscale</td>
+<td style="text-align: left;">A fishery specific distance scalar used in determining the effort distribution; it heightens or lessens the effects of distance between the optimal box and the ports (unitless)</td>
 </tr>
 <tr class="even">
-<td>ports _x and ports_y</td>
-<td>Vectors giving x and y coordinates of each port in metres in the model space projection.</td>
+<td style="text-align: left;">ports_x and ports_y</td>
+<td style="text-align: left;">Vectors giving x and y coordinates of each port in metres in the model space projection.</td>
 </tr>
 <tr class="odd">
-<td>ports_start and ports_end</td>
-<td>Vectors giving the period of port activity during the simulation. The ports can be active from the first timestep or only for a set period of time. If a port is not active, then no fishery will work from that port.</td>
+<td style="text-align: left;">ports_start and ports_end</td>
+<td style="text-align: left;">Vectors giving the period of port activity during the simulation. The ports can be active from the first timestep or only for a set period of time. If a port is not active, then no fishery will work from that port.</td>
 </tr>
 <tr class="even">
-<td>ports_YYY</td>
-<td>A vector giving association of each fishery YYY with each port. It has as many entries as there ports, with a value of 1 indicating that the fishery works from that port and a 0 meaning that fishery does not work from the port.</td>
+<td style="text-align: left;">ports_YYY</td>
+<td style="text-align: left;">A vector giving association of each fishery YYY with each port. It has as many entries as there ports, with a value of 1 indicating that the fishery works from that port and a 0 meaning that fishery does not work from the port.</td>
 </tr>
 <tr class="odd">
-<td>YYY_flagcap_peak</td>
-<td>A flag indicating whether the effort of fishery YYY in any one box is capped (0 – no, 1 – yes)</td>
+<td style="text-align: left;">YYY_flagcap_peak</td>
+<td style="text-align: left;">A flag indicating whether the effort of fishery YYY in any one box is capped (0 – no, 1 – yes)</td>
 </tr>
 <tr class="even">
-<td>YYY_mFCpeak</td>
-<td>If the effort of a fishery YYY is capped ( YYY_flagcap_peak=1), this sets the maximum potential effort in any one box ( days day<sup>-1</sup>)</td>
+<td style="text-align: left;">YYY_mFCpeak</td>
+<td style="text-align: left;">If the effort of a fishery YYY is capped ( YYY_flagcap_peak=1), this sets the maximum potential effort in any one box ( days day<sup>-1</sup>)</td>
 </tr>
 <tr class="odd">
-<td>Speed_boat</td>
-<td>Speed of commercial fisheries boats (m hour<sup>-1</sup>). This is used across for all fisheries to estimate how quickly the new ideal effort can be realised. Applied in YYY_efformodel=4 and 8</td>
+<td style="text-align: left;">Speed_boat</td>
+<td style="text-align: left;">Speed of commercial fisheries boats (m hour<sup>-1</sup>). This is used across for all fisheries to estimate how quickly the new ideal effort can be realised. Applied in YYY_efformodel=4 and 8</td>
 </tr>
 <tr class="even">
-<td>YYY_explore</td>
-<td>Flag indicating whether once per year a fishery YYY will do exploratory fishing in all accessible boxes (within YYY_maxdepth and YYY_mindepth depth ranges). 1 – yes, 0 – no. Exploratory fishing is recommended with all CPUE based effort models</td>
+<td style="text-align: left;">YYY_explore</td>
+<td style="text-align: left;">Flag indicating whether once per year a fishery YYY will do exploratory fishing in all accessible boxes (within YYY_maxdepth and YYY_mindepth depth ranges). 1 – yes, 0 – no. Exploratory fishing is recommended with all CPUE based effort models</td>
 </tr>
 <tr class="odd">
-<td>YYY_mEff_testfish</td>
-<td>The exploratory fishing effort (days day<sup>-1</sup>) to be applied to each box if YYY_exolore is set to 1. Note, this effort is applied in addition to normal fishing</td>
+<td style="text-align: left;">YYY_mEff_testfish</td>
+<td style="text-align: left;">The exploratory fishing effort (days day<sup>-1</sup>) to be applied to each box if YYY_exolore is set to 1. Note, this effort is applied in addition to normal fishing</td>
 </tr>
 <tr class="even">
-<td>YYY_mEff_thresh</td>
-<td>The CPUE threshold (kg day<sup>-1</sup>) below which the fishery YYY will decrease the effort in YYY_effortmodel=8</td>
+<td style="text-align: left;">YYY_mEff_thresh</td>
+<td style="text-align: left;">The CPUE threshold (kg day<sup>-1</sup>) below which the fishery YYY will decrease the effort in YYY_effortmodel=8</td>
 </tr>
 <tr class="odd">
-<td>YYY_mEff_thresh_top</td>
-<td>The CPUE threshold (kg day<sup>-1</sup>) above which the fishery YYY will increase the effort in YYY_effortmodel =8</td>
+<td style="text-align: left;">YYY_mEff_thresh_top</td>
+<td style="text-align: left;">The CPUE threshold (kg day<sup>-1</sup>) above which the fishery YYY will increase the effort in YYY_effortmodel =8</td>
 </tr>
 <tr class="even">
-<td>YYY_mEff_shift</td>
-<td>The yearly proportional increase/decrease in effort if CPUE is above or below the threshold levels in YYY_effortmodel =8. The increase/decrease in threshold happens once per week and is decreased by YYY_mEff_shift/52</td>
+<td style="text-align: left;">YYY_mEff_shift</td>
+<td style="text-align: left;">The yearly proportional increase/decrease in effort if CPUE is above or below the threshold levels in YYY_effortmodel =8. The increase/decrease in threshold happens once per week and is decreased by YYY_mEff_shift/52</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434975" class="anchor"></span><strong>Table 5.</strong> Parameters used to setup different effort options</p>
 </section>
 </section>
 <section id="effort-displacement-caps-and-effort-drop" class="level2">
@@ -1312,34 +1319,34 @@ Caution
 <p>The next routine applied is <em>Check_Cap()</em> which allows for the implementation of effort caps (effort quotas) or can be used to more evenly smear effort through time (effectively imposing effort-based trip limits earlier in a season)<em>.</em> The users can set a maximum annual effort applied by a fishery. This is done by YYY_flagcap=1. If effort caps are applied then the user should provide a cap of effort for each fishery in YYY_cap parameter (in total number of days fished per year). If after all calculations and adjustments, the cumulative effort applied is above the cap then fishing will cease.</p>
 <p>The effort caps can change through time, and it is set in the same way as changes in other fisheries parameters (see chapter 15.10). Setting changes in effort caps requires turning on a global flag flagchangecap=1, indicating the number of changes in effort caps in YYY_cap_changes, giving start dates of each cap change in CAPchange_start_YYY, period over which the change takes effect (CAPchange_period_YYY) and the multiplier to be reached at the end of the change period (CAPchange_mult_YYY).</p>
 <p>Note effort caps can also be used to force more even temporal distributions of effort. In this case for all effort models except the forced time series and economics based effort models the annual effort level extrapolated from the current daily effort level (i.e.&nbsp;the current effort level * 365) is compared against the cap. If the extrapolated annual effort is greater than the cap then the current effort is reset to the capped effort level divided by 365. This levels out some of the strong spikes in effort that can occur on a day-to-day basis and can see effort pile up in the early days of a season and then dwindle later on. Such patchy effort is not unrealistic, however, so using the cap in this way must be done with caution.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Capping of effort should be avoided unless well justified</strong></p>
 <p>The capping of effort provides an ad hoc approach to limit effort in a box (or through time), and reduces the potential understanding of the underlying processes which are leading to effort in one box increasing to high levels. <strong>Effort caps are different from effort displacement, and they simply reduce the dynamically calculated effort</strong>. This means that some <strong>effort is lost from the system</strong> without the explicit factors (MPA, low CPUE, TAC reached, etc.) accounting for this effort decrease.</p>
 <p>Applying caps means that the user either assumes that (i) there are some external limitations on effort (such as port extent, maintenance requirements, physical space or specific regulations) that limit effort concentration (thereby justifying the use of a cap) or (ii) due to inevitable model limitations Atlantis cannot reproduce the effort dynamics sufficiently well and the model is producing effort levels that are higher than they should be. In the later case, in particular, it is important to try and understand why the effort increases too much and explore whether a more reasonable parameterisation or formulation is possible. It is useful to trace the sources of effort increase in one box to check on whether the assumptions are justified, e.g.&nbsp;whether</p>
 <ol type="1">
-<li><p>the increase is due to high CPUE and if so, should the effort be capped? It might be better to adjust the CPUE threshold parameters and in this way allow the effort to change dynamically</p></li>
-<li><p>the increase is due to displacement due to MPAs? If so, is it reasonable to cap it? What would happen in the real world if large MPAs are imposed? Perhaps it would be better to include some MPA infringement instead?</p></li>
-</ol></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<li>the increase is due to high CPUE and if so, should the effort be capped? It might be better to adjust the CPUE threshold parameters and in this way allow the effort to change dynamically</li>
+<li>the increase is due to displacement due to MPAs? If so, is it reasonable to cap it? What would happen in the real world if large MPAs are imposed? Perhaps it would be better to include some MPA infringement instead?</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="effort-drop" class="level3">
 <h3 class="anchored" data-anchor-id="effort-drop"><strong><em>15.6.3. Effort drop</em></strong></h3>
 <p>Some parameterisations of the CPUE and distance based models can lead to precipitous and unobserved drops in effort once fish stocks become depleted. This can be overcome (if well justified, see the Note! above) by setting flagbuffereffort to 1. This will use the weighting inherent to those effortmodel formulations to distribute effort, but will constrain any abnormally large increases or reductions in effort to those dictated by the management decisions in place (e.g.&nbsp;MPAS, quotas and the like) rather than any highly variable CPUE distributions.</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434976" class="anchor"></span><strong>Table 6.</strong> Parameters used to setup other fishery relevant different options</caption>
 <colgroup>
-<col style="width: 11%">
-<col style="width: 87%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1374,6 +1381,8 @@ Caution
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434976" class="anchor"></span><strong>Table 6.</strong> Parameters used to setup other fishery relevant different options</p>
 </section>
 </section>
 <section id="vertical-positional-and-habitat-scalars-of-the-fishing-effort" class="level2">
@@ -1415,7 +1424,7 @@ Caution
 <p>If the spatial coverage of the fishery is <strong>set to change through time</strong>, as set in the flagchangep and YYY_changeP parameter, the <em>prop<sub>fish&nbsp;</sub></em>will be scaled by the scalar defining spatial coverage change. See chapter 15.10 on how forced parameter changes are set. Note, under this formulation if <em>k_pattern</em> is set to 0 then catchability has no effect as a parameter as the spatial model is assumed to implicit subsume catchability.</p>
 <p>3) <strong>flaghabitat_XXX = 2</strong>. This is a newer two-stage variant of the Ellis and Pantus approach, which fully described in Ellis et al (2014) <em>Can. J. Fish. Aquat. Sci</em>. 71: 733–746. It limits the lower bound of the patchiness and allows for a more explicit influence of catchability and further refines the patchiness distributions.</p>
 <p>People interested in either <strong>flaghabitat_XXX=1 or 2 should read Ellis and Pantus (2001, 2014)</strong> so they have a full understanding of what this option does. It is a powerful representation, but requires some thought in application and parameterisation (preferably done with spatially resolved logbook data).</p>
-<p><img src="media/image4.emf" style="width:5.5in;height:4.69792in"></p>
+<p><img src="media/image4.png" style="width:5.5in;height:4.69792in"></p>
 <p><span id="_Toc498434130" class="anchor"></span><strong>Figure 3.</strong> Shape of the habitat scalar as a function of habitat overlap between a species and a fishery, when k_pattern=-1</p>
 <p><strong>k_patches=2</strong></p>
 <p><strong>Black</strong>: q=0.5, k_cover=0.5</p>
@@ -1424,39 +1433,39 @@ Caution
 <p><strong>Blue</strong>: q=0.9, k_cover=1</p>
 <p><strong>Yellow</strong>: same as blue, but k_patches=3</p>
 <p><strong>Purple</strong>: same as blue, but k_patches=1</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434977" class="anchor"></span><strong>Table 7.</strong> Parameters used to setup habitat scalar options</caption>
 <colgroup>
-<col style="width: 9%">
-<col style="width: 90%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><strong>Parameter</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">flag_access_thru_wc_YYY</td>
-<td>If set to 1, fishery has access to both demersal and pelagic species. Otherwise the effectiveness of the fisheries gear (which is pelagic or demersal) will be reduced by k_mismatch when targeting demersal or pelagic species respectively</td>
+<td style="text-align: left;">flag_access_thru_wc_YYY</td>
+<td style="text-align: left;">If set to 1, fishery has access to both demersal and pelagic species. Otherwise the effectiveness of the fisheries gear (which is pelagic or demersal) will be reduced by k_mismatch when targeting demersal or pelagic species respectively</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">k_mismatch</td>
-<td>See above, the reduction in fisheries gear effectiveness</td>
+<td style="text-align: left;">k_mismatch</td>
+<td style="text-align: left;">See above, the reduction in fisheries gear effectiveness</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">flagchangep</td>
-<td>If set to 1, a spatial coverage of the fishery changes through time (see chapter 15.10)</td>
+<td style="text-align: left;">flagchangep</td>
+<td style="text-align: left;">If set to 1, a spatial coverage of the fishery changes through time (see chapter 15.10)</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><p>k_pattern</p>
-<p>k_patches</p>
-<p>k_coverYYY</p></td>
-<td>Parameters used to set up Ellis and Pantus (2000) habitat refuge from fisheries (see chapter 15.7.3)</td>
+<td style="text-align: left;">k_pattern<br>k_patches<br>k_coverYYY</td>
+<td style="text-align: left;">Parameters used to set up Ellis and Pantus (2000) habitat refuge from fisheries (see chapter 15.7.3)</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434977" class="anchor"></span><strong>Table 7.</strong> Parameters used to setup habitat scalar options</p>
 </section>
 </section>
 <section id="fisheries-gear-selectivity-swept-area-and-conflict" class="level2">
@@ -1495,7 +1504,7 @@ Caution
 <p>It is defined by two parameters – the length at 50% selectivity, also defined as the inflection point <em>lsm</em> (YYYsel_lsm, given in cm) and the spread or steepness of the selectivity curve <em>selb</em> (YYYsel_b). See Fig. 4 for how the parameter <em>selb</em> affects the shape of the selectivity curve. The selectivity of age group <em>i</em> is calculated as</p>
 <p><span class="math display">\[{psel}_{i} = \frac{1}{1 + exp( - selb \cdot ({len}_{i} - lsm)}\]</span></p>
 <p>where <em>len<sub>i</sub></em> is the length of the age group i.</p>
-<p><img src="media/image5.emf" style="width:5.11458in;height:3.5in"></p>
+<p><img src="media/image5.png" style="width:5.11458in;height:3.5in"></p>
 <p><span id="_Toc498434131" class="anchor"></span><strong>Figure 4.</strong> Shape of the logistic gear selectivity curve. The inflection point (sel_lsm) is set at 50cm.</p>
 <p><strong>Black</strong>: sel_b=0.5</p>
 <p><strong>Orange</strong>: sel_b=2</p>
@@ -1511,7 +1520,7 @@ Caution
 <p>where <em>len<sub>i</sub></em> is the length of the age group i. The figure 5 shows the shape of the normal selectivity curve given three values of the <em>sigma</em> parameter.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/image6.emf" style="width:5.07292in;height:3.42708in" class="figure-img"></p>
+<p><img src="media/image6.png" style="width:5.07292in;height:3.42708in" class="figure-img"></p>
 <figcaption><span id="_Toc498434132" class="anchor"></span><strong>Figure 5.</strong> Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (<em>lsm</em>) is set at 50cm.</figcaption>
 </figure>
 </div>
@@ -1543,7 +1552,7 @@ Caution
 <p>where</p>
 <p><span class="math display">\[\beta = \frac{\sqrt{{lsm}^{2} + 4 \cdot {sigma}^{2}} - lsm}{2}\]</span></p>
 <p>where <em>len<sub>i</sub></em> is the length of the age group i. The figure 7 shows the shape of the gamma selectivity curve given three values of the <em>sigma</em> parameter.</p>
-<p><img src="media/image8.emf" style="width:5.22917in;height:3.1875in"></p>
+<p><img src="media/image8.png" style="width:5.22917in;height:3.1875in"></p>
 <p><span id="_Toc498434134" class="anchor"></span><strong>Figure 7.</strong> Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (<em>lsm</em>) is set at 50cm.</p>
 <p><strong>Black</strong>: sigma=2</p>
 <p><strong>Orange</strong>: sigma=10</p>
@@ -1566,7 +1575,7 @@ Caution
 <p>where <em>len<sub>i</sub></em> is the length of the age group <em>i</em>. The figure 8 shows the shape of the selectivity curve given three values of the <em>sigma</em> parameter. Note that same <em>sigma</em> (spread) parameter is applied to both <em>lsm1</em> and <em>lsm2</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/image9.emf" style="width:4.9375in;height:3.27083in" class="figure-img"></p>
+<p><img src="media/image9.png" style="width:4.9375in;height:3.27083in" class="figure-img"></p>
 <figcaption><span id="_Toc498434135" class="anchor"></span><strong>Figure 8.</strong> Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity point (<em>lsm1</em> and <em>lsm2</em>) are set at 30cm and 60cm</figcaption>
 </figure>
 </div>
@@ -1586,7 +1595,7 @@ Caution
 <p>where <em>len<sub>i</sub></em> is the length of the age group <em>i</em>. The figure 9 shows the shape of the selectivity curve.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/image10.emf" style="width:5.14583in;height:3.59375in" class="figure-img"></p>
+<p><img src="media/image10.png" style="width:5.14583in;height:3.59375in" class="figure-img"></p>
 <figcaption><span id="_Toc498434136" class="anchor"></span><strong>Figure 9.</strong> Shape of the binormal gear selectivity curve for an organism of length 1-100cm.</figcaption>
 </figure>
 </div>
@@ -1601,20 +1610,20 @@ Caution
 <p>To convert the swept volume per unit effort of fishing pressure to fishing pressure per day per m<sup>3</sup> Atlantis divides the total swept volume (in m<sup>3</sup> per day per box) by the box volume available to the fishery based on its access to habitats, i.e.&nbsp;the <em>prop<sub>fish&nbsp;</sub></em>value. This is the same proportion of accessible box volume that is used in the calculation of the habitat scalar, described in chapter 15.7.3.</p>
 <p><span class="math display">\[F_{m3} = \frac{volume_{swept}}{volume_{box} \cdot prop_{fish}}\]</span></p>
 <p>This means that the parameter YYY_sweptarea gives the volume of water swept by the gear in the available habitats.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Ensuring meaningful representation of fisheries habitat access and vertical effort distribution</strong></p>
-<p>Note, that the habitat dependent <em>prop<sub>fish&nbsp;</sub></em>scalar is applied to each layer of the box and not to the bottom layer only. This means that the users have to make sure that the vertical distribution of fishing effort and habitat access by fisheries makes sense. The habitats probably should have no effect on fisheries that operate in pelagic areas only. In this case the habitat_YYY should be set to 1 for all habitats to ensure that the fishery has access to the entire volume of the cell. The habitat_YYY vector makes sense for demersal fisheries only and the users should make sure that the vertical distribution of the fishing effort is also concentrated (or occurs entirely) in the bottom water column layer.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>Note, that the habitat dependent <em>prop<sub>fish&nbsp;</sub></em>scalar is applied to each layer of the box and not to the bottom layer only. This means that the users have to make sure that the vertical distribution of fishing effort and habitat access by fisheries makes sense. The habitats probably should have no effect on fisheries that operate in pelagic areas only. In this case the habitat_YYY should be set to 1 for all habitats to ensure that the fishery has access to the entire volume of the cell. The habitat_YYY vector makes sense for demersal fisheries only and the users should make sure that the vertical distribution of the fishing effort is also concentrated (or occurs entirely) in the bottom water column layer.</p>
+</div>
+</div>
 <p>The concept of “swept volume” is used broadly here and applied to all kinds of gear. It can be seen as the area affected by fishing (see NOTE! in the chapter 15.4 on how catch is calculated in dynamic fishing). The fishing gear can also represent hooks or traps, but the total volume affected per day may require careful thought as it actually represents the volume of water that mobile animals move through to encounter the gear during a day’s fishing (or its soak time during a day’s fishing).</p>
 </section>
 <section id="changes-in-the-yyy_sweptarea-parameter" class="level3">
@@ -1625,58 +1634,47 @@ Caution
 <section id="fishing-gear-conflict" class="level3">
 <h3 class="anchored" data-anchor-id="fishing-gear-conflict"><strong><em>15.8.14. Fishing gear conflict</em></strong></h3>
 <p>Fisheries gear conflict value is calculated in Atlantis for reporting purposes, but has no effect on the model dynamics. The gear conflict between a pair of fisheries is calculated as a proportion of the box area in REEF, SOFT and FLAT physical habitats where <strong>both</strong> fisheries fish (identified with habitat_YYY), multiplied by the gear conflict parameter gear_conflict_YYY (which gives conflicts between fishery YYY and each of other fisheries) and multiplied further by the pelagic-demersal overlap (which is 1 when both fisheries are pelagic or demersal and 0 in other cases).</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434978" class="anchor"></span><strong>Table 8.</strong> Parameters used to setup fishing gear selectivity and swept area.</caption>
 <colgroup>
-<col style="width: 10%">
-<col style="width: 89%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Parameter</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>YYY_selcurve</td>
-<td>Shape of the gear selectivity curve for fishery YYY</td>
+<td style="text-align: left;">YYY_selcurve</td>
+<td style="text-align: left;">Shape of the gear selectivity curve for fishery YYY</td>
 </tr>
 <tr class="even">
-<td>flagchangesel</td>
-<td>If set to 1, fisheries gear selectivity changes through time (see chapter 15.10 and 15.8.1 for further explanations)</td>
+<td style="text-align: left;">flagchangesel</td>
+<td style="text-align: left;">If set to 1, fisheries gear selectivity changes through time (see chapter 15.10 and 15.8.1 for further explanations)</td>
 </tr>
 <tr class="odd">
-<td><p>sel_XXX</p>
-<p>sel_XXXjuv</p>
-<p>sel_XXXad</p>
-<p>YYYsel_lsm</p>
-<p>YYYsel_b</p>
-<p>YYY_lognormlsm</p>
-<p>YYY_lognormsigma</p>
-<p>YYY_gammalsm</p>
-<p>YYY_gammasigma</p>
-<p>YYY_bilsm1</p>
-<p>YYY_bilsm2</p>
-<p>YYY_bisigma</p>
-<p>YYY_bisigma2</p>
-<p>YYY_ampli</p></td>
-<td>Parameters used to set fisheries gear selectivity. They can have different meanings depending on the YYY_selcurve option. Check chapter 15.8.1-15.8.11 for details</td>
+<td style="text-align: left;">sel_XXX<br>sel_XXXjuv<br>sel_XXXad<br>YYYsel_lsm<br>YYYsel_b<br>YYY_lognormlsm<br>YYY_lognormsigma<br>YYY_gammalsm<br>YYY_gammasigma<br>YYY_bilsm1<br>YYY_bilsm2<br>YYY_bisigma<br>YYY_bisigma2<br>YYY_ampli</td>
+<td style="text-align: left;">Parameters used to set fisheries gear selectivity. They can have different meanings depending on the YYY_selcurve option. Check chapter 15.8.1-15.8.11 for details</td>
 </tr>
 <tr class="even">
-<td>YYY_sweptarea</td>
-<td>Volume of water that is subjected to fishing at one effort unit (in m<sup>3</sup>)</td>
+<td style="text-align: left;">YYY_sweptarea</td>
+<td style="text-align: left;">Volume of water that is subjected to fishing at one effort unit (in m<sup>3</sup>)</td>
 </tr>
 <tr class="odd">
-<td>flagchangeswept</td>
-<td>If set to 1, volume swept by a fishing gear can change through time. See chapter 15.8.13 and 15.10 for further details</td>
+<td style="text-align: left;">flagchangeswept</td>
+<td style="text-align: left;">If set to 1, volume swept by a fishing gear can change through time. See chapter 15.8.13 and 15.10 for further details</td>
 </tr>
 <tr class="even">
-<td>gear_conflict_YYY</td>
-<td>A parameter used only for reporting purposes, and does not affect Atlantis calculations (see chapter 15.8.14).</td>
+<td style="text-align: left;">gear_conflict_YYY</td>
+<td style="text-align: left;">A parameter used only for reporting purposes, and does not affect Atlantis calculations (see chapter 15.8.14).</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434978" class="anchor"></span><strong>Table 8.</strong> Parameters used to setup fishing gear selectivity and swept area.</p>
 </section>
 </section>
 <section id="section" class="level2">
@@ -1770,74 +1768,75 @@ Caution
 <p>Market based discarding <strong>is not</strong> applied for imposed catch options and if fisheries must land all catch (YYY_landallTAC_sp=1).</p>
 <p>Market based discarding should be done only when the Economics submodel is active and initial sale prices of species for each fishery are provided in the <em>economics.prm</em> file (XXXsaleprice parameter for each species and fishery) and are determined dynamically during the course of the run. If market based discarding is turned on without the Economics submodel, Atlantis will not find the sale price parameters and will quit.</p>
 <p>In using the market based discarding, a species is discarded if its sale price falls below the threshold of the maximum sale price. The threshold is a global parameter salethresh in the <em>harvest.prm</em> file and the maximum sale price is specific to each fishery YYY_maxsaleprice. The maximum set price can be either fixed or updated dynamically (UpdateMaxSalePrice=1) in the course of the run.</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc498434979" class="anchor"></span><strong>Table 9.</strong> Parameters used to setup fisheries discarding.</caption>
 <colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
+<col style="width: 46%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Parameter</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>flagdiscard_XXX</td>
-<td>Species specific flag setting up discarding options for each species/fishery combination.</td>
+<td style="text-align: left;">flagdiscard_XXX</td>
+<td style="text-align: left;">Species specific flag setting up discarding options for each species/fishery combination.</td>
 </tr>
 <tr class="even">
-<td>incidmort_XXX</td>
-<td>Proportion of species XXX discards that <strong>die</strong> after discarding (so if set to 1, then all discards die)</td>
+<td style="text-align: left;">incidmort_XXX</td>
+<td style="text-align: left;">Proportion of species XXX discards that <strong>die</strong> after discarding (so if set to 1, then all discards die)</td>
 </tr>
 <tr class="odd">
-<td>flagchangediscrd</td>
-<td>If set to 1, discarding practices change through time. See chapter 15.9.2 and 15.10 on how to set up temporal changes.</td>
+<td style="text-align: left;">flagchangediscrd</td>
+<td style="text-align: left;">If set to 1, discarding practices change through time. See chapter 15.9.2 and 15.10 on how to set up temporal changes.</td>
 </tr>
 <tr class="even">
-<td>k_waste_XXX</td>
-<td>Proportion of legal catch that is discarded as waste (guts, skin). This proportion cannot survive but is sent to DC pool.</td>
+<td style="text-align: left;">k_waste_XXX</td>
+<td style="text-align: left;">Proportion of legal catch that is discarded as waste (guts, skin). This proportion cannot survive but is sent to DC pool.</td>
 </tr>
 <tr class="odd">
-<td>FFCDR_XXX</td>
-<td>Proportion of species XXX catch that is discarded, in constant discarding formulation (when flagdiscard_XXX = 0). Same discarding is applied to all age classes.</td>
+<td style="text-align: left;">FFCDR_XXX</td>
+<td style="text-align: left;">Proportion of species XXX catch that is discarded, in constant discarding formulation (when flagdiscard_XXX = 0). Same discarding is applied to all age classes.</td>
 </tr>
 <tr class="even">
-<td><p>FFCDR_XXXchrt</p>
-<p>FFCDR_XXXchrtB</p></td>
-<td>Vectors giving two possible age specific discarding proportions when flagdiscard_XXX =1. Must have as many values as there are age groups in species XXX. The FC_caseXXX vector sets which of the two alternative formulations are used by each fishery (must have as many values are there are fisheries)</td>
+<td style="text-align: left;">FFCDR_XXXchrt<br>FFCDR_XXXchrtB</td>
+<td style="text-align: left;">Vectors giving two possible age specific discarding proportions when flagdiscard_XXX =1. Must have as many values as there are age groups in species XXX. The FC_caseXXX vector sets which of the two alternative formulations are used by each fishery (must have as many values are there are fisheries)</td>
 </tr>
 <tr class="odd">
-<td>FCthreshli_XXX</td>
-<td>Minimum length of species XXX that can be retained when length based discarding is used (flagdiscard_XXX = 2)</td>
+<td style="text-align: left;">FCthreshli_XXX</td>
+<td style="text-align: left;">Minimum length of species XXX that can be retained when length based discarding is used (flagdiscard_XXX = 2)</td>
 </tr>
 <tr class="even">
-<td>k_retain_XXX</td>
-<td>A vector of values giving fishery-specific proportion of the undersized catch that will not be discarded</td>
+<td style="text-align: left;">k_retain_XXX</td>
+<td style="text-align: left;">A vector of values giving fishery-specific proportion of the undersized catch that will not be discarded</td>
 </tr>
 <tr class="odd">
-<td>DiscardTS_agedistribXXX</td>
-<td>Proportional distribution of forced discarding over age groups (when forced discarding is used, flagdiscard_XXX =3)</td>
+<td style="text-align: left;">DiscardTS_agedistribXXX</td>
+<td style="text-align: left;">Proportional distribution of forced discarding over age groups (when forced discarding is used, flagdiscard_XXX =3)</td>
 </tr>
 <tr class="even">
-<td>FCcocatch_XXX</td>
-<td>Density dependent discarding parameter, that can have different meanings depending on whether imposed or set as user defined or dynamic mortality (see chapter 15.9.8)</td>
+<td style="text-align: left;">FCcocatch_XXX</td>
+<td style="text-align: left;">Density dependent discarding parameter, that can have different meanings depending on whether imposed or set as user defined or dynamic mortality (see chapter 15.9.8)</td>
 </tr>
 <tr class="odd">
-<td>flaghighgrading</td>
-<td>If set to 1, fisheries will start discarding the youngest cohorts of the catch when they are approaching the TAC. The proportion of TAC fulfilled before highgrading starts is set in the global prop_within parameter</td>
+<td style="text-align: left;">flaghighgrading</td>
+<td style="text-align: left;">If set to 1, fisheries will start discarding the youngest cohorts of the catch when they are approaching the TAC. The proportion of TAC fulfilled before highgrading starts is set in the global prop_within parameter</td>
 </tr>
 <tr class="even">
-<td>highgrade_thresh</td>
-<td>The proportion of catch an age group must make up, before it is retained during highgrading (see chapter 15.9.9)</td>
+<td style="text-align: left;">highgrade_thresh</td>
+<td style="text-align: left;">The proportion of catch an age group must make up, before it is retained during highgrading (see chapter 15.9.9)</td>
 </tr>
 <tr class="odd">
-<td>highgrade_thresh</td>
-<td>If set to 1, discarding will be done according to the saleprice of fish species (set in XXXsaleprice). Should only be done when the Economics submodel is active, or else Atlantis will quit.</td>
+<td style="text-align: left;">highgrade_thresh</td>
+<td style="text-align: left;">If set to 1, discarding will be done according to the saleprice of fish species (set in XXXsaleprice). Should only be done when the Economics submodel is active, or else Atlantis will quit.</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <span id="_Toc498434979" class="anchor"></span><strong>Table 9.</strong> Parameters used to setup fisheries discarding.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="media/image11.jpeg" style="width:5.90909in;height:7.00777in" class="figure-img"></p>
@@ -1860,334 +1859,336 @@ Caution
 <p>This typical approach is implemented in the <em>Util_Get_Change_Scale()</em> routine in <strong>atUtil.c</strong>, but not all changes are applied through this routine.</p>
 <p>The various changes have been described in separate chapters, and this section only provides a general summary on how fisheries options can be changed.</p>
 <p><span id="_Toc498434980" class="anchor"></span>****</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><strong>Table 10.</strong> Parameters and description of main fisheries features that can change through time.</caption>
 <colgroup>
-<col style="width: 28%">
-<col style="width: 9%">
-<col style="width: 51%">
-<col style="width: 10%">
+<col style="width: 26%">
+<col style="width: 20%">
+<col style="width: 36%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>What can change?</strong></th>
-<th><strong>Global flag</strong></th>
-<th><strong>Fisheries-specific flags</strong></th>
-<th><strong>Comments</strong></th>
+<th style="text-align: left;"><strong>What can change?</strong></th>
+<th style="text-align: left;"><strong>Global flag</strong></th>
+<th style="text-align: left;"><strong>Fisheries-specific flags</strong></th>
+<th style="text-align: left;"><strong>Comments</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Fisheries gear selectivity</td>
-<td>flagchangesel</td>
-<td>Change occurs in one time step and remains for the rest of the simulation or until the next change</td>
-<td>Chapter 15.8</td>
+<td style="text-align: left;">Fisheries gear selectivity</td>
+<td style="text-align: left;">flagchangesel</td>
+<td style="text-align: left;">Change occurs in one time step and remains for the rest of the simulation or until the next change</td>
+<td style="text-align: left;">Chapter 15.8</td>
 </tr>
 <tr class="even">
-<td>Swept volume by the fishing gear</td>
-<td>flagchangeswept</td>
-<td>Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
-<td>Chapter 15.8.13</td>
+<td style="text-align: left;">Swept volume by the fishing gear</td>
+<td style="text-align: left;">flagchangeswept</td>
+<td style="text-align: left;">Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
+<td style="text-align: left;">Chapter 15.8.13</td>
 </tr>
 <tr class="odd">
-<td>Fishing mortality set through flagF</td>
-<td>flagchangeF</td>
-<td>Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
-<td>Chapter 15.3.4</td>
+<td style="text-align: left;">Fishing mortality set through flagF</td>
+<td style="text-align: left;">flagchangeF</td>
+<td style="text-align: left;">Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
+<td style="text-align: left;">Chapter 15.3.4</td>
 </tr>
 <tr class="even">
-<td>Total effort in dynamic fishing</td>
-<td>flagchangeeffort</td>
-<td>Change occurs over a set period, but pulsed changes are allowed. If pulse changes are applied the effort after the change period reverts to the original value</td>
-<td>Chapter 15.5.13</td>
+<td style="text-align: left;">Total effort in dynamic fishing</td>
+<td style="text-align: left;">flagchangeeffort</td>
+<td style="text-align: left;">Change occurs over a set period, but pulsed changes are allowed. If pulse changes are applied the effort after the change period reverts to the original value</td>
+<td style="text-align: left;">Chapter 15.5.13</td>
 </tr>
 <tr class="odd">
-<td>Discarding</td>
-<td>flagchangediscrd</td>
-<td>Change occurs in one time step and remains for the rest of the simulation or until the next change</td>
-<td>Chapter 15.9.2</td>
+<td style="text-align: left;">Discarding</td>
+<td style="text-align: left;">flagchangediscrd</td>
+<td style="text-align: left;">Change occurs in one time step and remains for the rest of the simulation or until the next change</td>
+<td style="text-align: left;">Chapter 15.9.2</td>
 </tr>
 <tr class="even">
-<td>Catchability</td>
-<td>flagchangeq</td>
-<td>Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
-<td>Described in the example above</td>
+<td style="text-align: left;">Catchability</td>
+<td style="text-align: left;">flagchangeq</td>
+<td style="text-align: left;">Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
+<td style="text-align: left;">Described in the example above</td>
 </tr>
 <tr class="odd">
-<td>Effort caps – whether effort per cell is capped</td>
-<td>flagchangecap</td>
-<td>Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
-<td>Chapter 15.6.2</td>
+<td style="text-align: left;">Effort caps – whether effort per cell is capped</td>
+<td style="text-align: left;">flagchangecap</td>
+<td style="text-align: left;">Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
+<td style="text-align: left;">Chapter 15.6.2</td>
 </tr>
 <tr class="even">
-<td>Populations of ports – relevant to recreational fishing models and Economics submodel</td>
-<td>flagchangepop</td>
-<td>Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
-<td>Chapter 15.5.4</td>
+<td style="text-align: left;">Populations of ports – relevant to recreational fishing models and Economics submodel</td>
+<td style="text-align: left;">flagchangepop</td>
+<td style="text-align: left;">Change occurs over a set period and remains in place after the change period – typical 4 parameter description</td>
+<td style="text-align: left;">Chapter 15.5.4</td>
 </tr>
 <tr class="odd">
-<td>Fisheries spatial coverage</td>
-<td>flagchangep and YYY_changeP</td>
-<td>Changes in spatial coverage are applied through the habitat overlap</td>
-<td>Chapter 15.7.3</td>
+<td style="text-align: left;">Fisheries spatial coverage</td>
+<td style="text-align: left;">flagchangep and YYY_changeP</td>
+<td style="text-align: left;">Changes in spatial coverage are applied through the habitat overlap</td>
+<td style="text-align: left;">Chapter 15.7.3</td>
 </tr>
 <tr class="even">
-<td>Length of the fishing season</td>
-<td>YYY_changeseason</td>
-<td>Fishing season can be reduced if biomass of fishing stocks or endangered species fall below a threshold level</td>
-<td>Chapter 16.5</td>
+<td style="text-align: left;">Length of the fishing season</td>
+<td style="text-align: left;">YYY_changeseason</td>
+<td style="text-align: left;">Fishing season can be reduced if biomass of fishing stocks or endangered species fall below a threshold level</td>
+<td style="text-align: left;">Chapter 16.5</td>
 </tr>
 <tr class="odd">
-<td>TAC of a fishery</td>
-<td><p>YYY_TACchange</p>
-<p>0 – no change</p>
-<p>1 – dynamic change</p>
-<p>2 – forced change</p></td>
-<td><p>Forced TAC change is implemented in the same way as other parameter change – typical 4 parameter description</p>
-<p>Dynamic change in TAC is implemented when some form of stock assessment is applied (see box in chapter 16.1)</p></td>
-<td>Chapter 16.2.10</td>
+<td style="text-align: left;">TAC of a fishery</td>
+<td style="text-align: left;">YYY_TACchange<br><br>0 – no change<br>1 – dynamic change<br>2 – forced change</td>
+<td style="text-align: left;">Forced TAC change is implemented in the same way as other parameter change – typical 4 parameter description<br><br>Dynamic change in TAC is implemented when some form of stock assessment is applied (see box in chapter 16.1)</td>
+<td style="text-align: left;">Chapter 16.2.10</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>: <strong>Table 10.</strong> Parameters and description of main fisheries features that can change through time.</p>
 
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2195,185 +2196,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
