@@ -10,7 +10,7 @@ quarto_site/.quarto/
 .Rhistory
 .RData
 .Ruserdata
-*.Rproj
+#*.Rproj
 
 # Python cache
 __pycache__/
