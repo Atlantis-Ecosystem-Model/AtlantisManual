@@ -12,27 +12,27 @@ The management options available to regulate fishing mortality depend on whether
 
 For harvesting set through **imposed catch** the management options include
 
-1)  ***Stock adaptive management*** (set with YYY_flagmanage=1). In this option the actual catch taken will be decreased if stocks fall below a set threshold (see below). Note that even though YYY_flagmanage has many options, only YYY_flagmanage=1 can be applied to the imposed catch. If YYY_flagmanage \> 1, no management scalar will be applied to the imposed catch
+1)  ***Stock adaptive management*** (set with [YYY_flagmanage]{style="color: orange;"}=1). In this option the actual catch taken will be decreased if stocks fall below a set threshold (see below). Note that even though YYY_flagmanage]{style="color: orange;"} has many options, only [YYY_flagmanage]{style="color: orange;"}=1 can be applied to the imposed catch. If [YYY_flagmanage]{style="color: orange;"} \> 1, no management scalar will be applied to the imposed catch
 
-2)  ***Spatial management*** through MPAs (set if flagmpa=1)
+2)  ***Spatial management*** through MPAs (set if [flagmpa]{style="color: orange;"}=1)
 
 For harvesting set as a user defined **fishing mortality** the management options include
 
-1)  ***Yearly and weekly catch limits*** set in TAC_XXX and TripLimit_XXX parameters and the flag_stop_F_tac parameter, which determines whether fishing is closed when limits are reached (see chapter 15.9.1).
+1)  ***Yearly and weekly catch limits*** set in [TAC_XXX]{style="color: orange;"} and [TripLimit_XXX]{style="color: orange;"} parameters and the [flag_stop_F_tac]{style="color: orange;"} parameter, which determines whether fishing is closed when limits are reached (see chapter 15.9.1).
 
-2)  ***Spatial management*** through MPAs (set if flagmpa=1)
+2)  ***Spatial management*** through MPAs (set if [flagmpa]{style="color: orange;"}=1)
 
 3)  Harvest control rules set as "***broken stick" scalar*** on the mFC value (see chapter 16.2.8)
 
-4)  ***Frame based management***, where fishing is allowed once biomass has passed a threshold level (fishing level is set by TAC_XXX and the biomass threshold is set as a scalar on the initial biomass using FC_high_thresh)
+4)  ***Frame based management***, where fishing is allowed once biomass has passed a threshold level (fishing level is set by [TAC_XXX]{style="color: orange;"} and the biomass threshold is set as a scalar on the initial biomass using [FC_high_thresh]{style="color: orange;"})
 
 For **dynamic fishing** the management includes
 
-1)  ***Stock adaptive management*** or ***TAC management*** (set with YYY_flagmanage)
+1)  ***Stock adaptive management*** or ***TAC management*** (set with [YYY_flagmanage]{style="color: orange;"})
 
-2)  ***Spatial management*** through MPAs (set if flagmpa=1)
+2)  ***Spatial management*** through MPAs (set if [flagmpa]{style="color: orange;"}=1)
 
-3)  Seasonal closures (set in YYY_flagseasonal)
+3)  Seasonal closures (set in [YYY_flagseasonal]{style="color: orange;"})
 
 4)  Control rules based on the bycatch of endangered species
 
@@ -45,30 +45,30 @@ The adaptive or TAC based management, and management based on endangered species
 
 A lot of management decisions are based on TACs -- when a fishery exceeds its TAC (counted in one of many different ways) it will be closed. It is important to understand that the TAC can be either set in the *harvest.prm* file or calculated dynamically during the simulation process. The dynamic calculation aims to simulate fisheries stock assessments and the TAC allocation process made in real life situations. Dynamic TACs require that one of three available stock assessment options are turned on:
 
-1)  **Pseudo assessments** (done if pseudo_assess=1 in *harvest.prm*) are the simplest version of stock assessments. It uses Atlantis biomasses and a random error added to them as inputs into the fishing mortality estimator and harvest control rule calculations.
+1)  **Pseudo assessments** (done if [pseudo_assess]{style="color: orange;"}=1 in *harvest.prm*) are the simplest version of stock assessments. It uses Atlantis biomasses and a random error added to them as inputs into the fishing mortality estimator and harvest control rule calculations.
 
 2)  **Full integrated assessment**, done in the **Assessment** submodel. This is done only if the *run.bat* file has a set --a parameter with *assessment.prm* parameter file. A number of assessment options are possible: Schafer production model, ADAPT , MSVPA Integrated assessment model (CAB) and R-based assessment calls (please see the [wiki](https://confluence.csiro.au/display/Atlantis/2022/12/22/Calling+R+from+Atlantis+-+Stock+Assessment+and+TAC+setting)).
 
-3)  **Recommended biological catch based assessment** using tiered harvest control rules (applied if useRBCTiers=1 in *harvest.prm*). The tier based assessment follows the harvest control rule hierarchy used in Australia and is specified in the *CallTierAssessment()* routine. It includes a (i) full quantitative population model based (e.g. SS3), (ii) catch curves, (iii) CPUE, (iv) surplus production, (v), average length, (vi) trigger points, and (vii) catch composition. The parameters for these options are specified in *assessment.prm*.
+3)  **Recommended biological catch based assessment** using tiered harvest control rules (applied if [useRBCTiers]{style="color: orange;"}=1 in *harvest.prm*). The tier based assessment follows the harvest control rule hierarchy used in Australia and is specified in the *CallTierAssessment()* routine. It includes a (i) full quantitative population model based (e.g. SS3), (ii) catch curves, (iii) CPUE, (iv) surplus production, (v), average length, (vi) trigger points, and (vii) catch composition. The parameters for these options are specified in *assessment.prm*.
 
 The stock assessment options are not further described in the manual. For further details on the application of different assessment options see [Fulton et al 2007](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155606/43156986/AMS_Final_Report_v6.pdf) or Dichmont et al 2017.
 :::
 
 ## **16.2. Stock adaptive and TAC-based management**
 
-Stock adaptive and total allowable catch (TAC) based management is set through flagmanage flags. These settings limit, or completely stop, the fishing effort if stocks fall below a set threshold (stock adaptive management) or if the TAC has been reached. To allow for this management for each fishery select the specific management option with the YYY_flagmanage parameter.
+Stock adaptive and total allowable catch (TAC) based management is set through [flagmanage]{style="color: orange;"} flags. These settings limit, or completely stop, the fishing effort if stocks fall below a set threshold (stock adaptive management) or if the TAC has been reached. To allow for this management for each fishery select the specific management option with the [YYY_flagmanage]{style="color: orange;"} parameter.
 
 ### ***16.2.1. No management on effort or catch applied***
 
-When YYY_flagmanage = 0, the fishery will not be affected by stock size related management actions or TACs. The effort of the fishery is set based on effortmodel options only (or imposed catch or user defined fishing mortality) and will stay in place regardless of the stock abundance or quotas.
+When [YYY_flagmanage]{style="color: orange;"} = 0, the fishery will not be affected by stock size related management actions or TACs. The effort of the fishery is set based on effortmodel options only (or imposed catch or user defined fishing mortality) and will stay in place regardless of the stock abundance or quotas.
 
 ### ***16.2.2. Adaptive management based on reference limits of stock biomass***
 
-When YYY_flagmanage = 1, fishing effort is controlled by the stock abundance. The effort reduction is triggered when the stock falls below the level given by the FC_threshold_XXX -- a proportion of the "virgin" biomass. This virgin biomass can be either the biomass at the start of the run or after a burn-in period. To setup the burn-in period set the global flagreinitpop=1 and give the day (in the days of simulation run) which should be used as the point in the simulation to define virgin biomass in the reinit_pop_day parameter. The burn-in period might be useful if biomasses fluctuate a lot during the early years of the simulation and are not useful as a stock management reference point.
+When [YYY_flagmanage]{style="color: orange;"} = 1, fishing effort is controlled by the stock abundance. The effort reduction is triggered when the stock falls below the level given by the [FC_threshold_XXX]{style="color: orange;"} -- a proportion of the "virgin" biomass. This virgin biomass can be either the biomass at the start of the run or after a burn-in period. To setup the burn-in period set the global [flagreinitpop]{style="color: orange;"}=1 and give the day (in the days of simulation run) which should be used as the point in the simulation to define virgin biomass in the [reinit_pop_day]{style="color: orange;"} parameter. The burn-in period might be useful if biomasses fluctuate a lot during the early years of the simulation and are not useful as a stock management reference point.
 
 If the biomass of a species XXX falls below the FC_threshold_XXX proportion, the effort will be reduced by the FC_restrict_XXX scalar and reductions will take place over the XXX_FC_period number of days.
 
-Remember, that the catch will be reduced via the mechanism of reducing effort (if using the effortmodel options) or the imposed catch. The assessment of the stock level is **done once per year** and the effort scalar is set and applied for the rest of the year. If more frequent assessments are desired, a user can set the second period after which the stock health will be assessed (XXX_FC_period2). If, after the time set in XXX_FC_period2, the biomass of a species XXX is above the FC_high_threshold_XXX proportion of the virgin biomass, the reduction in effort is lifted and the effort reverts to the original value before the restrictions. Note, the FC_high_threshold_XXX is often larger than the FC_threshold_XXX, which means that after a fishery has had effort restrictions imposed, a stock must recover to higher levels to allow for a return to the original effort.
+Remember, that the catch will be reduced via the mechanism of reducing effort (if using the effortmodel options) or the imposed catch. The assessment of the stock level is **done once per year** and the effort scalar is set and applied for the rest of the year. If more frequent assessments are desired, a user can set the second period after which the stock health will be assessed ([XXX_FC_period2]{style="color: orange;"}). If, after the time set in [XXX_FC_period2]{style="color: orange;"}, the biomass of a species XXX is above the [FC_high_threshold_XXX]{style="color: orange;"} proportion of the virgin biomass, the reduction in effort is lifted and the effort reverts to the original value before the restrictions. Note, the [FC_high_threshold_XXX]{style="color: orange;"} is often larger than the [FC_threshold_XXX]{style="color: orange;"}, which means that after a fishery has had effort restrictions imposed, a stock must recover to higher levels to allow for a return to the original effort.
 
 ### ***16.2.3. Overview of the TAC based management***
 
