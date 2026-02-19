@@ -333,6 +333,7 @@ Caution
 <p>he choice between the user defined fishing mortality and dynamic fishing is determined by whether the user is mostly interested in the biological dynamics given a set fishing pressure, or whether fishery development and socio-economic aspects are of more interest. Of course, the actual fishery is never just a fixed annual pressure and biological dynamics will be determined by complex fisher behaviour and a range of socio-economic aspects that will determine the actual fishing pressure. Yet, all models are just a simplified version of reality and the level of simplification is determined by the questions that are to be addressed.</p>
 </div>
 </div>
+<p><span id="_Toc498434971" class="anchor"></span><strong>Table 1.</strong> General fisheries parameters</p>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -409,7 +410,6 @@ Caution
 </tbody>
 </table>
 </div>
-<p>: <span id="_Toc498434971" class="anchor"></span><strong>Table 1.</strong> General fisheries parameters</p>
 </section>
 <section id="setting-up-fishing-mortality-through-imposed-catch" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-fishing-mortality-through-imposed-catch"><strong>15.2. Setting up fishing mortality through imposed catch</strong></h2>
@@ -510,6 +510,7 @@ Caution
 ... and so on</code></pre>
 <p>Note that this file gives the <strong>total catch per box in mg per second</strong> over all age groups of a species. The age distribution of the imposed catch is given separately in the <span style="color: orange;">CatchTS_agedistribXXX</span> parameter.</p>
 <p>It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the <span style="color: orange;">typeCatchts</span> parameter in <em>force.prm</em> whether to use the last valid value (<span style="color: orange;">typeCatchts</span> set to 1) or to interpolate between the two provided values (<span style="color: orange;">typeCatchts</span> set to 0). See “Format of the time series (TS) forcing files” box in Chapter 8.</p>
+<p><span id="_Toc498434972" class="anchor"></span><strong>Table 2.</strong> Parameters required for imposed catch setup</p>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -558,7 +559,6 @@ Caution
 </tbody>
 </table>
 </div>
-<p>: <span id="_Toc498434972" class="anchor"></span><strong>Table 2.</strong> Parameters required for imposed catch setup</p>
 </section>
 <section id="setting-up-fishing-mortality-through-user-defined-non-dynamic-fishing-mortality" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-fishing-mortality-through-user-defined-non-dynamic-fishing-mortality"><strong>15.3. Setting up fishing mortality through user defined non-dynamic fishing mortality</strong></h2>
@@ -673,8 +673,13 @@ Caution
 <p>The user defined fishing mortality set through <span style="color: orange;">mFC</span> parameter can <strong>change during the simulation</strong>. This is triggered by setting the global parameter <span style="color: orange;">flagchangeF</span>=1 and setting <span style="color: orange;">flagFchange_XXX</span> to 1 for the species and fishery combinations where changes in the F values are desired.</p>
 <p>If changes in F are required for a specific species and fishery combination, then the number of changes for that species-fishery combination is given in <span style="color: orange;">XXX_mFC_changes</span>. Note that while <span style="color: orange;">XXX_mFC_changes</span> are at present specified per species-fishery combination, the actual specifics of each change (timing and magnitude) are only specified at the species level and so all the changes are applied to ALL fisheries that catch species XXX using the fishing mortality option and have <span style="color: orange;">XXX_mFC_changes</span> &gt; 1. If you require the changes to be specific to both the species and fishery please contact the Atlantis developers.</p>
 <p>The day(s) of the model run at which the change(s) in F start is set in <span style="color: orange;">mFCchange_start_XXX</span> parameter. This parameter should have as many entries as there are number of changes given in the <span style="color: orange;">XXX_mFC_changes</span> parameter. The time period over which the change will occur is set using the <span style="color: orange;">mFCchange_period_XXX</span> parameter, which again must have as many values as there are changes. This means that the change will not be instant but will be applied slowly (linearly interpolating from the original value to the new value) through the number of days indicated in <span style="color: orange;">mFCchange_period_XXX</span>. Once the change period is finished the scalar on F does not return to the original value but is applied for the rest of the simulation unless another change is applied. The multiplier by which the ORIGINAL fishing mortality should be multiplied for each of the implemented changes is given in the <span style="color: orange;">mFCchange_mult_XXX</span> parameter. This multiplier determines the factor that the original mFC value will be multiplied by to give the new (changed) F. If you are making multiple changes remember that these values multiply fishing by the original mFC value, not by whatever the fishing pressure was after the previous change.</p>
+<p><span id="_Toc498434973" class="anchor"></span><strong>Table 3.</strong> Parameters required to setup a user defined fishing mortality rate.</p>
 <div class="table-responsive">
 <table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>Parameter</strong></th>
@@ -699,7 +704,7 @@ Caution
 <td style="text-align: left;">Age class of species XXX where mFC is set back to zero.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">flag_sel_with_mFC]{style=“color: orange;”}</td>
+<td style="text-align: left;"><span style="color: orange;">flag_sel_with_mFC</span></td>
 <td style="text-align: left;">Whether the fishing mortality should use size based selectivity (if yes set to 1). If the size based selectivity option is selected here, it will apply to <strong>ALL</strong> fisheries-species combinations operating through a fishing mortality (i.e.&nbsp;all fisheries-species combinations with flagF &gt; 0 and mFC &gt; 0 will have selectivity applied)</td>
 </tr>
 <tr class="even">
@@ -740,12 +745,11 @@ Caution
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span style="color: orange;">mFCchange_mult_XXX</span></td>
-<td style="text-align: left;">The multiplier by which the ORIGINAL fishing mortality is rescaled to obtain the new (changed) mortality rate. There should be as many entries as there are number of changes given in the <span style="color: orange;">XXX_mFC_changes</span> See further details on the <a href="https://confluence.csiro.au/display/Atlantis/Applying+and+changing+constant+fishing+pressure">wiki</a>.</td>
+<td style="text-align: left;">The multiplier by which the ORIGINAL fishing mortality is rescaled to obtain the new (changed) mortality rate. There should be as many entries as there are number of changes given in the <span style="color: orange;">XXX_mFC_changes</span> See further details on the wiki.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>: <span id="_Toc498434973" class="anchor"></span><strong>Table 3.</strong> Parameters required to setup a user defined fishing mortality rate.</p>
 </section>
 </section>
 <section id="general-introduction-to-dynamic-fishing" class="level2">
@@ -755,7 +759,9 @@ Caution
 <p>The definition of <strong>fishing effort</strong> and factors defining it <strong>are different</strong> from the <strong>management rules</strong> and are implemented independently. The goal of the fishing effort routines is to determine the amount of time each fishery (and its sub-fleets, if a fishery has several sub-fleets) will spend in each box of the model. The actual catch will then depend on the gear used by the fishery and its selectivity, fish abundance, distribution and catchability. Management in turn can limit this effort if some triggers, such as stock biomass or total allowable catch, have been reached. However, application of management is optional and does not affect the original definition of fishing effort.</p>
 <p>The key aspect of dynamic fishing is in setting up the effort applied by different fisheries. There are many ways to define the effort, but they all return a matrix of days that each fishery will operate in each box. Once this matrix is available, the actual catch will be determined by the gear parameters (area swept and selectivity), vertical and horizontal overlap between the species and the fishery, and species parameters (catchability and escapement).</p>
 <p>A general equation for the catch (mgN day<sup>-1</sup> harvest) of a species CX caught by the fishery YY in a box <em>j</em> using the dynamic fishing option is:</p>
-<p><span class="math display">\[H_{CX,Y,i,j} = \left( {Eff}_{Y,j} \cdot {gear}_{Y} \cdot {sel}_{CX,Y,i} \right) \cdot a_{Y,j} \cdot \left( \delta_{depth,CX,i}^{Y}{\cdot \delta}_{pos,CX,i}^{Y} \right) \cdot \left( \delta_{habitat,CX,i}^{Y} \middle| q_{CX,Y} \right) \cdot \left( {Biom}_{CX,i.j} \cdot \left( 1 - {p\_ esc}_{CX,Y} \right) \right)\]</span></p>
+<div style="overflow-x: auto;">
+<p><span class="math display">\[H_{CX,Y,i,j} = \left( {Eff}_{Y,j} \cdot {gear}_{Y} \cdot {sel}_{CX,Y,i} \right) \cdot a_{Y,j} \cdot \left( \delta_{depth,CX,i}^{Y}{\cdot \delta}_{pos,CX,i}^{Y} \right) \cdot \left( \delta_{habitat,CX,i}^{Y} \middle| q_{CX,Y} \right) \cdot \left( {Biom}_{CX,i,j} \cdot \left( 1 - {p\_esc}_{CX,Y} \right) \right)\]</span></p>
+</div>
 <p>where <em>mEff<sub>YY,j</sub></em> is the effort applied by the fishery YYY in the box j (days day<sup>-1</sup>) (with 14 different options available to set it up, see chapter 15.5); <em>gear<sub>YY</sub></em> is the swept area of by gear of fishery YYY calculated as proportion of total volume of the cell (<span style="color: orange;">YYY_sweptarea</span>) (day<sup>-1</sup>) the fishery can “sweep” (for static gear that just sits on the bottom, such as lobster pots, this does not represent active movement by the gear but animals moving to and envountering the gear); <em>sel<sub>i</sub></em> is the selectivity of fishery YYY on age group <em>i</em> of species CX (ranging from 0 to 1, see chapter 15.8); <em>a<sub>YY,j</sub></em> is the optional management scalar on fishery YYY in box <em>j</em> that can apply temporary or permanent reductions in effort (see chaper 16); <em>δ<sub>depth.CX,i&nbsp;</sub></em>is the depth (vertical) overlap between the species CX age group <em>i</em> and fishery YY; <em>δ<sub>pos,CX,i&nbsp;</sub></em>is the postitional availability scalar that accounts for an optional mismatch between the pelagic and demersal distribution of species and the fishery (see below); <em>δ<sub>habitat.CX,i&nbsp;</sub></em>is the habitat overlap between the species CX age group <em>i</em> and fishery YY (see below); <em>Biom<sub>CX,i,j</sub></em> is the biomass of the species CX age group <em>i</em> in a box <em>j</em> (mgN); <em>q</em><sub>CX,YY</sub> is the catchability of species CX by the fishery YYY (0 to 1) conditional on the habitat refuge scalar used (see chapter XYX); and <em>p_esc<sub>,CX,YY</sub></em> is the proportion of biomass of species CX in the swept area that escapes the fishery YY (0 to 1, see below).</p>
 <p>The first three terms in the equation describe fisheries parameters, the <em>a<sub>YY,j</sub></em> is the management term, the further three terms describe the spatial overlap, and the last term describes species parameters.</p>
 <p>The <strong>proportion of biomass escaping the fishery</strong> set in <span style="color: orange;">flagescapement_XXX</span> for each fishery can be either zero (<span style="color: orange;">flagescapement_XXX</span>=0), constant (<span style="color: orange;">flagescapement_XXX</span> =1 and proportions given in <span style="color: orange;">p_escape_XXX</span>), or size-based (<span style="color: orange;">flagescapement_XXX</span> =2). Constant escapement just gives a proportion of escapement applied uniformly for each age class. The size based escapement is determined by the length of the age group or a species (see NOTE! below on how length is calculated in vertebrates and non-vertebrates) and parameters <span style="color: orange;">Ka_escape_XXX</span> and <span style="color: orange;">Kb_escape_XXX</span> (giving values for each fishery, so different escapement options can be set up for each fishery). In the size based escapement option the proportion of individuals in an age group escaping a fishery is calculated as</p>
@@ -804,7 +810,9 @@ Caution
 <h3 class="anchored" data-anchor-id="constant-effort-given-by-prescribed-spatial-effort-matrices-effortmodel3"><strong><em>15.5.3. Constant effort given by prescribed spatial effort matrices (effortmodel=3)</em></strong></h3>
 <p>This option is set with <span style="color: orange;">YYY_effortmodel</span>=3 and the user must prescribe both temporal (quarterly) and spatial (per box) relative effort distribution (i.e.&nbsp;proportion of the daily effort allocated to that box in that quarter).</p>
 <p>The effort by the fishery Y in a cell j (<em>Eff<sub>Y,j</sub></em> in days day<sup>-1</sup>) in a given timestep is calculated as</p>
-<p><span class="math display">\[{Eff}_{Y,j} = {TotEff}_{Y} \cdot \left( \varepsilon \cdot \left( {hEff}_{Q + 1,Y,j} - {hEff}_{Q,Y,j} \right) + {hEff}_{Q,Y,j} \right) \cdot \left( \varepsilon \cdot \left( {Eff}_{Q + 1,Y,j} - {Eff}_{Q,Y,j} \right) + {Eff}_{Q,Y,j} \right)\]</span></p>
+<div style="overflow-x: auto;">
+<p><span class="math display">\[{Eff}_{Y,j} = {TotEff}_{Y} \cdot \left( \varepsilon \cdot \left( {hEff}_{Q+1,Y,j} - {hEff}_{Q,Y,j} \right) + {hEff}_{Q,Y,j} \right) \cdot \left( \varepsilon \cdot \left( {Eff}_{Q+1,Y,j} - {Eff}_{Q,Y,j} \right) + {Eff}_{Q,Y,j} \right)\]</span></p>
+</div>
 <p>where <em>ɛ</em> is the proportion of the quarter of the year that has passed; <em>hEff<sub>Q,Y</sub></em> and <em>hEff<sub>Q+1,Y</sub></em> are the box-specific season-specific proportional effort of the fishery Y in quarter Q and Q+1 provided by the user (<span style="color: orange;">Effort_hdistribYYY</span>); <em>Eff<sub>Q,Y</sub></em> and <em>Eff<sub>Q+1,Y</sub></em> are the seasonal scalars of the total effort of the fishery Y (<span style="color: orange;">mEff_YYY</span>, unitless); and <em>TotEff <sub>Y</sub></em> is the total average daily effort (days day<sup>-1</sup>) of the fishery Y (<span style="color: orange;">YYY_Effort</span>, days per day). The box-specific effort proportions must sum to 1 for each quarter of the year. The proportional effort is the season-specific scalar on the total yearly effort. The quarterly distributions and scalars are interpolated linearly through the year, in the same way as it is done in the prescribed vertebrate spatial distributions (see chapter 11.1).</p>
 </section>
 <section id="human-population-based-recreational-fishing-efformodel6-effortmodel12" class="level3">
@@ -898,14 +906,8 @@ Caution
 <p>The new ideal effort by the fishery Y in a box j (<em>idEff<sub>Y,j</sub></em> in days day<sup>-1</sup>) in a given timestep is calculated as</p>
 <p><span class="math display">\[{idEff}_{Y,j} = \frac{{Effmax}_{Y}}{1 + e^{\left( - {Effa}_{Y} \cdot {cpue}_{Y,j} \right)}}{- Effoffs}_{Y}\]</span></p>
 <p>where <em>Effmax</em><sub>Y</sub> is the maximum potential effort per box allowed per fishery Y (<span style="color: orange;">YYY_mEff_max</span>, days day<sup>-1</sup>); <em>Effa<sub>Y</sub></em> is the steepness of the effort increase to the maximum limit when CPUE is high (<span style="color: orange;">YYY_mEff_a</span>, unitless and <strong>typically in the range of 0.01 to 0.1</strong>); and <em>Effoffs<sub>Y&nbsp;</sub></em>is the offset of the effort (<span style="color: orange;">YYY_mEff_offset</span>, days day<sup>-1</sup>) to bring down effort in the lowest producibity boxes. This representation was originally developed for a location where fishing continued in locations even after CPUE had dropped to very low levels. In this approach if <em>Effoffs<sub>Y</sub></em> is set to zero then the lowest possible effort levels is half of <em>Effmax</em><sub>Y</sub>. If you do not want any effort in the boxes with very low CPUE levels (e.g.&nbsp;zero) then you will need to set <em>Effmax</em><sub>Y</sub> to twice the desired maximum effort level and <em>Effoffs<sub>Y</sub></em> to half of that (i.e.&nbsp;the desired effort level). This approach may seem artificial, but it produces a range of fishing pressure with the desired spatial heterogeneity and magnitude. Figure 1 shows the ideal new effort given the previous day’s CPUE and the <em>Effa</em> parameter setting the steepness of the effort increase.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="media/image2.png" style="width:4.625in;height:3.54722in" class="figure-img"></p>
-<figcaption><span id="_Toc498434128" class="anchor"></span><strong>Figure 1.</strong> Ideal effort allocation in <span style="color: orange;">YYY_effortmodel</span>=4, where previous day’s CPUE (tons day-1 per box) varies from 0 to 1000.</figcaption>
-</figure>
-</div>
-<p>mEff_max = 10 days day<sup>-1</sup></p>
-<p><span style="color: black;"><strong>Black</strong></span>: mEff_a=0.01, offset=0 <span style="color: red;"><strong>Red</strong></span>: mEff_a=0.05, offset=0 <span style="color: orange;"><strong>Orange</strong></span>: mEff_a=0.005, offset=0 <span style="color: blue;"><strong>Blue</strong></span>: mEff_a=0.01, offset=5 days day<sup>-1</sup></p>
+<p>![<span id="_Toc498434128" class="anchor"></span><strong>Figure 1.</strong> Ideal effort allocation in <span style="color: orange;">YYY_effortmodel</span>=4, where previous day’s CPUE (tons day-1 per box) varies from 0 to 1000. mEff_max = 10 days day<sup>-1</sup></p>
+<p><span style="color: black;"><strong>Black</strong></span>: mEff_a=0.01, offset=0 <span style="color: red;"><strong>Red</strong></span>: mEff_a=0.05, offset=0 <span style="color: orange;"><strong>Orange</strong></span>: mEff_a=0.005, offset=0 <span style="color: blue;"><strong>Blue</strong></span>: mEff_a=0.01, offset=5 days day<sup>-1</sup>](media/image2.png){width=“4.625in” height=“3.547222222222222in”}</p>
 <p>In the second step, the ideal effort is linearly interpolated across the model domain according to the speed of the fishery boats to obtain the realised new effort. This means that a fishery may not be able to switch to a new box immediately, if the boxes is large. The realised new effort is calculated as</p>
 <p><span class="math display">\[{newEff}_{Y,j} = \max\left( 1,\frac{{Speed}_{Y} \cdot dt}{width} \right) \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}\]</span></p>
 <p>where <em>Speed<sub>Y</sub></em> is the speed of commercial fishing (<span style="color: orange;">Speed_boat</span>, m hour<sup>-1</sup>); <em>dt</em> is the number of hours in the main Atlantis timestep (usually 12, but 6 or 24 are also common); <em>width</em> is the width of the entire model domain along its the longest dimension (north–south or east-west); and <em>oldEff<sub>Y,j</sub></em> is the effort by the fishery Y in the box <em>j</em> in the previous timestep. The (<em>Speed*dt/width</em>) term simply calculates what distance a fishery Y can travel in one time step compared to the entire model domain (e.g.&nbsp;0.1 of the maximum possible distance in the model). It shows that if the fishery can cross the entire model domain in one timestep and therefore find itself in any box of the model domain in one timestep, then the scalar will be 1 and the new effort will be the same as the ideal effort. If the scalar is smaller than one, then new effort will be a combination of the old effort and the ideal effort determined above.</p>

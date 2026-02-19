@@ -31,6 +31,8 @@ When data on catches is available, modellers often use imposed catch to aid the 
 he choice between the user defined fishing mortality and dynamic fishing is determined by whether the user is mostly interested in the biological dynamics given a set fishing pressure, or whether fishery development and socio-economic aspects are of more interest. Of course, the actual fishery is never just a fixed annual pressure and biological dynamics will be determined by complex fisher behaviour and a range of socio-economic aspects that will determine the actual fishing pressure. Yet, all models are just a simplified version of reality and the level of simplification is determined by the questions that are to be addressed.
 :::
 
+[]{#_Toc498434971 .anchor}**Table 1.** General fisheries parameters
+
 ::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
@@ -50,8 +52,6 @@ he choice between the user defined fishing mortality and dynamic fishing is dete
 | [YYY_mindepth]{style="color: orange;"} | Minimum seafloor depths fishery will act over (so if won't fish shallower than 1500m put 1500 here) |
 | [YYY_maxdepth]{style="color: orange;"} | Maximum seafloor depths fishery will act over (so if won't fish deeper than 1500m put 1500 here) |
 :::
-
-: []{#_Toc498434971 .anchor}**Table 1.** General fisheries parameters
 
 ## **15.2. Setting up fishing mortality through imposed catch**
 
@@ -174,6 +174,8 @@ Note that this file gives the **total catch per box in mg per second** over all 
 
 It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the [typeCatchts]{style="color: orange;"} parameter in *force.prm* whether to use the last valid value ([typeCatchts]{style="color: orange;"} set to 1) or to interpolate between the two provided values ([typeCatchts]{style="color: orange;"} set to 0). See "Format of the time series (TS) forcing files" box in Chapter 8.
 
+[]{#_Toc498434972 .anchor}**Table 2.** Parameters required for imposed catch setup
+
 ::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
@@ -186,8 +188,6 @@ It is not necessary to give catch for each day. The user can give data for set t
 | [YYY_flagmanage]{style="color: orange;"} | If >0, management options will be applied to the fishery YYY and imposed catch may be scaled by a management scalar. |
 | [YYY_flagmpa]{style="color: orange;"} | If >0, the fishery YYY will be affected by MPAs and imposed catch will be scaled by the MPA scalar. |
 :::
-
-: []{#_Toc498434972 .anchor}**Table 2.** Parameters required for imposed catch setup
 
 ## **15.3. Setting up fishing mortality through user defined non-dynamic fishing mortality**
 
@@ -293,6 +293,8 @@ If changes in F are required for a specific species and fishery combination, the
 
 The day(s) of the model run at which the change(s) in F start is set in [mFCchange_start_XXX]{style="color: orange;"} parameter. This parameter should have as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} parameter. The time period over which the change will occur is set using the [mFCchange_period_XXX]{style="color: orange;"} parameter, which again must have as many values as there are changes. This means that the change will not be instant but will be applied slowly (linearly interpolating from the original value to the new value) through the number of days indicated in [mFCchange_period_XXX]{style="color: orange;"}. Once the change period is finished the scalar on F does not return to the original value but is applied for the rest of the simulation unless another change is applied. The multiplier by which the ORIGINAL fishing mortality should be multiplied for each of the implemented changes is given in the [mFCchange_mult_XXX]{style="color: orange;"} parameter. This multiplier determines the factor that the original mFC value will be multiplied by to give the new (changed) F. If you are making multiple changes remember that these values multiply fishing by the original mFC value, not by whatever the fishing pressure was after the previous change.
 
+[]{#_Toc498434973 .anchor}**Table 3.** Parameters required to setup a user defined fishing mortality rate.
+
 ::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
@@ -300,7 +302,7 @@ The day(s) of the model run at which the change(s) in F start is set in [mFCchan
 | [mFC_XXX]{style="color: orange;"} | Fishing mortality rate for species XXX (per day). See note above on how to set correct rates |
 | [XXX_mFC_startage]{style="color: orange;"} | First age class (counting from 0) of species XXX for which the fishing mortality should be applied |
 | [XXX_mFC_endage]{style="color: orange;"} | Age class of species XXX where mFC is set back to zero. |
-| flag_sel_with_mFC]{style="color: orange;"} | Whether the fishing mortality should use size based selectivity (if yes set to 1). If the size based selectivity option is selected here, it will apply to **ALL** fisheries-species combinations operating through a fishing mortality (i.e. all fisheries-species combinations with flagF > 0 and mFC > 0 will have selectivity applied) |
+| [flag_sel_with_mFC]{style="color: orange;"} | Whether the fishing mortality should use size based selectivity (if yes set to 1). If the size based selectivity option is selected here, it will apply to **ALL** fisheries-species combinations operating through a fishing mortality (i.e. all fisheries-species combinations with flagF > 0 and mFC > 0 will have selectivity applied) |
 | [YYY_selcurve]{style="color: orange;"} | Which size based selectivity curve the fishery YYY should use (see chapter 15.7) |
 | [flag_stop_F_tac]{style="color: orange;"} | If set to 1, the fishing will stop if the TAC is reached. If set to 0, all catch above the TAC is discarded. Note, that for the fishing mortality case, if [flag_stop_F_tac]{style="color: orange;"} is set to 1 then the TAC and weekly Trip Limits will be applied irrespective of the [YYY_flagmanage]{style="color: orange;"} settings! If no quota limits are wanted, then both TAC and TripLimit parameters should be set to 10^12^ (see chapter 15.9.1). |
 | [flaginfringe]{style="color: orange;"} | If set to 1, some fisheries will infringe MPAs. This flag is only relevant if MPAs have been setup through [flagmpa]{style="color: orange;"} and the [YYY_flagmpa]{style="color: orange;"} parameter, see chapter 15.6 |
@@ -310,10 +312,8 @@ The day(s) of the model run at which the change(s) in F start is set in [mFCchan
 | [XXX_mFC_changes]{style="color: orange;"} | Number of changes for a species-fishery combination |
 | [mFCchange_start_XXX]{style="color: orange;"} | Vector indicating when each change in fishing mortality begins in days of the model run. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} |
 | [mFCchange_period_XXX]{style="color: orange;"} | Period in days over which the change in fishing mortality will occur. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} |
-| [mFCchange_mult_XXX]{style="color: orange;"} | The multiplier by which the ORIGINAL fishing mortality is rescaled to obtain the new (changed) mortality rate. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} See further details on the [wiki](https://confluence.csiro.au/display/Atlantis/Applying+and+changing+constant+fishing+pressure). |
+| [mFCchange_mult_XXX]{style="color: orange;"} | The multiplier by which the ORIGINAL fishing mortality is rescaled to obtain the new (changed) mortality rate. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} See further details on the wiki. |
 :::
-
-  : []{#_Toc498434973 .anchor}**Table 3.** Parameters required to setup a user defined fishing mortality rate.
 
 ## **15.4. General introduction to dynamic fishing**
 
@@ -327,7 +327,9 @@ The key aspect of dynamic fishing is in setting up the effort applied by differe
 
 A general equation for the catch (mgN day^-1^ harvest) of a species CX caught by the fishery YY in a box *j* using the dynamic fishing option is:
 
-$$H_{CX,Y,i,j} = \left( {Eff}_{Y,j} \cdot {gear}_{Y} \cdot {sel}_{CX,Y,i} \right) \cdot a_{Y,j} \cdot \left( \delta_{depth,CX,i}^{Y}{\cdot \delta}_{pos,CX,i}^{Y} \right) \cdot \left( \delta_{habitat,CX,i}^{Y} \middle| q_{CX,Y} \right) \cdot \left( {Biom}_{CX,i.j} \cdot \left( 1 - {p\_ esc}_{CX,Y} \right) \right)$$
+::: {style="overflow-x: auto;"}
+$$H_{CX,Y,i,j} = \left( {Eff}_{Y,j} \cdot {gear}_{Y} \cdot {sel}_{CX,Y,i} \right) \cdot a_{Y,j} \cdot \left( \delta_{depth,CX,i}^{Y}{\cdot \delta}_{pos,CX,i}^{Y} \right) \cdot \left( \delta_{habitat,CX,i}^{Y} \middle| q_{CX,Y} \right) \cdot \left( {Biom}_{CX,i,j} \cdot \left( 1 - {p\_esc}_{CX,Y} \right) \right)$$
+:::
 
 where *mEff~YY,j~* is the effort applied by the fishery YYY in the box j (days day^-1^) (with 14 different options available to set it up, see chapter 15.5); *gear~YY~* is the swept area of by gear of fishery YYY calculated as proportion of total volume of the cell ([YYY_sweptarea]{style="color: orange;"}) (day^-1^) the fishery can "sweep" (for static gear that just sits on the bottom, such as lobster pots, this does not represent active movement by the gear but animals moving to and envountering the gear); *sel~i~* is the selectivity of fishery YYY on age group *i* of species CX (ranging from 0 to 1, see chapter 15.8); *a~YY,j~* is the optional management scalar on fishery YYY in box *j* that can apply temporary or permanent reductions in effort (see chaper 16); *δ~depth.CX,i\ ~*is the depth (vertical) overlap between the species CX age group *i* and fishery YY; *δ~pos,CX,i\ ~*is the postitional availability scalar that accounts for an optional mismatch between the pelagic and demersal distribution of species and the fishery (see below); *δ~habitat.CX,i\ ~*is the habitat overlap between the species CX age group *i* and fishery YY (see below); *Biom~CX,i,j~* is the biomass of the species CX age group *i* in a box *j* (mgN); *q*~CX,YY~ is the catchability of species CX by the fishery YYY (0 to 1) conditional on the habitat refuge scalar used (see chapter XYX); and *p_esc~,CX,YY~* is the proportion of biomass of species CX in the swept area that escapes the fishery YY (0 to 1, see below).
 
@@ -389,7 +391,9 @@ This option is set with [YYY_effortmodel]{style="color: orange;"}=3 and the user
 
 The effort by the fishery Y in a cell j (*Eff~Y,j~* in days day^-1^) in a given timestep is calculated as
 
-$${Eff}_{Y,j} = {TotEff}_{Y} \cdot \left( \varepsilon \cdot \left( {hEff}_{Q + 1,Y,j} - {hEff}_{Q,Y,j} \right) + {hEff}_{Q,Y,j} \right) \cdot \left( \varepsilon \cdot \left( {Eff}_{Q + 1,Y,j} - {Eff}_{Q,Y,j} \right) + {Eff}_{Q,Y,j} \right)$$
+::: {style="overflow-x: auto;"}
+$${Eff}_{Y,j} = {TotEff}_{Y} \cdot \left( \varepsilon \cdot \left( {hEff}_{Q+1,Y,j} - {hEff}_{Q,Y,j} \right) + {hEff}_{Q,Y,j} \right) \cdot \left( \varepsilon \cdot \left( {Eff}_{Q+1,Y,j} - {Eff}_{Q,Y,j} \right) + {Eff}_{Q,Y,j} \right)$$
+:::
 
 where *ɛ* is the proportion of the quarter of the year that has passed; *hEff~Q,Y~* and *hEff~Q+1,Y~* are the box-specific season-specific proportional effort of the fishery Y in quarter Q and Q+1 provided by the user ([Effort_hdistribYYY]{style="color: orange;"}); *Eff~Q,Y~* and *Eff~Q+1,Y~* are the seasonal scalars of the total effort of the fishery Y ([mEff_YYY]{style="color: orange;"}, unitless); and *TotEff ~Y~* is the total average daily effort (days day^-1^) of the fishery Y ([YYY_Effort]{style="color: orange;"}, days per day). The box-specific effort proportions must sum to 1 for each quarter of the year. The proportional effort is the season-specific scalar on the total yearly effort. The quarterly distributions and scalars are interpolated linearly through the year, in the same way as it is done in the prescribed vertebrate spatial distributions (see chapter 11.1).
 

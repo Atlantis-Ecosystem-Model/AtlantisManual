@@ -47,11 +47,11 @@ A lot of management decisions are based on TACs -- when a fishery exceeds its TA
 
 1)  **Pseudo assessments** (done if [pseudo_assess]{style="color: orange;"}=1 in *harvest.prm*) are the simplest version of stock assessments. It uses Atlantis biomasses and a random error added to them as inputs into the fishing mortality estimator and harvest control rule calculations.
 
-2)  **Full integrated assessment**, done in the **Assessment** submodel. This is done only if the *run.bat* file has a set --a parameter with *assessment.prm* parameter file. A number of assessment options are possible: Schafer production model, ADAPT , MSVPA Integrated assessment model (CAB) and R-based assessment calls (please see the [wiki](https://confluence.csiro.au/display/Atlantis/2022/12/22/Calling+R+from+Atlantis+-+Stock+Assessment+and+TAC+setting)).
+2)  **Full integrated assessment**, done in the **Assessment** submodel. This is done only if the *run.bat* file has a set --a parameter with *assessment.prm* parameter file. A number of assessment options are possible: Schafer production model, ADAPT , MSVPA Integrated assessment model (CAB) and R-based assessment calls (please see the wiki).
 
 3)  **Recommended biological catch based assessment** using tiered harvest control rules (applied if [useRBCTiers]{style="color: orange;"}=1 in *harvest.prm*). The tier based assessment follows the harvest control rule hierarchy used in Australia and is specified in the *CallTierAssessment()* routine. It includes a (i) full quantitative population model based (e.g. SS3), (ii) catch curves, (iii) CPUE, (iv) surplus production, (v), average length, (vi) trigger points, and (vii) catch composition. The parameters for these options are specified in *assessment.prm*.
 
-The stock assessment options are not further described in the manual. For further details on the application of different assessment options see [Fulton et al 2007](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155606/43156986/AMS_Final_Report_v6.pdf) or Dichmont et al 2017.
+The stock assessment options are not further described in the manual. For further details on the application of different assessment options see Fulton et al. 2007 or Dichmont et al. 2017.
 :::
 
 ## **16.2. Stock adaptive and TAC-based management**
@@ -284,6 +284,8 @@ Some species are managed using biomass thresholds, if biomass is above a specifi
 
 5.  To set the biomass level at which fishing is allowed for the fishery set the value for [FC_high_thresh_XXX]{style="color: orange;"} for each species in the fishery. This scalar will be applied to the initial biomass to give the threshold biomass. Above this threshold fishing will be allowed.
 
+[]{#_Toc498434983 .anchor}**Table 13.** Parameters used in stock adaptive and TAC based management.
+
 ::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
@@ -307,15 +309,13 @@ Some species are managed using biomass thresholds, if biomass is above a specifi
 | [YYY_TACchange]{style="color: orange;"} | If >0 TACs can change during the simulation run. If [YYY_TACchange]{style="color: orange;"}=2 then forced changes are applied as described in chapter 15.10 and 16.2.9. If [YYY_TACchange]{style="color: orange;"}=1, then dynamic changes in TACs are used, but this option must have some form of the stock assessment applied (see Note! in chapter 16.1). |
 :::
 
-: []{#_Toc498434983 .anchor}**Table 13.** Parameters used in stock adaptive and TAC based management.
-
 ## **16.3. Broken stick harvest control rules and broken stick scalar** 
 
 The "broken stick" scalar management is similar to the stock adaptive management option described in chapter 16.2.2. However, while the stock adaptive management is applied for the dynamic fishing option, the broken stick management is only available for the user defined fishing mortality option described in chapter 15.3. The setup of broken stick management is not affected by the [YYY_flagmanage]{style="color: orange;"} options used for dynamic fishing options described in chapter 16.2.
 
 Broken stick management is based on a broadly applied fisheries concepts of maximum sustainable yield (MSY), maximum economic yield (MEY) and limit reference points. Usually, in fisheries management the stock biomass and consequently the fishing mortality that would result in the target biomass is calculated in different versions of stock assessments. The biomass and fishing mortality values that lead to MEY, MSY and critically low stock status are referred to as reference point A, reference point B and limit reference points. A very broad rule of thumb is that stock biomass required for MEY is 48% of the virgin biomass, for MSY is about 40% and limit reference point is close to 20% of the virgin biomass. The general idea is that once a stock falls below the target reference point(s), some management action to reduce fishing mortality is required. However, there is a lot of variation and controversies about these reference points, so here they are only given for general illustration! Not all countries use three reference points, and in fact the most conservative reference point A is often ignored and does not lead to any action. Currently, in Atlantis the MEY (reference point A) is considered the primary "target reference point", but effort reductions do not come in to place until stock sizes slip below MSY (reference point B) as that was the form of management rule in place in Australia at the time the code was developed.
 
-![](media/image12.tiff){width="3.36875in" height="2.933333333333333in"}
+![](media/image12.png){width="3.36875in" height="2.933333333333333in"}
 
 []{#_Toc498434138 .anchor}**Figure 11.** The shape of the broken stick harvest control rule with reference points marked on.
 
@@ -342,7 +342,7 @@ The broken stick management routine is run once per year and implemented in the 
 
 In both cases, to drive F to the desired levels the new *F~current~* (calculated as defined below) is found by rescaling the base F ([mFC_XXX]{style="color: orange;"}) appropriately, as noted below (as it is slightly different in each option).
 
-***[Australian option -- usually triggered using tierXXX set to 1 (tier1)]{.underline}***
+***[Australian option -- usually triggered using [tierXXX]{style="color: orange;"} set to 1 (tier1)]{.underline}***
 
 While biomasses are above reference point B the target fishing mortality *F~target~* is used so that the currently implemented fishing mortality rate (*F~current~*) is given by:
 
