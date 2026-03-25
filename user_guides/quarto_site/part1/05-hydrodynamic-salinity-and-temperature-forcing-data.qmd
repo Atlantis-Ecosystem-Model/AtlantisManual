@@ -40,7 +40,7 @@ Oceanographic models simulate processes on their native grid, which is typically
 
 ## **4.2. Transforming oceanographic model output into Atlantis forcing files**
 
-The interpolation of the oceanographic output into Atlantis forcing files requires transformation across different shaped grids and depth layers. Water fluxes must be transformed from the oceanographic grid to Atlantis faces, whereas temperature and salinity values must be averaged onto Atlantis cells and time steps. The transformation must also account for hyperdiffusion, which is caused by the different spatial scales of oceanographic and Atlantis models. Because concentration of tracers within a layer of a box is assumed to be uniform, a tracer that enters a box is instantaneously assumed to be equally distributed throughout the entire box. This means that flow of tracers in large boxes would be overstated by orders of magnitude if this hyperdifussion phenomenon is not taken into account. The (crude) correction simply divides the east-west water flows by the width of the box (in metres) in the east-west orientation and north-south flows by the width of the box in the north-south orientation. This is a simple and a standard approach to correct for hyperdifusion and can be further refined using the horiz_mix scalar in the BGM file.
+The interpolation of the oceanographic output into Atlantis forcing files requires transformation across different shaped grids and depth layers. Water fluxes must be transformed from the oceanographic grid to Atlantis faces, whereas temperature and salinity values must be averaged onto Atlantis cells and time steps. The transformation must also account for hyperdiffusion, which is caused by the different spatial scales of oceanographic and Atlantis models. Because concentration of tracers within a layer of a box is assumed to be uniform, a tracer that enters a box is instantaneously assumed to be equally distributed throughout the entire box. This means that flow of tracers in large boxes would be overstated by orders of magnitude if this hyperdifussion phenomenon is not taken into account. The (crude) correction simply divides the east-west water flows by the width of the box (in metres) in the east-west orientation and north-south flows by the width of the box in the north-south orientation. This is a simple and a standard approach to correct for hyperdifusion and can be further refined using the [horiz_mix]{style="color: orange;"} scalar in the BGM file.
 
 Fortunately, the transformation of oceanographic files is increasingly streamlined. Until recently most model developers used two codes contributed by CSIRO. We will describe them in a more detail below. However, new codes are currently being developed by the Atlantis community, i.e. an [R script by Cecilia Hansen](https://confluence.csiro.au/display/Atlantis/R+code+to+process+ROMS+into+Hydro) to construct hydrodynamic files from ROMS files. Please check the Atlantis wiki [forcing files page](https://confluence.csiro.au/display/Atlantis/Forcing+Files) and Atlantis google group for any new developments in this area.
 
@@ -64,9 +64,7 @@ Interpolation and interpretation of the oceanographic data is one of the main ch
 
 Oceanographic modelling has made rapid progress in recent years and availability of high resolution data is increasing, but there are still a **few issued that should be kept in mind:**
 
-1. **Absence of long term oceanographic data to study long term trends.** Oceanographers rarely conduct 50+ years of high resolution simulations, yet such time frames are often needed for Atlantis simulations. The length of oceanographic data time series usually more on the order of 1 to 25 years (see Table 5 for examples) and a common practice among Atlantis users is to 'loop' over the available oceanographic input years. One should be aware that if long term trends are present in the oceanographic data, they will be seen as jumps in average variable values every time the file is recycled. Also, such recycling alone is not suitable for studying long term environmental trends. Ideally long term forcing files should be obtained directly from long term oceanographic simulations.
-
-As a crude approximation, **long term trends can be forced** onto hydrodynamic files using an [R script](https://confluence.csiro.au/display/Atlantis/R+code%2C+add+climate+trends+to+Hydro.NC) contributed by Hem Nalini Morzaria Luna and used for the Gulf of California model. Alternatively, trends in temperature, salinity and pH can be added in the biology.prm file using several Tchange, Schange and PHchange parameters (see below)
+1. **Absence of long term oceanographic data to study long term trends.** Oceanographers rarely conduct 50+ years of high resolution simulations, yet such time frames are often needed for Atlantis simulations. The length of oceanographic data time series usually more on the order of 1 to 25 years (see Table 5 for examples) and a common practice among Atlantis users is to 'loop' over the available oceanographic input years. One should be aware that if long term trends are present in the oceanographic data, they will be seen as jumps in average variable values every time the file is recycled. Also, such recycling alone is not suitable for studying long term environmental trends. Ideally long term forcing files should be obtained directly from long term oceanographic simulations. As a crude approximation, **long term trends can be forced** onto hydrodynamic files using an [R script](https://confluence.csiro.au/display/Atlantis/R+code%2C+add+climate+trends+to+Hydro.NC) contributed by Hem Nalini Morzaria Luna and used for the Gulf of California model. Alternatively, trends in temperature, salinity and pH can be added in the biology.prm file using several [Tchange]{style="color: orange;"}, [Schange]{style="color: orange;"} and [PHchange]{style="color: orange;"} parameters (see below)
 
 2. **Insufficient resolution in coastal areas**. Most oceanographic global and publicly available models do not include coastal areas at sufficiently high resolution (in many old models they are not represented at all). Yet this is where a lot of important processes of nutrient input, recycling, spawning and larval dispersal take place. It is therefore very important to assess the water fluxes in small or shallow coastal areas and make sure that they are sufficiently accurate (see below).
 
@@ -81,7 +79,7 @@ As a crude approximation, **long term trends can be forced** onto hydrodynamic f
 ::: {.callout-caution}
 **NOTE!** 
 
-The **hydrodynamic forcing files** **are automatically** recycled or **looped** for the entire model simulation run. This is **not the case** with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags temp_rewind and salt_rewind to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set TracerName_rewind (e.g. pH_rewind) parameter to 1.
+The **hydrodynamic forcing files** **are automatically** recycled or **looped** for the entire model simulation run. This is **not the case** with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags [temp_rewind]{style="color: orange;"} and [salt_rewind]{style="color: orange;"} to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set [TracerName_rewind]{style="color: orange;"} (e.g. [pH_rewind]{style="color: orange;"}) parameter to 1.
 :::
 
 ::: {.callout-caution}
@@ -95,14 +93,12 @@ The transport model uses the water exchanges from the hydrodynamic forcing files
 2. add local water inputs or sinks, such as river flows or outflows
 3. apply water exchanges through the surface layer due to precipitation and evaporation 
 
-The final flows of water are given in the output.nc file listed in hdsource, hdsink, eflux and vflux (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.
+The final flows of water are given in the output.nc file listed in [hdsource]{style="color: orange;"}, [hdsink]{style="color: orange;"}, [eflux]{style="color: orange;"} and [vflux]{style="color: orange;"} (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.
 :::
-
 
 ## **4.4. Numbering of vertical layers in the input and output NC files**
 
 ![](media/image29.png){width="1.1888888888888889in" height="4.322916666666667in"}
-
 
 Atlantis allows users to define several water column and sediment layers, although most applications have only one sediment layer.
 
@@ -132,8 +128,9 @@ In the output.nc file the same box will look like:
 
 A good way to understand this is to look at temperature variables. Note that warmer water is on the surface.
 
-| Input.nc file: | Output.nc file: |
-|----------------|-----------------|
+::: {.table-responsive}
+| **Input.nc file** | **Output.nc file** |
+|:-------------------|:-------------------|
 | **Temp =** | **Temp =** |
 | 15.75, 18.54, 18.55, 0, 0, 0, 11.85, | 0, 0, 0, 15.75, 18.54, 18.55, 11.85, |
 | 16.38, 17.64, 17.49, 0, 0, 0, 11.77, | 0, 0, 0, 16.38, 17.64, 17.49, 11.77, |
@@ -142,6 +139,7 @@ A good way to understand this is to look at temperature variables. Note that war
 | 5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32, | 5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32, |
 | 5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93, | 5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93, |
 | ... | ... |
+:::
 
 ## **4.5. Viewing and checking forcing input files with R**
 
@@ -155,27 +153,19 @@ A simple representation of noise and light pollution from human sources can be r
 
 To activate and load this pollution you need to
 
-- *run.prm file*: set flag_pollutant_impacts to 1
+- *run.prm file*: set [flag_pollutant_impacts]{style="color: orange;"} to 1
+- *forcing.prm file*: set [use_pollutantfiles]{style="color: orange;"} to 1 and then
 
-- *forcing.prm file*: set use_pollutantfiles to 1 and then
+[nnoise_pollutionfiles]{style="color: orange;"} X (where X is the number of noise forcing files)
+[Noise_Pollution0.name]{style="color: orange;"} path/noise_filename.nc
+[noise_pollution_rewind]{style="color: orange;"} 1 (set to 0 if you do not want the file(s) to be rewound and reused)
 
-nnoise_pollutionfiles X (where X is the number of noise forcing files)
+[nlight_pollutionfiles]{style="color: orange;"} X (where X is the number of light pollution forcing files)
+[Light_Pollution0.name]{style="color: orange;"} path/light_pollution_filename.nc
+[light_pollution_rewind]{style="color: orange;"} 1 (set to 0 if you do not want the file(s) to be rewound and reused)
 
-Noise_Pollution0.name path/noise_filename.nc
-
-noise_pollution_rewind 1 (set to 0 if you do not want the file(s) to be rewound and reused)
-
-nlight_pollutionfiles X (where X is the number of light pollution forcing files)
-
-Light_Pollution0.name path/light_pollution_filename.nc
-
-light_pollution_rewind 1 (set to 0 if you do not want the file(s) to be rewound and reused)
-
-- *biology.prm* *file*: Add the parameters noise_coefft_XX and light_coefft_XX for each biological group
-
-<!-- -->
-
-- *groups.csv:* Add the columns isLightEffected and isNoiseEffected and set the value to 1 for these if you want noise/light pollution to affect that species group
+- *biology.prm* *file*: Add the parameters [noise_coefft_XX]{style="color: orange;"} and [light_coefft_XX]{style="color: orange;"} for each biological group
+- *groups.csv:* Add the columns [isLightEffected]{style="color: orange;"} and [isNoiseEffected]{style="color: orange;"} and set the value to 1 for these if you want noise/light pollution to affect that species group
 
 For any groups that are affected then during movement an additional scalar ($\delta_{\mathbb{N}}$) is applied to each box (making a site less attractive to the species), with:
 
@@ -183,4 +173,4 @@ $\delta_{\mathbb{N}} = \ \frac{\kappa_{\eta,s}}{\mathbb{N}_{i,j}}$
 
 Where $\mathbb{N}_{i,j}$ represents the level of the pollutant (noise or light) in layer *j* of polygon (box) *i*; and κ~η,s~ is the coefficient for that pollutant type.
 
-In addition, metabolic parameters -- consumption (C) and growth rates (mum) -- are scaled in the same way; while starvation and background (mL, mQ) mortality rates are scaled by the inverse.
+In addition, metabolic parameters -- consumption ([C]{style="color: orange;"}) and growth rates ([mum]{style="color: orange;"}) -- are scaled in the same way; while starvation and background ([mL]{style="color: orange;"}, [mQ]{style="color: orange;"}) mortality rates are scaled by the inverse.
