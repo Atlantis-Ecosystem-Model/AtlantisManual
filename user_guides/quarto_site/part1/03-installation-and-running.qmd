@@ -5,7 +5,7 @@ title: "2. INSTALLATION AND RUNNING"
 ## **2.1 How to check out and install the code**
 
 ::: callout-important
-AR note: as of 2025 this section is no longer current as we moved to GitHub. Update ASAP.
+AR note: as of March 2026 this section is no longer current as we moved to GitHub.
 :::
 
 Atlantis is dynamic and new modifications are introduced almost every month. In addition, Atlantis can run on Windows, Mac and Linux (Unix) operating systems. Therefore, you cannot download one executable, but have to check out and compile the code yourself. This ensures that you have the latest version of the code (and please remember to update it regularly!) with all associated libraries required to run Atlantis. As new functionality is added to Atlantis, sometimes code updates also means that new parameters must be added to the parameter files. While this can be frustrating, it is still highly recommended to update the code at least once a month, as updates also include bug fixes. To keep informed on new parameters the users are advised to subscribe to Atlantis wiki blog posts. In addition, if you need help from the model developers you are much more likely to get help quickly if they don't have to update your model first!
@@ -79,7 +79,7 @@ Alternatively, you can insert a line into the start of your BAT file to copy it 
 
 This would look like:
 
-copy C:\\...your Code directory \\atlantismain\\Debug\\atlantismain.exe
+copy C:\\...your Code directory \\atlantismain\\Debug\\atlantismain.exe .
 
 The dot at the end of the line means that the file atlantismain.exe from Debug directory will be copied to the same directory as the BAT file.
 
@@ -95,7 +95,7 @@ A good practice Atlantis run directory is uncluttered and contains separate fold
 
 It is a good idea to give parameter files meaningful names. For example, it would be hard to remember what *A.prm* refers to, whereas *Biol_noclimate_change.prm* is a lot more informative. However, there is a limit to the length of a filename Atlantis will read-in so if your model won't run because it can't find a file and that file does exist but has a long name try shortening the name and see if that helps.
 
-![](media/image50.tmp){width="4.76in" height="2.733105861767279in"}
+![](media/image50.png){width="4.76in" height="2.733105861767279in"}
 :::
 
 ## **2.2. Input files**
@@ -114,7 +114,7 @@ All files except for NC files can be opened and edited using any basic text edit
 ::: callout-caution
 **PC, Mac and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://confluence.csiro.au/display/Atlantis/File+Formats). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
 
-![](media/image60.tmp){width="5.88799978127734in" height="3.8225634295713036in"}
+![](media/image60_1.png){width="5.88799978127734in" height="3.8225634295713036in"}
 :::
 
 ## **2.3. Overview of Atlantis submodels and the main() routine**
@@ -149,9 +149,9 @@ However, even without a background in c coding, two approaches might be useful i
 
 The first is the **Search** tool. In Visual Studio (or GCC, or another package) go to Edit-\>Find and Replace-\>Quick Find, or simply click Ctrl+F. This will bring up the Search menu where you type in the search string, such as the name of parameter.
 
-In the example below, we search for the `include_atmosphere parameter`, used in the *physics.prm* file. Make sure you search in the "Entire Solution" if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click "Find Next" (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for `include_atmosphere` the relevant routine is called *Amonium_ROC()*, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file **atNutrient.c**
+In the example below, we search for the [include_atmosphere]{style="color: orange;"} parameter, used in the *physics.prm* file. Make sure you search in the "Entire Solution" if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click "Find Next" (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for [include_atmosphere]{style="color: orange;"} the relevant routine is called *Amonium_ROC()*, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file **atNutrient.c**
 
-![](media/image9.tmp){width="6.6930555555555555in" height="3.3208333333333333in"}Here we can see that if `include_atmosphere` flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.
+![](media/image9.png){width="6.6930555555555555in" height="3.3208333333333333in"}Here we can see that if [include_atmosphere]{style="color: orange;"} flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.
 
 The second approach is to simply browse the libraries, files and routines you might be interested in. Of course, to do this you will need to know the names of routines. This can be done by searching for relevant parameters as shown above or by looking in the drop down list of routine names (most GUIs for interrogating code have such a feature).
 
@@ -167,7 +167,7 @@ Now you only have to look through the equations and explore different parameter 
 
 Another useful tool in exploring the code is the **Call Hierarchy** tool. It allows you to see the routines that call or are called from the routine of your interest. In Visual Studio this can be called by clicking the right mouse button while holding the pointer over the routine name and selecting "View Call Hierarchy" option. In the example below, we can see that routine *Vertebrate_Activities()* is called from *Do_Vertebrate_Living()* routine, and that many other routines are called from *Vertebrate_Activities()*
 
-![](media/image11.tmp){width="6.6930555555555555in" height="3.879166666666667in"}
+![](media/image11.png){width="6.6930555555555555in" height="3.879166666666667in"}
 
 ## **2.5. How to setup and start simulations**
 
@@ -231,35 +231,23 @@ By default all simulation outputs will be placed in the same folder as the BAT f
 
 This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Flag                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-+=====================+==================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-| **-i**              | Initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box                                                                                                                                                                                                                                                                                                                                     |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-o**              | Provides a name for the output files. Please make this an nc file (e.g. *simulationOutput1.nc*). Atlantis will create a lot of different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g. *simulationOutput1BiomInd.txt*, *simulationOuput1Catches.txt*)                                                                                                                                   |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-r**              | Parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt                                                                                                                                                                                                                                        |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-p**              | Physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension                                                                                                                                                                                                                                                                   |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-f**              | Forcing file provides pathways to all external (i.e. not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on *force.prm* below). These files are usually stored in your "inputs" folder |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-b**              | Ecological parameters, including feeding preferences, distributions, mortality, reproduction and others                                                                                                                                                                                                                                                                                                                                                                          |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-m**              | Migration parameters (used to be inside the *biology.prm* file)                                                                                                                                                                                                                                                                                                                                                                                                                  |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-s**              | List of functional biological groups and their key characteristics, such as number of age groups                                                                                                                                                                                                                                                                                                                                                                                 |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-h**              | Parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the *force.prm* file and not in the *harvest.prm* file                                                                                                                                                                                               |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-a**              | Sample design, sampling error structures and basic assessment model parameters                                                                                                                                                                                                                                                                                                                                                                                                   |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-e**              | Socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model                                                                                                                                                                                                                                                                                                                                                         |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-d**              | An optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended                                                                                                                                                                                                                                                                                           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-t**              | An optional, but recommended folder, for storing input parameters (see Good Practice Tip 1). If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory                                                                                             |
-+---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+::: {.table-responsive}
+| **Flag** | **Description** |
+|:---------|:----------------|
+| **-i** | Initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box |
+| **-o** | Provides a name for the output files. Please make this an nc file (e.g. *simulationOutput1.nc*). Atlantis will create many different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g. *simulationOutput1BiomInd.txt*, *simulationOutput1Catches.txt*) |
+| **-r** | Parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt |
+| **-p** | Physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension |
+| **-f** | Forcing file provides pathways to all external (i.e. not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on *force.prm* below). These files are usually stored in your "inputs" folder |
+| **-b** | Ecological parameters, including feeding preferences, distributions, mortality, reproduction and others |
+| **-m** | Migration parameters (used to be inside the *biology.prm* file) |
+| **-s** | List of functional biological groups and their key characteristics, such as number of age groups |
+| **-h** | Parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the *force.prm* file and not in the *harvest.prm* file |
+| **-a** | Sample design, sampling error structures and basic assessment model parameters |
+| **-e** | Socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model |
+| **-d** | An optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended |
+| **-t** | An optional, but recommended folder, for storing input parameters. If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory |
+:::
 
 Note, the **forcing files** (such as hydrodynamics, temperature, catch, recruitment and other forcing files) are not included in the *BAT* command line, because they are all listed in the *force.prm* file
 
@@ -299,15 +287,15 @@ Note, that the line here refers to the whole command string, separated by line s
 
 Once you have all the input and parameter files, EXE and BAT files ready, open the Command Prompt (or Terminal) window, navigate to your model run directory that has the BAT files in it (and the EXE if you have not formally installed Atlantis to the command line paths), type the name of your BAT file and press ENTER.
 
-![](media/image12.tmp){width="6.103774059492563in" height="2.948219597550306in"}
+![](media/image12.png){width="6.103774059492563in" height="2.948219597550306in"}
 
 Atlantis should start running now! If all is going well, you should be getting short daily messages, looking like this (45.5 days are completed below):
 
-![](media/image13.tmp){width="5.6690977690288715in" height="2.7708333333333335in"}
+![](media/image13.png){width="5.6690977690288715in" height="2.7708333333333335in"}
 
 When the run is complete, Atlantis will finalise writing all the outputs, free arrays and close (the simulation below was run for 20 days):
 
-![](media/image14.tmp){width="5.439997812773403in" height="3.4895833333333335in"}
+![](media/image14.png){width="5.439997812773403in" height="3.4895833333333335in"}
 
 If, for some reason you need to stop your run before it is finished, go to the output folder and delete the file called "***delete_to_halt_run***". This way Atlantis will write all the outputs to date and free memory before stopping the simulation. If you stop Atlantis any other way the files will not be completed properly and will most likely be uselessly incomplete.
 
@@ -325,7 +313,7 @@ Once the simulation finishes Atlantis will generate **a lot of** **output files*
 The *log.txt* file does not start with the name given in the ***--o*** command. This means that if you accidentally start another simulation with the same output folder name (or without giving the output folder), the *log.txt* file will be overwritten.
 :::
 
-![](media/image15.tmp){width="6.084722222222222in" height="7.940277777777778in"}
+![](media/image15.png){width="6.084722222222222in" height="7.940277777777778in"}
 
 The list of output files in your output folder will look like this (it indeed has **a lot of** outputs!):
 
@@ -333,39 +321,41 @@ The table below lists the main output files. Some output files will be produced 
 
 Table 3. Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files) for any changes.
 
-| Name | Contents | Units | Comments |
-|------|----------|-------|----------|
-| BiomIndx.txt | **Snapshots** of biomasses of all active species (set in the *functional_groups.csv* file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don't forget to look at the box-specific biomasses! | tonnes | Frequency of output controlled with tsumout in *run.prm* |
-| BoxBiomass.txt | **Snapshots** of biomasses of all active species for each of the model domain boxes, excluding boundary boxes | tonnes | Frequency of output controlled with tsumout in *run.prm* |
-| AgeBiomass.txt | **Snapshots** of biomasses of all active species per age group across the entire model domain | tonnes | This output is given if flag_age_output is set to 1 in *run.prm* |
+::: {.table-responsive}
+| **Name** | **Contents** | **Units** | **Comments** |
+|:---------|:-------------|:----------|:-------------|
+| BiomIndx.txt | **Snapshots** of biomasses of all active species (set in the *functional_groups.csv* file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don't forget to look at the box-specific biomasses! | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
+| BoxBiomass.txt | **Snapshots** of biomasses of all active species for each of the model domain boxes, excluding boundary boxes | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
+| AgeBiomass.txt | **Snapshots** of biomasses of all active species per age group across the entire model domain | tonnes | This output is given if [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
 | DietCheck.txt | Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output | proportion | The total sum for each age group is 1 for all prey items |
-| DetailedDietCheck.txt | If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead. | tonnes or proportion | Very useful for understanding model dynamics. Check out R codes for querying these outputs (chapter 2.9) |
-| Mort.txt | Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at **relative M vs F values** for a species, as it does not give accurate mortalities | per year | Note, that if a species is set as isImpacted in the *functional_groups.csv* file, it will have some F value even if it is not explicitly targeted by fishing. |
-| SpecificMort.txt | Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values for this output are written **before** Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that **M or F in the file can sometimes exceed 1**. This will be corrected in a future release of Atlantis as the code is restructured. | per year | At this stage the file is useful only as an **indication of relative morality** for qualitative mortality assessment (high/low) |
-| SpecificPredMort.txt | **Cumulative** predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with the SpecificMort.txt above, **values can exceed 1**. This will be fixed in the future | per year | At this stage the file is useful only as an **indication of relative morality** for qualitative mortality assessment (high/low) |
-| YOY.txt | Biomass of recruits per year (which is the same as per spawning event, because a group only spawns once per year) summed over the total model domain. **Snapshot** at the time of spawning, regardless of when the output is written out. | tonnes | |
-| Migration.txt | Total and migrating biomass (and proportion migrating) of migrating groups per adults and juveniles. | tonnes | Data is given for groups that are tagged as migratory in *biology.prm* file |
-| VertSize.txt | Numbers, average sizes and biomass of each migrating age structured group in the model domain at the time of the output. The output does not include sizes or numbers of individuals outside the model at the time of the output. | | Data is given for groups that are tagged as migratory in *biology.prm* file |
-| .nc | 3D (time, box, layer) **snapshots** of the tracer values at the time of the output | mg/m³ or numb | Frequency of output controlled with toutinc in *run.prm* file |
-| TOT.nc | 2D (time, box) **snapshots** of tracer values per box (summed over layers) | tonnes/km² or numb | Frequency of output controlled with toutinc in *run.prm* file |
-| PROD.nc | 2D (time, box) **snapshots** of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and a number of other diagnostic indices | mg/m³/day or mg/day/individ | Frequency of output controlled with toutinc in *run.prm* file |
-| ANNAGEBIO.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per box. This can be useful when tracking annual changes in species that have multiple years per age group. It also records the average size of individuals of the associated model age group per box (i.e. all age classes in the age group are assumed to be of the same individual size) | number/box and g/individ/box | The output is written only when flag_age_output is set to 1 in *run.prm* file |
+| DetailedDietCheck.txt | If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead | tonnes or proportion | Very useful for understanding model dynamics. Check out R codes for querying these outputs (chapter 2.9) |
+| Mort.txt | Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at **relative M vs F values** for a species, as it does not give accurate mortalities | per year | Note, that if a species is set as isImpacted in the *functional_groups.csv* file, it will have some F value even if it is not explicitly targeted by fishing |
+| SpecificMort.txt | Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values are written **before** Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that **M or F in the file can sometimes exceed 1**. This will be corrected in a future release | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
+| SpecificPredMort.txt | **Cumulative** predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with SpecificMort.txt, **values can exceed 1** | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
+| YOY.txt | Biomass of recruits per year (same as per spawning event, because a group only spawns once per year) summed over the total model domain. **Snapshot** at the time of spawning, regardless of when the output is written out | tonnes | |
+| Migration.txt | Total and migrating biomass (and proportion migrating) of migrating groups per adults and juveniles | tonnes | Data is given for groups that are tagged as migratory in *biology.prm* file |
+| VertSize.txt | Numbers, average sizes and biomass of each migrating age structured group in the model domain at the time of the output. Does not include sizes or numbers of individuals outside the model at the time of the output | | Data is given for groups that are tagged as migratory in *biology.prm* file |
+| .nc | 3D (time, box, layer) **snapshots** of the tracer values at the time of the output | mg/m³ or numb | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
+| TOT.nc | 2D (time, box) **snapshots** of tracer values per box (summed over layers) | tonnes/km² or numb | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
+| PROD.nc | 2D (time, box) **snapshots** of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and other diagnostic indices | mg/m³/day or mg/day/individ | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
+| ANNAGEBIO.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per box. Useful when tracking annual changes in species that have multiple years per age group. Also records average size of individuals of the associated model age group per box | number/box and g/individ/box | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
 | BoxLight.txt | Proportion of sun hours per time step (how long during that time step there was light) | | |
 | Catch.txt | **Cumulative** total catch per functional group over all commercial fisheries | tonnes | |
 | CatchPerFishery.txt | **Cumulative** total catch per functional group per fishery | tonnes | |
 | Discard.txt | **Cumulative** total discards per functional group over all commercial fisheries | tonnes | |
 | DiscardPerFishery.txt | **Cumulative** total discards per functional group per fishery | tonnes | |
-| Effort.txt | **Cumulative** number of days each fishery spends fishing | days | Output given only if dynamic effort is turned on in *harvest.prm* file |
-| HarvestIndx.txt | Fisheries and management indices, e.g. average size of catch, total landings, total discards, the number of changes in gear, bycatch of threatened or endangered species, habitat impacts, total effort expended, social acceptance, conflict between fisheries sectors, management access, management costs | | Many indices only make sense when appropriate fisheries flags are turned on (see chapter on the Harvest submodel) |
-| RecCatch.txt | **Cumulative** total catch per functional group over all recreational fisheries | tonnes | The fleet must be marked as recreational (isREC) in *fisheries.csv* file |
+| Effort.txt | **Cumulative** number of days each fishery spends fishing | days | Output given only if dynamic effort is turned on in *harvest.prm* |
+| HarvestIndx.txt | Fisheries and management indices, e.g. average size of catch, total landings, total discards, number of changes in gear, bycatch of threatened or endangered species, habitat impacts, total effort expended, social acceptance, conflict between fisheries sectors, management access, management costs | | Many indices only make sense when appropriate fisheries flags are turned on (see chapter on the Harvest submodel) |
+| RecCatch.txt | **Cumulative** total catch per functional group over all recreational fisheries | tonnes | The fleet must be marked as recreational ([isREC]{style="color: orange;"}) in *fisheries.csv* |
 | SSB.txt | **Snapshot** of mature biomass at the time of spawning | tonnes | |
-| TAC.txt | Total allowable catch per species per year. It can be fixed or dynamic dependent on the fishing scenarios | tonnes | Only written when fisheries use TAC for management, set in flagManage in *harvest.prm* |
-| BrokenStick.txt | Indices related to broken stick harvest strategy (current F, target F, current biomass and resulting scalar to apply as calculated by the broken stick). | | Only written when broken stick harvesting is turned on in *harvest.prm* |
-| CATCH.nc | **2D** (time, box) file of **cumulative** values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes) | tonnes or number | Frequency of output controlled with toutfinc in *run.prm* file |
-| CATCHTOT.nc | **2D** (time, box) file of **cumulative** values of catch, discards and recreational catch per each box | tonnes | Frequency of output controlled with toutfinc parameter in *run.prm* file |
-| ANNAGECATCH.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per species in the catch and discards. This can be useful when tracking annual changes in number for species that have multiple years per cohort | numb | The output is written only when flag_age_output is set to 1 in *run.prm* file |
-| inputs.ts | amount of tracers coming from all boundary boxes and time series into all dynamic boxes | | Frequency of output controlled with inputs_tout in *run.prm* file |
-| exports.ts | amount of tracers coming from all dynamic boxes and time series into all boundary boxes | | Frequency of output controlled with inputs_tout in *run.prm* file |
+| TAC.txt | Total allowable catch per species per year. It can be fixed or dynamic dependent on the fishing scenarios | tonnes | Only written when fisheries use TAC for management, set in [flagManage]{style="color: orange;"} in *harvest.prm* |
+| BrokenStick.txt | Indices related to broken stick harvest strategy (current F, target F, current biomass and resulting scalar to apply as calculated by the broken stick) | | Only written when broken stick harvesting is turned on in *harvest.prm* |
+| CATCH.nc | **2D** (time, box) file of **cumulative** values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes) | tonnes or number | Frequency of output controlled with [toutfinc]{style="color: orange;"} in *run.prm* |
+| CATCHTOT.nc | **2D** (time, box) file of **cumulative** values of catch, discards and recreational catch per each box | tonnes | Frequency of output controlled with [toutfinc]{style="color: orange;"} in *run.prm* |
+| ANNAGECATCH.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per species in the catch and discards. Useful when tracking annual changes in number for species that have multiple years per cohort | numb | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
+| inputs.ts | Amount of tracers coming from all boundary boxes and time series into all dynamic boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
+| exports.ts | Amount of tracers coming from all dynamic boxes and time series into all boundary boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
+:::
 
 ## **2.7. Introduction to NetCDF files**
 
@@ -487,25 +477,27 @@ The `sumtype` parameter can have two values:
 0.  indicates that data is written in the 3D format (per layer per box per time step) in the main *out.nc* file and given in detail
 1.  indicates that, in addition to the 3D output given in the main *out.nc* file, summary (e.g. total value per box integrated over all layers) is also written to the *outTOT.nc* file
 
-The term "**tracer**" will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO\_\[3\], NH\_\[3\], organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The *initial_conditions.nc* file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.
+The term "**tracer**" will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO3, NH3, organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The *initial_conditions.nc* file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.
 
 Table 4. Parameters used to describe characteristics of Atlantis variables in the *initial_conditions.nc* file. These parameters are read in by the *readBMTracerInfo()* in [attracerIO.c]{.underline}
 
-| Parameter | What it means | Where is it used |
-|-----------|---------------|------------------|
+::: {.table-responsive}
+| **Parameter** | **What it means** | **Where is it used** |
+|:--------------|:------------------|:---------------------|
 | `inwc` | Tracer present in water column¹ | Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups |
-| `insed` | Tracer present in sediments¹ ¹A tracer can be present both in water column **AND** in sediments | Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer |
+| `insed` | Tracer present in sediments¹. ¹A tracer can be present both in water column **AND** in sediments | Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer |
 | `dissol` | Tracer dissolved in water² | Used in routines that deal with diffusion and advection processes |
-| `partic` | Tracer is particulate² ²A tracer can only be "dissolved" OR "particulate" | Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers) |
-| `passive` | Tracer can be passively advected | Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells). Anything that is particulate and passive also require -- particle size, sedimentation velocity (svel), and extra settling velocity (xvel) |
-| `decay` | exponent in the burial or removal rate per second. Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments | Used in the Physics submodel to calculate decay rates. This parameter is very important and will determine **the rate of tracer removal** from the system. It is typically set to 0 for most tracers |
+| `partic` | Tracer is particulate². ²A tracer can only be "dissolved" OR "particulate" | Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers) |
+| `passive` | Tracer can be passively advected | Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells). Anything that is particulate and passive also requires particle size, sedimentation velocity (svel), and extra settling velocity (xvel) |
+| `decay` | Exponent in the burial or removal rate per second. Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments | Used in the Physics submodel to calculate decay rates. This parameter is very important and will determine **the rate of tracer removal** from the system. It is typically set to 0 for most tracers |
 | `svel` | Sedimentation velocity, m/second | Used in the Physics submodel to calculate sedimentation rate of particulate tracers |
-| `xvel` | Extra settling velocity - due to migration of nutrient limitation. This parameter was inherited from PPIB and ERSEM models (see below) and is typically set to 0 | Used in the Physics submodel to calculate sedimentation rate of particulate tracers |
+| `xvel` | Extra settling velocity — due to migration of nutrient limitation. This parameter was inherited from PPIB and ERSEM models and is typically set to 0 | Used in the Physics submodel to calculate sedimentation rate of particulate tracers |
 | `psize` | Particle size, in meters. Particle size will determine deposition of particulate matter in sediments | Used in the Physics submodel to calculate sedimentation and resuspension rate |
-| `b_dens` | Particle bulk density (mg*m⁻³) | Used in the Physics submodel to calculate deposition and porosity. Used in *deposition()* and in calculating sediment density. These parameters in the real world dictate particle movements in real water, but in Atlantis default values would do, because sediment properties are not modelled in such detail. |
+| `b_dens` | Particle bulk density (mg·m⁻³) | Used in the Physics submodel to calculate deposition and porosity. Used in *deposition()* and in calculating sediment density. These parameters in the real world dictate particle movements in real water, but in Atlantis default values would do, because sediment properties are not modelled in such detail |
 | `i_conc` | Particle initial concentration in the deposits | Used in the Physics submodel to calculate deposition and porosity. It is used in *deposition()* routine only |
-| `f_conc` | Particle final concentration in the deposits, after compaction | **This was only used in old models. Current code does not read this in.** |
-| `FillValue` | Default value to use when automatically filling empty cells in the initial_conditions.nc arrays | This is often used when tracer the initial concentration in most cells is identical |
+| `f_conc` | Particle final concentration in the deposits, after compaction | **This was only used in old models. Current code does not read this in** |
+| `FillValue` | Default value to use when automatically filling empty cells in the initial_conditions.nc arrays | This is often used when the tracer initial concentration in most cells is identical |
+:::
 
 ## **2.9 Tools and packages to view and analyse Atlantis input and output files**
 
@@ -525,7 +517,7 @@ Don't be disappointed if your first run attempt fails. This is very common! Belo
 
 **1. Missing DLL files.** This is one of the most common problems for Windows users. Make sure you have installed the right version of the NetCDF library and updated the path as described on the wiki. If issues still persist, you might need to remove and reinstall the NetCDF library.
 
-![](media/image17.tmp){width="4.842210192475941in" height="3.1520002187226597in"}
+![](media/image17.png){width="4.842210192475941in" height="3.1520002187226597in"}
 
 **2. "Can't open input data file".** Make sure the paths specified in the *force.prm* file are correct.
 
@@ -539,13 +531,13 @@ hd0.name ../inputs/forcisets/Baltic_2005_hydro_22May2014.nc
 
 the run went smoothly
 
-![](media/image18.tmp){width="5.092470472440945in" height="3.28in"}
+![](media/image18.png){width="5.092470472440945in" height="3.28in"}
 
 **3. Failed to find a parameter.** If some of the required parameters in the PRM files are missing Atlantis will quit and give an error message. In the case below Atlantis could not find a parameter FCD_mL. This happens when mistakes were made in formatting parameter files (e.g. if you used excel to create your file check to see if the PRM file contains " " around a parameter name, if does remove them and just leave the name) or when new obligatory parameters were added during the code update to account for new functionality (and you have updated the code on your computer)
 
 Keep an eye on the Atlantis wiki [news blog](https://confluence.csiro.au/pages/viewrecentblogposts.action?key=Atlantis) for information on modifications to the code and any new required parameters. To find the missing parameters search the Atlantis wiki for the parameter name to see what is expected.
 
-![](media/image19.tmp){width="5.183999343832021in" height="3.350449475065617in"}
+![](media/image19.png){width="5.183999343832021in" height="3.350449475065617in"}
 
 **4. Atlantis crashes with a specific error message on physics, biology or other processes.**
 

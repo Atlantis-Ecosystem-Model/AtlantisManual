@@ -35,9 +35,7 @@ For further information on model details and equations, see the Atlantis wiki pa
 
 3. Ebenhöh W, Kohlmeier C, Radford P J (1995). The benthic biological submodel in the European regional seas ecosystem model. *Netherlands Journal of Sea Research*, 33, 423-452.
 
-#### Publications Explaining Processes Used in Atlantis
-
-**Initially called IGBEM and BM2**
+#### Publications Explaining Processes Used in Atlantis (Initially called IGBEM and BM2)
 
 **⚠️ READING THESE TWO PUBLICATIONS IS ESSENTIAL FOR ANY ATLANTIS USER!**
 
@@ -103,19 +101,12 @@ One of Atlantis' defining characteristics is its modular construction. A wide ra
 Most Atlantis development and applications have centred on evaluating alternative management strategies for multispecies fisheries, or exploratory analyses of multiple ecosystem pressures. To date, the Atlantis framework has been applied to over 30 ecosystems around the world (Fig. 1) primarily to study questions of:
 
 1\) overall assessment of alternative management strategies (Kaplan et al. 2012, Savina et al. 2013, Fulton et al. 2014)
-
 2\) historical impacts of harvesting (Link et al. 2010),
-
 3\) compliance with fishery regulations (Ainsworth et al. 2012a, 2012b),
-
 4\) robustness of ecological indicators (Fulton et al. 2005),
-
 5\) exploration of fisher behaviour (Kaplan et al. 2014),
-
 6\) impacts of global change, including acidification ( Kaplan et al. 2010; Griffith et al. 2011, 2012, Fulton and Gorton 2014; Weijerman et al. 2015),
-
 7\) effects of body size changes (Audzijonyte et al. 2013, 2014, 2015).
-
 8\) the implications of model complexity (Fulton et al. 2003, Fulton 2004)
 
 More recently Atlantis has been used to consider the impacts of marine and coastal industries other than fishing.
