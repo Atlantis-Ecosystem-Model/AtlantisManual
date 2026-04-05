@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5. THE PHYSICS SUBMODEL – Atlantis Documentation</title>
+<title>Atlantis Documentation – 5. THE PHYSICS SUBMODEL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,17 +30,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e802c3d2214aaab8f16d3640683e23b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,7 +81,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -102,15 +100,13 @@ window.Quarto = {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Atlantis Documentation</span>
     </a>
@@ -122,7 +118,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -169,10 +165,6 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -361,11 +353,7 @@ Note
 </div>
 </div>
 <p>In this chapter we will:</p>
-<p>1) introduce physics and biogeochemical tracers and their properties,</p>
-<p>2) describe the routines executed in the main <em>physics()</em> routine and parameters in the <em>physics.prm</em> file</p>
-<p>3) explain why in some cases the user might need to correct for the lack of the vertical and horizontal mixing in hydrodynamic forcing files</p>
-<p>4) give a brief introduction to the latest Atlantis developments allowing for the modelling of ice, land and contaminants</p>
-<p>5) provide a small example demonstrating the importance of the optional physics routines</p>
+<p>1) introduce physics and biogeochemical tracers and their properties, 2) describe the routines executed in the main <em>physics()</em> routine and parameters in the <em>physics.prm</em> file 3) explain why in some cases the user might need to correct for the lack of the vertical and horizontal mixing in hydrodynamic forcing files 4) give a brief introduction to the latest Atlantis developments allowing for the modelling of ice, land and contaminants 5) provide a small example demonstrating the importance of the optional physics routines</p>
 <section id="physical-and-biogeochemical-variables-and-their-characteristics" class="level2">
 <h2 class="anchored" data-anchor-id="physical-and-biogeochemical-variables-and-their-characteristics"><strong>5.1. Physical and biogeochemical variables and their characteristics</strong></h2>
 <p>The <em>initial_conditions.nc</em> file lists important characteristics of physical and biogeochemical tracers, used for various calculations in the <em>physics()</em> routine. Here is an example of a tracer description:</p>
@@ -391,7 +379,7 @@ double Det_Si(t, b, z) ;
     Det_Si:f_conc = 200000000. ;
 
 ...</code></pre>
-<p>From this we can see that Det_Si is a three-dimentional variable (t,b,z), found in the water column (inwc=1) and the sediments (insed=1). It is not removed from the system through burial (decay=0), it is not dissolved in the water (dissol=0), but is present in a particulate form (partic=1). The sedimentation velocity of particles is svel=-2.894e-005, and its negative value shows that the particles sink (are not buoyant). The particle size is psize = 1.e-005 m</p>
+<p>From this we can see that Det_Si is a three-dimentional variable (t,b,z), found in the water column (<span style="color: orange;">inwc</span>=1) and the sediments (<span style="color: orange;">insed</span>=1). It is not removed from the system through burial (<span style="color: orange;">decay</span>=0), it is not dissolved in the water (<span style="color: orange;">dissol</span>=0), but is present in a particulate form (<span style="color: orange;">partic</span>=1). The sedimentation velocity of particles is <span style="color: orange;">svel</span>=-2.894e-005, and its negative value shows that the particles sink (are not buoyant). The particle size is <span style="color: orange;">psize</span> = 1.e-005 m</p>
 <p><span id="_Toc526762758" class="anchor"></span><strong>Table 6.</strong> Examples of currently used obligatory and optional physics and biogeochemical tracers and variables and their characteristics as defined in the <em>initial_conditions.nc</em> file (collected from different Atlantis applications and used for illustration purposes only). Further description of tracers and physics variables is given in the following chapters on sediment and biological processes.</p>
 </section>
 <section id="atlantis-tracer-properties" class="level2">
@@ -509,7 +497,7 @@ double Det_Si(t, b, z) ;
 </section>
 <section id="optional-tracers-for-dynamic-properties" class="level3">
 <h3 class="anchored" data-anchor-id="optional-tracers-for-dynamic-properties">Optional tracers for dynamic properties</h3>
-<p>Required only if: - ¹ <code>trackAtomicRatio</code> flag is set to 1, or - ² <code>flagIsEstuary</code> flag is set to 1 in the run.prm file</p>
+<p>Required only if: - ¹ <span style="color: orange;">trackAtomicRatio</span> flag is set to 1, or - ² <span style="color: orange;">flagIsEstuary</span> flag is set to 1 in the run.prm file</p>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -720,7 +708,7 @@ double Det_Si(t, b, z) ;
 </section>
 <section id="diagnostic-tracers" class="level3">
 <h3 class="anchored" data-anchor-id="diagnostic-tracers">Diagnostic tracers</h3>
-<p>They are required in the initial_conditions.nc file and are used during debugging for reporting fine scale information about the group that is tagged by which_check parameter in the run.prm file.</p>
+<p>They are required in the initial_conditions.nc file and are used during debugging for reporting fine scale information about the group that is tagged by <span style="color: orange;">which_check</span> parameter in the run.prm file.</p>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -788,46 +776,48 @@ double Det_Si(t, b, z) ;
 </section>
 <section id="the-main-physics-routine" class="level2">
 <h2 class="anchored" data-anchor-id="the-main-physics-routine"><strong>5.2. The main <em>physics()</em> routine</strong></h2>
-<p>The routine <em>physics()</em> defined in <strong>atphysics.c</strong> is the main physics routine, run at each timestep of the simulation. It is described below in the order of execution. The first column lists the routines, the flags to activate them, and shows which flags are active in the example SETas model. The second column describes routines and parameters. Remember that (as elsewhere in this manual) routines are listed in <em>italics() and</em> files containing these routines are bold and <strong><u>underlined</u></strong> and libraries are <strong>bold</strong>. Parameter names from <em>physics.prm</em> are given <strong>in orange</strong> and those from <em>force.prm</em> file are also marked with an asterisk *.</p>
+<p>The routine <em>physics()</em> defined in <strong>atphysics.c</strong> is the main physics routine, run at each timestep of the simulation. It is described below in the order of execution. The first column lists the routines, the flags to activate them, and shows which flags are active in the example SETas model. The second column describes routines and parameters. Remember that (as elsewhere in this manual) routines are listed in <em>italics() and</em> files containing these routines are bold and <strong><u>underlined</u></strong> and libraries are <strong>bold</strong>. Parameter names from <em>physics.prm</em> are given <span style="color: orange;">in orange</span> and those from <em>force.prm</em> file are also marked with an asterisk *.</p>
 <p><strong>I. Execute explicit optional physics processes.</strong></p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
+<col style="width: 43%">
+<col style="width: 56%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Process</th>
-<th>Description</th>
+<th style="text-align: left;"><strong>Process</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Add sources and sinks</strong><br><br><em>sourceSink()</em> in <strong>atsourcesink.c</strong><br><br>injection<br><br>1</td>
-<td>Applies forced inputs and outflows of water and nutrients from point sources, including evaporation and precipitation<br><br>The number of point sources and sinks is given in npointss<em>. The inputs are read in as time series TS or NC files and they give details on inflow or outflow of water (m³, temp, salinity) and nutrients (NH3, NO3, Labile Detritus, Si). They are also used to force nutrient inputs from river inflows, upwelling, waste disposal and other sources. Theoretically sinks of nutrients and water flows can also be included (negative values in the forcing files), but this has not typically been applied in practice.<br><br>The </em>sourceSink()* routine also deals with water exchanges due to evaporation (Evaporation<em>) and precipitation (Precipitation</em>).<br><br>If the injection flag is set to 0 then evaporation and precipitation will not be done at all. Note that evaporation and precipitation forcing files are provided as two-dimensional NC files, with the values given as millimetres of water input or lost on a xy coordinate grid. These inputs are automatically converted to the Atlantis box geometry by the model.</td>
+<td style="text-align: left;"><strong>Add sources and sinks</strong> — <em>sourceSink()</em> in <strong>atsourcesink.c</strong> — <span style="color: orange;">injection</span> — 1</td>
+<td style="text-align: left;">Applies forced inputs and outflows of water and nutrients from point sources, including evaporation and precipitation. The number of point sources and sinks is given in <span style="color: orange;">npointss</span>*. The inputs are read in as time series TS or NC files and they give details on inflow or outflow of water (m³, temp, salinity) and nutrients (NH3, NO3, Labile Detritus, Si). They are also used to force nutrient inputs from river inflows, upwelling, waste disposal and other sources. Theoretically sinks of nutrients and water flows can also be included (negative values in the forcing files), but this has not typically been applied in practice. The <em>sourceSink()</em> routine also deals with water exchanges due to evaporation (<span style="color: orange;">Evaporation</span>*) and precipitation (<span style="color: orange;">Precipitation</span>*). If the <span style="color: orange;">injection</span> flag is set to 0 then evaporation and precipitation will not be done at all. Note that evaporation and precipitation forcing files are provided as two-dimensional NC files, with values given as millimetres of water input or lost on a xy coordinate grid. These inputs are automatically converted to the Atlantis box geometry by the model</td>
 </tr>
 <tr class="even">
-<td><strong>Add solar radiation</strong><br><br><em>do_light()</em> in <strong>light.c</strong><br><br>solar_radiation<br><br>1</td>
-<td>Add solar radiation energy to the surface of the model domain (Solar_radiation<em>). If forcing TS files of solar radiation are provided solar radiation intensity at each time step will be identical across the entire surface area of the model domain.<br><br>This can be changed by setting lim_sun_hours to 1 in </em>biology.prm*, which will apply a set of NASA routines to calculate sun hours for each box given its longitude (using lat/long projections from the BGM file)</td>
+<td style="text-align: left;"><strong>Add solar radiation</strong> — <em>do_light()</em> in <strong>light.c</strong> — <span style="color: orange;">solar_radiation</span> — 1</td>
+<td style="text-align: left;">Add solar radiation energy to the surface of the model domain (<span style="color: orange;">Solar_radiation</span>*). If forcing TS files of solar radiation are provided solar radiation intensity at each time step will be identical across the entire surface area of the model domain. This can be changed by setting <span style="color: orange;">lim_sun_hours</span> to 1 in <em>biology.prm</em>, which will apply a set of NASA routines to calculate sun hours for each box given its longitude (using lat/long projections from the BGM file)</td>
 </tr>
 <tr class="odd">
-<td><strong>Exchange of gasses between the surface water layer and atmosphere</strong><br><br><em>gasExchange()</em> in <strong>atgas.c</strong><br><br>atmospherics<br><br>1</td>
-<td>Executes <strong>temperature independent</strong> gas exchange with the atmosphere across the water-air interface at the top of the surface layer. This calculates new concentrations of gases in the surface layer and it assumes an infinite source of gases in the atmosphere.<br><br>Gas exchange with the surface water layer is governed by the diffusion coefficient, saturation value and stagnant layer thickness of the gas. These coefficients and gases to be used in the routine are hardwired in Atlantis code and defined in the <strong>gaslist[]</strong> data structure in the <strong>atgas.c</strong> library. Currently only O2 and CO2 are included.<br><br>Note that <em>gasExchange()</em> is not the only routine dealing with input of gases from the atmosphere. There is now an option to include explicit deposition of nutrients and gases from the atmosphere, including O2 and CO2 (see description of include_atmosphere flag below). The include_atmosphere option deals with deposition of nutrients and gases trapped in particulate matter. It is handled in the specific routines defined in <strong>atNutrient.c</strong> library <strong>atecology</strong> - e.g.&nbsp;O2 is handed by <em>Oxygen_ROC()</em> routine. The deposition of O2 in <em>Oxygen_ROC()</em> is <strong>temperature-specific</strong>.<br><br><strong>If both include_atmosphere and atmospherics flags are turned off there will be no O2 exchange with the atmosphere!</strong></td>
+<td style="text-align: left;"><strong>Exchange of gasses between the surface water layer and atmosphere</strong> — <em>gasExchange()</em> in <strong>atgas.c</strong> — <span style="color: orange;">atmospherics</span> — 1</td>
+<td style="text-align: left;">Executes <strong>temperature independent</strong> gas exchange with the atmosphere across the water-air interface at the top of the surface layer. This calculates new concentrations of gases in the surface layer and assumes an infinite source of gases in the atmosphere. Gas exchange with the surface water layer is governed by the diffusion coefficient, saturation value and stagnant layer thickness of the gas. These coefficients and gases to be used in the routine are hardwired in Atlantis code and defined in the <strong>gaslist[]</strong> data structure in the <strong>atgas.c</strong> library. Currently only O2 and CO2 are included. Note that <em>gasExchange()</em> is not the only routine dealing with input of gases from the atmosphere. There is now an option to include explicit deposition of nutrients and gases from the atmosphere, including O2 and CO2 (see description of <span style="color: orange;">include_atmosphere</span> flag below). The <span style="color: orange;">include_atmosphere</span> option deals with deposition of nutrients and gases trapped in particulate matter. It is handled in the specific routines defined in <strong>atNutrient.c</strong> library <strong>atecology</strong> — e.g.&nbsp;O2 is handled by <em>Oxygen_ROC()</em> routine. The deposition of O2 in <em>Oxygen_ROC()</em> is <strong>temperature-specific</strong>. <strong>If both <span style="color: orange;">include_atmosphere</span> and atmospherics flags are turned off there will be no O2 exchange with the atmosphere!</strong></td>
 </tr>
 <tr class="even">
-<td><strong>Decay or removal of tracers from the water column and / or sediments.</strong><br><br><em>decayBM()</em> in <strong>atdecay.c</strong><br><br>decay_wc<br><br>decay_sed<br><br>0 0</td>
-<td>Removes tracers from the system, simulating burial in the sediments. The exponent of the removal rate is given in the <em>initial_conditions.nc</em> file :decay parameter, so that removal rate is calculated as [tracer_concentration<em>exp(:decay</em>time)]. The removal rate in the sediments can be scaled to that in the water column with decay_sed_scale parameter to set as a multiplier on the standard :decay rate. If the :decay parameter of a tracer is set to 0 in the <em>initial_conditions.nc</em>, no removal of the tracer will occur even if the routine is activated.<br><br>Note, the <em>decayBM()</em> routine implements a complete removal of the tracer from the system, not the actual decomposition decay. Even if the decay is deactivated a tracer can still break down through nitrification and denitrification processes. In this case however its nitrogen content may not be entirely removed from the system, but can be transformed into other tracers as specified by the nutrient cycling steps (e.g.&nbsp;organic N is transformed into NO3).</td>
+<td style="text-align: left;"><strong>Decay or removal of tracers from the water column and/or sediments</strong> — <em>decayBM()</em> in <strong>atdecay.c</strong> — <span style="color: orange;">decay_wc</span>, <span style="color: orange;">decay_sed</span> — 0 0</td>
+<td style="text-align: left;">Removes tracers from the system, simulating burial in the sediments. The exponent of the removal rate is given in the <em>initial_conditions.nc</em> file <span style="color: orange;">:decay</span> parameter, so that removal rate is calculated as [tracer_concentration*exp(decay*time)]. The removal rate in the sediments can be scaled to that in the water column with <span style="color: orange;">decay_sed_scale</span> parameter to set as a multiplier on the standard <span style="color: orange;">:decay</span> rate. If the <span style="color: orange;">:decay</span> parameter of a tracer is set to 0 in <em>initial_conditions.nc</em>, no removal of the tracer will occur even if the routine is activated. Note, the <em>decayBM()</em> routine implements a complete removal of the tracer from the system, not the actual decomposition decay. Even if the decay is deactivated a tracer can still break down through nitrification and denitrification processes. In this case however its nitrogen content may not be entirely removed from the system, but can be transformed into other tracers as specified by the nutrient cycling steps (e.g.&nbsp;organic N is transformed into NO3)</td>
 </tr>
 <tr class="odd">
-<td><strong>Resuspension of particulate tracers from the sediments into water column</strong><br><br><em>resuspendBM()</em> in <strong>atsuspension.c</strong><br><br>resuspension<br><br>0</td>
-<td>Calculates erosion of sediments due to shear (bottom) stress as a function of sediment type. Then calculates new concentrations of particulate tracers in the bottom water column layer after the resuspension.<br><br>The rate of resuspension depends on the bottom stress, porosity of the sediment and background erosion rate. These parameters are given in the <em>initial_conditions.nc</em> file. The bottom stress can also be supplied as an external BottomStress* forcing file.<br><br>To enable the routine, the user <strong>must</strong> provide non-zero stress values. This can be done either by giving non-zero values for the “Stress” tracer in the <em>initial_conditions.nc</em>; or, if NC Stress values are zero, Atlantis will look for an external forcing file. If no forcing file can be found, Atlantis will quit.<br><br>The maximum rate for a 1cm sediment depth is set in the max_erosion (m in a single time step). The routine is particularly important when simulating wetlands (shallow ecosystems with many sediment layers).</td>
+<td style="text-align: left;"><strong>Resuspension of particulate tracers from the sediments into water column</strong> — <em>resuspendBM()</em> in <strong>atsuspension.c</strong> — <span style="color: orange;">resuspension</span> — 0</td>
+<td style="text-align: left;">Calculates erosion of sediments due to shear (bottom) stress as a function of sediment type. Then calculates new concentrations of particulate tracers in the bottom water column layer after the resuspension. The rate of resuspension depends on the bottom stress, porosity of the sediment and background erosion rate. These parameters are given in the <em>initial_conditions.nc</em> file. The bottom stress can also be supplied as an external <span style="color: orange;">BottomStress</span>* forcing file. To enable the routine, the user <strong>must</strong> provide non-zero stress values. This can be done either by giving non-zero values for the “Stress” tracer in <em>initial_conditions.nc</em>; or, if NC Stress values are zero, Atlantis will look for an external forcing file. If no forcing file can be found, Atlantis will quit. The maximum rate for a 1cm sediment depth is set in <span style="color: orange;">max_erosion</span> (m in a single time step). The routine is particularly important when simulating wetlands (shallow ecosystems with many sediment layers)</td>
 </tr>
 <tr class="even">
-<td><strong>Settling of particulate tracers from the water column</strong><br><br><em>settleBMwc()</em> in <strong>atsettle.c</strong><br><br>settling<br><br>1</td>
-<td>Calculates settling (<strong>downward or upward!</strong>) of <strong>particulate</strong> tracers from the water column depending on their settling velocity :svel parameter in initial_conditions.nc. <strong>Only tracers with non-zero :svel and :psize will be acted upon</strong>. This typically includes particulate biogeochemical tracers (Detrital Si) and some phyto- and zooplankton.<br><br>If settling velocity is positive, particles are buoyant and rise up through the water column (done in the <em>advect_up()</em> routine). If settling velocity is negative, particles sink towards the bottom (done in the <em>advect_down()</em> routine).<br><br>The flux of tracers from the lowest water column layer is added to the uppermost sediment layer if the tracer is allowed to exist in the sediments (:insed parameter in <em>initial_condition.nc</em>). The deposition to sediments is done in the <em>deposit()</em> routine in <strong>atdeposition.c</strong>.<br><br>The deposition depends on the sediment’s and tracer’s porosity. The porosity of the tracers is calculated in the <em>calc_por()</em> routine in <strong>atsedprops.c</strong> using the :psize (particle size) and :b_dens (bulk density) parameters from the <em>initial_condition.nc</em> file. Sediment porosity is set as a “phys” variable in the <em>initial_conditions.nc</em> file. However, if the settling routine is turned on sediment porosity is calculated dynamically through the simulation in the <em>deposit()</em> routine. The sediment porosity is calculated as a ratio of the new water volume in the sediment, after deposition, and the total sediment volume, after deposition.<br><br>If a particulate tracer is not allowed to exist in the sediment (:insed is 0 in <em>initial_conditions.nc</em> file), it is retained in the lowest water column layer.<br><br>The <em>deposit()</em> routine uses the maxseddz and minseddz parameters to define the maximum and minimum depth of one sediment layer.<br><br>If the maxseddz is exceeded everything extra will stay in the bottom water layer and no more deposition will occur.</td>
+<td style="text-align: left;"><strong>Settling of particulate tracers from the water column</strong> — <em>settleBMwc()</em> in <strong>atsettle.c</strong> — <span style="color: orange;">settling</span> — 1</td>
+<td style="text-align: left;">Calculates settling (<strong>downward or upward!</strong>) of <strong>particulate</strong> tracers from the water column depending on their settling velocity <span style="color: orange;">:svel</span> parameter in <em>initial_conditions.nc</em>. <strong>Only tracers with non-zero <span style="color: orange;">:svel</span> and <span style="color: orange;">:psize</span> will be acted upon</strong>. This typically includes particulate biogeochemical tracers (Detrital Si) and some phyto- and zooplankton. If settling velocity is positive, particles are buoyant and rise up through the water column (done in the <em>advect_up()</em> routine). If settling velocity is negative, particles sink towards the bottom (done in the <em>advect_down()</em> routine). The flux of tracers from the lowest water column layer is added to the uppermost sediment layer if the tracer is allowed to exist in the sediments (<span style="color: orange;">:insed</span> parameter in <em>initial_conditions.nc</em>). The deposition to sediments is done in the <em>deposit()</em> routine in <strong>atdeposition.c</strong>. The deposition depends on the sediment’s and tracer’s porosity. The porosity of the tracers is calculated in the <em>calc_por()</em> routine in <strong>atsedprops.c</strong> using the <span style="color: orange;">:psize</span> (particle size) and <span style="color: orange;">:b_dens</span> (bulk density) parameters from <em>initial_conditions.nc</em>. Sediment porosity is set as a “phys” variable in <em>initial_conditions.nc</em>. However, if the settling routine is turned on sediment porosity is calculated dynamically through the simulation in the <em>deposit()</em> routine, as a ratio of the new water volume in the sediment after deposition and the total sediment volume after deposition. If a particulate tracer is not allowed to exist in the sediment (<span style="color: orange;">:insed</span> is 0 in <em>initial_conditions.nc</em>), it is retained in the lowest water column layer. The <em>deposit()</em> routine uses the <span style="color: orange;">maxseddz</span> and <span style="color: orange;">minseddz</span> parameters to define the maximum and minimum depth of one sediment layer. If the <span style="color: orange;">maxseddz</span> is exceeded everything extra will stay in the bottom water layer and no more deposition will occur</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>II. Execute optional biological sediment processes – bioirrigation and bioturbation:</strong></p>
 <p>The bioirrigation and bioturbation routines simulate exchange of dissolved and particulate tracers respectively between sediment layers and between the bottom water column layer and the sediment. The baseline bioirrigation and bioturbation routines have been adopted from the PPBIM. However, Atlantis now also applies a multiplier to the baseline rate, which depends on the biomass of the living organisms in the sediment layers. The multiplier is calculated in the Biology submodel and will be described in the relevant chapter.</p>
 <p><strong>The bioturbation routine is only performed when more than one sediment layer is present! Because most models have only one sediment layer, the only way particulate tracers can be returned to the water column is through resuspension.</strong></p>
@@ -836,28 +826,30 @@ double Det_Si(t, b, z) ;
 <p><strong>The “background density” of sediment organisms is set in the <em>initial_conditions.nc</em> file sedbiodens tracer</strong> and it can vary among boxes. Background density represents basic aerobic and anaerobic diversity. This background amount is “enhanced” depending on the abundance of the dynamically modelled infauna and epifauna groups (identified with _INF and _EP names in the GroupType parameter of the <em>functional_groups.csv</em> file). The abundance of dynamically modelled groups changes through time but the background density stays stable. The background biological activity remains present in sediments even if all dynamically modelled groups are wiped out (e.g.&nbsp;in anoxic sediments). Hence bioturbation, bioirrigation and other sediment processes can still occur (if activated).</p>
 <p>Bioturbation and bioirrigation are simulated as exchange in thin water and sediment layers, as shown below. The routines take a small sliver of the water layer and sediment layer, swaps them and calculates new concentrations of dissolved and particulate tracers respectively. The thickness of the sliver to be exchanged reflects the intensity of the bioirrigation and bioturbation processes and depends on the amount of the biological activity in the sediment.</p>
 <p><img src="media/image30.jpeg" style="width:4.82in;height:1.59333in"></p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
+<col style="width: 43%">
+<col style="width: 56%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Process</th>
-<th>Description</th>
+<th style="text-align: left;"><strong>Process</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Bioirrigation: Inflow of water and dissolved tracers from the bottom water layer into sediments due to biological activity</strong><br><br><em>bioirrig()</em> in <strong>atbioirrig.c</strong><br><br>bioirrigation: 1</td>
-<td><em>bioirrig()</em> includes three subroutines (only the last two are done in models with one sediment layer). <em>dissol_diff()</em> calculates diffusion of dissolved tracers across the sediment layers, <strong>if more than one sediment layer is present</strong>. This is calculated as a product of: bi_dissol_kz diffusion constant at zero depth (m²s⁻¹ per animal per m²), density of biological activity of _INF and _EP groups, scalar of biological activity as a function of depth, and scalar of irrigation enhancement due to oxygen concentration. <em>exchange()</em> applies the inflow of water and dissolved tracers between bottom water layer and sediments. <em>injection()</em> does injection of water and dissolved tracers from bottom water layer into sediments, simulating active pumping of water by animals moving in burrows. The profile of biological activity with depth is set by the biosedprofile parameter, which can take four functional forms: constant, linear, parabolic, Gaussian.</td>
+<td style="text-align: left;"><strong>Bioirrigation: Inflow of water and dissolved tracers from the bottom water layer into sediments due to biological activity</strong> — <em>bioirrig()</em> in <strong><u>atbioirrig.c</u></strong> — <span style="color: orange;">bioirrigation</span> — 1</td>
+<td style="text-align: left;"><em>bioirrig()</em> includes three subroutines (only the last two are done in models with one sediment layer): <em>dissol_diff()</em> calculates diffusion of dissolved tracers across the sediment layers, <strong>if more than one sediment layer is present</strong>. This is calculated as a product of: <strong>-</strong> <span style="color: orange;">bi_dissol_kz</span> diffusion constant at zero depth (m<sup>2</sup>s<sup>-1</sup> per animal per m<sup>2</sup>), where the amount of animals per m<sup>2</sup> is set in the <span style="color: orange;"><strong>sedbiodens</strong></span> tracer in the <strong><em>initial_conditions.nc</em></strong> file; - density of biological activity of _INF and _EP groups; - scalar of biological activity as a function of depth (which depends on the profile described in the <span style="color: orange;">biosedprofile</span>); - scalar of irrigation enhancement due to oxygen concentration. <em>exchange()</em> applies the inflow of water and dissolved tracers between bottom water layer and sediments, depending on the concentration of the tracer. This can be seen as a passive exchange of dissolved tracers depending on their concentrations. It is calculated as a product of: <strong>-</strong> <span style="color: orange;">bi_exchange</span> constant (ms<sup>-1</sup> per animal per m<sup>2</sup>); - area of the sediment/water interface; - density of biological activity; - scalar of irrigation enhancement. <em>injection()</em> does injection of water and dissolved tracers from bottom water layer into sediments, simulating active pumping of water by animals moving in burrows: <strong>-</strong> <span style="color: orange;">bi_injection</span> constant at zero depth (m<sup>2</sup>s<sup>-1</sup> per animal per m<sup>2</sup>); - area of the sediment/water interface; - density of biological activity; - scalar of irrigation enhancement. The profile of biological activity with depth is set by the <span style="color: orange;">biosedprofile</span> parameter, which can take four functional forms: constant, linear, parabolic, Gaussian</td>
 </tr>
 <tr class="even">
-<td><strong>Bioturbation: movement of particulate tracers throughout the sediment layers and into the water column due to biological activity</strong><br><br><em>bioturb()</em> in <strong>atbioturb.c</strong><br><br>bioturbation: 1</td>
-<td>Only <strong>particulate</strong> tracers that are not macrobenthos and are allowed in the sediments (sediment grains, settled phytoplankton, microphytobenthos, meiobenthos, detritus and sediment bacteria) can be acted upon by bioturbation. The <em>bioturb()</em> routine includes three subroutines: <em>partic_diff()</em> implements particulate tracer diffusion within the sediments using the diffusion constant bt_partic_kz (m²s⁻¹ per animal per m²). <em>expul()</em> applies expulsion of particulate tracers from sediments into the bottom water column using the bt_expulsion parameter (ms⁻¹ per animal per m²). <em>mix_in()</em> applies exchange of particulate matter across sediment layers using bt_exchange (ms⁻¹ per animal per m²). <strong>This routine works only if more than one sediment layer is present</strong>.</td>
+<td style="text-align: left;"><strong>Bioturbation: movement of particulate tracers throughout the sediment layers and into the water column due to biological activity. This routine works only if more than one sediment layer is present</strong> — <em>bioturb()</em> in <strong><u>atbioturb.c</u></strong> — <span style="color: orange;">bioturbation</span> — 1</td>
+<td style="text-align: left;">Only <strong>particulate</strong> tracers that are not macrobenthos and are allowed in the sediments, i.e.&nbsp;sediment grains, settled phytoplankton, microphytobenthos, meiobenthos, detritus and sediment bacteria, can be acted upon by bioturbation. The <em>bioturb()</em> routine includes three subroutines (like the <em>bioirrig()</em> routine described above): <em>partic_diff()</em> implements particulate tracer diffusion within the sediments and is implemented in the same way as diffusion of dissolved tracers in the <em>dissol_diff()</em> subroutine described above. The diffusion rate is calculated as a product of: - the diffusion constant <span style="color: orange;">bt_partic_kz</span> (m<sup>2</sup>s<sup>-1</sup> per animal per m<sup>2</sup>); - density of biological activity; - scalar of biological activity as a function of depth (which depends on the profile described in the <span style="color: orange;">biosedprofile</span>); - scalar of bioturbation enhancement. <em>expul()</em> applies expulsion of particulate tracers from sediments into the bottom water column. Like above, its constant is set by the <span style="color: orange;">bt_expulsion</span> parameter (ms<sup>-1</sup> per animal per m<sup>2</sup>), which is modified by the biomass density, scaling by depth and the bioturbation enhancement scalar. <em>mix_in()</em> applies exchange of particulate matter across sediment layers. The exchange constant is set in <span style="color: orange;">bt_exchange</span> (ms<sup>-1</sup> per animal per m<sup>2</sup>) which is modified by biomass density, scaling by depth, and bioturbation enhancement scalar</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>III. Execute optional routines to enhance horizontal and vertical diffusion and mixing (see chapter 5.4 for why these routines may be needed):</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -1015,7 +1007,7 @@ Caution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Good practice tip 4
+Good practice tip 4
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1033,7 +1025,7 @@ Caution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Good practice tip 5
+Good practice tip 5
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1396,243 +1388,239 @@ ZZZZ_temp_depend.</p>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1640,161 +1628,185 @@ ZZZZ_temp_depend.</p>
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 </div> <!-- /content -->
 
 

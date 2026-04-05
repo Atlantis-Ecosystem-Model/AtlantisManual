@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4. HYDRODYNAMIC, SALINITY AND TEMPERATURE FORCING DATA – Atlantis Documentation</title>
+<title>Atlantis Documentation – 4. HYDRODYNAMIC, SALINITY AND TEMPERATURE FORCING DATA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,17 +30,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e802c3d2214aaab8f16d3640683e23b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,7 +81,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -102,15 +100,13 @@ window.Quarto = {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Atlantis Documentation</span>
     </a>
@@ -122,7 +118,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -169,10 +165,6 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -463,7 +455,7 @@ window.Quarto = {
 </section>
 <section id="transforming-oceanographic-model-output-into-atlantis-forcing-files" class="level2">
 <h2 class="anchored" data-anchor-id="transforming-oceanographic-model-output-into-atlantis-forcing-files"><strong>4.2. Transforming oceanographic model output into Atlantis forcing files</strong></h2>
-<p>The interpolation of the oceanographic output into Atlantis forcing files requires transformation across different shaped grids and depth layers. Water fluxes must be transformed from the oceanographic grid to Atlantis faces, whereas temperature and salinity values must be averaged onto Atlantis cells and time steps. The transformation must also account for hyperdiffusion, which is caused by the different spatial scales of oceanographic and Atlantis models. Because concentration of tracers within a layer of a box is assumed to be uniform, a tracer that enters a box is instantaneously assumed to be equally distributed throughout the entire box. This means that flow of tracers in large boxes would be overstated by orders of magnitude if this hyperdifussion phenomenon is not taken into account. The (crude) correction simply divides the east-west water flows by the width of the box (in metres) in the east-west orientation and north-south flows by the width of the box in the north-south orientation. This is a simple and a standard approach to correct for hyperdifusion and can be further refined using the horiz_mix scalar in the BGM file.</p>
+<p>The interpolation of the oceanographic output into Atlantis forcing files requires transformation across different shaped grids and depth layers. Water fluxes must be transformed from the oceanographic grid to Atlantis faces, whereas temperature and salinity values must be averaged onto Atlantis cells and time steps. The transformation must also account for hyperdiffusion, which is caused by the different spatial scales of oceanographic and Atlantis models. Because concentration of tracers within a layer of a box is assumed to be uniform, a tracer that enters a box is instantaneously assumed to be equally distributed throughout the entire box. This means that flow of tracers in large boxes would be overstated by orders of magnitude if this hyperdifussion phenomenon is not taken into account. The (crude) correction simply divides the east-west water flows by the width of the box (in metres) in the east-west orientation and north-south flows by the width of the box in the north-south orientation. This is a simple and a standard approach to correct for hyperdifusion and can be further refined using the <span style="color: orange;">horiz_mix</span> scalar in the BGM file.</p>
 <p>Fortunately, the transformation of oceanographic files is increasingly streamlined. Until recently most model developers used two codes contributed by CSIRO. We will describe them in a more detail below. However, new codes are currently being developed by the Atlantis community, i.e.&nbsp;an <a href="https://confluence.csiro.au/display/Atlantis/R+code+to+process+ROMS+into+Hydro">R script by Cecilia Hansen</a> to construct hydrodynamic files from ROMS files. Please check the Atlantis wiki <a href="https://confluence.csiro.au/display/Atlantis/Forcing+Files">forcing files page</a> and Atlantis google group for any new developments in this area.</p>
 <p>The interpolation of oceanographic data onto the Atlantis model geometry requires three main conversions (Fig. 7):</p>
 <ol type="1">
@@ -480,7 +472,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Good practice tip 3
+Good practice tip 3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -492,10 +484,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="things-to-keep-in-mind-about-hydrodynamic-forcing-files"><strong>4.3. Things to keep in mind about hydrodynamic forcing files</strong></h2>
 <p>Oceanographic modelling has made rapid progress in recent years and availability of high resolution data is increasing, but there are still a <strong>few issued that should be kept in mind:</strong></p>
 <ol type="1">
-<li><strong>Absence of long term oceanographic data to study long term trends.</strong> Oceanographers rarely conduct 50+ years of high resolution simulations, yet such time frames are often needed for Atlantis simulations. The length of oceanographic data time series usually more on the order of 1 to 25 years (see Table 5 for examples) and a common practice among Atlantis users is to ‘loop’ over the available oceanographic input years. One should be aware that if long term trends are present in the oceanographic data, they will be seen as jumps in average variable values every time the file is recycled. Also, such recycling alone is not suitable for studying long term environmental trends. Ideally long term forcing files should be obtained directly from long term oceanographic simulations.</li>
-</ol>
-<p>As a crude approximation, <strong>long term trends can be forced</strong> onto hydrodynamic files using an <a href="https://confluence.csiro.au/display/Atlantis/R+code%2C+add+climate+trends+to+Hydro.NC">R script</a> contributed by Hem Nalini Morzaria Luna and used for the Gulf of California model. Alternatively, trends in temperature, salinity and pH can be added in the biology.prm file using several Tchange, Schange and PHchange parameters (see below)</p>
-<ol start="2" type="1">
+<li><p><strong>Absence of long term oceanographic data to study long term trends.</strong> Oceanographers rarely conduct 50+ years of high resolution simulations, yet such time frames are often needed for Atlantis simulations. The length of oceanographic data time series usually more on the order of 1 to 25 years (see Table 5 for examples) and a common practice among Atlantis users is to ‘loop’ over the available oceanographic input years. One should be aware that if long term trends are present in the oceanographic data, they will be seen as jumps in average variable values every time the file is recycled. Also, such recycling alone is not suitable for studying long term environmental trends. Ideally long term forcing files should be obtained directly from long term oceanographic simulations. As a crude approximation, <strong>long term trends can be forced</strong> onto hydrodynamic files using an <a href="https://confluence.csiro.au/display/Atlantis/R+code%2C+add+climate+trends+to+Hydro.NC">R script</a> contributed by Hem Nalini Morzaria Luna and used for the Gulf of California model. Alternatively, trends in temperature, salinity and pH can be added in the biology.prm file using several <span style="color: orange;">Tchange</span>, <span style="color: orange;">Schange</span> and <span style="color: orange;">PHchange</span> parameters (see below)</p></li>
 <li><p><strong>Insufficient resolution in coastal areas</strong>. Most oceanographic global and publicly available models do not include coastal areas at sufficiently high resolution (in many old models they are not represented at all). Yet this is where a lot of important processes of nutrient input, recycling, spawning and larval dispersal take place. It is therefore very important to assess the water fluxes in small or shallow coastal areas and make sure that they are sufficiently accurate (see below).</p></li>
 <li><p><strong>Loss of resolution to represent eddies and upwelling.</strong> Translating high resolution oceanographic models to the Atlantis polygons means that transformed forcing files may not capture the true magnitude of eddy strength or local upwelling, both of which are important for driving local productivity. To compensate for this loss of resolution it is recommended that local forcing of productivity be included using eddy parameters (see below) and/or forcing additional nutrient loading into coastal waters (to simulate upwelling; Brand et al.&nbsp;2007).</p></li>
 <li><p><strong>Oceanographic models can include ‘drift’</strong>, temporal artefact trends that bias long-term oceanographic outputs. If ‘drift’ is seen to be a problem, modellers can choose a limited set of years of oceanographic output and loop these years.</p></li>
@@ -513,7 +502,7 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>NOTE!</strong></p>
-<p>The <strong>hydrodynamic forcing files</strong> <strong>are automatically</strong> recycled or <strong>looped</strong> for the entire model simulation run. This is <strong>not the case</strong> with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags temp_rewind and salt_rewind to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set TracerName_rewind (e.g.&nbsp;pH_rewind) parameter to 1.</p>
+<p>The <strong>hydrodynamic forcing files</strong> <strong>are automatically</strong> recycled or <strong>looped</strong> for the entire model simulation run. This is <strong>not the case</strong> with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags <span style="color: orange;">temp_rewind</span> and <span style="color: orange;">salt_rewind</span> to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set <span style="color: orange;">TracerName_rewind</span> (e.g.&nbsp;<span style="color: orange;">pH_rewind</span>) parameter to 1.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -534,7 +523,7 @@ Caution
 <li>add local water inputs or sinks, such as river flows or outflows</li>
 <li>apply water exchanges through the surface layer due to precipitation and evaporation</li>
 </ol>
-<p>The final flows of water are given in the output.nc file listed in hdsource, hdsink, eflux and vflux (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.</p>
+<p>The final flows of water are given in the output.nc file listed in <span style="color: orange;">hdsource</span>, <span style="color: orange;">hdsink</span>, <span style="color: orange;">eflux</span> and <span style="color: orange;">vflux</span> (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.</p>
 </div>
 </div>
 </section>
@@ -566,52 +555,54 @@ Caution
 </div>
 </div>
 <p>A good way to understand this is to look at temperature variables. Note that warmer water is on the surface.</p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 48%">
-<col style="width: 51%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Input.nc file:</th>
-<th>Output.nc file:</th>
+<th style="text-align: left;"><strong>Input.nc file</strong></th>
+<th style="text-align: left;"><strong>Output.nc file</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Temp =</strong></td>
-<td><strong>Temp =</strong></td>
+<td style="text-align: left;"><strong>Temp =</strong></td>
+<td style="text-align: left;"><strong>Temp =</strong></td>
 </tr>
 <tr class="even">
-<td>15.75, 18.54, 18.55, 0, 0, 0, 11.85,</td>
-<td>0, 0, 0, 15.75, 18.54, 18.55, 11.85,</td>
+<td style="text-align: left;">15.75, 18.54, 18.55, 0, 0, 0, 11.85,</td>
+<td style="text-align: left;">0, 0, 0, 15.75, 18.54, 18.55, 11.85,</td>
 </tr>
 <tr class="odd">
-<td>16.38, 17.64, 17.49, 0, 0, 0, 11.77,</td>
-<td>0, 0, 0, 16.38, 17.64, 17.49, 11.77,</td>
+<td style="text-align: left;">16.38, 17.64, 17.49, 0, 0, 0, 11.77,</td>
+<td style="text-align: left;">0, 0, 0, 16.38, 17.64, 17.49, 11.77,</td>
 </tr>
 <tr class="even">
-<td>15.66, 17.34, 17.31, 0, 0, 0, 11.57,</td>
-<td>0, 0, 0, 15.66, 17.34, 17.31, 11.57,</td>
+<td style="text-align: left;">15.66, 17.34, 17.31, 0, 0, 0, 11.57,</td>
+<td style="text-align: left;">0, 0, 0, 15.66, 17.34, 17.31, 11.57,</td>
 </tr>
 <tr class="odd">
-<td>16.05, 16.92, 16.87, 0, 0, 0, 11.29,</td>
-<td>0, 0, 0, 16.05, 16.92, 16.87, 11.29,</td>
+<td style="text-align: left;">16.05, 16.92, 16.87, 0, 0, 0, 11.29,</td>
+<td style="text-align: left;">0, 0, 0, 16.05, 16.92, 16.87, 11.29,</td>
 </tr>
 <tr class="even">
-<td>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</td>
-<td>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</td>
+<td style="text-align: left;">5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</td>
+<td style="text-align: left;">5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</td>
 </tr>
 <tr class="odd">
-<td>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</td>
-<td>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</td>
+<td style="text-align: left;">5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</td>
+<td style="text-align: left;">5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</td>
 </tr>
 <tr class="even">
-<td>…</td>
-<td>…</td>
+<td style="text-align: left;">…</td>
+<td style="text-align: left;">…</td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="viewing-and-checking-forcing-input-files-with-r" class="level2">
 <h2 class="anchored" data-anchor-id="viewing-and-checking-forcing-input-files-with-r"><strong>4.5. Viewing and checking forcing input files with R</strong></h2>
@@ -623,269 +614,258 @@ Caution
 <p>A simple representation of noise and light pollution from human sources can be represented as a forcing file. More advanced code linking this pollution to levels of human activity is present in the development branch but not the trunk as yet. In the main trunk code, for now the levels of noise and light pollution must be entered in a forcing NC file in the same way as salinity or temperature.</p>
 <p>To activate and load this pollution you need to</p>
 <ul>
-<li><p><em>run.prm file</em>: set flag_pollutant_impacts to 1</p></li>
-<li><p><em>forcing.prm file</em>: set use_pollutantfiles to 1 and then</p></li>
+<li><em>run.prm file</em>: set <span style="color: orange;">flag_pollutant_impacts</span> to 1</li>
+<li><em>forcing.prm file</em>: set <span style="color: orange;">use_pollutantfiles</span> to 1 and then</li>
 </ul>
-<p>nnoise_pollutionfiles X (where X is the number of noise forcing files)</p>
-<p>Noise_Pollution0.name path/noise_filename.nc</p>
-<p>noise_pollution_rewind 1 (set to 0 if you do not want the file(s) to be rewound and reused)</p>
-<p>nlight_pollutionfiles X (where X is the number of light pollution forcing files)</p>
-<p>Light_Pollution0.name path/light_pollution_filename.nc</p>
-<p>light_pollution_rewind 1 (set to 0 if you do not want the file(s) to be rewound and reused)</p>
+<p><span style="color: orange;">nnoise_pollutionfiles</span> X (where X is the number of noise forcing files) <span style="color: orange;">Noise_Pollution0.name</span> path/noise_filename.nc <span style="color: orange;">noise_pollution_rewind</span> 1 (set to 0 if you do not want the file(s) to be rewound and reused)</p>
+<p><span style="color: orange;">nlight_pollutionfiles</span> X (where X is the number of light pollution forcing files) <span style="color: orange;">Light_Pollution0.name</span> path/light_pollution_filename.nc <span style="color: orange;">light_pollution_rewind</span> 1 (set to 0 if you do not want the file(s) to be rewound and reused)</p>
 <ul>
-<li><em>biology.prm</em> <em>file</em>: Add the parameters noise_coefft_XX and light_coefft_XX for each biological group</li>
-</ul>
-<!-- -->
-<ul>
-<li><em>groups.csv:</em> Add the columns isLightEffected and isNoiseEffected and set the value to 1 for these if you want noise/light pollution to affect that species group</li>
+<li><em>biology.prm</em> <em>file</em>: Add the parameters <span style="color: orange;">noise_coefft_XX</span> and <span style="color: orange;">light_coefft_XX</span> for each biological group</li>
+<li><em>groups.csv:</em> Add the columns <span style="color: orange;">isLightEffected</span> and <span style="color: orange;">isNoiseEffected</span> and set the value to 1 for these if you want noise/light pollution to affect that species group</li>
 </ul>
 <p>For any groups that are affected then during movement an additional scalar (<span class="math inline">\(\delta_{\mathbb{N}}\)</span>) is applied to each box (making a site less attractive to the species), with:</p>
 <p><span class="math inline">\(\delta_{\mathbb{N}} = \ \frac{\kappa_{\eta,s}}{\mathbb{N}_{i,j}}\)</span></p>
 <p>Where <span class="math inline">\(\mathbb{N}_{i,j}\)</span> represents the level of the pollutant (noise or light) in layer <em>j</em> of polygon (box) <em>i</em>; and κ<sub>η,s</sub> is the coefficient for that pollutant type.</p>
-<p>In addition, metabolic parameters – consumption (C) and growth rates (mum) – are scaled in the same way; while starvation and background (mL, mQ) mortality rates are scaled by the inverse.</p>
+<p>In addition, metabolic parameters – consumption (<span style="color: orange;">C</span>) and growth rates (<span style="color: orange;">mum</span>) – are scaled in the same way; while starvation and background (<span style="color: orange;">mL</span>, <span style="color: orange;">mQ</span>) mortality rates are scaled by the inverse.</p>
 
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -893,161 +873,185 @@ Caution
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 </div> <!-- /content -->
 
 

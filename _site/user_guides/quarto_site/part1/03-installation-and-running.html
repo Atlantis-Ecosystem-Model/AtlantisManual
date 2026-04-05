@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2. INSTALLATION AND RUNNING – Atlantis Documentation</title>
+<title>Atlantis Documentation – 2. INSTALLATION AND RUNNING</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,17 +30,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e802c3d2214aaab8f16d3640683e23b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,15 +71,13 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Atlantis Documentation</span>
     </a>
@@ -93,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -140,10 +136,6 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -318,7 +310,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>AR note: as of 2025 this section is no longer current as we moved to GitHub. Update ASAP.</p>
+<p>AR note: as of March 2026 this section is no longer current as we moved to GitHub.</p>
 </div>
 </div>
 <p>Atlantis is dynamic and new modifications are introduced almost every month. In addition, Atlantis can run on Windows, Mac and Linux (Unix) operating systems. Therefore, you cannot download one executable, but have to check out and compile the code yourself. This ensures that you have the latest version of the code (and please remember to update it regularly!) with all associated libraries required to run Atlantis. As new functionality is added to Atlantis, sometimes code updates also means that new parameters must be added to the parameter files. While this can be frustrating, it is still highly recommended to update the code at least once a month, as updates also include bug fixes. To keep informed on new parameters the users are advised to subscribe to Atlantis wiki blog posts. In addition, if you need help from the model developers you are much more likely to get help quickly if they don’t have to update your model first!</p>
@@ -398,7 +390,7 @@ Caution
 <p>Make sure you copy the new executable file from …Atlantis\atlantismain\Debug into your run directory every time you update and recompile the code. Forgetting to do this is one of the more common mistakes.</p>
 <p>Alternatively, you can insert a line into the start of your BAT file to copy it before the start of each run if you want to make sure you always have the latest version.</p>
 <p>This would look like:</p>
-<p>copy C:\…your Code directory \atlantismain\Debug\atlantismain.exe</p>
+<p>copy C:\…your Code directory \atlantismain\Debug\atlantismain.exe .</p>
 <p>The dot at the end of the line means that the file atlantismain.exe from Debug directory will be copied to the same directory as the BAT file.</p>
 <p>See the <a href="https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt">wiki</a> for details.</p>
 </div>
@@ -409,7 +401,7 @@ Caution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Good practice tip 1
+Good practice tip 1
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -417,7 +409,7 @@ Caution
 <p>1) external forcing files or <strong>inputs</strong>. These files are referred to in <em>force.prm</em> file and will rarely need to be modified after the parameterisation of the model. They are usually placed in the ‘inputs’ directory</p>
 <p>2) other <strong>parameter</strong> files. These parameters will be listed in the <em>.bat</em> file used to initialise simulations. Depending on the research question, you will probably modify at least some of the biological, harvest or socio-economic parameters in each of the simulations. Although it is not obligatory we suggest that you keep all your parameters in a separate ‘parameters’ directory.</p>
 <p>It is a good idea to give parameter files meaningful names. For example, it would be hard to remember what <em>A.prm</em> refers to, whereas <em>Biol_noclimate_change.prm</em> is a lot more informative. However, there is a limit to the length of a filename Atlantis will read-in so if your model won’t run because it can’t find a file and that file does exist but has a long name try shortening the name and see if that helps.</p>
-<p><img src="media/image50.tmp" style="width:4.76in;height:2.73311in"></p>
+<p><img src="media/image50.png" style="width:4.76in;height:2.73311in"></p>
 </div>
 </div>
 </section>
@@ -444,7 +436,7 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>PC, Mac and Unix computers use different syntax to indicate line end.</strong> This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the <a href="https://confluence.csiro.au/display/Atlantis/File+Formats">‘flip’ software</a>. If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g.&nbsp;TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu “File Format”). More info on line terminators can be found on the wiki <a href="http://en.wikipedia.org/wiki/Newline">here</a> or by searching in your favourite search engine.</p>
-<p><img src="media/image60.tmp" style="width:5.888in;height:3.82256in"></p>
+<p><img src="media/image60_1.png" style="width:5.888in;height:3.82256in"></p>
 </div>
 </div>
 </section>
@@ -467,8 +459,8 @@ Caution
 <p>Of course, reading the code will require at least some programming skills. Check out a number of C tutorials available online for basic understanding about programming and C. The internet is an ever changing place so the best idea is to use your favourite search engine to find some good c tutorials for someone with your level of coding experience. At time of writing the following were potentially helpful sites <a href="http://www.cprogramming.com">www.cprogramming.com</a> and <a href="http://www.tutorialspoint.com/cprogramming">www.tutorialspoint.com/cprogramming</a> and <a href="http://www.imada.sdu.dk/~svalle/courses/dm14-2005/mirror/c/">www.imada.sdu.dk/~svalle/courses/dm14-2005/mirror/c/</a></p>
 <p>However, even without a background in c coding, two approaches might be useful in starting to navigate through the code.</p>
 <p>The first is the <strong>Search</strong> tool. In Visual Studio (or GCC, or another package) go to Edit-&gt;Find and Replace-&gt;Quick Find, or simply click Ctrl+F. This will bring up the Search menu where you type in the search string, such as the name of parameter.</p>
-<p>In the example below, we search for the <code>include_atmosphere parameter</code>, used in the <em>physics.prm</em> file. Make sure you search in the “Entire Solution” if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click “Find Next” (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for <code>include_atmosphere</code> the relevant routine is called <em>Amonium_ROC()</em>, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file <strong>atNutrient.c</strong></p>
-<p><img src="media/image9.tmp" style="width:6.69306in;height:3.32083in">Here we can see that if <code>include_atmosphere</code> flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.</p>
+<p>In the example below, we search for the <span style="color: orange;">include_atmosphere</span> parameter, used in the <em>physics.prm</em> file. Make sure you search in the “Entire Solution” if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click “Find Next” (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for <span style="color: orange;">include_atmosphere</span> the relevant routine is called <em>Amonium_ROC()</em>, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file <strong>atNutrient.c</strong></p>
+<p><img src="media/image9.png" style="width:6.69306in;height:3.32083in">Here we can see that if <span style="color: orange;">include_atmosphere</span> flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.</p>
 <p>The second approach is to simply browse the libraries, files and routines you might be interested in. Of course, to do this you will need to know the names of routines. This can be done by searching for relevant parameters as shown above or by looking in the drop down list of routine names (most GUIs for interrogating code have such a feature).</p>
 <p>As an example we will look at the formulation of the respiration processes in fully age structured groups.</p>
 <p>Once you open your solution file in Visual Studio C++, expand the submodel <strong>atecology</strong> (<strong>1.</strong>) and double click the <strong>atvertprocesses.c</strong> file (<strong>2.</strong>). The file will be opened (<strong>3.</strong>) and on the right side you have a drop-down menu to browse through the routines defined in the file (<strong>4.</strong>). By clicking on the <em>Fish_Respiration()</em>routine you will find the description of parameters and equations used to calculate it Note that the first reference to <em>Fish_Respiration()</em> in the drop-down menu has a small arrow next to it. By clicking on this option you will find where in the code the routine is called.</p>
@@ -476,7 +468,7 @@ Caution
 <p><img src="media/image10.jpeg" style="width:6.95278in;height:5.21458in"></p>
 <p>Now you only have to look through the equations and explore different parameter values in R or Excel, or on a piece of paper, and assess the shape of the response curve to different parameter values.</p>
 <p>Another useful tool in exploring the code is the <strong>Call Hierarchy</strong> tool. It allows you to see the routines that call or are called from the routine of your interest. In Visual Studio this can be called by clicking the right mouse button while holding the pointer over the routine name and selecting “View Call Hierarchy” option. In the example below, we can see that routine <em>Vertebrate_Activities()</em> is called from <em>Do_Vertebrate_Living()</em> routine, and that many other routines are called from <em>Vertebrate_Activities()</em></p>
-<p><img src="media/image11.tmp" style="width:6.69306in;height:3.87917in"></p>
+<p><img src="media/image11.png" style="width:6.69306in;height:3.87917in"></p>
 </section>
 <section id="how-to-setup-and-start-simulations" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-setup-and-start-simulations"><strong>2.5. How to setup and start simulations</strong></h2>
@@ -567,72 +559,74 @@ Note
 <section id="parameter-files-called-in-the-bat-command-line" class="level3">
 <h3 class="anchored" data-anchor-id="parameter-files-called-in-the-bat-command-line"><em>2.5.3. Parameter files called in the BAT command line</em></h3>
 <p>This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:</p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 95%">
+<col style="width: 37%">
+<col style="width: 62%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Flag</th>
-<th>Description</th>
+<th style="text-align: left;"><strong>Flag</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>-i</strong></td>
-<td>Initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box</td>
+<td style="text-align: left;"><strong>-i</strong></td>
+<td style="text-align: left;">Initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box</td>
 </tr>
 <tr class="even">
-<td><strong>-o</strong></td>
-<td>Provides a name for the output files. Please make this an nc file (e.g.&nbsp;<em>simulationOutput1.nc</em>). Atlantis will create a lot of different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g.&nbsp;<em>simulationOutput1BiomInd.txt</em>, <em>simulationOuput1Catches.txt</em>)</td>
+<td style="text-align: left;"><strong>-o</strong></td>
+<td style="text-align: left;">Provides a name for the output files. Please make this an nc file (e.g.&nbsp;<em>simulationOutput1.nc</em>). Atlantis will create many different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g.&nbsp;<em>simulationOutput1BiomInd.txt</em>, <em>simulationOutput1Catches.txt</em>)</td>
 </tr>
 <tr class="odd">
-<td><strong>-r</strong></td>
-<td>Parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt</td>
+<td style="text-align: left;"><strong>-r</strong></td>
+<td style="text-align: left;">Parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt</td>
 </tr>
 <tr class="even">
-<td><strong>-p</strong></td>
-<td>Physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension</td>
+<td style="text-align: left;"><strong>-p</strong></td>
+<td style="text-align: left;">Physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension</td>
 </tr>
 <tr class="odd">
-<td><strong>-f</strong></td>
-<td>Forcing file provides pathways to all external (i.e.&nbsp;not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on <em>force.prm</em> below). These files are usually stored in your “inputs” folder</td>
+<td style="text-align: left;"><strong>-f</strong></td>
+<td style="text-align: left;">Forcing file provides pathways to all external (i.e.&nbsp;not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on <em>force.prm</em> below). These files are usually stored in your “inputs” folder</td>
 </tr>
 <tr class="even">
-<td><strong>-b</strong></td>
-<td>Ecological parameters, including feeding preferences, distributions, mortality, reproduction and others</td>
+<td style="text-align: left;"><strong>-b</strong></td>
+<td style="text-align: left;">Ecological parameters, including feeding preferences, distributions, mortality, reproduction and others</td>
 </tr>
 <tr class="odd">
-<td><strong>-m</strong></td>
-<td>Migration parameters (used to be inside the <em>biology.prm</em> file)</td>
+<td style="text-align: left;"><strong>-m</strong></td>
+<td style="text-align: left;">Migration parameters (used to be inside the <em>biology.prm</em> file)</td>
 </tr>
 <tr class="even">
-<td><strong>-s</strong></td>
-<td>List of functional biological groups and their key characteristics, such as number of age groups</td>
+<td style="text-align: left;"><strong>-s</strong></td>
+<td style="text-align: left;">List of functional biological groups and their key characteristics, such as number of age groups</td>
 </tr>
 <tr class="odd">
-<td><strong>-h</strong></td>
-<td>Parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the <em>force.prm</em> file and not in the <em>harvest.prm</em> file</td>
+<td style="text-align: left;"><strong>-h</strong></td>
+<td style="text-align: left;">Parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the <em>force.prm</em> file and not in the <em>harvest.prm</em> file</td>
 </tr>
 <tr class="even">
-<td><strong>-a</strong></td>
-<td>Sample design, sampling error structures and basic assessment model parameters</td>
+<td style="text-align: left;"><strong>-a</strong></td>
+<td style="text-align: left;">Sample design, sampling error structures and basic assessment model parameters</td>
 </tr>
 <tr class="odd">
-<td><strong>-e</strong></td>
-<td>Socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model</td>
+<td style="text-align: left;"><strong>-e</strong></td>
+<td style="text-align: left;">Socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model</td>
 </tr>
 <tr class="even">
-<td><strong>-d</strong></td>
-<td>An optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended</td>
+<td style="text-align: left;"><strong>-d</strong></td>
+<td style="text-align: left;">An optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended</td>
 </tr>
 <tr class="odd">
-<td><strong>-t</strong></td>
-<td>An optional, but recommended folder, for storing input parameters (see Good Practice Tip 1). If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory</td>
+<td style="text-align: left;"><strong>-t</strong></td>
+<td style="text-align: left;">An optional, but recommended folder, for storing input parameters. If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Note, the <strong>forcing files</strong> (such as hydrodynamics, temperature, catch, recruitment and other forcing files) are not included in the <em>BAT</em> command line, because they are all listed in the <em>force.prm</em> file</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Good practice tip">
 <div class="callout-header d-flex align-content-center">
@@ -640,7 +634,7 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Good practice tip
+Good practice tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -689,11 +683,11 @@ Caution
 <section id="initialising-simulations" class="level3">
 <h3 class="anchored" data-anchor-id="initialising-simulations"><em>2.5.5. Initialising simulations</em></h3>
 <p>Once you have all the input and parameter files, EXE and BAT files ready, open the Command Prompt (or Terminal) window, navigate to your model run directory that has the BAT files in it (and the EXE if you have not formally installed Atlantis to the command line paths), type the name of your BAT file and press ENTER.</p>
-<p><img src="media/image12.tmp" style="width:6.10377in;height:2.94822in"></p>
+<p><img src="media/image12.png" style="width:6.10377in;height:2.94822in"></p>
 <p>Atlantis should start running now! If all is going well, you should be getting short daily messages, looking like this (45.5 days are completed below):</p>
-<p><img src="media/image13.tmp" style="width:5.6691in;height:2.77083in"></p>
+<p><img src="media/image13.png" style="width:5.6691in;height:2.77083in"></p>
 <p>When the run is complete, Atlantis will finalise writing all the outputs, free arrays and close (the simulation below was run for 20 days):</p>
-<p><img src="media/image14.tmp" style="width:5.44in;height:3.48958in"></p>
+<p><img src="media/image14.png" style="width:5.44in;height:3.48958in"></p>
 <p>If, for some reason you need to stop your run before it is finished, go to the output folder and delete the file called “<strong><em>delete_to_halt_run</em></strong>”. This way Atlantis will write all the outputs to date and free memory before stopping the simulation. If you stop Atlantis any other way the files will not be completed properly and will most likely be uselessly incomplete.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -727,214 +721,216 @@ Caution
 <p>The <em>log.txt</em> file does not start with the name given in the <strong><em>–o</em></strong> command. This means that if you accidentally start another simulation with the same output folder name (or without giving the output folder), the <em>log.txt</em> file will be overwritten.</p>
 </div>
 </div>
-<p><img src="media/image15.tmp" style="width:6.08472in;height:7.94028in"></p>
+<p><img src="media/image15.png" style="width:6.08472in;height:7.94028in"></p>
 <p>The list of output files in your output folder will look like this (it indeed has <strong>a lot of</strong> outputs!):</p>
 <p>The table below lists the main output files. Some output files will be produced only if relevant flags are active (e.g.&nbsp;evolution, different management or fisheries options) and are not included in the table.</p>
 <p>Table 3. Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files">wiki</a> for any changes.</p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 30%">
-<col style="width: 21%">
-<col style="width: 30%">
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 22%">
+<col style="width: 28%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Name</th>
-<th>Contents</th>
-<th>Units</th>
-<th>Comments</th>
+<th style="text-align: left;"><strong>Name</strong></th>
+<th style="text-align: left;"><strong>Contents</strong></th>
+<th style="text-align: left;"><strong>Units</strong></th>
+<th style="text-align: left;"><strong>Comments</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>BiomIndx.txt</td>
-<td><strong>Snapshots</strong> of biomasses of all active species (set in the <em>functional_groups.csv</em> file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don’t forget to look at the box-specific biomasses!</td>
-<td>tonnes</td>
-<td>Frequency of output controlled with tsumout in <em>run.prm</em></td>
+<td style="text-align: left;">BiomIndx.txt</td>
+<td style="text-align: left;"><strong>Snapshots</strong> of biomasses of all active species (set in the <em>functional_groups.csv</em> file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don’t forget to look at the box-specific biomasses!</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">tsumout</span> in <em>run.prm</em></td>
 </tr>
 <tr class="even">
-<td>BoxBiomass.txt</td>
-<td><strong>Snapshots</strong> of biomasses of all active species for each of the model domain boxes, excluding boundary boxes</td>
-<td>tonnes</td>
-<td>Frequency of output controlled with tsumout in <em>run.prm</em></td>
+<td style="text-align: left;">BoxBiomass.txt</td>
+<td style="text-align: left;"><strong>Snapshots</strong> of biomasses of all active species for each of the model domain boxes, excluding boundary boxes</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">tsumout</span> in <em>run.prm</em></td>
 </tr>
 <tr class="odd">
-<td>AgeBiomass.txt</td>
-<td><strong>Snapshots</strong> of biomasses of all active species per age group across the entire model domain</td>
-<td>tonnes</td>
-<td>This output is given if flag_age_output is set to 1 in <em>run.prm</em></td>
+<td style="text-align: left;">AgeBiomass.txt</td>
+<td style="text-align: left;"><strong>Snapshots</strong> of biomasses of all active species per age group across the entire model domain</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">This output is given if <span style="color: orange;">flag_age_output</span> is set to 1 in <em>run.prm</em></td>
 </tr>
 <tr class="even">
-<td>DietCheck.txt</td>
-<td>Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output</td>
-<td>proportion</td>
-<td>The total sum for each age group is 1 for all prey items</td>
+<td style="text-align: left;">DietCheck.txt</td>
+<td style="text-align: left;">Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output</td>
+<td style="text-align: left;">proportion</td>
+<td style="text-align: left;">The total sum for each age group is 1 for all prey items</td>
 </tr>
 <tr class="odd">
-<td>DetailedDietCheck.txt</td>
-<td>If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead.</td>
-<td>tonnes or proportion</td>
-<td>Very useful for understanding model dynamics. Check out R codes for querying these outputs (chapter 2.9)</td>
+<td style="text-align: left;">DetailedDietCheck.txt</td>
+<td style="text-align: left;">If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead</td>
+<td style="text-align: left;">tonnes or proportion</td>
+<td style="text-align: left;">Very useful for understanding model dynamics. Check out R codes for querying these outputs (chapter 2.9)</td>
 </tr>
 <tr class="even">
-<td>Mort.txt</td>
-<td>Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at <strong>relative M vs F values</strong> for a species, as it does not give accurate mortalities</td>
-<td>per year</td>
-<td>Note, that if a species is set as isImpacted in the <em>functional_groups.csv</em> file, it will have some F value even if it is not explicitly targeted by fishing.</td>
+<td style="text-align: left;">Mort.txt</td>
+<td style="text-align: left;">Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at <strong>relative M vs F values</strong> for a species, as it does not give accurate mortalities</td>
+<td style="text-align: left;">per year</td>
+<td style="text-align: left;">Note, that if a species is set as isImpacted in the <em>functional_groups.csv</em> file, it will have some F value even if it is not explicitly targeted by fishing</td>
 </tr>
 <tr class="odd">
-<td>SpecificMort.txt</td>
-<td>Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values for this output are written <strong>before</strong> Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that <strong>M or F in the file can sometimes exceed 1</strong>. This will be corrected in a future release of Atlantis as the code is restructured.</td>
-<td>per year</td>
-<td>At this stage the file is useful only as an <strong>indication of relative morality</strong> for qualitative mortality assessment (high/low)</td>
+<td style="text-align: left;">SpecificMort.txt</td>
+<td style="text-align: left;">Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values are written <strong>before</strong> Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that <strong>M or F in the file can sometimes exceed 1</strong>. This will be corrected in a future release</td>
+<td style="text-align: left;">per year</td>
+<td style="text-align: left;">At this stage the file is useful only as an <strong>indication of relative mortality</strong> for qualitative mortality assessment (high/low)</td>
 </tr>
 <tr class="even">
-<td>SpecificPredMort.txt</td>
-<td><strong>Cumulative</strong> predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with the SpecificMort.txt above, <strong>values can exceed 1</strong>. This will be fixed in the future</td>
-<td>per year</td>
-<td>At this stage the file is useful only as an <strong>indication of relative morality</strong> for qualitative mortality assessment (high/low)</td>
+<td style="text-align: left;">SpecificPredMort.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with SpecificMort.txt, <strong>values can exceed 1</strong></td>
+<td style="text-align: left;">per year</td>
+<td style="text-align: left;">At this stage the file is useful only as an <strong>indication of relative mortality</strong> for qualitative mortality assessment (high/low)</td>
 </tr>
 <tr class="odd">
-<td>YOY.txt</td>
-<td>Biomass of recruits per year (which is the same as per spawning event, because a group only spawns once per year) summed over the total model domain. <strong>Snapshot</strong> at the time of spawning, regardless of when the output is written out.</td>
-<td>tonnes</td>
-<td></td>
+<td style="text-align: left;">YOY.txt</td>
+<td style="text-align: left;">Biomass of recruits per year (same as per spawning event, because a group only spawns once per year) summed over the total model domain. <strong>Snapshot</strong> at the time of spawning, regardless of when the output is written out</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>Migration.txt</td>
-<td>Total and migrating biomass (and proportion migrating) of migrating groups per adults and juveniles.</td>
-<td>tonnes</td>
-<td>Data is given for groups that are tagged as migratory in <em>biology.prm</em> file</td>
+<td style="text-align: left;">Migration.txt</td>
+<td style="text-align: left;">Total and migrating biomass (and proportion migrating) of migrating groups per adults and juveniles</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">Data is given for groups that are tagged as migratory in <em>biology.prm</em> file</td>
 </tr>
 <tr class="odd">
-<td>VertSize.txt</td>
-<td>Numbers, average sizes and biomass of each migrating age structured group in the model domain at the time of the output. The output does not include sizes or numbers of individuals outside the model at the time of the output.</td>
-<td></td>
-<td>Data is given for groups that are tagged as migratory in <em>biology.prm</em> file</td>
+<td style="text-align: left;">VertSize.txt</td>
+<td style="text-align: left;">Numbers, average sizes and biomass of each migrating age structured group in the model domain at the time of the output. Does not include sizes or numbers of individuals outside the model at the time of the output</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Data is given for groups that are tagged as migratory in <em>biology.prm</em> file</td>
 </tr>
 <tr class="even">
-<td>.nc</td>
-<td>3D (time, box, layer) <strong>snapshots</strong> of the tracer values at the time of the output</td>
-<td>mg/m³ or numb</td>
-<td>Frequency of output controlled with toutinc in <em>run.prm</em> file</td>
+<td style="text-align: left;">.nc</td>
+<td style="text-align: left;">3D (time, box, layer) <strong>snapshots</strong> of the tracer values at the time of the output</td>
+<td style="text-align: left;">mg/m³ or numb</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">toutinc</span> in <em>run.prm</em></td>
 </tr>
 <tr class="odd">
-<td>TOT.nc</td>
-<td>2D (time, box) <strong>snapshots</strong> of tracer values per box (summed over layers)</td>
-<td>tonnes/km² or numb</td>
-<td>Frequency of output controlled with toutinc in <em>run.prm</em> file</td>
+<td style="text-align: left;">TOT.nc</td>
+<td style="text-align: left;">2D (time, box) <strong>snapshots</strong> of tracer values per box (summed over layers)</td>
+<td style="text-align: left;">tonnes/km² or numb</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">toutinc</span> in <em>run.prm</em></td>
 </tr>
 <tr class="even">
-<td>PROD.nc</td>
-<td>2D (time, box) <strong>snapshots</strong> of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and a number of other diagnostic indices</td>
-<td>mg/m³/day or mg/day/individ</td>
-<td>Frequency of output controlled with toutinc in <em>run.prm</em> file</td>
+<td style="text-align: left;">PROD.nc</td>
+<td style="text-align: left;">2D (time, box) <strong>snapshots</strong> of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and other diagnostic indices</td>
+<td style="text-align: left;">mg/m³/day or mg/day/individ</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">toutinc</span> in <em>run.prm</em></td>
 </tr>
 <tr class="odd">
-<td>ANNAGEBIO.nc</td>
-<td>Numbers in each <strong>annual</strong> age class of a species (<strong>NOT</strong> the model age group) per box. This can be useful when tracking annual changes in species that have multiple years per age group. It also records the average size of individuals of the associated model age group per box (i.e.&nbsp;all age classes in the age group are assumed to be of the same individual size)</td>
-<td>number/box and g/individ/box</td>
-<td>The output is written only when flag_age_output is set to 1 in <em>run.prm</em> file</td>
+<td style="text-align: left;">ANNAGEBIO.nc</td>
+<td style="text-align: left;">Numbers in each <strong>annual</strong> age class of a species (<strong>NOT</strong> the model age group) per box. Useful when tracking annual changes in species that have multiple years per age group. Also records average size of individuals of the associated model age group per box</td>
+<td style="text-align: left;">number/box and g/individ/box</td>
+<td style="text-align: left;">Output is written only when <span style="color: orange;">flag_age_output</span> is set to 1 in <em>run.prm</em></td>
 </tr>
 <tr class="even">
-<td>BoxLight.txt</td>
-<td>Proportion of sun hours per time step (how long during that time step there was light)</td>
-<td></td>
-<td></td>
+<td style="text-align: left;">BoxLight.txt</td>
+<td style="text-align: left;">Proportion of sun hours per time step (how long during that time step there was light)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td>Catch.txt</td>
-<td><strong>Cumulative</strong> total catch per functional group over all commercial fisheries</td>
-<td>tonnes</td>
-<td></td>
+<td style="text-align: left;">Catch.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> total catch per functional group over all commercial fisheries</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>CatchPerFishery.txt</td>
-<td><strong>Cumulative</strong> total catch per functional group per fishery</td>
-<td>tonnes</td>
-<td></td>
+<td style="text-align: left;">CatchPerFishery.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> total catch per functional group per fishery</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td>Discard.txt</td>
-<td><strong>Cumulative</strong> total discards per functional group over all commercial fisheries</td>
-<td>tonnes</td>
-<td></td>
+<td style="text-align: left;">Discard.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> total discards per functional group over all commercial fisheries</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>DiscardPerFishery.txt</td>
-<td><strong>Cumulative</strong> total discards per functional group per fishery</td>
-<td>tonnes</td>
-<td></td>
+<td style="text-align: left;">DiscardPerFishery.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> total discards per functional group per fishery</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td>Effort.txt</td>
-<td><strong>Cumulative</strong> number of days each fishery spends fishing</td>
-<td>days</td>
-<td>Output given only if dynamic effort is turned on in <em>harvest.prm</em> file</td>
+<td style="text-align: left;">Effort.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> number of days each fishery spends fishing</td>
+<td style="text-align: left;">days</td>
+<td style="text-align: left;">Output given only if dynamic effort is turned on in <em>harvest.prm</em></td>
 </tr>
 <tr class="even">
-<td>HarvestIndx.txt</td>
-<td>Fisheries and management indices, e.g.&nbsp;average size of catch, total landings, total discards, the number of changes in gear, bycatch of threatened or endangered species, habitat impacts, total effort expended, social acceptance, conflict between fisheries sectors, management access, management costs</td>
-<td></td>
-<td>Many indices only make sense when appropriate fisheries flags are turned on (see chapter on the Harvest submodel)</td>
+<td style="text-align: left;">HarvestIndx.txt</td>
+<td style="text-align: left;">Fisheries and management indices, e.g.&nbsp;average size of catch, total landings, total discards, number of changes in gear, bycatch of threatened or endangered species, habitat impacts, total effort expended, social acceptance, conflict between fisheries sectors, management access, management costs</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Many indices only make sense when appropriate fisheries flags are turned on (see chapter on the Harvest submodel)</td>
 </tr>
 <tr class="odd">
-<td>RecCatch.txt</td>
-<td><strong>Cumulative</strong> total catch per functional group over all recreational fisheries</td>
-<td>tonnes</td>
-<td>The fleet must be marked as recreational (isREC) in <em>fisheries.csv</em> file</td>
+<td style="text-align: left;">RecCatch.txt</td>
+<td style="text-align: left;"><strong>Cumulative</strong> total catch per functional group over all recreational fisheries</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">The fleet must be marked as recreational (<span style="color: orange;">isREC</span>) in <em>fisheries.csv</em></td>
 </tr>
 <tr class="even">
-<td>SSB.txt</td>
-<td><strong>Snapshot</strong> of mature biomass at the time of spawning</td>
-<td>tonnes</td>
-<td></td>
+<td style="text-align: left;">SSB.txt</td>
+<td style="text-align: left;"><strong>Snapshot</strong> of mature biomass at the time of spawning</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td>TAC.txt</td>
-<td>Total allowable catch per species per year. It can be fixed or dynamic dependent on the fishing scenarios</td>
-<td>tonnes</td>
-<td>Only written when fisheries use TAC for management, set in flagManage in <em>harvest.prm</em></td>
+<td style="text-align: left;">TAC.txt</td>
+<td style="text-align: left;">Total allowable catch per species per year. It can be fixed or dynamic dependent on the fishing scenarios</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">Only written when fisheries use TAC for management, set in <span style="color: orange;">flagManage</span> in <em>harvest.prm</em></td>
 </tr>
 <tr class="even">
-<td>BrokenStick.txt</td>
-<td>Indices related to broken stick harvest strategy (current F, target F, current biomass and resulting scalar to apply as calculated by the broken stick).</td>
-<td></td>
-<td>Only written when broken stick harvesting is turned on in <em>harvest.prm</em></td>
+<td style="text-align: left;">BrokenStick.txt</td>
+<td style="text-align: left;">Indices related to broken stick harvest strategy (current F, target F, current biomass and resulting scalar to apply as calculated by the broken stick)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Only written when broken stick harvesting is turned on in <em>harvest.prm</em></td>
 </tr>
 <tr class="odd">
-<td>CATCH.nc</td>
-<td><strong>2D</strong> (time, box) file of <strong>cumulative</strong> values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes)</td>
-<td>tonnes or number</td>
-<td>Frequency of output controlled with toutfinc in <em>run.prm</em> file</td>
+<td style="text-align: left;">CATCH.nc</td>
+<td style="text-align: left;"><strong>2D</strong> (time, box) file of <strong>cumulative</strong> values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes)</td>
+<td style="text-align: left;">tonnes or number</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">toutfinc</span> in <em>run.prm</em></td>
 </tr>
 <tr class="even">
-<td>CATCHTOT.nc</td>
-<td><strong>2D</strong> (time, box) file of <strong>cumulative</strong> values of catch, discards and recreational catch per each box</td>
-<td>tonnes</td>
-<td>Frequency of output controlled with toutfinc parameter in <em>run.prm</em> file</td>
+<td style="text-align: left;">CATCHTOT.nc</td>
+<td style="text-align: left;"><strong>2D</strong> (time, box) file of <strong>cumulative</strong> values of catch, discards and recreational catch per each box</td>
+<td style="text-align: left;">tonnes</td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">toutfinc</span> in <em>run.prm</em></td>
 </tr>
 <tr class="odd">
-<td>ANNAGECATCH.nc</td>
-<td>Numbers in each <strong>annual</strong> age class of a species (<strong>NOT</strong> the model age group) per species in the catch and discards. This can be useful when tracking annual changes in number for species that have multiple years per cohort</td>
-<td>numb</td>
-<td>The output is written only when flag_age_output is set to 1 in <em>run.prm</em> file</td>
+<td style="text-align: left;">ANNAGECATCH.nc</td>
+<td style="text-align: left;">Numbers in each <strong>annual</strong> age class of a species (<strong>NOT</strong> the model age group) per species in the catch and discards. Useful when tracking annual changes in number for species that have multiple years per cohort</td>
+<td style="text-align: left;">numb</td>
+<td style="text-align: left;">Output is written only when <span style="color: orange;">flag_age_output</span> is set to 1 in <em>run.prm</em></td>
 </tr>
 <tr class="even">
-<td>inputs.ts</td>
-<td>amount of tracers coming from all boundary boxes and time series into all dynamic boxes</td>
-<td></td>
-<td>Frequency of output controlled with inputs_tout in <em>run.prm</em> file</td>
+<td style="text-align: left;">inputs.ts</td>
+<td style="text-align: left;">Amount of tracers coming from all boundary boxes and time series into all dynamic boxes</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">inputs_tout</span> in <em>run.prm</em></td>
 </tr>
 <tr class="odd">
-<td>exports.ts</td>
-<td>amount of tracers coming from all dynamic boxes and time series into all boundary boxes</td>
-<td></td>
-<td>Frequency of output controlled with inputs_tout in <em>run.prm</em> file</td>
+<td style="text-align: left;">exports.ts</td>
+<td style="text-align: left;">Amount of tracers coming from all dynamic boxes and time series into all boundary boxes</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Frequency of output controlled with <span style="color: orange;">inputs_tout</span> in <em>run.prm</em></td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="introduction-to-netcdf-files" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-netcdf-files"><strong>2.7. Introduction to NetCDF files</strong></h2>
@@ -1045,89 +1041,91 @@ data:  ## start of the data for each variable
 <li>indicates that data is written in the 3D format (per layer per box per time step) in the main <em>out.nc</em> file and given in detail</li>
 <li>indicates that, in addition to the 3D output given in the main <em>out.nc</em> file, summary (e.g.&nbsp;total value per box integrated over all layers) is also written to the <em>outTOT.nc</em> file</li>
 </ol>
-<p>The term “<strong>tracer</strong>” will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO_[3], NH_[3], organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The <em>initial_conditions.nc</em> file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.</p>
+<p>The term “<strong>tracer</strong>” will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO3, NH3, organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The <em>initial_conditions.nc</em> file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.</p>
 <p>Table 4. Parameters used to describe characteristics of Atlantis variables in the <em>initial_conditions.nc</em> file. These parameters are read in by the <em>readBMTracerInfo()</em> in <u>attracerIO.c</u></p>
+<div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 40%">
+<col style="width: 26%">
+<col style="width: 33%">
+<col style="width: 39%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Parameter</th>
-<th>What it means</th>
-<th>Where is it used</th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>What it means</strong></th>
+<th style="text-align: left;"><strong>Where is it used</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>inwc</code></td>
-<td>Tracer present in water column¹</td>
-<td>Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups</td>
+<td style="text-align: left;"><code>inwc</code></td>
+<td style="text-align: left;">Tracer present in water column¹</td>
+<td style="text-align: left;">Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups</td>
 </tr>
 <tr class="even">
-<td><code>insed</code></td>
-<td>Tracer present in sediments¹ ¹A tracer can be present both in water column <strong>AND</strong> in sediments</td>
-<td>Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer</td>
+<td style="text-align: left;"><code>insed</code></td>
+<td style="text-align: left;">Tracer present in sediments¹. ¹A tracer can be present both in water column <strong>AND</strong> in sediments</td>
+<td style="text-align: left;">Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer</td>
 </tr>
 <tr class="odd">
-<td><code>dissol</code></td>
-<td>Tracer dissolved in water²</td>
-<td>Used in routines that deal with diffusion and advection processes</td>
+<td style="text-align: left;"><code>dissol</code></td>
+<td style="text-align: left;">Tracer dissolved in water²</td>
+<td style="text-align: left;">Used in routines that deal with diffusion and advection processes</td>
 </tr>
 <tr class="even">
-<td><code>partic</code></td>
-<td>Tracer is particulate² ²A tracer can only be “dissolved” OR “particulate”</td>
-<td>Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers)</td>
+<td style="text-align: left;"><code>partic</code></td>
+<td style="text-align: left;">Tracer is particulate². ²A tracer can only be “dissolved” OR “particulate”</td>
+<td style="text-align: left;">Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers)</td>
 </tr>
 <tr class="odd">
-<td><code>passive</code></td>
-<td>Tracer can be passively advected</td>
-<td>Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells). Anything that is particulate and passive also require – particle size, sedimentation velocity (svel), and extra settling velocity (xvel)</td>
+<td style="text-align: left;"><code>passive</code></td>
+<td style="text-align: left;">Tracer can be passively advected</td>
+<td style="text-align: left;">Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells). Anything that is particulate and passive also requires particle size, sedimentation velocity (svel), and extra settling velocity (xvel)</td>
 </tr>
 <tr class="even">
-<td><code>decay</code></td>
-<td>exponent in the burial or removal rate per second. Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments</td>
-<td>Used in the Physics submodel to calculate decay rates. This parameter is very important and will determine <strong>the rate of tracer removal</strong> from the system. It is typically set to 0 for most tracers</td>
+<td style="text-align: left;"><code>decay</code></td>
+<td style="text-align: left;">Exponent in the burial or removal rate per second. Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments</td>
+<td style="text-align: left;">Used in the Physics submodel to calculate decay rates. This parameter is very important and will determine <strong>the rate of tracer removal</strong> from the system. It is typically set to 0 for most tracers</td>
 </tr>
 <tr class="odd">
-<td><code>svel</code></td>
-<td>Sedimentation velocity, m/second</td>
-<td>Used in the Physics submodel to calculate sedimentation rate of particulate tracers</td>
+<td style="text-align: left;"><code>svel</code></td>
+<td style="text-align: left;">Sedimentation velocity, m/second</td>
+<td style="text-align: left;">Used in the Physics submodel to calculate sedimentation rate of particulate tracers</td>
 </tr>
 <tr class="even">
-<td><code>xvel</code></td>
-<td>Extra settling velocity - due to migration of nutrient limitation. This parameter was inherited from PPIB and ERSEM models (see below) and is typically set to 0</td>
-<td>Used in the Physics submodel to calculate sedimentation rate of particulate tracers</td>
+<td style="text-align: left;"><code>xvel</code></td>
+<td style="text-align: left;">Extra settling velocity — due to migration of nutrient limitation. This parameter was inherited from PPIB and ERSEM models and is typically set to 0</td>
+<td style="text-align: left;">Used in the Physics submodel to calculate sedimentation rate of particulate tracers</td>
 </tr>
 <tr class="odd">
-<td><code>psize</code></td>
-<td>Particle size, in meters. Particle size will determine deposition of particulate matter in sediments</td>
-<td>Used in the Physics submodel to calculate sedimentation and resuspension rate</td>
+<td style="text-align: left;"><code>psize</code></td>
+<td style="text-align: left;">Particle size, in meters. Particle size will determine deposition of particulate matter in sediments</td>
+<td style="text-align: left;">Used in the Physics submodel to calculate sedimentation and resuspension rate</td>
 </tr>
 <tr class="even">
-<td><code>b_dens</code></td>
-<td>Particle bulk density (mg*m⁻³)</td>
-<td>Used in the Physics submodel to calculate deposition and porosity. Used in <em>deposition()</em> and in calculating sediment density. These parameters in the real world dictate particle movements in real water, but in Atlantis default values would do, because sediment properties are not modelled in such detail.</td>
+<td style="text-align: left;"><code>b_dens</code></td>
+<td style="text-align: left;">Particle bulk density (mg·m⁻³)</td>
+<td style="text-align: left;">Used in the Physics submodel to calculate deposition and porosity. Used in <em>deposition()</em> and in calculating sediment density. These parameters in the real world dictate particle movements in real water, but in Atlantis default values would do, because sediment properties are not modelled in such detail</td>
 </tr>
 <tr class="odd">
-<td><code>i_conc</code></td>
-<td>Particle initial concentration in the deposits</td>
-<td>Used in the Physics submodel to calculate deposition and porosity. It is used in <em>deposition()</em> routine only</td>
+<td style="text-align: left;"><code>i_conc</code></td>
+<td style="text-align: left;">Particle initial concentration in the deposits</td>
+<td style="text-align: left;">Used in the Physics submodel to calculate deposition and porosity. It is used in <em>deposition()</em> routine only</td>
 </tr>
 <tr class="even">
-<td><code>f_conc</code></td>
-<td>Particle final concentration in the deposits, after compaction</td>
-<td><strong>This was only used in old models. Current code does not read this in.</strong></td>
+<td style="text-align: left;"><code>f_conc</code></td>
+<td style="text-align: left;">Particle final concentration in the deposits, after compaction</td>
+<td style="text-align: left;"><strong>This was only used in old models. Current code does not read this in</strong></td>
 </tr>
 <tr class="odd">
-<td><code>FillValue</code></td>
-<td>Default value to use when automatically filling empty cells in the initial_conditions.nc arrays</td>
-<td>This is often used when tracer the initial concentration in most cells is identical</td>
+<td style="text-align: left;"><code>FillValue</code></td>
+<td style="text-align: left;">Default value to use when automatically filling empty cells in the initial_conditions.nc arrays</td>
+<td style="text-align: left;">This is often used when the tracer initial concentration in most cells is identical</td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="tools-and-packages-to-view-and-analyse-atlantis-input-and-output-files" class="level2">
 <h2 class="anchored" data-anchor-id="tools-and-packages-to-view-and-analyse-atlantis-input-and-output-files"><strong>2.9 Tools and packages to view and analyse Atlantis input and output files</strong></h2>
@@ -1145,17 +1143,17 @@ data:  ## start of the data for each variable
 <h2 class="anchored" data-anchor-id="troubleshooting-on-installation-and-running"><strong>2.10. Troubleshooting on installation and running</strong></h2>
 <p>Don’t be disappointed if your first run attempt fails. This is very common! Below is a list of some common errors and more are available on the <a href="https://confluence.csiro.au/display/Atlantis/Common+Windows+Build+Errors">Atlantis wiki</a>:</p>
 <p><strong>1. Missing DLL files.</strong> This is one of the most common problems for Windows users. Make sure you have installed the right version of the NetCDF library and updated the path as described on the wiki. If issues still persist, you might need to remove and reinstall the NetCDF library.</p>
-<p><img src="media/image17.tmp" style="width:4.84221in;height:3.152in"></p>
+<p><img src="media/image17.png" style="width:4.84221in;height:3.152in"></p>
 <p><strong>2. “Can’t open input data file”.</strong> Make sure the paths specified in the <em>force.prm</em> file are correct.</p>
 <p>In the case below there was a typo in the path, the ‘inputs’ directory folder was misspelled</p>
 <p>hd0.name ../inputs<u><strong>s</strong></u>/forcisets/Baltic_2005_hydro_22May2014.nc</p>
 <p>Once this is fixed into</p>
 <p>hd0.name ../inputs/forcisets/Baltic_2005_hydro_22May2014.nc</p>
 <p>the run went smoothly</p>
-<p><img src="media/image18.tmp" style="width:5.09247in;height:3.28in"></p>
+<p><img src="media/image18.png" style="width:5.09247in;height:3.28in"></p>
 <p><strong>3. Failed to find a parameter.</strong> If some of the required parameters in the PRM files are missing Atlantis will quit and give an error message. In the case below Atlantis could not find a parameter FCD_mL. This happens when mistakes were made in formatting parameter files (e.g.&nbsp;if you used excel to create your file check to see if the PRM file contains ” ” around a parameter name, if does remove them and just leave the name) or when new obligatory parameters were added during the code update to account for new functionality (and you have updated the code on your computer)</p>
 <p>Keep an eye on the Atlantis wiki <a href="https://confluence.csiro.au/pages/viewrecentblogposts.action?key=Atlantis">news blog</a> for information on modifications to the code and any new required parameters. To find the missing parameters search the Atlantis wiki for the parameter name to see what is expected.</p>
-<p><img src="media/image19.tmp" style="width:5.184in;height:3.35045in"></p>
+<p><img src="media/image19.png" style="width:5.184in;height:3.35045in"></p>
 <p><strong>4. Atlantis crashes with a specific error message on physics, biology or other processes.</strong></p>
 <p>Atlantis code has inbuilt checks that will cause the program to quit if things go wrong. This can happen if biomasses of some lower trophic groups go to very low levels, or volumes of cells change too much. These messages cannot all be included here, but the best way to understand them is to search for keywords in the message in the code itself. This approach is also useful in understanding where different parameters are used in the code.</p>
 <p>To search for a specific string in the entire code, select Quick Find (Ctrl+F) from the Edit menu, and enter the string you want to find. Make sure you search in the “Entire Solution” (selected in the “Look in:” menu) rather than the current document or routine. Also make sure you enter the text accurately.</p>
@@ -1181,243 +1179,239 @@ data:  ## start of the data for each variable
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1425,161 +1419,185 @@ data:  ## start of the data for each variable
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 </div> <!-- /content -->
 
 

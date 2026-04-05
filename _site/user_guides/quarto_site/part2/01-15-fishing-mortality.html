@@ -842,7 +842,7 @@ Caution
 <p><strong>How is CPUE calculated in Atlantis?</strong></p>
 <p>Catch per unit effort (CPUE) is calculated based on the catch and effort over the “memory” period. For a fishery YYY the CPUE can be calculated either based on all catch (set as <span style="color: orange;">YYY_flaguseall</span>=1) or only on catch of target species (<span style="color: orange;">YYY_flaguseall</span>=0). The calculation of CPUE based on target species only assumes that non target species are of no value and fishers don’t base their future effort allocation decisions on their catch. The target species of a fishery YYY are listed in the <span style="color: orange;">target_YYY</span> parameter (where 1 indicates a target species and 0 indicates a non-target species).</p>
 <p>Recreational fishing is not handled in the same way as commercial fishing, which means that CPUE for recreational fishing will be very overstated, as catch is lumped for invertebrates, as well as pelagic and demersal species, but is counted in the CPUE for each component species. This was done for ease of computation and is acceptable as long as dynamic effort allocation is <strong>NOT</strong> used for the recreational fishing. A warning to this effect has been added to the model initialisation code.</p>
-<p>It is also possible to calculate shot by shot CPUE, which is used when trying to consider how to correct for changes in targeting and fishing behaviour through time. See the description <a href="https://confluence.csiro.au/display/Atlantis/2014/07/28/Shot+by+shot+CPUE+generation">here</a></p>
+<p>It is also possible to calculate shot by shot CPUE, which is used when trying to consider how to correct for changes in targeting and fishing behaviour through time.</p>
 </div>
 </div>
 <p>There are two ways to apply the CPUE scaling. The first one applies constant effort through time and is set through YYY_effortmodel=2. In this option the relative scaling of effort per box is multiplied by the user provided total effort <em>TotEff<sub>Y</sub></em> (YYY_Effort) to get the actual effort per box:</p>
@@ -906,16 +906,8 @@ Caution
 <p>The new ideal effort by the fishery Y in a box j (<em>idEff<sub>Y,j</sub></em> in days day<sup>-1</sup>) in a given timestep is calculated as</p>
 <p><span class="math display">\[{idEff}_{Y,j} = \frac{{Effmax}_{Y}}{1 + e^{\left( - {Effa}_{Y} \cdot {cpue}_{Y,j} \right)}}{- Effoffs}_{Y}\]</span></p>
 <p>where <em>Effmax</em><sub>Y</sub> is the maximum potential effort per box allowed per fishery Y (<span style="color: orange;">YYY_mEff_max</span>, days day<sup>-1</sup>); <em>Effa<sub>Y</sub></em> is the steepness of the effort increase to the maximum limit when CPUE is high (<span style="color: orange;">YYY_mEff_a</span>, unitless and <strong>typically in the range of 0.01 to 0.1</strong>); and <em>Effoffs<sub>Y&nbsp;</sub></em>is the offset of the effort (<span style="color: orange;">YYY_mEff_offset</span>, days day<sup>-1</sup>) to bring down effort in the lowest producibity boxes. This representation was originally developed for a location where fishing continued in locations even after CPUE had dropped to very low levels. In this approach if <em>Effoffs<sub>Y</sub></em> is set to zero then the lowest possible effort levels is half of <em>Effmax</em><sub>Y</sub>. If you do not want any effort in the boxes with very low CPUE levels (e.g.&nbsp;zero) then you will need to set <em>Effmax</em><sub>Y</sub> to twice the desired maximum effort level and <em>Effoffs<sub>Y</sub></em> to half of that (i.e.&nbsp;the desired effort level). This approach may seem artificial, but it produces a range of fishing pressure with the desired spatial heterogeneity and magnitude. Figure 1 shows the ideal new effort given the previous day’s CPUE and the <em>Effa</em> parameter setting the steepness of the effort increase.</p>
-<div id="fig-effort-allocation" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-effort-allocation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image2.png" style="width:4.625in;height:3.54722in" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-effort-allocation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: <strong>Figure 1.</strong> Ideal effort allocation in <span style="color: orange;">YYY_effortmodel</span>=4, where previous day’s CPUE (tons day<sup>-1</sup> per box) varies from 0 to 1000. mEff_max = 10 days day<sup>-1</sup>. <span style="color: black;"><strong>Black</strong></span>: mEff_a=0.01, offset=0. <span style="color: red;"><strong>Red</strong></span>: mEff_a=0.05, offset=0. <span style="color: orange;"><strong>Orange</strong></span>: mEff_a=0.005, offset=0. <span style="color: blue;"><strong>Blue</strong></span>: mEff_a=0.01, offset=5 days day<sup>-1</sup>.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image2.png" style="width:4.625in;height:3.54722in"></p>
+<p><strong>Figure 1.</strong> Ideal effort allocation in <span style="color: orange;">YYY_effortmodel</span>=4, where previous day’s CPUE (tons day<sup>-1</sup> per box) varies from 0 to 1000. mEff_max = 10 days day<sup>-1</sup>. <span style="color: black;"><strong>Black</strong></span>: mEff_a=0.01, offset=0. <span style="color: red;"><strong>Red</strong></span>: mEff_a=0.05, offset=0. <span style="color: orange;"><strong>Orange</strong></span>: mEff_a=0.005, offset=0. <span style="color: blue;"><strong>Blue</strong></span>: mEff_a=0.01, offset=5 days day<sup>-1</sup>. :::</p>
 <p>In the second step, the ideal effort is linearly interpolated across the model domain according to the speed of the fishery boats to obtain the realised new effort. This means that a fishery may not be able to switch to a new box immediately, if the boxes is large. The realised new effort is calculated as</p>
 <p><span class="math display">\[{newEff}_{Y,j} = \max\left( 1,\frac{{Speed}_{Y} \cdot dt}{width} \right) \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}\]</span></p>
 <p>where <em>Speed<sub>Y</sub></em> is the speed of commercial fishing (<span style="color: orange;">Speed_boat</span>, m hour<sup>-1</sup>); <em>dt</em> is the number of hours in the main Atlantis timestep (usually 12, but 6 or 24 are also common); <em>width</em> is the width of the entire model domain along its the longest dimension (north–south or east-west); and <em>oldEff<sub>Y,j</sub></em> is the effort by the fishery Y in the box <em>j</em> in the previous timestep. The (<em>Speed*dt/width</em>) term simply calculates what distance a fishery Y can travel in one time step compared to the entire model domain (e.g.&nbsp;0.1 of the maximum possible distance in the model). It shows that if the fishery can cross the entire model domain in one timestep and therefore find itself in any box of the model domain in one timestep, then the scalar will be 1 and the new effort will be the same as the ideal effort. If the scalar is smaller than one, then new effort will be a combination of the old effort and the ideal effort determined above.</p>
@@ -942,16 +934,8 @@ Caution
 <p><span class="math display">\[{newEff}_{Y,j} = \sum_{Z}^{}\frac{{mFCscale}_{Y}}{Z \cdot {distance}_{z,j}^{\ }} \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}\]</span></p>
 <p>where <em>mFCscale<sub>Y</sub></em> (<span style="color: orange;">YYY_mFCscale</span>, unitless) is a fishery specific scalar which can heighten or lessen the effects of distance and in this way capture social and economic forces that may encourage fishers to go far into the sea or stay close to home (e.g.&nbsp;different fisheries may have different preferences); <em>distance<sub>Z</sub></em> is a distance to port z; and Z is the total number of <strong>ports active</strong> for fishery Y (i.e.&nbsp;the fishery operates from that port and the port is open, see below). Figure 2 shows the effect of <span style="color: orange;">mFCscale</span> parameter on the relative weighing of ideal effort. When <span style="color: orange;">mFCscale</span> is high the ideal effort can be achieved quickly, whereas when the <span style="color: orange;">mFCscale</span> is smaller the switch between the old and new ideal effort distributions is slow. The user entered <span style="color: orange;">mFCscale</span> should be from 0.001 to 10. The lower the <span style="color: orange;">mFCscale</span> the more homogeneous the distribution across the boxes (and closer to previous day’s effort – i.e.&nbsp;the more stable the effort). The <strong>higher the mFCscale the more the change in the effort will overshoot the new ideal effort</strong> and the fishery will be effectively fishing only in the closest boxes. These patterns are achieved because the user entered <span style="color: orange;">mFCscale</span> <strong>is rescaled on read in</strong> by the order of magnitude of the average distance of boxes to port.</p>
 <p>For this option the user must give the number of ports (<span style="color: orange;">K_num_ports</span>) in the <em>run.prm</em> file. The association of each fishery YYY with each port is given in the parameter <span style="color: orange;">ports_YYY</span> which has as many entries as there are ports. The coordinates of the ports are given in the <span style="color: orange;">ports_x</span> and <span style="color: orange;">ports_y</span> parameters, which simply gives the xy coordinates (in metres) within the model space (these coordinates must be in the same projection as the BGM file and thus in metres). The easiest way of setting these coordinates is by using a GIS tool and converting the latitude and longitude coordinates using the projection string given in the top of the BGM file (see chapter 3). The time of port activity is given in <span style="color: orange;">ports_start</span> and <span style="color: orange;">ports_end</span> parameters, which allows for different ports to be active at different times of the simulation (perhaps reflecting historical settlement patterns).</p>
-<div id="fig-port-contribution" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-port-contribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image3.png" style="width:4.65972in;height:4.35556in" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-port-contribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: <strong>Figure 2.</strong> The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e.&nbsp;the mFCscale would be rescaled by the average distance of 520 on read-in). <span style="color: black;"><strong>Black</strong></span>: mFCscale=0.004. <span style="color: red;"><strong>Red</strong></span>: mFCscale=0.01. <span style="color: orange;"><strong>Orange</strong></span>: mFCscale=0.02. <span style="color: blue;"><strong>Blue</strong></span>: mFCscale=0.04. <span style="color: brown;"><strong>Brown</strong></span>: mFCscale=0.1.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image3.png" style="width:4.65972in;height:4.35556in"></p>
+<p><strong>Figure 2.</strong> The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e.&nbsp;the mFCscale would be rescaled by the average distance of 520 on read-in). <span style="color: black;"><strong>Black</strong></span>: mFCscale=0.004. <span style="color: red;"><strong>Red</strong></span>: mFCscale=0.01. <span style="color: orange;"><strong>Orange</strong></span>: mFCscale=0.02. <span style="color: blue;"><strong>Blue</strong></span>: mFCscale=0.04. <span style="color: brown;"><strong>Brown</strong></span>: mFCscale=0.1. :::</p>
 <p>When <span style="color: orange;">mFCscale</span> values are very high it is possible that the effort will overshoot dramatically and will concentrate in one box with best CPUE of the previous day. This can be prevented by not setting a very high <span style="color: orange;">mFCscale</span> value in the first place (or exploring how that might affect the effort), but also by capping the effort per cell. The effort cap is set by first identifying the fisheries where the effort per cell will be capped (<span style="color: orange;">YYY_flagcap_peak</span>=1) and then setting the maximum effort per box using the <span style="color: orange;">YYY_mFCpeak</span> parameter. If the effort is capped, then the effort in the most attractive cells will be reduced to the cap level given by <span style="color: orange;">YYY_mFCpeak</span> and any additional effort instead redistributed and normalised across other attractive cells (which are below <span style="color: orange;">YYY_mFCpeak</span>).</p>
 <p>In addition, this effortmodel option allows for <strong>exploratory fishing</strong> once per year, as described in the chapter 15.5.5. This exploratory fishing will reset the CPUE matrices and will allow new effort in boxes where previous CPUE was zero.</p>
 </section>
@@ -1425,7 +1409,7 @@ Caution
 <p>If the spatial coverage of the fishery is <strong>set to change through time</strong>, as set in the <span style="color: orange;">flagchangep</span> and <span style="color: orange;">YYY_changeP parameter</span>, the <em>prop<sub>fish&nbsp;</sub></em>will be scaled by the scalar defining spatial coverage change. See chapter 15.10 on how forced parameter changes are set. Note, under this formulation if <em>k_pattern</em> is set to 0 then catchability has no effect as a parameter as the spatial model is assumed to implicit subsume catchability.</p>
 <p>3) <strong><span style="color: orange;">flaghabitat_XXX</span> = 2</strong>. This is a newer two-stage variant of the Ellis and Pantus approach, which fully described in Ellis et al (2014) <em>Can. J. Fish. Aquat. Sci</em>. 71: 733–746. It limits the lower bound of the patchiness and allows for a more explicit influence of catchability and further refines the patchiness distributions.</p>
 <p>People interested in either <strong><span style="color: orange;">flaghabitat_XXX</span>=1 or 2 should read Ellis and Pantus (2001, 2014)</strong> so they have a full understanding of what this option does. It is a powerful representation, but requires some thought in application and parameterisation (preferably done with spatially resolved logbook data).</p>
-<p><img src="media/image4.png" style="width:5.5in;height:4.69792in"> ::: {#fig-habitat-scalar} <img src="media/image4.png" class="img-fluid"></p>
+<p><img src="media/image4.png" style="width:5.5in;height:4.69792in"> <img src="media/image4.png" class="img-fluid"></p>
 <p><strong>Figure 3.</strong> Shape of the habitat scalar as a function of habitat overlap between a species and a fishery, when k_pattern=-1. <strong>k_patches=2</strong>. <span style="color: black;"><strong>Black</strong></span>: q=0.5, k_cover=0.5. <span style="color: orange;"><strong>Orange</strong></span>: q=0.5, k_cover=1. <span style="color: red;"><strong>Red</strong></span>: q=0.9, k_cover=0.5. <span style="color: blue;"><strong>Blue</strong></span>: q=0.9, k_cover=1. <span style="color: yellow;"><strong>Yellow</strong></span>: same as blue, but k_patches=3. <span style="color: purple;"><strong>Purple</strong></span>: same as blue, but k_patches=1. :::</p>
 <p><span id="_Toc498434977" class="anchor"></span><strong>Table 7.</strong> Parameters used to setup habitat scalar options</p>
 <div class="table-responsive">
@@ -1499,16 +1483,8 @@ Caution
 <p><span class="math display">\[{psel}_{i} = \frac{1}{1 + exp( - selb \cdot ({len}_{i} - lsm)}\]</span></p>
 <p>where <em>len<sub>i</sub></em> is the length of the age group i.</p>
 <p><img src="media/image5.png" style="width:5.11458in;height:3.5in"></p>
-<div id="fig-gear-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gear-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image5.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gear-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: <strong>Figure 4.</strong> Shape of the logistic gear selectivity curve. The inflection point (<span style="color: orange;">sel_lsm</span>) is set at 50cm. <span style="color: black;"><strong>Black</strong></span>: sel_b=0.5. <span style="color: orange;"><strong>Orange</strong></span>: sel_b=2. <span style="color: blue;"><strong>Blue</strong></span>: sel_b=0.1.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image5.png" class="img-fluid"></p>
+<p><strong>Figure 4.</strong> Shape of the logistic gear selectivity curve. The inflection point (<span style="color: orange;">sel_lsm</span>) is set at 50cm. <span style="color: black;"><strong>Black</strong></span>: sel_b=0.5. <span style="color: orange;"><strong>Orange</strong></span>: sel_b=2. <span style="color: blue;"><strong>Blue</strong></span>: sel_b=0.1. :::</p>
 <p>If a change in selectivity is included in the simulation (using <span style="color: orange;">flagchangesel</span>, <span style="color: orange;">YYY_changeSEL</span> and other parameters, see above), then the <em>lsm</em> and <em>selb</em> parameters after the change takes place is set at</p>
 <p><em>lsm</em> + <span style="color: orange;">SELchange_addlsm_YYY</span> <em>selb</em> + <span style="color: orange;">SELchange_addsigma_YYY</span></p>
 </section>
@@ -1517,16 +1493,8 @@ Figure&nbsp;3: <strong>Figure 4.</strong> Shape of the logistic gear selectivity
 <p>This option applies a normal distribution selectivity curve and is defined by two parameters – the length at highest selectivity <em>lsm</em> (YYY_normlsm, given in cm) and spread of the normal selectivity curve <em>sigma</em> (YYY_normsigma). The selectivity of age group <em>i</em> is calculated as</p>
 <p><span class="math display">\[{psel}_{i} = exp\left( \frac{- \left( {len}_{i} - lsm \right)^{2}}{2 \cdot {sigma}^{2}} \right)\]</span></p>
 <p>where <em>len<sub>i</sub></em> is the length of the age group i. The figure 5 shows the shape of the normal selectivity curve given three values of the <em>sigma</em> parameter.</p>
-<div id="fig-normal-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-normal-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image6.png" style="width:5.07292in;height:3.42708in" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: <strong>Figure 5.</strong> Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (<em>lsm</em>) is set at 50cm. <span style="color: black;"><strong>Black</strong></span>: sigma=2. <span style="color: orange;"><strong>Orange</strong></span>: sigma=5. <span style="color: blue;"><strong>Blue</strong></span>: sigma=20.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image6.png" style="width:5.07292in;height:3.42708in"></p>
+<p><strong>Figure 5.</strong> Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (<em>lsm</em>) is set at 50cm. <span style="color: black;"><strong>Black</strong></span>: sigma=2. <span style="color: orange;"><strong>Orange</strong></span>: sigma=5. <span style="color: blue;"><strong>Blue</strong></span>: sigma=20. :::</p>
 <p>If a change in selectivity is included in the simulation (using <span style="color: orange;">flagchangesel</span>, <span style="color: orange;">YYY_changeSEL</span> and other parameters, see above), then the <em>lsm</em> and <em>sigma</em> parameters after the change are calculated as</p>
 <p><em>lsm</em> + <span style="color: orange;">SELchange_addlsm_YYY</span> <em>sigma</em> + <span style="color: orange;">SELchange_addsigma_YYY</span></p>
 </section>
@@ -1536,16 +1504,8 @@ Figure&nbsp;4: <strong>Figure 5.</strong> Shape of the normal gear selectivity c
 <p><span class="math display">\[{psel}_{i} = \frac{\exp\left( \frac{{- \left( \log\left( {len}_{i} \right) - lsm \right)}^{2}}{2 \cdot {sigma}^{2}} \right)}{sigma \cdot \sqrt{2\pi}}\]</span></p>
 <p>The figure 6 shows the shape of the lognormal selectivity curve given two values of <em>lsm</em> and <em>sigma</em> parameters (note that the curve is very sensitive to the parameter values).</p>
 <p><img src="media/image7.png" style="width:4.98472in;height:3.66389in"></p>
-<div id="fig-lognormal-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lognormal-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image7.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lognormal-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: <strong>Figure 6.</strong> Shape of the lognormal gear selectivity curve for an organism of length 1-100cm. <span style="color: black;"><strong>Black</strong></span>: lsm=2, sigma=0.4. <span style="color: orange;"><strong>Orange</strong></span>: lsm=4, sigma=0.4. <span style="color: blue;"><strong>Blue</strong></span>: lsm=4, sigma=0.6.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image7.png" class="img-fluid"></p>
+<p><strong>Figure 6.</strong> Shape of the lognormal gear selectivity curve for an organism of length 1-100cm. <span style="color: black;"><strong>Black</strong></span>: lsm=2, sigma=0.4. <span style="color: orange;"><strong>Orange</strong></span>: lsm=4, sigma=0.4. <span style="color: blue;"><strong>Blue</strong></span>: lsm=4, sigma=0.6. :::</p>
 <p>If a change in selectivity is included in the simulation (using <span style="color: orange;">flagchangesel</span>, <span style="color: orange;">YYY_changeSEL</span> and other parameters, see above), then the <em>lsm</em> and <em>sigma</em> parameters after the change are set at</p>
 <p><em>lsm</em> + <span style="color: orange;">SELchange_addlsm_YYY</span> <em>sigma</em> + <span style="color: orange;">SELchange_addsigma_YYY</span></p>
 </section>
@@ -1557,16 +1517,8 @@ Figure&nbsp;5: <strong>Figure 6.</strong> Shape of the lognormal gear selectivit
 <p><span class="math display">\[\beta = \frac{\sqrt{{lsm}^{2} + 4 \cdot {sigma}^{2}} - lsm}{2}\]</span></p>
 <p>where <em>len<sub>i</sub></em> is the length of the age group i. The figure 7 shows the shape of the gamma selectivity curve given three values of the <em>sigma</em> parameter.</p>
 <p><img src="media/image8.png" style="width:5.22917in;height:3.1875in"></p>
-<div id="fig-gamma-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gamma-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image8.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gamma-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: <strong>Figure 7.</strong> Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (<em>lsm</em>) is set at 50cm. <span style="color: black;"><strong>Black</strong></span>: sigma=2. <span style="color: orange;"><strong>Orange</strong></span>: sigma=10. <span style="color: blue;"><strong>Blue</strong></span>: sigma=20.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image8.png" class="img-fluid"></p>
+<p><strong>Figure 7.</strong> Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (<em>lsm</em>) is set at 50cm. <span style="color: black;"><strong>Black</strong></span>: sigma=2. <span style="color: orange;"><strong>Orange</strong></span>: sigma=10. <span style="color: blue;"><strong>Blue</strong></span>: sigma=20. :::</p>
 <p>If a change in selectivity is included in the simulation (using <span style="color: orange;">flagchangesel</span>, <span style="color: orange;">YYY_changeSEL</span> and other parameters, see above), then the <em>lsm</em> and <em>sigma</em> parameters after the change are set at</p>
 <p><em>lsm</em> + <span style="color: orange;">SELchange_addlsm_YYY</span> <em>sigma</em> + <span style="color: orange;">SELchange_addsigma_YYY</span></p>
 </section>
@@ -1582,16 +1534,8 @@ Figure&nbsp;6: <strong>Figure 7.</strong> Shape of the gamma gear selectivity cu
 <p>The selectivity of age group <em>i</em> is calculated as</p>
 <p><span class="math display">\[{psel}_{i} = \max\left( \exp\left( \frac{- \left( {len}_{i} - lsm1 \right)^{2}}{2 \cdot {sigma}^{2}} \right),exp\left( \frac{- \left( {len}_{i} - lsm2 \right)^{2}}{2 \cdot {sigma}^{2}} \right) \right)\]</span></p>
 <p>where <em>len<sub>i</sub></em> is the length of the age group <em>i</em>. The figure 8 shows the shape of the selectivity curve given three values of the <em>sigma</em> parameter. Note that same <em>sigma</em> (spread) parameter is applied to both <em>lsm1</em> and <em>lsm2</em>.</p>
-<div id="fig-bimodal-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-bimodal-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="media/image9.png" style="width:4.9375in;height:3.27083in" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bimodal-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: <strong>Figure 8.</strong> Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity points (<em>lsm1</em> and <em>lsm2</em>) are set at 30cm and 60cm. <span style="color: black;"><strong>Black</strong></span>: sigma=10. <span style="color: orange;"><strong>Orange</strong></span>: sigma=5. <span style="color: blue;"><strong>Blue</strong></span>: sigma=20.
-</figcaption>
-</figure>
-</div>
+<p><img src="media/image9.png" style="width:4.9375in;height:3.27083in"></p>
+<p><strong>Figure 8.</strong> Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity points (<em>lsm1</em> and <em>lsm2</em>) are set at 30cm and 60cm. <span style="color: black;"><strong>Black</strong></span>: sigma=10. <span style="color: orange;"><strong>Orange</strong></span>: sigma=5. <span style="color: blue;"><strong>Blue</strong></span>: sigma=20. :::</p>
 <p>If a change in selectivity is included in the simulation (using <span style="color: orange;">flagchangesel</span>, <span style="color: orange;">YYY_changeSEL</span> and other parameters, see above), then both <em>lsm1</em> and <em>lsm2</em> are changed by adding the same <span style="color: orange;">SELchange_addlsm_YYY</span> so that after the change takes place the parameters are</p>
 <p><em>lsm1</em> + <span style="color: orange;">SELchange_addlsm_YYY</span> <em>lsm2</em> + <span style="color: orange;">SELchange_addlsm_YYY</span> <em>sigma</em> + <span style="color: orange;">SELchange_addsigma_YYY</span></p>
 </section>

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3. GEOMETRY OF THE MODEL DOMAIN – Atlantis Documentation</title>
+<title>Atlantis Documentation – 3. GEOMETRY OF THE MODEL DOMAIN</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,17 +30,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e802c3d2214aaab8f16d3640683e23b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,15 +71,13 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Atlantis Documentation</span>
     </a>
@@ -93,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -140,10 +136,6 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -318,17 +310,17 @@ Note
 <div class="callout-body-container callout-body">
 <p>Details of the model geometry are defined in the <strong>BGM</strong> and <em>intial_conditions.nc</em> files.</p>
 <p>The <strong>BGM</strong> file defines the <strong>two-dimensional</strong> geometry of the model domain. It includes information on boxes, their shapes, midpoints, faces. It also specifies the maximum depth of the modelled ecosystem and maximum depth of each box.</p>
-<p>The <strong><em>initial_condition.nc</em></strong> file includes further information on the <strong>three-dimensional geometry</strong>, specifying numbers and depth of the vertical layers in each box. The maximum number of water column and sediment layers is set in the global attribute section in the <em>initial_conditions.nc</em> file (wcnz and sednz parameters). The actual number of water column and the ID of the top active sediment layer (typically 0) in each box is then given in the numlayers and topk parameters given for each box.</p>
-<p>Nominal or initial <strong>depths of the water column and sediment layers</strong> are set in the <em>initial_ condition.nc</em> nominal_dz parameter. Typically they are set to be identical among boxes (see Fig. 4 top panel), except for the bottom layer, but this is not strictly required. The actual depths of the water column and sediment layers can change dynamically through the simulation and are stored in the dz variable. The maximum change in water column depth is set in wc_dz_tol , whereas minimum and maximum depth of the sediments layer(s) is set in the minseddz and maxseddz parameters in the <em>physics.prm.</em></p>
+<p>The <strong><em>initial_condition.nc</em></strong> file includes further information on the <strong>three-dimensional geometry</strong>, specifying numbers and depth of the vertical layers in each box. The maximum number of water column and sediment layers is set in the global attribute section in the <em>initial_conditions.nc</em> file (<span style="color: orange;">wcnz</span> and <span style="color: orange;">sednz</span> parameters). The actual number of water column and the ID of the top active sediment layer (typically 0) in each box is then given in the <span style="color: orange;">numlayers</span> and <span style="color: orange;">topk</span> parameters given for each box.</p>
+<p>Nominal or initial <strong>depths of the water column and sediment layers</strong> are set in the <em>initial_ condition.nc</em> <span style="color: orange;">nominal_dz</span> parameter. Typically they are set to be identical among boxes (see Fig. 4 top panel), except for the bottom layer, but this is not strictly required. The actual depths of the water column and sediment layers can change dynamically through the simulation and are stored in the <span style="color: orange;">dz</span> variable. The maximum change in water column depth is set in <span style="color: orange;">wc_dz_tol</span> , whereas minimum and maximum depth of the sediments layer(s) is set in the <span style="color: orange;">minseddz</span> and <span style="color: orange;">maxseddz</span> parameters in the <em>physics.prm.</em></p>
 <p>The optional ice layers are included as a fourth dimension in the <em>initial_conditions.nc</em> file. Modelling ice in Atlantis is still under development, see chapter 5.5.2.</p>
 </div>
 </div>
 <p>There are <strong>two main types of boxes: dynamic and boundary</strong>. The corners of each polygon are defined by <strong>vertices</strong> and the lines connecting these corners are called <strong>faces</strong>.</p>
 <p><img src="media/image23.jpg" style="width:6in;height:6in"></p>
 <p><span id="_Toc446445864" class="anchor"></span><strong>Figure 5</strong>. Example of an Atlantis model geometry (part of a model domain). Boxes are numbered in bold, grey boxes indicate boundary or island (land) boxes. Faces are numbered in <em>italic</em> numbers. Vertices are shown as dots; vertices P1 and P2 describe face 5.</p>
-<p><strong>Dynamic boxes</strong> make up the model domain; all biological and socio-economic processes are modelled in them. Dynamic boxes must satisfy the (approximate) requirement of mass conservation<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, although their volume can change slightly due to currents and tides (just as seen in the real world). In dynamic boxes numeric fluxes of a tracer (e.g.&nbsp;NO3, phytoplankton) due to ecological processes (such as growth and mortality) cannot exceed a certain proportion of its standing biomass. This proportion is set by the RelTol parameter in the <em>biology.prm</em> file (but see the note below on relax_tol).</p>
-<p><strong>Boundary boxes</strong> are used only as sources and sinks for advective transport. They represent the “outer world” or the system beyond the model domain and don’t have the requirement of mass conservation. The areas of boundary boxes play no role (they can be set as tiny slivers or large boxes) and there are no water or tracer movements between boundary boxes. Islands inside the model domain are modelled as boundary boxes (unless land has been activated in the model by setting flagAllowLand to 1 in the <em>run.prm</em> file). In models where land is not active islands and other land boxes have zero depth (box 8 in the Fig. 5). However, when land is active (only in the most recently development versions of Atlantis) explicit modelling of land is allowed (see chapter 5.5.1), these boxes use a positive value for total box depth (botz) rather than the negative values used for aquatic boxes.</p>
-<p>In the vertical dimension the polygons can be either <strong>non-oceanic</strong> or <strong>oceanic</strong>. Sometimes the Atlantis model does not capture the full depth of the marine ecosystem. For example, the actual maximum depth in the modelled ocean area can be 3500 m (shown in the maxbotz parameter in the BGM file), but the model domain only includes the top 2000m (box-specific botz parameters in the BGM file). The polygons for which botz is greater or equal to maxbotz are classified as oceanic (e.g.&nbsp;a maxbotz of -2000 versus a botz of -3500). This means that the bottom water layer in these polygons has an open water boundary with deeper (not explicitly modelled) waters rather than with a sediment layer. In oceanic boxes the sediment layer is still included in the setup (for simplicity) but sediment calculations are not performed in these boxes when the model is run and the biomass of organisms in the sediments are not included in the total biomass calculations. Further, the deepest layers of the oceanic boxes receive nutrient input from “outside” of the model domain, designed to simulate nutrient mixing from deeper layers not included in the model domain.</p>
+<p><strong>Dynamic boxes</strong> make up the model domain; all biological and socio-economic processes are modelled in them. Dynamic boxes must satisfy the (approximate) requirement of mass conservation<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, although their volume can change slightly due to currents and tides (just as seen in the real world). In dynamic boxes numeric fluxes of a tracer (e.g.&nbsp;NO3, phytoplankton) due to ecological processes (such as growth and mortality) cannot exceed a certain proportion of its standing biomass. This proportion is set by the <span style="color: orange;">RelTol</span> parameter in the <em>biology.prm</em> file (but see the note below on <span style="color: orange;">relax_tol</span>).</p>
+<p><strong>Boundary boxes</strong> are used only as sources and sinks for advective transport. They represent the “outer world” or the system beyond the model domain and don’t have the requirement of mass conservation. The areas of boundary boxes play no role (they can be set as tiny slivers or large boxes) and there are no water or tracer movements between boundary boxes. Islands inside the model domain are modelled as boundary boxes (unless land has been activated in the model by setting <span style="color: orange;">flagAllowLand</span> to 1 in the <em>run.prm</em> file). In models where land is not active islands and other land boxes have zero depth (box 8 in the Fig. 5). However, when land is active (only in the most recently development versions of Atlantis) explicit modelling of land is allowed (see chapter 5.5.1), these boxes use a positive value for total box depth (<span style="color: orange;">botz</span>) rather than the negative values used for aquatic boxes.</p>
+<p>In the vertical dimension the polygons can be either <strong>non-oceanic</strong> or <strong>oceanic</strong>. Sometimes the Atlantis model does not capture the full depth of the marine ecosystem. For example, the actual maximum depth in the modelled ocean area can be 3500 m (shown in the <span style="color: orange;">maxbotz</span> parameter in the BGM file), but the model domain only includes the top 2000m (box-specific <span style="color: orange;">botz</span> parameters in the BGM file). The polygons for which <span style="color: orange;">botz</span> is greater or equal to <span style="color: orange;">maxbotz</span> are classified as oceanic (e.g.&nbsp;a <span style="color: orange;">maxbotz</span> of -2000 versus a <span style="color: orange;">botz</span> of -3500). This means that the bottom water layer in these polygons has an open water boundary with deeper (not explicitly modelled) waters rather than with a sediment layer. In oceanic boxes the sediment layer is still included in the setup (for simplicity) but sediment calculations are not performed in these boxes when the model is run and the biomass of organisms in the sediments are not included in the total biomass calculations. Further, the deepest layers of the oceanic boxes receive nutrient input from “outside” of the model domain, designed to simulate nutrient mixing from deeper layers not included in the model domain.</p>
 <p>Below is an example of a BGM file with explanations of parameters given after #</p>
 <pre><code># box model geometry based on VMPA_setas_20051216.bgm
 
@@ -391,11 +383,11 @@ face0.lr 2 0  ## Number of the box to the left and to the right as you look
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Relaxing the flux tolerance check for an individual box
+Relaxing the flux tolerance check for an individual box
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There are times (e.g.&nbsp;during an extreme event, which might be implemented for a specific scenario, or if including restocking/replanting of seagrass for example) when the flux of a variable can legitimately be at a level that would breach the flux tolerance checks in place to ensure numerical stability (as conditioned by RelTol set in the <em>biology.prm</em>). To allow for this there is a property per box in the BGM file, box#.relax_tol , which is typically set to 0 unless absolutely required.</p>
+<p>There are times (e.g.&nbsp;during an extreme event, which might be implemented for a specific scenario, or if including restocking/replanting of seagrass for example) when the flux of a variable can legitimately be at a level that would breach the flux tolerance checks in place to ensure numerical stability (as conditioned by <span style="color: orange;">RelTol</span> set in the <em>biology.prm</em>). To allow for this there is a property per box in the BGM file, <span style="color: orange;">box#.relax_tol</span>, which is typically set to 0 unless absolutely required.</p>
 </div>
 </div>
 <p><strong>Below are some strict rules and best practice suggestions on setting up the model geometry.</strong> These rules are provided here to give general insights into how the geometry file is setup. If you are developing a BGM file for a new model, check more detailed instructions on Atlantis wiki (links given below).</p>
@@ -403,10 +395,10 @@ face0.lr 2 0  ## Number of the box to the left and to the right as you look
 <ol type="1">
 <li><p>Box 0 <strong>must</strong> be a <strong>boundary</strong> box and Box 1 <strong>must</strong> be a <strong>dynamic</strong> box. This rule is a developmental legacy and determined by the way the Atlantis code and oceanographic file conversion was setup during the model development. Box 0 is special because it is set up to have water and nutrient fluxes to nearly all other model boxes. This is set to simulate supply of advective tracers to the oceanic boxes and accommodate any missing water fluxes due to conversion of oceanographic files into Atlantis input files (see chapter 4). While the model is running it also acts as a store for information on any migrating groups currently outside the model domain.</p></li>
 <li><p><strong>Doughnut shaped boxes are not allowed</strong>. For example, you cannot have one box around an island. This is because such boxes have their midpoint on land, which would affect calculations of a number of processes relying on midpoint values.</p></li>
-<li><p>The description of boxes, faces and vertices in the BGM file (iface, ibox, bnd_vert parameters) <strong>must be done in the same orientation</strong> – clockwise or counter clockwise. It doesn’t matter which you chose, just make sure it is consistent throughout. The orientation can be checked using the <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package developed by Cameron Ainsworth and available from the Atlantis wiki.</p></li>
+<li><p>The description of boxes, faces and vertices in the BGM file ({style=“color: orange;”}, <span style="color: orange;">ibox</span>, <span style="color: orange;">bnd_vert</span> parameters) <strong>must be done in the same orientation</strong> – clockwise or counter clockwise. It doesn’t matter which you chose, just make sure it is consistent throughout. The orientation can be checked using the <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package developed by Cameron Ainsworth and available from the Atlantis wiki.</p></li>
 <li><p>Islands <strong>must</strong> be represented as boxes with a depth of 0 (or &gt;0 if land is active), not as empty regions. By default the land boxes are either treated as boundary boxes, but can also be modelled as land, if the land option is activated (see chapter 5.5.1).</p></li>
-<li><p>It is of utmost importance to <strong>correctly identify the boxes to the left and to the right of a face</strong> in the <code>face#.lr</code> parameter (where # stands for the box number). The points P1 and P2 in the Figure 3 describe face 5 between boxes 2 and 6. If <code>face5.p1</code> is given as P1 and <code>face5.p2</code> is P2, then left and right boxes are designated as you look from P1 to P2. This means the right box is 6 and the left box is 2 and <code>face5.lr</code> must be set as 2 6. Setting the direction incorrectly inverts the direction of the flow in the hydrodynamics forcing file! <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package will check the file for correct right/left designation.</p></li>
-<li><p>The <strong>midpoint</strong> of a polygon is defined in the <code>box#.inside</code> parameter. It is used to: i) calculate the temperature in a box when temperature forcing data is not provided and we are in the southern hemisphere; ii) calculate the sunrise and sunset values based on lat/long when lim_sun_hours is set to 1; iii) calculate distance between boxes and invasion speed if the invasion option is active; iv) calculate distance from a box to a port in the dynamic fishing code. <strong>If the midpoint of the box is misplaced and is not within the actual box, Atlantis will quit when trying to read time series that deposit something into that box or when running dynamic fishing routines.</strong></p></li>
+<li><p>It is of utmost importance to <strong>correctly identify the boxes to the left and to the right of a face</strong> in the <span style="color: orange;">face#.lr</span> parameter (where # stands for the box number). The points P1 and P2 in the Figure 3 describe face 5 between boxes 2 and 6. If <span style="color: orange;">face5.p1</span> is given as P1 and <span style="color: orange;">face5.p2</span> is P2, then left and right boxes are designated as you look from P1 to P2. This means the right box is 6 and the left box is 2 and <span style="color: orange;">face5.lr</span> must be set as 2 6. Setting the direction incorrectly inverts the direction of the flow in the hydrodynamics forcing file! <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package will check the file for correct right/left designation.</p></li>
+<li><p>The <strong>midpoint</strong> of a polygon is defined in the <span style="color: orange;">box#.inside</span> parameter. It is used to: i) calculate the temperature in a box when temperature forcing data is not provided and we are in the southern hemisphere; ii) calculate the sunrise and sunset values based on lat/long when <span style="color: orange;">lim_sun_hours</span> is set to 1; iii) calculate distance between boxes and invasion speed if the invasion option is active; iv) calculate distance from a box to a port in the dynamic fishing code. <strong>If the midpoint of the box is misplaced and is not within the actual box, Atlantis will quit when trying to read time series that deposit something into that box or when running dynamic fishing routines.</strong></p></li>
 </ol>
 <p><strong>Suggestions:</strong></p>
 <ol start="7" type="1">
@@ -418,12 +410,12 @@ face0.lr 2 0  ## Number of the box to the left and to the right as you look
 <ol start="10" type="1">
 <li>In some cases conversion of water fluxes from oceanographic files to Atlantis hydrodynamic forcing files leaves small coastal boxes isolated, i.e.&nbsp;no water fluxes enter or leave them. This will be covered in more detail in Chapter 5.4. The BGM file has two box-specific water mixing parameters that are used in some physics routines, including those used to correct for the lack of mixing. These parameters allow box-specific mixing scalars to be setup and help to tune vertical and horizontal water flows in the model domain:</li>
 </ol>
-<p><code>box#.vertmix</code> - vertical mixing scalar used only when vert_diffusion or vert_mix are turned on in the <em>physics.prm</em>.</p>
-<p><code>box#.horizmix</code> – horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, see Chapter 5.4). It is also used as a box-specific scalar if fill_zero_exchange or horiz_diffusion flags are turned on (set to 1) in the <em>physics.prm</em> file (see Chapter 5 for further details).</p>
+<p><span style="color: orange;">box#.vertmix</span> - vertical mixing scalar used only when <span style="color: orange;">vert_diffusion</span> or <span style="color: orange;">vert_mix</span> are turned on in the <em>physics.prm</em>.</p>
+<p><span style="color: orange;">box#.horizmix</span> – horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, see Chapter 5.4). It is also used as a box-specific scalar if <span style="color: orange;">fill_zero_exchange</span> or <span style="color: orange;">horiz_diffusion</span> flags are turned on (set to 1) in the <em>physics.prm</em> file (see Chapter 5 for further details).</p>
 </section>
 <section id="practical-steps-for-building-the-bgm-files-from-gis-shapefiles" class="level2">
 <h2 class="anchored" data-anchor-id="practical-steps-for-building-the-bgm-files-from-gis-shapefiles"><strong>3.3. Practical steps for building the BGM files from GIS shapefiles</strong></h2>
-<p><strong>1.</strong> Define polygons using QGIS or similar GIS package. This will produce a shapefile of the model domain. The shapefile is the master of the model geometry, any changes should be made to the shapefile and the BGM should be recreated from that master. Hand editing of the BGM should be avoided<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, other than to manually set the box-specific mixing values, or to correct any issues resulting from BGM generation (like misplacement of the inside point). See the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files">Atlantis wiki</a> BGM file page for more information.</p>
+<p><strong>1.</strong> Define polygons using QGIS or similar GIS package. This will produce a shapefile of the model domain. The shapefile is the master of the model geometry, any changes should be made to the shapefile and the BGM should be recreated from that master. Hand editing of the BGM should be avoided<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, other than to manually set the box-specific mixing values, or to correct any issues resulting from BGM generation (like misplacement of the <span style="color: orange;">inside</span> point). See the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files">Atlantis wiki</a> BGM file page for more information.</p>
 <p><strong>2.</strong> Run the BGMeriser package, to convert shapefiles into BGM files. Details on access and installation are given on the wiki (<a href="https://confluence.csiro.au/display/Atlantis/Technical+Information">here)</a> as are details on how to run it (<a href="https://confluence.csiro.au/display/Atlantis/BGMEditor">here</a>).</p>
 <p><strong>3.</strong> If the shapefiles do not pass through the BGMeriser, they probably have issues with gaps or overlapping polygons and should be cleaned. Check the <a href="https://confluence.csiro.au/display/Atlantis/Using+QGIS+to+clean+Atlantis+BGM+Shapefiles">instructions</a> on the wiki for tips on cleaning up the shapefiles using QGIS.</p>
 <p><strong>4.</strong> Use <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> to check the orientation of boxes and faces in the BGM file</p>
@@ -470,243 +462,239 @@ Caution
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -714,161 +702,185 @@ Caution
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 </div> <!-- /content -->
 
 
