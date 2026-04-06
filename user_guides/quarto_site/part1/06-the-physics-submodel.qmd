@@ -428,34 +428,26 @@ Some of the relevant parameters (which need to be added to the [*biology.prm*](
 
 *Other relevant parameters:*
 
-Contaminants can also affect movement. There is the potential for mobile species (defined by the *VerticallyMigrates* and *HorizontallyMigrates* settings for the species in the f*unctional_groups.csv* file) to avoid the contaminants. It is not always appropriate biomass pool groups to show this behaviour so to turn it off set biopools_dodge_contam 0 in the *biology.prm*.
+Contaminants can also affect movement. There is the potential for mobile species (defined by the [VerticallyMigrates]{style="color: orange"} and [HorizontallyMigrates]{style="color: orange"} settings for the species in the [functional_groups.csv]{style="color: orange"} file) to avoid the contaminants. It is not always appropriate biomass pool groups to show this behaviour so to turn it off set [biopools_dodge_contam]{style="color: orange"} 0 in the biology.prm.
 
-For each of the contaminants the following parameetrs is required. For contaminant ZZZZ the coefficient indicating degree of dissolubility of the material (used if flag_dissolved_pollutants is set to 1, and determined for each contaminant - 1 all, 0 none) is set using ZZZZ_dissolv_coefft. Half life in seconds is set using ZZZZ_half_life. The flag indicating whether the contaminant effect is temperature dependent is\
-ZZZZ_temp_depend.
+For each of the contaminants the following parameters is required. For contaminant ZZZZ the coefficient indicating degree of dissolubility of the material (used if [flag_dissolved_pollutants]{style="color: orange"} is set to 1, and determined for each contaminant - 1 all, 0 none) is set using [ZZZZ_dissolv_coefft]{style="color: orange"}. Half life in seconds is set using [ZZZZ_half_life]{style="color: orange"}. The flag indicating whether the contaminant effect is temperature dependent is [ZZZZ_temp_depend]{style="color: orange"}.
 
 For each functional group XXX the following is also required:
 
-XXX_ZZZZ_uptake_rate - uptake rate (per day -  will be converted to per second inside code).
-
-XXX_ZZZZ_InstantDoseMortality -- the instant dose contact mortality rate
-
-XXX_ZZZZ_LD100 - the concentration that will kill 100% of the population.
-
-XXX_ZZZZ_LD50 - the concentration that will kill 50% of the population.
-
-XXX_ZZZZ_TimeToLD50 - the number of seconds that it takes to kill 50% of the population (based on Invitro code)
-
-XXX_ZZZZ_avoid - the concentration where animals will begin avoiding the substance
-
-XXX_ZZZZ_K_avoid - the constant used in the avoidance curve (for when there is a slow Gaussian tail to the response rather than a knife edge cut off)
+[XXX_ZZZZ_uptake_rate]{style="color: orange"} - uptake rate (per day -  will be converted to per second inside code).
+[XXX_ZZZZ_InstantDoseMortality]{style="color: orange"} -- the instant dose contact mortality rate
+[XXX_ZZZZ_LD100]{style="color: orange"} - the concentration that will kill 100% of the population.
+[XXX_ZZZZ_LD50]{style="color: orange"} - the concentration that will kill 50% of the population.
+[XXX_ZZZZ_TimeToLD50]{style="color: orange"} - the number of seconds that it takes to kill 50% of the population (based on Invitro code)
+[XXX_ZZZZ_avoid]{style="color: orange"} - the concentration where animals will begin avoiding the substance
+[XXX_ZZZZ_K_avoid]{style="color: orange"} - the constant used in the avoidance curve (for when there is a slow Gaussian tail to the response rather than a knife edge cut off)
 
 Growth effects due to contamination can also be represented using the following parameters. For each species and each contaminant add
 
-XXX_ZZZZ_GrowthThresh - the tissue contaminant level where growth effects start
+[XXX_ZZZZ_GrowthThresh]{style="color: orange"} - the tissue contaminant level where growth effects start
+[XXX_ZZZZ_GrowthEffect]{style="color: orange"} - the size of the growth effect (as a scalar)
 
-XXX_ZZZZ_GrowthEffect - the size of the growth effect (as a scalar)
-
-The flag setting the uptake model XXX_ZZZZ_uptake_option. This currently has three settings:
+The flag setting the uptake model [XXX_ZZZZ_uptake_option.]{style="color: orange"} This currently has three settings:
 
 If set to 1 use a linear uptake (parameter is in parts/sec)
 
@@ -477,9 +469,9 @@ $$C_{a,t} = \frac{C_{a,t}}{C_{a,t - dt} + \left( C_{a,t} - C_{a,t - dt} \right)e
 
 If you want to allow for uptake of contaminants back out of detritus you also need to set flag_detritus_contam to 1.
 
-Movement and reproduction can both be scaled due to level of contaminants in the organism using XXX_ZZZZ_MoveEffect and XXX_ZZZZ_ReprodEffect.
+Movement and reproduction can both be scaled due to level of contaminants in the organism using [XXX_ZZZZ_MoveEffect]{style="color: orange"} and [XXX_ZZZZ_ReprodEffect]{style="color: orange"}.
 
-Maternal transfer is also possible (if the flag flag_contamMaternalTransfer is set to1) in which case the maternal transfer rates need to be set -- both that for transfer during conception (recruitment) XXX_ZZZZ_maternal_transfer and during suckling (if have maternal care) XXX_ZZZZ_suckling_transfer.
+Maternal transfer is also possible (if the flag [flag_contamMaternalTransfer]{style="color: orange"} is set to1) in which case the maternal transfer rates need to be set -- both that for transfer during conception (recruitment) [XXX_ZZZZ_maternal_transfer]{style="color: orange"} and during suckling (if have maternal care) [XXX_ZZZZ_suckling_transfer]{style="color: orange"}.
 
 ## **5.6. Outputs of physics tracers in the *output.nc* file**
 
