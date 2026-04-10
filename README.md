@@ -1,6 +1,6 @@
 # Atlantis User Guide
 
-This repository contains the Atlantis User Guide documentation, which is [rendered at this link](https://atlantis-ecosystem-model.github.io/AtlantisWiki/) at every new commit.
+This repository contains the Atlantis User Guide documentation, which is [rendered at this link](https://atlantis-ecosystem-model.github.io/AtlantisManual/) at every new commit.
 
 ## Status
 
