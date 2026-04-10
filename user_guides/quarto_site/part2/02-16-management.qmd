@@ -275,13 +275,9 @@ When changes in TAC are forced, the changes are implemented in the same way as w
 Some species are managed using biomass thresholds, if biomass is above a specific level then fishing is allowed. To represent that in Atlantis for fishery YYY:
 
 1.  Set the species to be a TAC managed in the *functional_groups.csv* file
-
 2.  Set [YYY_flag_framebased]{style="color: orange;"} to 1 for the fishery.
-
 3.  Set up the period for which this form of management should apply for the fishery - using the [YYY_start_manage]{style="color: orange;"} and [YYY_end_manage]{style="color: orange;"} parameters (in days of the simulation run).
-
 4.  Set the allowed level of fishing for when the fishery is active. To do this set the [TAC_XXX]{style="color: orange;"} parameter for each species in that fishery.
-
 5.  To set the biomass level at which fishing is allowed for the fishery set the value for [FC_high_thresh_XXX]{style="color: orange;"} for each species in the fishery. This scalar will be applied to the initial biomass to give the threshold biomass. Above this threshold fishing will be allowed.
 
 []{#_Toc498434983 .anchor}**Table 13.** Parameters used in stock adaptive and TAC based management.
@@ -429,19 +425,12 @@ Note, that even though MPA scalar is usually \<1 (which means that MPAs reduces 
 To activate MPAs in your simulations, set the global [flagmpa]{style="color: orange;"} = 1 and then select the MPA option for each fishery in the [YYY_flagmpa]{style="color: orange;"} parameter. Currently there are 15 different ways to set up MPAs, which include different combinations of the following options for setting MPAs:
 
 1)  MPA scalar set in [MPAYYY]{style="color: orange;"} parameter, indicating the proportion of the box open to fishing or more specifically a scalar on the available species biomass. These MPAs can be set for the entire model run or the MPA implementation can start and end at different times during the simulation run. If the latter option is wanted, set [flagSimpleStartStopMPA]{style="color: orange;"}=1, and give the year number (NOT day number!) for when MPAs start and end ([All_MPAstartyr]{style="color: orange;"} and [All_MPAendyr]{style="color: orange;"}). Note, this option only allows for the start and end years to be set for **ALL MPAs at the same time**.
-
 2)  For more complex MPAs scalars are provided through an external TS forcing file. This option is useful when MPAs change through time. To use this option the user needs to provide time series files for desired model boxes, indicating an MPA scalar value through time. To indicate that external MPA forcing is provided, set nMPAts to value \>0 in the *force.prm* file (see Chapter 8 on the general format of forcing files) and the correct MPA option is set in the [YYY_flagmpa]{style="color: orange;"} parameter (see Table 14 for the available options).
-
 3)  MPAs are set up when the biomass of endangered species drops below a set level. These MPAs act in the same way as other MPAs, but their box-specific scalars are provided in a separate [MPAendangeredYYY]{style="color: orange;"} parameter. This means that users can specifically target boxes that are important for endangered species. Also, unlike fixed MPAs, the endangered species triggered MPAs will only be in place when biomasses of endangered species are below a set level. To identify which species will be used to trigger such species set the [SP_Concern]{style="color: orange;"} parameter to 1 for that species (with the order of the species assumed to match that in the *functional_groups.csv* file). See chapter 16.5 on how the endangered species are assessed.
-
 4)  The MPA scalars supplied through either [MPAYYY]{style="color: orange;"} or external TS forcing files, but applied only when stocks fall below a set level. This is done in case where [YYY_flagmanage]{style="color: orange;"}=2 and stock adaptive management is used and an appropriate selection for [YYY_flagmpa]{style="color: orange;"} is done (see Table 14 below).
-
 5)  Closure of fisheries during the spawning season -- applied in any spawning area -- and set using [YYY_flagmpa]{style="color: orange;"} = 13.
-
 6)  The partial or complete closure of spawning areas traded in exchange for reduced TAC. This is only applied in cases where dynamic TACs are used and set through some sort of stock assessment process. This is used to imitate a situation (indeed applied in some fisheries management cases), where instead of reductions in TAC when stock levels are low, fishing is closed during the spawning season. For further details on setting this option see chapter 16.2.8.
-
 7)  MPAs defined in the [MPAoverfishedYYY]{style="color: orange;"} parameter are triggered when trip limits are exceeded for target species and [YYY_flagmpa]{style="color: orange;"} is set to 11.
-
 8)  In any one year, once the total catch taken exceeds the value set in [TripLimit_XXX]{style="color: orange;"} that box is closed -- this option is set using [YYY_flagmpa]{style="color: orange;"} = 14.
 
 These seven options for setting up MPAs can be used separately or in combination in one of the 13 currently available options of the [YYY_flagmpa]{style="color: orange;"} parameter. Because the [YYY_flagmpa]{style="color: orange;"} parameter is fishery specific, different fisheries can be affected by different spatial management (MPA) routines.

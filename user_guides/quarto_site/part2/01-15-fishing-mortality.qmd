@@ -802,7 +802,7 @@ People interested in either **[flaghabitat_XXX]{style="color: orange;"}=1 or 2 s
 [**Blue**]{style="color: blue;"}: q=0.9, k_cover=1.
 [**Yellow**]{style="color: yellow;"}: same as blue, but k_patches=3.
 [**Purple**]{style="color: purple;"}: same as blue, but k_patches=1.
-:::
+
 
 []{#_Toc498434977 .anchor}**Table 7.** Parameters used to setup habitat scalar options
 
