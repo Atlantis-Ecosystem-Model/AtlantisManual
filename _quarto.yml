@@ -19,9 +19,12 @@ website:
           - text: "Part II - Fisheries, Management, and Economics"
             href: user_guides/quarto_site/part2/index.qmd
       - text: "Confluence Wiki"
-        href: confluence/index.qmd
-      - text: "Resources"
-        href: resources/index.qmd
+        href: https://atlantis-ecosystem-model.github.io/atlantis-wiki/
+      - text: "Known Limitations"
+        href: known_limitations/index.qmd
+    right:
+      - icon: github
+        href: https://github.com/Atlantis-Ecosystem-Model/AtlantisManual
 
   sidebar:
     - id: part1
