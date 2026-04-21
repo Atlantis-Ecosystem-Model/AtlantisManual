@@ -6,8 +6,11 @@ title: "Atlantis Documentation Portal"
 
 - **[Part I - Setup, Physics, and Biology](user_guides/quarto_site/part1/index.qmd)** - User guide covering model setup, configuration, input and output files, physical, biogeochemical, and biological processes.
 - **[Part II - Fisheries, Management, and Economics](user_guides/quarto_site/part2/index.qmd)** - User guide covering the human components of the Atlantis model: fishing, management, and economics.
+- **[Atlantis Wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/)** - Atlantis Ecosystem Model Wiki
 
 ## Additional Resources
 
-- **[Confluence Wiki](confluence/index.qmd)** - *Coming soon*
-- **[Resources](resources/index.qmd)** - *Coming soon*
+- **[The source code](https://github.com/Atlantis-Ecosystem-Model/AtlantisTrunk)** - You'll need permissions to access the Atlantis source code repository. 
+- **[atlantistools](https://github.com/Atlantis-Ecosystem-Model/atlantistools)** - An R package to aid in processing and visualizing output from the Atlantis model
+- **[shinyrAtlantis](https://github.com/Atlantis-Ecosystem-Model/shinyrAtlantis)** - A shiny app (in R) to aid in exploration of parameter files used in the Atlantis model
+- **[atlantisom](https://github.com/r4atlantis/atlantisom)** - An R package to aid generating sampled data from the Atlantis model
