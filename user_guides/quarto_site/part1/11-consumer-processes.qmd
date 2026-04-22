@@ -125,11 +125,9 @@ The *mum* parameter is only used in the modified Holling feeding responses (modi
 As described in Muray and Parslow (1997) mum relates to the maximum ingestion rate (*Gmax*) as *mum = Gmax\*E*, where *E* is the assimilation efficiency. The maximum ingestion rate is in turn the inverse of a more familiar "handling time" parameter (*ht*). Hence *mum* can also be seen as an inverse of the handling time as *mum=E/ht*
 :::
 
-There is no clear consensus among currently used models as to the exact relationship between *C* and *mum* parameters. Theoretically the *mum* value should always be larger than *C*, but in some models and for some species the opposite is true. This is explored in Figure 10, which shows values of *Gr~prey~* for different prey biomass, and different *C* and *mum* rates. In general mum sets the level of the eventual asymptote -- the higher the *mum* the higher the realised feeding regardless of the *C* used. The ratio of *C* and *mum* dictates the steepness of the curve. As the ratio *C:mum* increases (i.e. the more that *C* exceeds *mum*) the gentler the curve, rising gradually in a smooth arc to the asymptote. As the ratio *C:mum* decreases (i.e. the more that *mum* exceeds *C*) the more the curve is converted to a flat rate across all but the lowest of prey biomass levels.
+There is no clear consensus among currently used models as to the exact relationship between *C* and *mum* parameters. Theoretically the *mum* value should always be larger than *C*, but in some models and for some species the opposite is true. This is explored (@fig-grazing-term) which shows values of *Gr~prey~* for different prey biomass, and different *C* and *mum* rates. In general mum sets the level of the eventual asymptote -- the higher the *mum* the higher the realised feeding regardless of the *C* used. The ratio of *C* and *mum* dictates the steepness of the curve. As the ratio *C:mum* increases (i.e. the more that *C* exceeds *mum*) the gentler the curve, rising gradually in a smooth arc to the asymptote. As the ratio *C:mum* decreases (i.e. the more that *mum* exceeds *C*) the more the curve is converted to a flat rate across all but the lowest of prey biomass levels.
 
-![](media/image33.png){width="5.216858048993876in" height="3.5660378390201224in"}
-
-[]{#_Toc526762790 .anchor}Figure 10. The value of grazing term (*Gr*) as a function of prey biomass (ranging from 0 to 1x of the predator biomass) and different assumptions on the ratio between *C* and *mum*. Predators biomass is 1000mgN, *C* = 100 m^3^ ind^-1^ day^-1^. The calculations assume only one prey, no refuge (*δ~refuge~*=1), maximum availability p~prey,CX~ of 1, and assimilation efficiencies *E~prey,i~* of 1. Black: *mum* = *C,* [orange]{style="color: orange;"}: *mum* = *C*\*3, [blue]{style="color: blue;"}: *mum* =*C*/5
+![The value of grazing term (*Gr*) as a function of prey biomass (ranging from 0 to 1x of the predator biomass) and different assumptions on the ratio between *C* and *mum*. Predators biomass is 1000mgN, *C* = 100 m^3^ ind^-1^ day^-1^. The calculations assume only one prey, no refuge (*δ~refuge~*=1), maximum availability p~prey,CX~ of 1, and assimilation efficiencies *E~prey,i~* of 1. Black: *mum* = *C,* [orange]{style="color: orange;"}: *mum* = *C*\*3, [blue]{style="color: blue;"}: *mum* =*C*/5.](media/image33.png){#fig-grazing-term width=5.22in height=3.57in}
 
 
 ::: {.callout-caution}
@@ -241,18 +239,26 @@ If [flag_rel_cover]{style="color: orange;"} is set to 1 the amount of available 
 
 The habitat refuge can be interpreted as a scalar on the available prey biomass determined by the available suitable habitat cover in the cell.
 
-**Figure 11.** Habitat refuge scalar on prey availability as a function of cell area covered with suitable habitats (see box above for details on calculations of suitable cover area).](media/image34.png){width="4.425694444444445in" height="4.250694444444444in"}
+![Habitat refuge scalar on prey availability as a function of cell area covered with suitable habitats (see box above for details on calculations of suitable cover area).](media/image34.png){#fig-habitat-refuge width=4.43in height=4.25in}
+
 **Black**: Acov=1, Bcov=0.6, Kcov=3 (parameters similar to SETas model and originally derived from a meta-analysis of prey accessibility on coral and temperate reefs)
+
 *Effect of Kcov:*
+
 [**Orange**]{style="color: orange;"}: Acov=1, Bcov=0.6, Kcov=2
+
 [**Red**]{style="color: red;"}: Acov=1, Bcov=0.6, Kcov=1
+
 *Effect of Bcov:*
-[**Light blue**]{style="color: lighblue;"}: Acov=1, Bcov=0.4, Kcov=3
+
+[**Light blue**]{style="color: lightblue;"}: Acov=1, Bcov=0.4, Kcov=3
+
 [**Dark blue**]{style="color: darkblue;"}: Acov=1, Bcov=0.8, Kcov=3
-The Acov is a linear scalar that only affects the height of the curve along the y axis. If needed it could be used to scale prey availability to 1 when cover=0
+
+The Acov is a linear scalar that only affects the height of the curve along the y axis. If needed it could be used to scale prey availability to 1 when cover=0.
 
 ::: {.callout-caution}
-When habitat dependency and refuge are used then the models are often parameterised so that **prey availability is upscaled (\>1) when a cell contains zero available habitat** (as prey are more exposed than normal to predators). It is assumed that normally around 0.2-0.3 of the cell will have suitable habitat, which is why prey availability scalar is \~1 at this proportion of cover available (see Fig. 11). This is based on a (now \>10 year old) meta-analysis of prey accessibility on coral and temperate reefs.
+When habitat dependency and refuge are used then the models are often parameterised so that **prey availability is upscaled (\>1) when a cell contains zero available habitat** (as prey are more exposed than normal to predators). It is assumed that normally around 0.2-0.3 of the cell will have suitable habitat, which is why prey availability scalar is \~1 at this proportion of cover available (@fig-habitat-refuge). This is based on a (now \>10 year old) meta-analysis of prey accessibility on coral and temperate reefs.
 :::
 
 ::: {.callout-caution}
@@ -308,14 +314,20 @@ $$relSize = \frac{SN_{prey}}{SN \cdot KUP}$$
 
 represents **relative size** of the prey compared to the predator's upper size limit (*KUP*), and *Kmax* ([Kmax_coefft_XXX]{style="color: orange;"}) is the steepness of the smooth selectivity curve.
 
-**Figure 12.** Prey availability scalar Size_Scalar~prey~ of different sized prey for different [Kmax_coefft]{style="color: orange;"} values for humped selectivity curve.](media/image35.png){width="4.735416666666667in" height="3.763888888888889in"}
-[**Black**]{style="color: black;"}: *Kmax* = 2
-[**Orange**]{style="color: orange;"}: *Kmax* = 1
-[**Red**]{style="color: red;"}: *Kmax* = 3
-[**Blue**]{style="color: blue;"}: *Kmax* = 5
-Predators SN=10mg and KUP=0.4 (shown by vertical blue line). The horizontal black line shows that the maximum value of δ~size~ is set to 1 (values larger than one are capped at 1)
+![Prey availability scalar Size_Scalar~prey~ of different sized prey for different [Kmax_coefft]{style="color: orange;"} values for humped selectivity curve.](media/image35.png){#fig-prey-size-scalar width=4.74in height=3.76in}
 
-As Fig. 12 shows, the humped window calculation is very sensitive to the [Kmax_coefft_XXX]{style="color: orange;"} parameter, where availability of prey at lower size limit can increase very rapidly. An alternative formulation is now available as a logistic shaped curve to calculate δ~size~. This option is applied if [UseHardFeedingWindow]{style="color: orange;"} = 0 and [UseBiLogisticFeedingWindow]{style="color: orange;"}= 1 **and it is based on total length rather than SN of predator and prey**
+[**Black**]{style="color: black;"}: *Kmax* = 2
+
+[**Orange**]{style="color: orange;"}: *Kmax* = 1
+
+[**Red**]{style="color: red;"}: *Kmax* = 3
+
+[**Blue**]{style="color: blue;"}: *Kmax* = 5
+
+Predators SN=10mg and KUP=0.4 (shown by vertical blue line). The horizontal black line shows that the maximum value of δ~size~ is set to 1 (values larger than one are capped at 1).
+
+
+The humped window calculation is very sensitive to the [Kmax_coefft_XXX]{style="color: orange;"} parameter, where availability of prey at lower size limit can increase very rapidly (@fig-prey-size-scalar). An alternative formulation is now available as a logistic shaped curve to calculate δ~size~. This option is applied if [UseHardFeedingWindow]{style="color: orange;"} = 0 and [UseBiLogisticFeedingWindow]{style="color: orange;"}= 1 **and it is based on total length rather than SN of predator and prey**
 
 $$\delta_{size} = \ \left\{ \begin{array}{r}
  = \frac{1}{1 + e^{\left( - Kmax \cdot \left( Len_{prey} - Len_{prey,50\% KLP} \right) \right)}},\ \ if\ Len_{prey} < Avail_{top} \cdot Len_{pred} \\
@@ -326,14 +338,18 @@ where *Kmax* is the steepness of the logistic selectivity curve ([Kmax_coefft_XX
 
 The *Avail~top~* is calculated as a midpoint between the KLP and KUP values, hence assuming a symmetrical selectivity curve. For example, if the KLP=0.2 and KUP=0.6, the *Avail~top~* = 0.4. Similarly the *Len~prey,50%KLP~* is the midpoint between the lower ([KLP_XXX]{style="color: orange;"}) predator size limits and the *Avail~top~*, and *Len~prey,50%KUP~* is the midpoint between the upper ([KUP_XXX]{style="color: orange;"}) predator size limits and the *Avail~top~*. In the example above the *Len~prey,50%KLP~* = 0.3 and *Len~prey,50%KUP~* = 0.5.
 
-Note, that if the steepness of the curve (*Kmax* value) is low, the the δ~size~ in the equation above may never reach 1 (see Figure 13). It is NOT recommended to use Kmax values lower than 0.5 because it makes the feeding window very wide and allows feeding on almost all sizes of prey (orange line in Fig. 13).
+Note, that if the steepness of the curve (*Kmax* value) is low, the the δ~size~ in the equation above may never reach 1 (@fig-prey-bilogistic). It is NOT recommended to use Kmax values lower than 0.5 because it makes the feeding window very wide and allows feeding on almost all sizes of prey (orange line, @fig-prey-bilogistic).
 
-![](media/image36.png){width="4.71875in" height="3.6902777777777778in"}The bilogistic feeding window uses length rather than SN of prey and predator, because large differences between SN (many orders of magnitude) makes the size scalar highly sensitive to the Kmax parameter.
+The bilogistic feeding window uses length rather than SN of prey and predator, because large differences between SN (many orders of magnitude) makes the size scalar highly sensitive to the Kmax parameter.
 
-**Figure 13.** Prey availability scalar δ~size~ of different sized prey for bilogistic selectivity curve.
+![Prey availability scalar δ~size~ of different sized prey for bilogistic selectivity curve.](media/image36.png){#fig-prey-bilogistic width=4.72in height=3.69in}
+
 **Black**: Kmax = 1, KLP=0.2, KUP=0.6
-[**Red**]{style="color: red;"}: Kmax=0.5 , KLP=0.2, KUP=0.6
+
+[**Red**]{style="color: red;"}: Kmax=0.5, KLP=0.2, KUP=0.6
+
 [**Orange**]{style="color: orange;"}: Kmax = 0.2, KLP=0.2, KUP=0.6
+
 
 ::: {.callout-caution}
 **Calculating length in age-structured groups and biomass pools**
@@ -366,9 +382,9 @@ hence assuming that the ratio of hypothetical RN and SN in an invertebrate is op
 
 Applying hard feeding window (knife-edge selectivity) means that very small changes in prey's size can abruptly change their availability from 0 to 1. Although this approach is used in a range of ecological models it can lead to abrupt changes in growth or predation mortality between cohorts.
 
-If smoother transition on size selectivity is desired, a smooth feeding window should be used. Note, however, that the "humped" implementation of the smooth feeding curve extends the availability of prey above the upper gape limit ([KUP_XXX]{style="color: orange;"}) of the predator (Fig. 12). The curve is also very sensitive to the [Kmax_coefft]{style="color: orange;"} parameter. Applying this smooth feeding curve might require decreasing the [KUP_XXX]{style="color: orange;"} values.
+If smoother transition on size selectivity is desired, a smooth feeding window should be used. Note, however, that the "humped" implementation of the smooth feeding curve extends the availability of prey above the upper gape limit ([KUP_XXX]{style="color: orange;"}) of the predator (@fig-prey-size-scalar). The curve is also very sensitive to the [Kmax_coefft]{style="color: orange;"} parameter. Applying this smooth feeding curve might require decreasing the [KUP_XXX]{style="color: orange;"} values.
 
-When using bilogistic curve the prey availability is generally decreased compared to the hard feeding window -- the availability is equal to that of hard feeding window only for a small size range of the prey (Fig. 13). This means that when changes from hard to bilogistic curve are applied, the overall prey availability may have to be increased to ensure enough food for the predator.
+When using bilogistic curve the prey availability is generally decreased compared to the hard feeding window -- the availability is equal to that of hard feeding window only for a small size range of the prey (@fig-prey-bilogistic). This means that when changes from hard to bilogistic curve are applied, the overall prey availability may have to be increased to ensure enough food for the predator.
 :::
 
 : []{#_Toc526762768 .anchor}Table 16. Parameters defining size refuge for age structured groups
@@ -410,11 +426,16 @@ The oxygen limitation scalar *δ~O2~* is applied to clearance rate *C*. Atlantis
 
 **1. Ambient oxygen limitation** ([O2case]{style="color: orange;"}=0) uses ambient oxygen levels O~amb~, lethal oxygen concentration ([KO2_XXX]{style="color: orange;"}, mgO2 m^-3^) and limiting oxygen concentration ([KO2lim_XXX]{style="color: orange;"}, mgO2 m^-3^) parameters. Remember that oxygen solubility in seawater at 5C and 1bar pressure is 10 mg/l or 10000 mg m^-3^.
 
-![](media/image37.png)
+$$
+\delta_{O_2} = \begin{cases}
+\dfrac{(O_{amb} - KO_2)^2}{(O_{amb} - KO_2)^2 + (KO_{2,lim} - KO_2)^2} & \text{if} \quad O_{amb} > KO_2 \quad \text{and} \quad KO_{2,lim} > KO_2 \\[1em]
+1 & \text{if} \quad O_{amb} > KO_2 \quad \text{and} \quad KO_{2,lim} < KO_2 \\[1em]
+0 & \text{if} \quad O_{amb} < KO_2
+\end{cases}
+$$
 
-![](media/image38.png){width="4.338888888888889in" height="3.1034722222222224in"}
+![Oxygen limitation scalar $\delta_{O_2}$ for different ambient oxygen concentrations, assuming $KO_2 = 50$ mgO~2~ m^-3^ and $KO_{2,lim} = 100$ mgO~2~ m^-3^.](media/image38.png){#fig-oxygen-limitation width=4.34in height=3.10in}
 
-[]{#_Toc526762794 .anchor}Figure 14. Oxygen limitation scalar *δ~O2\ ~*for different ambient oxygen concentrations, assuming KO2=50 mgO2 m^-3^ and KO2lim = 100 mgO2 m^-3^.
 
 **2. Depth based limitation** ([O2case]{style="color: orange;"}=1) only uses sediment depth of half oxygen mortality mD ([mD_XXX]{style="color: orange;"}, m) parameter and depth of the oxygenated sediment layer [sedoxdepth]{style="color: orange;"} (see chapter 5.6) where
 
@@ -627,14 +648,16 @@ The equation above shows that if respiration costs are higher than assimilated e
 
 Traditionally in Atlantis negative (A-Rs) was not taken out of the RN and in fact most models do not include maintenance, so (A-Rs) never gets negative. To enable negative (A-Rs) to be taken out from RN pool, set the [flag_shrinkfat]{style="color: orange;"}=1. This is **strongly recommended for model that use respiration**. If [flag_shrinkfat]{style="color: orange;"}=0 (for legacy issues) the negative (A-Rs) is converted to zero and nothing is taken out from either RN or SN. This means that the only way RN pool can decrease is through spawning, as it is not used to cover maintenance costs during starvation.
 
-Figure 15 shows the value of λ (y axis) depending on the RN/SN. Until the RN/SN is close to the [X_RS]{style="color: orange;"} value, all available energy will go to rebuilding reserves (λ=0). Black and blue lines show energy allocation under two different X_RS parameters. Once RN/SN \> [X_RS]{style="color: orange;"}, the condition of the animal is considered to be good and some energy is allocated to growth of SN. Once RN is replenished, all available energy will be directed to SN. The steepness of the curve and value of RN/SN above which all energy will be sent to SN depends on the [pR_XXX]{style="color: orange;"} parameter, where **larger pR values lead to steeper curve and earlier allocation of all energy to SN**.
+The value of λ (y axis) depending on the RN/SN (@fig-energy-allocation-sn). Until the RN/SN is close to the [X_RS]{style="color: orange;"} value, all available energy will go to rebuilding reserves (λ=0). Black and blue lines show energy allocation under two different X_RS parameters. Once RN/SN \> [X_RS]{style="color: orange;"}, the condition of the animal is considered to be good and some energy is allocated to growth of SN. Once RN is replenished, all available energy will be directed to SN. The steepness of the curve and value of RN/SN above which all energy will be sent to SN depends on the [pR_XXX]{style="color: orange;"} parameter, where **larger pR values lead to steeper curve and earlier allocation of all energy to SN**.
 
-![](media/image54.png){width="4.338888888888889in" height="3.1034722222222224in"}
+![Proportion of available energy allocated to SN, depending on the individual's condition (RN/SN, on x axis), and pR and X_RS parameters.](media/image54.png){#fig-energy-allocation-sn width=4.34in height=3.10in}
 
-**Figure 15.** Proportion of available energy allocated to SN, depending on the individual's condition (RN/SN, on x axis), and pR and X_RS parameters.
 **Black**: X_RS=2.65, pR=3.5
+
 [**Red**]{style="color: red;"}: X_RS=2.65, pR=5
+
 [**Orange**]{style="color: orange;"}: X_RS=2.65, pR=10
+
 [**Blue**]{style="color: blue;"}: X_RS=2, pR=3.5
 
 Another option to consider when thinking about the representation of size in Atlantis is [flag_dynamicXRS]{style="color: orange;"}. This flag indicates whether to use a dynamically changing ratio between reserve and structural mass through time in Atlantis or to simply use a fixed value (as in the standard Atlantis code). This has implications for everything to do with size -- how the optimal weight of in individual is calculated, which influences reproductive capacity and allocation of material during growth. These additions are used most commonly when dealing with evolution in Atlantis.
@@ -759,7 +782,7 @@ At present this proportional access is assumed to match across all ages undertak
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [X_RS]{style="color: orange;"} | Optimal RN to SN ratio in age-structured groups |
-| [pR_XXX]{style="color: orange;"} | Parameter controlling preference of energy allocation to RN and SN (Fig. 15) |
+| [pR_XXX]{style="color: orange;"} | Parameter controlling preference of energy allocation to RN and SN (@fig-energy-allocation-sn) |
 | [flag_shrinkfat]{style="color: orange;"} | If set to 1, negative energy budget at a given time step (when respiration costs exceed assimilated food intake) will be taken out of the RN pool. This is important for models that include respiration. If set to 0, negative energy budget is converted to 0. |
 | [flaghomog_sp]{style="color: orange;"} | If set to 1, body condition of age-structured groups is homogenised across the entire model domain after each timestep. This means that RN and SN ratio will be the same for a functional group throughout the whole model domain. If set to 0, condition can vary among boxes depending on food availability |
 | [flagXXXlim]{style="color: orange;"} | Flag defining what kind of space limitation should be applied to biomass pool consumers or benthic primary producers (see NOTE! in chapter 10.5.3) |
@@ -896,13 +919,16 @@ where *optCond* =(1.0 + [X_RS]{style="color: orange;"})·SN, *W* is weight calcu
 
 The calculations for starvation mortality are done in the *Vert_Mortality()* routine in **[atvertprocesses.c]{.underline}**
 
-![](media/image56.png){width="4.311111111111111in" height="3.4618055555555554in"}
+![Starvation mortality (per day) for different [Kthreshm]{style="color: orange;"} and [mStarve]{style="color: orange;"} values.](media/image56.png){#fig-starvation-mortality width=4.31in height=3.46in}
 
-**Figure 16.** Starvation mortality (per day) for different [Kthreshm]{style="color: orange;"} and [mStarve]{style="color: orange;"} values.
 [**Black**]{style="color: black;"}: Kthrem=0.9, mStarve=0.001
+
 [**Orange**]{style="color: orange;"}: Kthrem=0.8, mStarve=0.001
+
 [**Red**]{style="color: red;"}: Kthrem=0.7, mStarve=0.001
+
 [**LightBlue**]{style="color: lightblue;"}: Kthrem=0.9, mStarve=0.0005
+
 [**Blue**]{style="color: blue;"}: Kthrem=0.9, mStarve=0.01
 
 ### ***10.6.3. Extra mortality in age-structured groups***
@@ -971,11 +997,9 @@ These vectors have the format like:
 
 The unassimilated food (faeces) and non-predation mortality products are sent to labile detritus (DL), refractory detritus (DR) and ammonia (NH) pools. The production of waste products by biomass pool and age structured group consumers are handled in the same way, but in the case of age structured groups the mortality terms are converted from numbers of individuals to biomass before being used in the following equations.
 
-Flow of nitrogen from food intake to detritus and the ammonia pool can be illustrated with the flowchart in Fig. 17. It shows that first, the assimilation efficiency parameters determine how much of the grazed food is assimilated. The rest is sent to waste products. The waste products are then split between detritus and the ammonia fraction, where the amount of detritus is determined by the detritus proportion parameters ([FDG]{style="color: orange;"}, [FDGDL]{style="color: orange;"}, [FDGDR]{style="color: orange;"}).
+Flow of nitrogen from food intake to detritus and the ammonia pool can be illustrated with the flowchart (@fig-nitrogen-flow). It shows that first, the assimilation efficiency parameters determine how much of the grazed food is assimilated. The rest is sent to waste products. The waste products are then split between detritus and the ammonia fraction, where the amount of detritus is determined by the detritus proportion parameters ([FDG]{style="color: orange;"}, [FDGDL]{style="color: orange;"}, [FDGDR]{style="color: orange;"}).
 
-![](media/image57.jpg){width="5.7928083989501316in" height="6.260416666666667in"}
-
-[]{#_Toc526762797 .anchor}Figure 17. Nitrogen flow from consumers to detrital and ammonia pools. Parameters that determine allocation between the pools are shown on the arrows. Optional fluxes are shown in dashed arrows.
+![Nitrogen flow from consumers to detrital and ammonia pools. Parameters that determine allocation between the pools are shown on the arrows. Optional fluxes are shown in dashed arrows.](media/image57.jpg){#fig-nitrogen-flow width=5.79in height=6.26in}
 
 Production of **labile detritus (DL)** by consumer group XX is given by:
 
@@ -986,7 +1010,7 @@ where E~L~ is the assimilation efficiency on live prey ([E_XXX]{style="color: or
 Production of **refractory detritus (DR)** uses the same equation, except that:
 
 1)  the final multiplication is done not by the FDL parameter but by (1-FDL)
-2)  detritus produced from **all** unassimilated food consumed by optional seabirds and fish NOT explicitly represented in the model is added to DR (see Fig 17 and below)
+2)  detritus produced from **all** unassimilated food consumed by optional seabirds and fish NOT explicitly represented in the model is added to DR (@fig-nitrogen-flow)
 
 $$W_{DR} = \ \left( \left( 1 - E_{L} \right) \cdot FDG \cdot \sum_{i = type}^{}{Gr_{CX,i} + \left( 1 - E_{DL} \right) \cdot FDGDL \cdot Gr_{CX,DL} + \left( 1 - E_{DR} \right)} \cdot FDGDR \cdot Gr_{CX,DR} + FDM \cdot M_{CX} \right) \cdot (1 - FDL) + FFSB \cdot M_{S}$$
 
@@ -1409,16 +1433,19 @@ As recruits "arrive" they enter the first age group of a species. For species th
 ::: {.callout-caution}
 **Tracking calendar years within Atlantis age groups** 
 
-Although some species have several calendar years in one age group for the purposes of simplifying the ecological processes, for aging Atlantis actually tracks individuals of each calendar year within age group separately. This is illustrated in the left Figure 18 below where three calendar years (bars of the same colour) are tracked in each of the four age groups (AG1-AG4). The ageing routines move the individuals from one calendar year to the next (solid line arrows).
+Although some species have several calendar years in one age group for the purposes of simplifying the ecological processes, for aging Atlantis actually tracks individuals of each calendar year within age group separately. This is illustrated in the left @fig-calendar-year-tracking below where three calendar years (bars of the same colour) are tracked in each of the four age groups (AG1-AG4). The ageing routines move the individuals from one calendar year to the next (solid line arrows).
 :::
 
-All individuals in one age group AG are assumed to be identical for predation, reproduction, fishing and other processes. Mortality can be proportionally allocated across annual age cohorts within an age class. However, it is also possible to dampen strong year classes during the ageing process and equalise their relative abundance. This assumes that the most abundant year classes will be more affected by predation and fishing that less abundant ones and that through time the relative abundance of year classes will even out. The figure on the right shows that the abundant youngest year class in year t becomes less abundant in year t+1, while the relative abundance of the other two year classes in that age group increases (shown with bold outlines). In the year t+1, the newly arrived year class is shown in green, and the oldest year class from age group 1 is now in the age group 2.
+All individuals in one age group AG are assumed to be identical for predation, reproduction, fishing and other processes. Mortality can be proportionally allocated across annual age cohorts within an age class. However, it is also possible to dampen strong year classes during the ageing process and equalise their relative abundance. This assumes that the most abundant year classes will be more affected by predation and fishing that less abundant ones and that through time the relative abundance of year classes will even out. The figure on the right (@fig-calendar-year-tracking) shows that the abundant youngest year class in year t becomes less abundant in year t+1, while the relative abundance of the other two year classes in that age group increases (shown with bold outlines). In the year t+1, the newly arrived year class is shown in green, and the oldest year class from age group 1 is now in the age group 2.
 
-![](media/image58.jpg){width="2.5833333333333335in" height="2.876388888888889in"}
+::: {#fig-calendar-year-tracking layout-ncol=2}
 
-![](media/image59.jpeg){width="2.7069444444444444in" height="2.70625in"}
+![Three calendar years for each of the four age groups (AG1–AG4) illustrated.](media/image58.jpg){#fig-calendar-years-ag width=2.58in height=2.88in}
 
-[]{#_Toc526762798 .anchor}Figure 18. Tracking of calendar years in Atlantis age groups. Left: three calendar years for each of the four age groups (AG1-AG4) illustrated. Right: dampening of strong year classes through time.
+![Dampening of strong year classes through time.](media/image59.jpeg){#fig-calendar-years-dampening width=2.71in height=2.71in}
+
+Tracking of calendar years in Atlantis age groups. Left: three calendar years for each of the four age groups (AG1–AG4) illustrated. Right: dampening of strong year classes through time.
+:::
 
 Dampening of strong year classes during ageing routines is controlled by the [flagrecpeakXXX]{style="color: orange;"} parameter used in the *Update_Age_Distrib()* routine. If [flagrecpeakXXX]{style="color: orange;"}=0 then dampening of strong year classes will use the [recruitRangeFlat]{style="color: orange;"} multiplier, and if the [flagrecpeakXXX]{style="color: orange;"}=1 then dampening of strong year classes will use the [recruitRange]{style="color: orange;"} multiplier. By setting the values for [recruitRangeFlat]{style="color: orange;"} and [recruitRange]{style="color: orange;"} the user can control how much dampening will occur. If no dampening is wanted set the values to 1.
 

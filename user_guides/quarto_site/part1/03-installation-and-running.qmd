@@ -119,11 +119,10 @@ All files except for NC files can be opened and edited using any basic text edit
 
 ## **2.3. Overview of Atlantis submodels and the main() routine**
 
-Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean (**Error! Reference source not found.**). The figure below gives a schematic of the Atlantis submodels overlaid one over another. At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.
+Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean (**Error! Reference source not found.**). A schematic of the Atlantis submodels overlaid one over another (@fig-atlantis-structure). At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.
 
-![](media/image7.jpg){width="6.6930555555555555in" height="4.508333333333334in"}
+![Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with \* are required, others are optional.](media/image7.jpg){#fig-atlantis-structure width=6.69in height=4.51in}
 
-**Figure 2.** Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with \* are required, others are optional.
 
 The 3D structure of your model domain, or **Model Geometry**, is described in the BGM file. The model geometry is used to simulate all processes in the five submodels.
 
@@ -133,11 +132,9 @@ The 3D structure of your model domain, or **Model Geometry**, is described in th
 
 In addition, all simulations require two supporting files *force.prm* and *run.prm* (see below for a brief description of all parameter files).
 
-The *main()* routine is in the **atlantismain.c** file in the **atlantismain** library. It calls in a set order all other routines that initialise and run the requested submodels and routines and write output files. Each submodel and their main routines will be described in detail below, but a general overview is given in Fig. 3.
+The *main()* routine is in the **atlantismain.c** file in the **atlantismain** library. It calls in a set order all other routines that initialise and run the requested submodels and routines and write output files. Each submodel and their main routines will be described in detail below, overview provided (@fig-main-routine).
 
-![](media/image8.jpeg){width="6.965277777777778in" height="5.371527777777778in"}
-
-**Figure 3.** Brief overview of the Atlantis *main()* routine that calls other routines implemented in various submodels.
+![Brief overview of the Atlantis *main()* routine that calls other routines implemented in various submodels.](media/image8.jpeg){#fig-main-routine width=6.97in height=5.37in}
 
 ## **2.4. Delving into the code: finding the files and routines that describe the processes you are interested in**
 

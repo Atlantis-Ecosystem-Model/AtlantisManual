@@ -6,7 +6,7 @@ title: "4. HYDRODYNAMIC, SALINITY AND TEMPERATURE FORCING DATA"
 
 Like most other ecosystem models, Atlantis does not calculate water fluxes (current, circulation) itself, but uses outputs from specialised oceanographic models such as [ROMS](https://www.myroms.org/wiki/Documentation_Portal) (Regional Ocean Modeling System) (Shchepetkin and McWilliams 2005; Haidvogel et al. 2008), [BLUELINK](http://wp.csiro.au/bluelink/global/) (Brassington et al. 2007) or [HYCOM](https://hycom.org/) (Chassignet et al. 2006). In other words, Atlantis models are forced with hydrodynamic data from oceanographic models. At the minimum level Atlantis requires only a hydrodynamic forcing input file defining water fluxes across boxes and layers. The model will then use simple routines to calculate temperature and salinity conditions in each cell at each simulation time step. However, most Atlantis models, and other ecosystem models (Fiechter et al. 2014; Rose et al. 2015), also use oceanographic model output to force temperature and salinity conditions (and in some cases also oxygen, pH or other tracers). This is because oceanographic models are specialised to model temperature and salinity conditions, and their calculation of these parameters are deemed to be more accurate than those used in Atlantis. Moreover, taking the physical properties from the oceanographic model means they are consistent with the exchanges (currents) being read in from the oceanographic model. In rare cases, if oceanographic models are not available, water flux information can be pieced together from observations or literature to generate hydrodynamic forcing files manually. Table 5 lists some of the spatial domains and forcing characteristics of example model applications.
 
-Oceanographic models simulate processes on their native grid, which is typically of much higher spatial resolution than Atlantis. The temporal scale in oceanographic models is also often in the range of seconds rather than the 6h, 12h or 24h used in Atlantis. Further, most oceanographic models use the same number of water column layers regardless of total depth (called sigma layers) (Fig. 6). This means that the depth of a layer in oceanographic models is very different in shallow and deep waters, while in Atlantis, water layer depths remain relatively stable (with small variations due to tides). This means that water fluxes and values of all forced parameters must be interpolated onto Atlantis model polygons and cells.
+Oceanographic models simulate processes on their native grid, which is typically of much higher spatial resolution than Atlantis. The temporal scale in oceanographic models is also often in the range of seconds rather than the 6h, 12h or 24h used in Atlantis. Further, most oceanographic models use the same number of water column layers regardless of total depth (called sigma layers) (@fig-sigma-layers). This means that the depth of a layer in oceanographic models is very different in shallow and deep waters, while in Atlantis, water layer depths remain relatively stable (with small variations due to tides). This means that water fluxes and values of all forced parameters must be interpolated onto Atlantis model polygons and cells.
 
 
 **Table 5.** Hydrodynamic structure of some example Atlantis models. Advect = advection, temp = temperature, salt = salinity.
@@ -34,9 +34,8 @@ Oceanographic models simulate processes on their native grid, which is typically
 - ⁵ ROMS Pares-Sierra - Centro de Investigación Científica y de Educación Superior de Ensenada
 - ⁶ Implicit handling of climate change means that extra mortality terms (related to acidification) or forced changes (e.g. for temperature) are used rather than flows from down scaled global circulation models
 
-![](media/image26.png){width="4in" height="6in"}
+![An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate.](media/image26.png){#fig-sigma-layers width=4in height=6in}
 
-[]{#_Toc526762786 .anchor}**Figure 6.** An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate
 
 ## **4.2. Transforming oceanographic model output into Atlantis forcing files**
 
@@ -44,7 +43,7 @@ The interpolation of the oceanographic output into Atlantis forcing files requir
 
 Fortunately, the transformation of oceanographic files is increasingly streamlined. Until recently most model developers used two codes contributed by CSIRO. We will describe them in a more detail below. However, new codes are currently being developed by the Atlantis community, i.e. an [R script by Cecilia Hansen](https://confluence.csiro.au/display/Atlantis/R+code+to+process+ROMS+into+Hydro) to construct hydrodynamic files from ROMS files. Please check the Atlantis wiki [forcing files page](https://confluence.csiro.au/display/Atlantis/Forcing+Files) and Atlantis google group for any new developments in this area.
 
-The interpolation of oceanographic data onto the Atlantis model geometry requires three main conversions (Fig. 7):
+The interpolation of oceanographic data onto the Atlantis model geometry requires three main conversions (@fig-hydro-conversion):
 
 1. Calculate **horizontal** water fluxes across Atlantis polygon faces, i.e. from one polygon to another
 2. Calculate **vertical** water fluxes within Atlantis polygons.
@@ -52,9 +51,8 @@ The interpolation of oceanographic data onto the Atlantis model geometry require
 
 These three steps constitute the main conversion and are conducted using the [*Hydro*](https://confluence.csiro.au/display/Atlantis/Matlab+-+Hydro) Matlab script (follow the link for further instructions on installation and use of the *Hydro* script and also check [*Hydro* FAQ](https://confluence.csiro.au/display/Atlantis/Hydro+FAQ) for more information). *Hydro* produces two NC files which are then used by [*Hydroconstruct*](https://confluence.csiro.au/display/Atlantis/HydroConstruct) to produce the final Atlantis forcing files. *Hydroconstruct* makes sure the order of water columns is in the right direction, transforms the water flux data into per layer per box fluxes and also corrects for hyperdifussion (using either area based scaling or area and box shape based scaling). The *Hydroconstruct* [running](https://confluence.csiro.au/display/Atlantis/Running+Hydroconstruct) page and [parameter](https://confluence.csiro.au/display/Atlantis/Running+Hydroconstruct?preview=/43155480/43156182/params_17July2012.prm) file provides further information on the script and how to run it.
 
-![](media/image27.jpeg){width="6.889583333333333in" height="2.2263888888888888in"}
+![Main steps in converting oceanographic files into Atlantis input files, as done using two CSIRO contributed scripts *Hydro* and *Hydroconstruct*. Figure by Javier Porobic Garate.](media/image27.jpeg){#fig-hydro-conversion width=6.89in height=2.23in}
 
-[]{#_Toc526762787 .anchor}**Figure 7.** Main steps in converting oceanographic files into Atlantis input files, as done using two CSIRO contributed scripts *Hydro* and *Hydroconstruct*. Figure by Javier Porobic Garate
 
 ::: {.callout-tip title="Good practice tip 3"} 
 Interpolation and interpretation of the oceanographic data is one of the main challenges for Atlantis models developers and users, because usually they are biologists and not oceanographers. It is therefore highly recommended to include an oceanographer in the Atlantis team, at least during the model development stage, but also if and when long term forcing of environmental trends is needed.

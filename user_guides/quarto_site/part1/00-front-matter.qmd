@@ -356,47 +356,30 @@ TABLE OF CONTENTS
 
 [Table 27. Basic assumptions and formulations in the Atlantis model (modified after Fulton et al. 2004b). [222](#_Toc526762780)](#_Toc526762780)
 
-**Figures**
+## List of Figures
 
-[Figure 1. Some existing applications of Atlantis modelling framework and specific model domains (see Table 1 for details on numbered models). [16](#_Toc446445862)](#_Toc446445862)
+   - @fig-atlantis-applications
+   - @fig-atlantis-structure
+   - @fig-main-routine
+   - @fig-cross-section-horizontal
+   - @fig-model-geometry
+   - @fig-sigma-layers
+   - @fig-hydro-conversion
+   - @fig-physics-routines
+   - @fig-baltic-biomass-ratios
+   - @fig-grazing-term
+   - @fig-habitat-refuge
+   - @fig-prey-size-scalar
+   - @fig-prey-bilogistic
+   - @fig-oxygen-limitation
+   - @fig-energy-allocation-sn
+   - @fig-starvation-mortality
+   - @fig-nitrogen-flow
+   - @fig-calendar-year-tracking
+   - @fig-temperature-scalar
+   - @fig-humped-temperature-response
 
-[Figure 2.Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with \* are required, others are optional. [29](#_Ref445803305)](#_Ref445803305)
 
-[Figure 3. Brief overview of the Atlantis main() routine that calls other routines implemented in various submodels. [30](#_Toc526762783)](#_Toc526762783)
-
-[Figure 4. Top: An example cross section of an Atlantis model, showing water column and sediment layers. Oceanic boxes have an open water boundary at the bottom of the deepest water layer. The depths of vertical layers do not have to be the same in all boxes, although most models keep them identical for simplicity (shown with horizontal dashed line). The depth of the bottom water column layer varies depending on the geography of the marine system. Bottom: An example of the horizontal Atlantis model domain (set in the BGM file) [56](#_Toc526762784)](#_Toc526762784)
-
-[Figure 5. Example of an Atlantis model geometry (part of a model domain). Boxes are numbered in bold, grey boxes indicate boundary or island (land) boxes. Faces are numbered in italic numbers. Vertices are shown as dots; vertices P1 and P2 describe face 5. [58](#_Toc446445864)](file:////Users/ful083/Work/atlantis/manual/final_uploaded_manual_version/AtlantisUserGuide_PartI.docx#_Toc526762785)
-
-[Figure 6. An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate [66](#_Toc526762786)](file:////Users/ful083/Work/atlantis/manual/final_uploaded_manual_version/AtlantisUserGuide_PartI.docx#_Toc526762786)
-
-[Figure 7. Main steps in converting oceanographic files into Atlantis input files, as done using two CSIRO contributed scripts Hydro and Hydroconstruct. Figure by Javier Porobic Garate [67](#_Toc526762787)](#_Toc526762787)
-
-[Figure 8. Illustration of optional physics routines described in detail above. Some boxes have two sediment layers. Vertical mixing can also be set as downwelling, but only one direction is possible in a given simulation. [83](#_Toc526762788)](#_Toc526762788)
-
-[Figure 9. Total final biomass ratios of all Baltic Sea model functional groups in scenarios exploring the effects of optional physics routines. The simulations were run for 20 years. [99](#_Toc526762789)](#_Toc526762789)
-
-[Figure 10. The value of grazing term (Gr) as a function of prey biomass (ranging from 0 to 1x of the predator biomass) and different assumptions on the ratio between C and mum. Predators biomass is 1000mgN, C = 100 m^3^ ind^-1^ day^-1^. The calculations assume only one prey, no refuge (δ~refuge~=1), maximum availability p~prey,CX~ of 1, and assimilation efficiencies E~prey,i~ of 1. Black: mum = C, orange: mum = C\*3, blue: mum =C/5 [145](#_Toc526762790)](#_Toc526762790)
-
-[Figure 11. Habitat refuge scalar on prey availability as a function of cell area covered with suitable habitats (see box above for details on calculations of suitable cover area). [151](#_Toc526762791)](#_Toc526762791)
-
-[Figure 12. Prey availability scalar Size_Scalar~prey~ of different sized prey for different Kmax_coefft values for humped selectivity curve. [154](#_Toc526762792)](#_Toc526762792)
-
-[Figure 13. Prey availability scalar δ~size~ of different sized prey for bilogistic selectivity curve. [155](#_Toc526762793)](#_Toc526762793)
-
-[Figure 14. Oxygen limitation scalar δ~O2~ for different ambient oxygen concentrations, assuming KO2=50 mgO2 m^-3^ and KO2lim = 100 mgO2 m^-3^. [158](#_Toc526762794)](#_Toc526762794)
-
-[Figure 15. Proportion of available energy allocated to SN, depending on the individual's condition (RN/SN, on x axis), and pR and X_RS parameters. [168](#_Toc526762795)](#_Toc526762795)
-
-[Figure 16. Starvation mortality (per day) for different Kthreshm and mStarve values. [178](#_Toc526762796)](#_Toc526762796)
-
-[Figure 17. Nitrogen flow from consumers to detrital and ammonia pools. Parameters that determine allocation between the pools are shown on the arrows. Optional fluxes are shown in dashed arrows. [181](#_Toc526762797)](#_Toc526762797)
-
-[Figure 18. Tracking of calendar years in Atlantis age groups. Left: three calendar years for each of the four age groups (AG1-AG4) illustrated. Right: dampening of strong year classes through time. [198](#_Toc526762798)](#_Toc526762798)
-
-[Figure 19. The T~scalar~ values at different water temperatures. [214](#_Toc526762799)](#_Toc526762799)
-
-[Figure 20. A humped temperature response used when q10_method_XXX=1. [215](#_Toc526762800)](#_Toc526762800)
 
 **\**
 

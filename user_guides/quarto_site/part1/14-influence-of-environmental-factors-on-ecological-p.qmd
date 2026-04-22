@@ -12,14 +12,16 @@ If the [q10_method_XXX]{style="color: orange;"}=0 then a simple Q10 based correc
 
 $$T_{scalar} = {q10}^{\frac{\left( T_{H2O} - 15 \right)}{10}}$$
 
-where q10 is a species-specific parameter provided in the [q10_XXX]{style="color: orange;"} and is typically set to 2. The Figure 19 shows the effect of different [q10_XXX]{style="color: orange;"} values.
+where q10 is a species-specific parameter provided in the [q10_XXX]{style="color: orange;"} and is typically set to 2. The effect of different [q10_XXX]{style="color: orange;"} values (@fig-temperature-scalar)
 
-![](media/image60.png){width="4.348611111111111in" height="3.283333333333333in"}
+![The *T~scalar~* values at different water temperatures.](media/image60.png){#fig-temperature-scalar width=4.35in height=3.28in}
 
-**Figure 19.** The *T~scalar~* values at different water temperatures.
 **Black**: q10=2
+
 [**Orange**]{style="color: orange;"}: q10=2.5
+
 [**Red**]{style="color: red;"}: q10=3
+
 
 A more complicated six parameter function is used if [q10_method_XXX]{style="color: orange;"}=1 (based on Gary Griffiths PhD thesis)
 
@@ -27,7 +29,7 @@ $$Tcorr = ln(2) \cdot \phi_{A} \cdot {Cons}_{B}^{Temp} \cdot \text{exp}\left( - 
 
 where *ø~A~* is a species-specific coefficient ([temp_coefftA_XXX]{style="color: orange;"}), *Cons~B~* is the global coefficient ([temp_coeffB]{style="color: orange;"}), *Temp* is ambient water temperature*, Temp~OPT~* is a species-specific optimum temperature ([q10_optimal_temp_XXX]{style="color: orange;"}), *ø~C\ ~*is the global coefficient ([temp_coeffC]{style="color: orange;"}), *Cons* is a global exponent parameter ([temp_exp]{style="color: orange;"}), and *ø~corr~* is a species q10 correction parameter ([q10_correction_XXX]{style="color: orange;"}).
 
-This function aims to imitate a humped response, where rates are highest at optimum temperature levels and decrease when the temperature is below or above the optimum. The function is very sensitive to changes in parameters and before applying it the users should carefully explore the shape of the function for the chosen parameter values (Figure 20). The black line shows the shape of the response curve for the original parameter values, except for *Temp~OPT~* which was chosen to be 19C
+This function aims to imitate a humped response, where rates are highest at optimum temperature levels and decrease when the temperature is below or above the optimum. The function is very sensitive to changes in parameters and before applying it the users should carefully explore the shape of the function for the chosen parameter values (@fig-humped-temperature-response). The black line shows the shape of the response curve for the original parameter values, except for *Temp~OPT~* which was chosen to be 19C
 
 ø~A~ (temp_coefftA_XXX) =0.85
 Cons~B~ (temp_coeffB) = 1.06
@@ -36,15 +38,20 @@ Temp~OPT~ (q10_optimal_temp_XXX) = 19C
 Cons (temp_exp) = 3
 ø~corr~ (q10_correction_XXX) = 1000
 
-![](media/image61.png){width="5.054861111111111in" height="3.4694444444444446in"}
+![A humped temperature response used when [q10_method_XXX]{style="color: orange;"}=1.](media/image61.png){#fig-humped-temperature-response width=5.05in height=3.47in}
 
-**Figure 20.** A humped temperature response used when [q10_method_XXX]{style="color: orange;"}=1.
 **Black**: original values as shown in parentheses below
+
 [**Grey**]{style="color: grey;"}: Temp~OPT~ = 12C (19C)
+
 [**Green**]{style="color: green;"}: ø~A~= 0.95 (0.85)
+
 [**Orange**]{style="color: orange;"}: Cons~B~ = 1.1 (1.06)
+
 [**Blue**]{style="color: blue;"}: ø~C~ = 1.1 (1.0)
+
 [**Pink**]{style="color: pink;"}: Cons = 2.5 (3.0)
+
 [**Purple**]{style="color: purple;"}: ø~corr~ = 100 (1000)
 
 ## **13.2. Temperature: effects on feeding parameters and assimilation efficiency** 
@@ -67,9 +74,9 @@ Atlantis has an option to set improved or decreased assimilation efficiency depe
 
 To allow for temperature effect on assimilation efficiency set [flagq10effXXX]{style="color: orange;"} to 1
 
-When **[flagq10effXXX]{style="color: orange;"} = 1** the **efficiency is poorer in cooler water** and the Tcorr scalar (Fig. 20) is applied **only** if water temperature is lower than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
+When **[flagq10effXXX]{style="color: orange;"} = 1** the **efficiency is poorer in cooler water** and the Tcorr scalar (@fig-humped-temperature-response) is applied **only** if water temperature is lower than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
 
-If **[flagq10effXXX]{style="color: orange;"}= 2** the **efficiency is poorer in warmer water** and the Tcorr scalar (see Fig. 20) is applied **only** if water temperature is higher than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
+If **[flagq10effXXX]{style="color: orange;"}= 2** the **efficiency is poorer in warmer water** and the Tcorr scalar (@fig-humped-temperature-response) is applied **only** if water temperature is higher than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
 
 In the calculations above if the Tcorr is \>1 then the Tcorr=1/T_scalar. This means that Tcorr is always \<1, which ensures that efficiency is decreased when correcting for temperature effects.
 
