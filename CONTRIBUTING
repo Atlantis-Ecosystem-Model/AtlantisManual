@@ -1,0 +1,19 @@
+The following are the guidelines for contributing changes or issues to the AtlantisManual repository
+
+# Issues
+
+1. Issues should be made whenever there is a substatitve change requested to the Atlantis documentation
+2. Issues should contain the section name and number (e.g "1.3. What is Atlantis?") and/or the figure and table reference (e.g. "1.3.Table 1")
+3. If there is an inaccuracy, please specify what exactly is incorrect, how you discovered it, and any supporting documentation
+4. You should try to provide suggested edits (especially for text)
+
+# Contributing Edits/Committing changes
+
+1. All requested changes should originate as an issue first to describe the problem
+2. Work should be done on an issue branch (from the main branch) with naming scheme (ISSUE_TAG/DESCRIPTION)
+3. When changes are completed and committed to the issue branch, make a pull request to bring changes into the main branch
+4. The pull request should link to the issue and summarise how the issue was resolved and any other changes (no need to repeat commit history)
+5. Request at least one reviewer (other than yourself) to approve the changes
+
+DO NOT commit to the main branch unless it is to fix very minor grammar/spelling/hyperlinks
+
