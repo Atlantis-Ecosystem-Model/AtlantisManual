@@ -1,8 +1,11 @@
 ---
-title: "3. GEOMETRY OF THE MODEL DOMAIN"
+title: "Geometry of the Model Domain"
+number-sections: true
+crossref:
+  chapters: true
 ---
 
-## **3.1. Boxes and layers defining the geometry of the model**
+## **Boxes and layers defining the geometry of the model**
 
 Atlantis is a spatially-explicit model, which means that it simulates spatial variation in biogeochemical and socio-economic processes. The spatial domain or geometry of the specific model consists of boxes or polygons subdivided into vertical sediment, water and optional ice depth layers. Land is also an optional inclusion, represented via sediment layers only. The number and shapes of boxes, as well as a number and depth of vertical layers is defined by the user. One layer of one box is called a cell. A cell is the main model spatial unit. Most biogeochemical, biological or fisheries processes are replicated in each water column cell and are considered uniform within a cell. Movement between the water column cells is by passive advective transfer (forced by hydrodynamic forcing files) or directed active movement. Only sediment relevant processes are executed in the sediments, similarly for ice or land. Direct movement between cells of these special types is not possible for ice or sediments, though some directed movement is possible on land. Movement between the special cell types and water column cells may happen due to processes like deposition and melting.
 
@@ -19,7 +22,7 @@ In principal users can setup very complex shaped polygons, however, the number o
 Top: vertical cross section. Bottom: horizontal domain.
 :::
 
-## **3.2. How to define a geometry file for a new model?**
+## **How to define a geometry file for a new model?**
 
 The first step in developing a new model is to define the two-dimensional domain specified in the BGM file. Atlantis was created prior to the development of shapefiles that have now become a standard in GIS applications. Hence Atlantis uses its own BGM file format (see [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files) BGM file page), which was a common format for many early box models. These days the developers of new Atlantis applications typically define model geometry and shapes of the polygons using GIS tools, but any other alternative approaches that can provide geographic representation can be used. The GIS tools can export shapefiles, which are converted into the Atlantis-specific BGM file using specially written packages. A new R tool (rbgm, see below) is also being developed to enable users to convert files from GIS or other spatial editing applications directly to BGM files, skipping the shapefile stage (see below). The BGM file is also used by some software packages, such as Dive or Olive, for spatial visualisation of Atlantis outputs.
 
@@ -30,7 +33,7 @@ The **BGM** file defines the **two-dimensional** geometry of the model domain. I
 
 The ***initial_condition.nc*** file includes further information on the **three-dimensional geometry**, specifying numbers and depth of the vertical layers in each box. The maximum number of water column and sediment layers is set in the global attribute section in the *initial_conditions.nc* file ([wcnz]{style="color: orange;"} and [sednz]{style="color: orange;"} parameters). The actual number of water column and the ID of the top active sediment layer (typically 0) in each box is then given in the [numlayers]{style="color: orange;"} and [topk]{style="color: orange;"} parameters given for each box. 
 
-Nominal or initial **depths of the water column and sediment layers** are set in the *initial\_ condition.nc* [nominal_dz]{style="color: orange;"} parameter. Typically they are set to be identical among boxes (@fig-cross-section-horizontal, top panel), except for the bottom layer, but this is not strictly required. The actual depths of the water column and sediment layers can change dynamically through the simulation and are stored in the [dz]{style="color: orange;"} variable. The maximum change in water column depth is set in [wc_dz_tol]{style="color: orange;"} , whereas minimum and maximum depth of the sediments layer(s) is set in the [minseddz]{style="color: orange;"} and [maxseddz]{style="color: orange;"} parameters in the *physics.prm.*
+Nominal or initial **depths of the water column and sediment layers** are set in the *initial\_ condition.nc* [nominal_dz]{style="color: orange;"} parameter. Typically they are set to be identical among boxes (@fig-model-cross-section), top panel), except for the bottom layer, but this is not strictly required. The actual depths of the water column and sediment layers can change dynamically through the simulation and are stored in the [dz]{style="color: orange;"} variable. The maximum change in water column depth is set in [wc_dz_tol]{style="color: orange;"} , whereas minimum and maximum depth of the sediments layer(s) is set in the [minseddz]{style="color: orange;"} and [maxseddz]{style="color: orange;"} parameters in the *physics.prm.*
 
 The optional ice layers are included as a fourth dimension in the *initial_conditions.nc* file. Modelling ice in Atlantis is still under development, see chapter 5.5.2.
 :::
@@ -122,7 +125,7 @@ There are times (e.g. during an extreme event, which might be implemented for a 
 
 4. Islands **must** be represented as boxes with a depth of 0 (or \>0 if land is active), not as empty regions. By default the land boxes are either treated as boundary boxes, but can also be modelled as land, if the land option is activated (see chapter 5.5.1).
 
-5. It is of utmost importance to **correctly identify the boxes to the left and to the right of a face** in the [face#.lr]{style="color: orange;"} parameter (where \# stands for the box number). The points P1 and P2 in (@fig-main-routine) describe face 5 between boxes 2 and 6. If [face5.p1]{style="color: orange;"} is given as P1 and [face5.p2]{style="color: orange;"} is P2, then left and right boxes are designated as you look from P1 to P2. This means the right box is 6 and the left box is 2 and [face5.lr]{style="color: orange;"} must be set as 2 6. Setting the direction incorrectly inverts the direction of the flow in the hydrodynamics forcing file! [Checkwinding](https://confluence.csiro.au/display/Atlantis/Checkwinding) package will check the file for correct right/left designation.
+5. It is of utmost importance to **correctly identify the boxes to the left and to the right of a face** in the [face#.lr]{style="color: orange;"} parameter (where \# stands for the box number). The points P1 and P2 in (@fig-main-routine)) describe face 5 between boxes 2 and 6. If [face5.p1]{style="color: orange;"} is given as P1 and [face5.p2]{style="color: orange;"} is P2, then left and right boxes are designated as you look from P1 to P2. This means the right box is 6 and the left box is 2 and [face5.lr]{style="color: orange;"} must be set as 2 6. Setting the direction incorrectly inverts the direction of the flow in the hydrodynamics forcing file! [Checkwinding](https://confluence.csiro.au/display/Atlantis/Checkwinding) package will check the file for correct right/left designation.
 
 6. The **midpoint** of a polygon is defined in the [box#.inside]{style="color: orange;"} parameter. It is used to: i) calculate the temperature in a box when temperature forcing data is not provided and we are in the southern hemisphere; ii) calculate the sunrise and sunset values based on lat/long when [lim_sun_hours]{style="color: orange;"} is set to 1; iii) calculate distance between boxes and invasion speed if the invasion option is active; iv) calculate distance from a box to a port in the dynamic fishing code. **If the midpoint of the box is misplaced and is not within the actual box, Atlantis will quit when trying to read time series that deposit something into that box or when running dynamic fishing routines.**
 
@@ -142,7 +145,7 @@ There are times (e.g. during an extreme event, which might be implemented for a 
 
 [box#.horizmix]{style="color: orange;"} -- horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, see Chapter 5.4). It is also used as a box-specific scalar if [fill_zero_exchange]{style="color: orange;"} or [horiz_diffusion]{style="color: orange;"} flags are turned on (set to 1) in the *physics.prm* file (see Chapter 5 for further details).
 
-## **3.3. Practical steps for building the BGM files from GIS shapefiles**
+## **Practical steps for building the BGM files from GIS shapefiles**
 
 **1.** Define polygons using QGIS or similar GIS package. This will produce a shapefile of the model domain. The shapefile is the master of the model geometry, any changes should be made to the shapefile and the BGM should be recreated from that master. Hand editing of the BGM should be avoided^[Expert users may be able to tinker directly with the BGM file, but extreme care should be taken and it should be documented so any future users can understand the changes made (as the master shapefile file will no longer 100% match the model geometry).], other than to manually set the box-specific mixing values, or to correct any issues resulting from BGM generation (like misplacement of the [inside]{style="color: orange;"} point). See the [Atlantis wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files) BGM file page for more information.
 
@@ -156,13 +159,13 @@ There are times (e.g. during an extreme event, which might be implemented for a 
 Please keep in mind that **shapefiles do not preserve all information about the faces** among the boxes (see chapter 3.5). Shapefiles only enumerate faces, but they do not give information about their orientation. They also do not preserve topological information among boxes, i.e. their relationship to one another. Correctly created shapefiles include user defined extra attributes to contain the additional information required to generate a BGM file. However, when shapefiles are edited in a GIS, all face information may change, especially if some boxes are added or deleted. This is why BGMeriser must be run after each shapefile amendment. This is an important disadvantage of using shapefiles for Atlantis model geometry and a **new R package is being developed** to allow users create BGM files directly from GIS or other applications, without having to use shapefiles (see chapter 3.5).
 :::
 
-## **3.4. How to view your model geometry?**
+## **How to view your model geometry?**
 
 The two-dimensional model geometry is now defined in your shapefiles and in BGM files. **The shapefiles can be viewed using QGIS or a similar GIS package.** If shapefiles are not available, BGM files can be converted into shapefiles using [BGM2SHP](https://confluence.csiro.au/display/Atlantis/BGM2SHP) package.
 
 The BGM files are also read by various tools used to visualise Atlantis outputs in a spatial context, listed in chapter 2.9
 
-## **3.5 Using R for BGM geometry**
+## **Using R for BGM geometry**
 
 There is an R package [***rbgm***](https://github.com/mdsumner/rbgm) for working with BGM files contributed by Michael Sumner. The aim of the package is to provide a common platform for reading and writing BGM files, which then also can be used by other Atlantis R applications that require information on the model geometry. Generally, shapefiles do not store all information required to completely re-create a BGM file. One needs at least a line shapefile and a polygon shapefile to store what is in the BGM and also some notes to go with it, which is why a shapefile is only a starting point for a BGM file. Note that BGMeriser **will** create a valid BGM file from a shapefile, but it has to be configured [in the right way](https://confluence.csiro.au/display/Atlantis/BGMEditor).
 

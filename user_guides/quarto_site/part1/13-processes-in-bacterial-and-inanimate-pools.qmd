@@ -1,8 +1,11 @@
 ---
-title: "12. PROCESSES IN BACTERIAL AND INANIMATE POOLS"
+title: "Process in Baterial and Inanimate Pools"
+number-sections: true
+crossref:
+  chapters: true
 ---
 
-## **12.1. Bacterial processes** 
+## **Bacterial processes** 
 
 sBacteria can be represented explicitly or implicitly in Atlantis. Not all early ecosystem models included bacteria, and PPBIM did not explicitly model bacteria. Below is an excerpt of the PPBIM report justifying the decision not to include bacteria:
 
@@ -50,6 +53,6 @@ where E~DL,\ PB~ is the assimilation efficiency on labile detritus ([EDL_BP]{sty
 
 Uptake of refractory detritus DR is modelled in the same way except that PB_DR is used and assimilation efficiencies on refractory detritus is used ([EDR_BP]{style="color: orange;"} and [EDR_BB]{style="color: orange;"}).
 
-## **12.2 Biogeochemical processes** 
+## **Biogeochemical processes** 
 
 Details on the fluxes in the inanimate pools have been described in Fulton et al. 2004a and more recently in Link et al. 2011 [Atlantis-NEUS model report](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155482/341447378/Link_et_al_2011_NEUS_tech_memo.pdf). The table of inanimate pools tracked in the water column and sediments is given in chapter 6.1.

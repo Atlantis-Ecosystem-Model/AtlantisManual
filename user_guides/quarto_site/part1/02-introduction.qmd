@@ -1,8 +1,11 @@
 ---
-title: "1. INTRODUCTION"
+title: "Introduction"
+number-sections: true
+crossref:
+  chapters: true
 ---
 
-## **1.1. Goals of this manual and where to go from here**
+## **Goals of this manual and where to go from here**
 
 Before launching into what Atlantis is and what it assumes it is important to explain what the intent of the manual is, how it can be used and the meaning of key terms that will be used throughout.
 
@@ -54,7 +57,7 @@ For further information on model details and equations, see the Atlantis wiki pa
 9. Link JS, Gamble RJ, Fulton EA (2011) NEUS---Atlantis: construction, calibration, and application of an ecosystem model with ecological interactions, physiographic conditions and fleet behavior. US Dept. Comm. NOAA Technical Memorandum NMFS-NEFSC-218. 249pp.
 :::
 
-## **1.2. Terms and conventions used in the manual**
+## **Terms and conventions used in the manual**
 
 This manual is referenced throughout, and you can click on [hyperlinks]{.underline} to take you to appropriate web pages or relevant parts of the manual.
 
@@ -78,7 +81,7 @@ Most terms will be explained in the relevant sections of the manual. Here we wil
 
 **Fisheries** are fishing units that can have unique and very customisable characteristics, distinguishing them from other fishing units. The number and names of fisheries are given in the fisheries.csv parameter file. If fishing is simulated dynamically (see below) then fisheries behave more like separate fleets with dynamic characteristics.
 
-## **1.3. What is Atlantis?** 
+## **What is Atlantis?** 
 
 Atlantis is a whole-of-system 3D spatially-explicit marine ecosystem modelling framework based on complementary submodels used to simulate physical and biogeochemical processes, ecology, human uses of marine and coastal systems (primarily fisheries), and management. It is written in the C programming language and was originally based on two other models -- the Port Phillip Bay Integrated Model (PPBIM) and the European Regional Seas Ecosystem Model (ERSEM). Atlantis combines different aspects of PPBIM and ERSEM (see Fulton et al. 2004a reference in the box above) and adds a lot of new specific features (Fulton et al. 2004b). Developed by CSIRO scientists in Australia, it has now been applied to more than 30 locations around the world (Fulton 2004; Fulton et al. 2011).
 
@@ -96,7 +99,7 @@ Exploration of management outcomes in Atlantis can be done in two ways. The firs
 
 One of Atlantis' defining characteristics is its modular construction. A wide range of alternative assumptions and model implementations are provided in each of the submodels. This allows the user to choose the desired complexity-- from a relatively simple model of a few groups with simple trophic interactions and catch equations through to complex models, with complicated stock structure, multiple fleets, detailed economics and multiple management levers. However, this flexibility requires that users fully understand the processes and do not resort to 'default settings'. **Atlantis is not a model where you can simply sit and pull multiple handles to discern what it is doing. It requires digging deeply into its underlying processes, particularly when first building and calibrating a new application.** It also means that building and parameterising a new and complex model will require a lot of time and data, and can also lead to large uncertainties around model outcomes.
 
-## **1.4. Existing applications and questions studied**
+## **Existing applications and questions studied**
 
 Most Atlantis development and applications have centred on evaluating alternative management strategies for multispecies fisheries, or exploratory analyses of multiple ecosystem pressures. To date, the Atlantis framework has been applied to over 30 ecosystems around the world (@fig-atlantis-applications) primarily to study questions of:
 
@@ -111,11 +114,8 @@ Most Atlantis development and applications have centred on evaluating alternativ
 
 More recently Atlantis has been used to consider the impacts of marine and coastal industries other than fishing.
 
-![Some existing applications of Atlantis modelling framework and specific model domains (see @tbl-atlantis-applications (old Table 1) for details on numbered models).](media/image2.png){#fig-atlantis-applications width=8in height=6in}
+![Some existing applications of Atlantis modelling framework and specific model domains (@tbl-atlantis-applications) for details on numbered models).](media/image2.png){#fig-atlantis-applications width=8in height=6in}
 
-[]{#_Toc526762753 .anchor}**Table 1.** Examples of Atlantis model applications and their main purposes: P = primary use of the model, S = secondary use, E = exploratory use beginning (modified after Fulton et al. 2011). Some of the model descriptions are included in the [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading) page on the wiki. An updated list of models under development is also available on Atlantis [webpage](http://atlantis.cmar.csiro.au/)
-
-::: {.table-responsive}
 | System | Complexity | Understanding | System-level MSE | Fisheries | Nutrients | Mining | Climate impacts | Catchments | Indicators | Management | Reference |
 |--------|------------|---------------|------------------|-----------|-----------|--------|-----------------|------------|------------|------------|-----------|
 | *Australia* | | | | | | | | | | | |
@@ -139,15 +139,14 @@ More recently Atlantis has been used to consider the impacts of marine and coast
 | 17. Desoto Bay | | P | | P | | | | | | | Gosnell S., unpubl. |
 | *Other areas* | | | | | | | | | | | |
 | 18. Guam | | P | | P | P | | P | P | S | P | Weijerman et al 2015 |
-:::
+
+: Examples of Atlantis model applications and their main purposes: P = primary use of the model, S = secondary use, E = exploratory use beginning (modified after Fulton et al. 2011). Some of the model descriptions are included in the [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading) page on the wiki. An updated list of models under development is also available on Atlantis [webpage](http://atlantis.cmar.csiro.au/). {#tbl-atlantis-applications}
 
 The greatest challenge in implementing an Atlantis model is evaluating uncertainty of parameters and model forecasts. Traditional sensitivity analyses are not possible in models as complex as Atlantis, and therefore parameter uncertainty must be assessed in other ways. New means of achieving this are under development, but historically it has been done using 'bounded parameterisation', where extreme sets of parameters still giving realistic biomasses are used to explore sensitivity. For further discussion on evaluating uncertainty in Atlantis, see chapter 3.2 and 6.1 in Fulton et al. 2007. To read about uncertainty in ecosystem models in general see Link et al. 2012.
 
 For this reason Atlantis is well suited for broader scale exploratory analyses, "what if" scenarios, general evaluation of management strategies and other questions that draw on its ability to simulate multiple interactions between environmental factors, different marine species and humans. It is important to note that predicted biomasses of some functional groups are not necessarily expected to match biomasses predicted from other kinds of models, such as stock assessments (although ideally the trends would match if the same fishing pressure is included in both models). In general Atlantis produces realistic ecosystem structure and function, with biomasses of the correct order of magnitude and plausible dynamics. However, the details can be uncertain and hard to predict with a great deal of precision. For this reason, Atlantis should not be used for tactical short term advice such as setting quotas. However, it could inform fisheries models on factors such as variable natural mortality, as long as the inherent uncertainties are well recognised. The strategic nature of Atlantis is described in detail in Fulton et al. (2011).
 
 Atlantis is not a simple model to implement and even the simplest parameterisation will take many months to a year or more to implement and calibrate. Most models developed from scratch should be considered a close to full time effort for 1-2 years. Including an elaboration of the human dimensions can increase this by a further 6-12 months. Without this level of effort model development can drag on for many years. Once developed however individual simulations can be done quite quickly (on the order of hours to days) so that many questions can be addressed rapidly. The investment in individual models means that re-use of a model for multiple questions make sense, as the models often represent a synthesis of broad system understanding, but care must be taken to make sure this re-use is appropriate. Put thought into whether the model structure captures the correct features, whether the parametrisation decisions still hold. In short go through the model design steps as if you were starting a new and check that the existing model holds up against these needs -- that it is a suitable model. For those who would like more guidance on the re-use of ecosystem models please refer to Essington and Plagányi (2013).
-
-[]{#_Toc526762754 .anchor}**Table 2**. Some example findings from Atlantis applications (modified after Fulton et al. 2011)
 
 | Model | Findings |
 |-------|----------|
@@ -160,7 +159,9 @@ Atlantis is not a simple model to implement and even the simplest parameterisati
 | **Central California** (ECCAL model) | • Fleets are differentially effected by changes in management rules or environmental conditions (some suffer significant economic declines while others see substantial increases)<br>• Shifting gears to minimise bycatch and habitat destruction does not restore age structures, but spatial closures can |
 | **Gulf of California** (GOC model) | • Reported catch values are insufficient to cause observed declines in species biomasses (by 3-5 times for most species) |
 
-## **1.5. How does Atlantis compare to other marine ecosystem models?**
+: Some example findings from Atlantis applications (modified after Fulton et al. 2011). {#tbl-atlantis-findings}
+
+## **How does Atlantis compare to other marine ecosystem models?**
 
 The key characteristics of Atlantis is that it is 1) whole-of-system, 2) spatially explicit, 3) age structured, 4) deterministic, and 5) comprised of submodels that simulate human impacts and management.
 
@@ -176,7 +177,7 @@ The key characteristics of Atlantis is that it is 1) whole-of-system, 2) spatial
 
 6\) Atlantis was the first ecosystem model to include management strategy evaluation options - i.e. the inclusion of each part of the adaptive management cycle -- the biological world, the human uses (especially fisheries), monitoring and reporting, assessment and management. EwE and OSMOSE now also include an MSE capacity. New features of human impact are constantly being added to Atlantis and the existing set-up is very flexible to customisation. Fisheries are represented in the most detail, but human impacts can also include nutrient and pollutant inputs, tourism, ports, shipping, urban areas, energy generation, heavy industry, mining and other marine and coastal industries.
 
-## **1.6. Main assumptions** 
+## **Main assumptions** 
 
 Like any model, Atlantis has a lot of assumptions and it is important to keep them in mind when using the model and interpreting its outputs. The key ecological assumptions are listed here (as all models, regardless of the level of human representation, contain these assumptions) and these and any other assumptions will also be listed in the description of different submodels and processes -- in particular refer to section 14 for an extended list of ecological assumptions in tabular form.
 

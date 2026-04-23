@@ -1,8 +1,11 @@
 ---
-title: "2. INSTALLATION AND RUNNING"
+title: "Installation and Running"
+number-sections: true
+crossref:
+  chapters: true
 ---
 
-## **2.1 How to check out and install the code**
+## How to check out and install the code**
 
 ::: callout-important
 AR note: as of March 2026 this section is no longer current as we moved to GitHub.
@@ -22,7 +25,7 @@ To check out the code and install the code on your computer follow these steps:
 
 **Windows** users can use the free package [TortoiseSVN](http://tortoisesvn.tigris.org/), which works like a plugin for Windows Explorer. To check out the code with TortoiseSVN first install it on your computer. Next, create a new folder where you will keep the code, e.g. C:/AtlantisCode. Rick-click the mouse on this folder and chose "SVN Checkout..." option. This will bring up the TortoiseSVN menu:
 
-![](media/image3.png){width="4.15625in" height="3.029166666666667in"}
+![](media/image3.png){width="4.2in" height="3.0in"}
 
 Enter the URL of the code depository, provided on the Atlantis Wiki source code [page](https://confluence.csiro.au/display/Atlantis/Getting+the+source+%20code), making sure the directory to install the code on your computer is correct, and chose "Fully recursive" Checkout Depth and "HEAD revision". Detailed instructions on how to check out the code with TortoiseSVN are available on the wiki ([here).](file:///C:\HY-Data\ASAUDZIJ\documents\manual\HYPERLINK%20%22https:\confluence.csiro.au\display\Atlantis\TortoiseSVN)
 
@@ -42,7 +45,7 @@ Instructions for software and building Atlantis under Linux and other platforms 
 
 **5. Compile the code.** In Windows compiling the code does not require any programming skills. All you need to do is double-click the Visual Studio SLN file (chose the version suitable for your Visual Studio, e.g. Atlantis_VS2010.sln) located in the main directory of where you checked out the code (e.g. C:\\programs\\Atlantis). This will load the project into Visual Studio. Then go to the Visual Studio Build menu and chose "Build Solution". Detailed instructions are given on Atlantis Wiki [building](https://confluence.csiro.au/%20display/Atlantis/Building+Atlantis) page.
 
-![](media/image4.jpg){width="5.141510279965004in" height="3.6365266841644797in"}
+![](media/image4.jpg){width="5.1in" height="3.6in"}
 
 Once the build has successfully completed you will find the latest executable *atlantismain.exe* in C:\\...\\Atlantis\\atlantismain\\Debug folder (where ... indicates your designated directory for the code)
 
@@ -95,10 +98,10 @@ A good practice Atlantis run directory is uncluttered and contains separate fold
 
 It is a good idea to give parameter files meaningful names. For example, it would be hard to remember what *A.prm* refers to, whereas *Biol_noclimate_change.prm* is a lot more informative. However, there is a limit to the length of a filename Atlantis will read-in so if your model won't run because it can't find a file and that file does exist but has a long name try shortening the name and see if that helps.
 
-![](media/image50.png){width="4.76in" height="2.733105861767279in"}
+![](media/image50.png){width="4.76in" height="2.73in"}
 :::
 
-## **2.2. Input files**
+## **Input files**
 
 Atlantis input files come in six file formats:
 
@@ -112,12 +115,12 @@ Atlantis input files come in six file formats:
 All files except for NC files can be opened and edited using any basic text editing software (such as TextPad or NotePad). Until recently this was the usual way to setup and modify model parameters. However, some PRM files are thousands of lines long, which means that hand editing can be tedious and a source of error. New R-based tools are currently under development to help users visualise and modify parameter files in a more streamlined way (see below)
 
 ::: callout-caution
-**PC, Mac and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://confluence.csiro.au/display/Atlantis/File+Formats). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
+**PC, Mac, and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://confluence.csiro.au/display/Atlantis/File+Formats). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
 
-![](media/image60_1.png){width="5.88799978127734in" height="3.8225634295713036in"}
+![](media/image60_1.png){width="5.9in" height="3.8in"}
 :::
 
-## **2.3. Overview of Atlantis submodels and the main() routine**
+## **Overview of Atlantis submodels and the main() routine**
 
 Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean (**Error! Reference source not found.**). A schematic of the Atlantis submodels overlaid one over another (@fig-atlantis-structure). At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.
 
@@ -136,7 +139,7 @@ The *main()* routine is in the **atlantismain.c** file in the **atlantismain** l
 
 ![Brief overview of the Atlantis *main()* routine that calls other routines implemented in various submodels.](media/image8.jpeg){#fig-main-routine width=6.97in height=5.37in}
 
-## **2.4. Delving into the code: finding the files and routines that describe the processes you are interested in**
+## **Delving into the code: finding the files and routines that describe the processes you are interested in**
 
 This chapter aims to give a very brief introduction into the Atlantis code. You do not need to use the code to run simulations. However, if you can navigate around the code and find routines that use the parameters and execute the processes you are interested in, it will most helpful and informative. In the end, this is the best way to understand what exactly the model does.
 
@@ -166,9 +169,9 @@ Another useful tool in exploring the code is the **Call Hierarchy** tool. It all
 
 ![](media/image11.png){width="6.6930555555555555in" height="3.879166666666667in"}
 
-## **2.5. How to setup and start simulations**
+## **How to setup and start simulations**
 
-### *2.5.1. Crash introduction into Command line interfaces*
+### *Crash introduction into Command line interfaces*
 
 Atlantis is an "old style" program that runs from a command line. This is done using "[Command Prompt](https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt)" on Windows or "[Terminal](http://guides.macrumors.com/Terminal)" on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g. tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).
 
@@ -190,7 +193,7 @@ Atlantis is an "old style" program that runs from a command line. This is done u
 
 **Note:** In Mac and Linux use `/` instead of `\`
 
-### *2.5.2. Setting up the BAT file*
+### *Setting up the BAT file*
 
 At this stage you already have 1) compiled the code on your machine, 2) created a run directory for your simulations (C:\\AtlantisRuns\\MyModel), 3) copied all input and parameter files into the run directory, 4) copied the Atlantis executable (atlantismain.exe) from C:\\...\\atlantismain\\Debug into your run directory.
 
@@ -224,7 +227,7 @@ For example, your BAT file could look like the following and it will run perfect
 
 By default all simulation outputs will be placed in the same folder as the BAT file, but you can create an optional output folder (*-d OutputFolderName*). Specifying output folders is really important when running batch simulations (see below).
 
-### *2.5.3. Parameter files called in the BAT command line*
+### *Parameter files called in the BAT command line*
 
 This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:
 
@@ -254,7 +257,7 @@ It is a good idea to give informative names to the parameter files. This way you
 It is **strongly recommended that you keep a good record of all parameter modifications** and outcomes they had on model simulations. We cannot stress this strongly enough! Almost every modeller has experienced difficult moments when trying to trace back what exactly was done at different steps of model development or scenario analyses.
 :::
 
-### *2.5.4. Setting up batch simulations*
+### *Setting up batch simulations*
 
 To set up **batch simulations**, simply add more command lines in your BAT file:
 
@@ -280,7 +283,7 @@ In this example, Atlantis will skip the first line and will only execute the sec
 Note, that the line here refers to the whole command string, separated by line spaces. One command line is wrapped into four lines in the example above, but it does not contain any line breaks.
 :::
 
-### *2.5.5. Initialising simulations*
+### *Initialising simulations*
 
 Once you have all the input and parameter files, EXE and BAT files ready, open the Command Prompt (or Terminal) window, navigate to your model run directory that has the BAT files in it (and the EXE if you have not formally installed Atlantis to the command line paths), type the name of your BAT file and press ENTER.
 
@@ -302,7 +305,7 @@ During the simulations Atlantis runs many outputs into its internal memory. This
 
 Don't despair if the simulation does not start so smoothly. Error messages are an important part of this adventure! Check out the chapter on troubleshooting and the dedicated Atlantis wiki [page](https://confluence.csiro.au/display/Atlantis/Common+Windows+Build+Errors)
 
-## **2.6. Simulation outputs**
+## **Simulation outputs**
 
 Once the simulation finishes Atlantis will generate **a lot of** **output files** in TXT and NC formats. The simulation output folder will also contain the *log.txt* file (with various details or messages generated during the run), as well as *exports.ts* and *inputs.ts*, which store information on flows into/out of the model domain, and a number of XML files, which are mostly just automatically generated files that are converted input files restructured to a format that Atlantis can more easily read in. Most users never touch the TS and XML output files. The XML files might be a useful means of storing the input parameters in a database but are otherwise of little ongoing use. The TS files however can be quite informative for showing how much material enters and exits the domain due to advection.
 
@@ -314,11 +317,8 @@ The *log.txt* file does not start with the name given in the ***--o*** command. 
 
 The list of output files in your output folder will look like this (it indeed has **a lot of** outputs!):
 
-The table below lists the main output files. Some output files will be produced only if relevant flags are active (e.g. evolution, different management or fisheries options) and are not included in the table.
+Lists the main output files (@tbl-atlantis-outputs). Some output files will be produced only if relevant flags are active (e.g. evolution, different management or fisheries options) and are not included.
 
-Table 3. Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files) for any changes.
-
-::: {.table-responsive}
 | **Name** | **Contents** | **Units** | **Comments** |
 |:---------|:-------------|:----------|:-------------|
 | BiomIndx.txt | **Snapshots** of biomasses of all active species (set in the *functional_groups.csv* file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don't forget to look at the box-specific biomasses! | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
@@ -352,9 +352,10 @@ Table 3. Main Atlantis output files. The main output files of interest for begin
 | ANNAGECATCH.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per species in the catch and discards. Useful when tracking annual changes in number for species that have multiple years per cohort | numb | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
 | inputs.ts | Amount of tracers coming from all boundary boxes and time series into all dynamic boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
 | exports.ts | Amount of tracers coming from all dynamic boxes and time series into all boundary boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
-:::
 
-## **2.7. Introduction to NetCDF files**
+: Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files) for any changes. {#tbl-atlantis-outputs tbl-colwidths=[15,50,15,20]}
+
+## **Introduction to NetCDF files**
 
 [NetCDF (Network Common Data Form)](https://en.wikipedia.org/wiki/NetCDF) is a set of software libraries and data formats that allow for the creation, access, and sharing of array-oriented scientific data irrespective of type of computer hardware. They are typically used by oceanographers and atmospheric scientists and modellers to store spatial time series information. The NC file format is the computer-readable version, while the CDF format is its unpacked human-readable version that can be viewed and edited with a text editor (such as Notepad or Textpad). The key characteristics of these files are that they are platform-independent and "self-describing". This means that the file has a header which describes the layout of the rest of the file and array dimensions, followed by sections of data and variable attributes. There are many matlab, R and other tools for interacting with NC files.
 
@@ -446,7 +447,7 @@ data:  ## start of the data for each variable
 }
 ```
 
-## **2.8. Introduction to Atlantis variables**
+## **Introduction to Atlantis variables**
 
 There are three kinds of obligatory and two kinds of optional variables used in Atlantis. Variable types are defined by the `bmtype` parameter:
 
@@ -474,11 +475,8 @@ The `sumtype` parameter can have two values:
 0.  indicates that data is written in the 3D format (per layer per box per time step) in the main *out.nc* file and given in detail
 1.  indicates that, in addition to the 3D output given in the main *out.nc* file, summary (e.g. total value per box integrated over all layers) is also written to the *outTOT.nc* file
 
-The term "**tracer**" will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO3, NH3, organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The *initial_conditions.nc* file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.
+The term "**tracer**" will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO3, NH3, organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The *initial_conditions.nc* file includes some important characteristics of these tracers (@tbl-initial-conditions-params). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.
 
-Table 4. Parameters used to describe characteristics of Atlantis variables in the *initial_conditions.nc* file. These parameters are read in by the *readBMTracerInfo()* in [attracerIO.c]{.underline}
-
-::: {.table-responsive}
 | **Parameter** | **What it means** | **Where is it used** |
 |:--------------|:------------------|:---------------------|
 | `inwc` | Tracer present in water column¹ | Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups |
@@ -494,9 +492,11 @@ Table 4. Parameters used to describe characteristics of Atlantis variables in th
 | `i_conc` | Particle initial concentration in the deposits | Used in the Physics submodel to calculate deposition and porosity. It is used in *deposition()* routine only |
 | `f_conc` | Particle final concentration in the deposits, after compaction | **This was only used in old models. Current code does not read this in** |
 | `FillValue` | Default value to use when automatically filling empty cells in the initial_conditions.nc arrays | This is often used when the tracer initial concentration in most cells is identical |
-:::
 
-## **2.9 Tools and packages to view and analyse Atlantis input and output files**
+: Parameters used to describe characteristics of Atlantis variables in the *initial_conditions.nc* file. These parameters are read in by the *readBMTracerInfo()* in [attracerIO.c]{.underline}. {#tbl-initial-conditions-params tbl-colwidths=[15,45,40]}
+
+
+## **Tools and packages to view and analyse Atlantis input and output files**
 
 The Atlantis community has developed a number of different tools to view and analyse these outputs. The main tools used currently include:
 
@@ -508,7 +508,7 @@ The Atlantis community has developed a number of different tools to view and ana
 
 A number of other packages and tools are in different stages of development. So stay tuned with updates by joining the [Atlantis google group](https://groups.google.com/forum/#!forum/atlantis-ecosystem-model) and regularly checking for updates on the Atlantis wiki. If you have a tool you think others would benefit from please feel free to share it via the wiki or the Atlantis google group.
 
-## **2.10. Troubleshooting on installation and running**
+## **Troubleshooting on installation and running**
 
 Don't be disappointed if your first run attempt fails. This is very common! Below is a list of some common errors and more are available on the [Atlantis wiki](https://confluence.csiro.au/display/Atlantis/Common+Windows+Build+Errors):
 

@@ -1,5 +1,8 @@
 ---
-title: "14. FINAL OVERVIEW OF ECOLOGY ROUTINES"
+title: "FINAL OVERVIEW OF ECOLOGY ROUTINES"
+number-sections: true
+crossref:
+  chapters: true
 ---
 
 The schematic representation below gives a brief overview of the key ecology routines and the order they are called. The Harvest and socio-economic routines are not included in this representation.

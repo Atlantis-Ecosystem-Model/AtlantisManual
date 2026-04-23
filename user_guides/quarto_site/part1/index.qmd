@@ -1,22 +1,16 @@
 ---
-title: "Atlantis User Guide - Part I"
-sidebar: part1
+number-sections: false
+listing:
+  contents:
+  - "0[2-9]-*.qmd"
+  - "1[0-5]-*.qmd"
+  type: table
+  fields: [title]
+  sort: "filename"
+  sort-ui: false
+  filter-ui: false
 ---
 
-- [0. FOREWARD](01-foreward.qmd)
-- [1. INTRODUCTION](02-introduction.qmd)
-- [2. INSTALLATION AND RUNNING](03-installation-and-running.qmd)
-- [3. GEOMETRY OF THE MODEL DOMAIN](04-geometry-of-the-model-domain.qmd)
-- [4. HYDRODYNAMIC, SALINITY AND TEMPERATURE FORCING DATA](05-hydrodynamic-salinity-and-temperature-forcing-data.qmd)
-- [5. THE PHYSICS SUBMODEL](06-the-physics-submodel.qmd)
-- [6. DEFINITIONS OF FUNCTIONAL GROUPS](07-definitions-of-functional-groups.qmd)
-- [7. RUN PARAMETERS](08-run-parameters.qmd)
-- [8. FORCE PARAMETERS](09-force-parameters.qmd)
-- [9. PRIMARY PRODUCER PROCESSES](10-primary-producer-processes.qmd)
-- [10. CONSUMER PROCESSES](11-consumer-processes.qmd)
-- [11. DISTRIBUTION AND MOVEMENT](12-distribution-and-movement.qmd)
-- [12. PROCESSES IN BACTERIAL AND INANIMATE POOLS](13-processes-in-bacterial-and-inanimate-pools.qmd)
-- [13. INFLUENCE OF ENVIRONMENTAL FACTORS ON ECOLOGICAL PROCESSES](14-influence-of-environmental-factors-on-ecological-p.qmd)
-- [14. FINAL OVERVIEW OF ECOLOGY ROUTINES](15-final-overview-of-ecology-routines.qmd)
-- [REFERENCES](16-references.qmd)
-- [Appendix 1: TIPS FOR CALIBRATING BIOLOGICAL MODEL: NOTES FROM THE 2015 ATLANTIS SUMMIT](17-appendix-1-tips-for-calibrating-biological-model-n.qmd)
+# Atlantis User Guide - Part I {.unnumbered}
+
+Chapters in this part cover model setup, physical processes, and biological processes.

@@ -1,5 +1,6 @@
 ---
 title: "Appendix 1: TIPS FOR CALIBRATING BIOLOGICAL MODEL: NOTES FROM THE 2015 ATLANTIS SUMMIT"
+number-sections: false
 ---
 
 *by Isaac Kaplan and Atlantis community*
