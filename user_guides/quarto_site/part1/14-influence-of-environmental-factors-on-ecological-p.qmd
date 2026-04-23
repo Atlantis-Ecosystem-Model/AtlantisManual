@@ -1,5 +1,5 @@
 ---
-title: "INFLUENCE OF ENVIRONMENTAL FACTORS ON ECOLOGICAL PROCESSES"
+title: "Influence of Environmental Factors on Ecological Processes"
 number-sections: true
 crossref:
   chapters: true

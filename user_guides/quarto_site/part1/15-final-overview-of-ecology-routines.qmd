@@ -1,5 +1,5 @@
 ---
-title: "FINAL OVERVIEW OF ECOLOGY ROUTINES"
+title: "Final Overview of Ecological Routines"
 number-sections: true
 crossref:
   chapters: true

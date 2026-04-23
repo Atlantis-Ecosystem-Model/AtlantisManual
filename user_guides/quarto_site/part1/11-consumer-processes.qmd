@@ -961,9 +961,12 @@ To activate this effect (i) [flagIsEstuary]{style="color: orange;"} must be set 
 
 These vectors have the format like:
 
-[XXX_turbid_L]{style="color: orange;"} 2
-
+<div style="text-align: center;">
+<pre style="display: inline-block; text-align: left; margin: 0; line-height: 1;">
+<span style="color: orange;">[XXX_turbid_L]</span> 2
 1.0 0.8
+</pre>
+</div>
 
 
 : []{#_Toc526762774 .anchor}Table 22. Parameters affecting mortality in consumers

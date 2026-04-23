@@ -1,5 +1,5 @@
 ---
-title: "Appendix 1: TIPS FOR CALIBRATING BIOLOGICAL MODEL: NOTES FROM THE 2015 ATLANTIS SUMMIT"
+title: "Appendix 1: Tips for Calibrating Biological Model: Notes from the 2015 Atlantis Summit"
 number-sections: false
 ---
 

@@ -1,11 +1,14 @@
 ---
-title: "**18. OTHER INDUSTRIES**"
+title: "Other Industries"
+number-sections: true
+crossref:
+  chapters: true
 ---
 
-## **18.1. Pollution**
+## **Pollution**
 
 []{#_Toc162809130 .anchor}At present this is done via forcing. Details on how to do this is under forcing in Volume 1 of the manual.
 
-## **18.2. Other industries**
+## **Other industries**
 
 []{#_Toc162809132 .anchor}Code exists for other coastal industries and will be added to the publicly available Atlantis in future. Please contact the development group for more details.

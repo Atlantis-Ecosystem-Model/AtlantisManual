@@ -11,6 +11,6 @@ listing:
   filter-ui: false
 ---
 
-# Atlantis User Guide - Part I {.unnumbered}
+# Atlantis User Guide - Part I Index {.unnumbered}
 
 Chapters in this part cover model setup, physical processes, and biological processes.

@@ -1,10 +1,16 @@
 ---
-title: "Atlantis User Guide - Part II"
-sidebar: part2
+number-sections: false
+listing:
+  contents:
+  - "0[2-9]-*.qmd"
+  - "1[0-5]-*.qmd"
+  type: table
+  fields: [title]
+  sort: "filename"
+  sort-ui: false
+  filter-ui: false
 ---
 
--   [15. FISHING MORTALITY](01-15-fishing-mortality.qmd)
--   [16. MANAGEMENT](02-16-management.qmd)
--   [17. ECONOMICS](03-17-economics.qmd)
--   [18. OTHER INDUSTRIES](04-18-other-industries.qmd)
--   [REFERENCES](05-references.qmd)
+# Atlantis User Guide - Part II Index {.unnumbered}
+
+Chapters in this part cover model fisheries, managment, socioeconomic models 
