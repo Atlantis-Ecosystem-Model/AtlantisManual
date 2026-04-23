@@ -57,7 +57,7 @@ Throughout this chapter for brevity we will refer to both biomass pool (CP) and 
 
 At the time of writing, Atlantis has twelve different options for modelling a predator's feeding functional response to the prey's biomass. There is a lot of theory and debate on what kind of functional response most accurately depicts predator's behaviour (e.g. Hunsicker et al. 2011) and this topic is not covered here.
 
-Currently most Atlantis models use the modified Holling type II response, described in [Murray & Parslow (1997)](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155482/341447378/Link_et_al_2011_NEUS_tech_memo.pdf) for the Port Phillip Bay Integrated Model. The grazing term (*Gr*), or the amount of biomass of a specific prey (*prey*) consumed by a consumer CX (note, this now includes both CP and CX consumers), in the modified Holling type II response is calculated as
+Currently most Atlantis models use the modified Holling type II response, described in [Murray & Parslow (1997)](https://atlantis-ecosystem-model.github.io/atlantis-wiki/useful-reading.html) for the Port Phillip Bay Integrated Model. The grazing term (*Gr*), or the amount of biomass of a specific prey (*prey*) consumed by a consumer CX (note, this now includes both CP and CX consumers), in the modified Holling type II response is calculated as
 
 $$Gr_{prey} = \ \frac{B \cdot C \cdot B_{prey}^{*}}{1 + \frac{C \cdot \sum_{i}^{}\left( E_{i} \cdot B_{prey,i}^{*} \right)}{mum}}$$
 
@@ -224,7 +224,7 @@ where *δ ~substrate,habdegrad~* is degradation in the physical habitat due to c
 1)  models that include corals or sponges and
 2)  is only used for species that are dependent on (interact with) corals.
 
-Further description of the rugosity related habitat cover is available on the wiki dealing with "Calculation of rugosity related habitat refuge" - [here](https://confluence.csiro.au/display/Atlantis/2016/09/16/Calculation+of+rugosity+related+habitat+refuge) (it cover's models by Bozec and Blackwood in detail).
+Further description of the rugosity related habitat cover is available on the wiki dealing with "Calculation of rugosity related habitat refuge" - [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/calculation-of-rugosity-related-habitat-refuge.html) (it cover's models by Bozec and Blackwood in detail).
 
 If [flag_refuge_model]{style="color: orange;"}=2 but a species does not live on corals, then the simple refuge model described above is applied. Three extra parameters are needed for rugosity refuge model: [RugCover_Coefft]{style="color: orange;"}, [RugCover_Const]{style="color: orange;"}, [RugCover_Cap.]{style="color: orange;"}
 
@@ -338,7 +338,7 @@ Note, that if the steepness of the curve (*Kmax* value) is low, the the δ~size~
 ::: {.callout-caution}
 **Calculating length in age-structured groups and biomass pools**
 
-If length-based selectivity is selected for a fishery, it will be applied to both age-structured groups and biomass pools. The application of length-based selectivity to biomass pools is a new feature in Atlantis and it is important to get it right, or else invertebrates may not be caught by the gear (see wiki post [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2016%2F6%2F2&title=Invertebrate+size+calculations+for+use+in+size+based+selectivity))
+If length-based selectivity is selected for a fishery, it will be applied to both age-structured groups and biomass pools. The application of length-based selectivity to biomass pools is a new feature in Atlantis and it is important to get it right, or else invertebrates may not be caught by the gear (see wiki post [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/invertebrate-size-calculations-for-use-in-size-based-selecti.html))
 
 Length of an age group in age-structured groups is calculated using length-weight conversion parameters ([li_a_XXX]{style="color: orange;"} and [li_b_XXX]{style="color: orange;"}) given in the *biology.prm* file. For this, first, the structural and reserve nitrogen (RN+SN, in mg) are added up and converted to wet weight in grams (*wgt*) as: 
 
@@ -848,7 +848,7 @@ Mortality for age-structured groups is modelled through the numbers of individua
 
 $$M_{xx} = \ \left( \left( mL + mQ \cdot xx + mSt + \left( 1 - \delta_{O2} \right) \cdot mO + mA + mE \right) \cdot xx \right) \cdot mortsc$$
 
-where *mL* is linear mortality (day^-1^), *mQ* is quadratic mortality (day^-1^), *mSt***~,~** is **age-structured group only** starvation mortality (day^-1^), *mO* is **benthic invertebrate only** low oxygen mortality (day^-1^), δ~O2~ is the oxygen limitation scalar (see below), *mA* is an optional acidification mortality (day^-1^), *mE* is the optional extra mortality of **age-structured groups only** (due to seabirds and fish not included in the model) (day^-1^), *xx* is the biomass or numbers in the biomass pool or age group and *mortsc* is the optional external mortality scalar, provided through forcing files (see details [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&title=External+Mortality%2C+Growth+and+Recruitment+Scaling)). Below these mortality terms are discussed for age-structured and biomass pool groups separately.
+where *mL* is linear mortality (day^-1^), *mQ* is quadratic mortality (day^-1^), *mSt***~,~** is **age-structured group only** starvation mortality (day^-1^), *mO* is **benthic invertebrate only** low oxygen mortality (day^-1^), δ~O2~ is the oxygen limitation scalar (see below), *mA* is an optional acidification mortality (day^-1^), *mE* is the optional extra mortality of **age-structured groups only** (due to seabirds and fish not included in the model) (day^-1^), *xx* is the biomass or numbers in the biomass pool or age group and *mortsc* is the optional external mortality scalar, provided through forcing files (see details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/43155575.html)). Below these mortality terms are discussed for age-structured and biomass pool groups separately.
 
 Note that the oxygen mortality is assumed to only apply to benthic invertebrates as they cannot easily escape the oxygen minima, whereas fish and other vertebrates will move away (ultimately disappearing from the model if the entire domain becomes too oxygen poor and if the group is dependent on the oxygen -- [flagO2depend]{style="color: orange;"}).
 
@@ -1227,7 +1227,7 @@ If SSB ≥ *B~jack~*
 
 $$Rc = jack_{a} \cdot B_{jack}$$
 
-The [jack_a_XXX]{style="color: orange;"} is interpreted as slope of recruitment, usually set as biomass of recruits / SSB. The [jack_b_XXX]{style="color: orange;"} is empirical proxy for a relationship with the carrying capacity (in the North Sea they used 0.3 \* long term average total biomass). This recruitment relationship is taken from the North Sea stock assessment - see a more detailed description on the [wiki](https://confluence.csiro.au/display/Atlantis/2013/04/23/Jackknife+recruitment)
+The [jack_a_XXX]{style="color: orange;"} is interpreted as slope of recruitment, usually set as biomass of recruits / SSB. The [jack_b_XXX]{style="color: orange;"} is empirical proxy for a relationship with the carrying capacity (in the North Sea they used 0.3 \* long term average total biomass). This recruitment relationship is taken from the North Sea stock assessment - see a more detailed description on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/jackknife-recruitment.html)
 
 **16) Coral recruitment [flagrecruitXXX]{style="color: orange;"}=16**
 
@@ -1247,7 +1247,7 @@ $$Rc = 1000 \cdot Biom_{WW} \cdot Ralpha \cdot e^{- 1 \cdot Rbeta \cdot Biom_{WW
 
 **18) Multiple time series of recruitment -- specific forcing in separate boxes [flagrecruitXXX]{style="color: orange;"}=18**
 
-This option allows forcing of recruitment from specific boxes. Numbers of recruits are forced by external forcing files and they only arrive in boxes specified in the forcing files. The horizontal and vertical distribution of these recruits is then determined according to the general rules, described in the next chapter below. See further description on Atlantis [wiki](https://confluence.csiro.au/display/Atlantis/2014/05/12/Multiple+recruitment+time+series+turning+up+in+different+boxes).
+This option allows forcing of recruitment from specific boxes. Numbers of recruits are forced by external forcing files and they only arrive in boxes specified in the forcing files. The horizontal and vertical distribution of these recruits is then determined according to the general rules, described in the next chapter below. See further description on Atlantis [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/multiple-recruitment-time-series-turning-up-in-different-box.html).
 
 **19) Beverton-Holt recruitment based only on spawn only [flagrecruitXXX]{style="color: orange;"}=19**
 
@@ -1255,7 +1255,7 @@ Calculated similarly to option 3, but instead of biomass, only species spawn (*S
 
 $$Rc = \ \frac{Sp \cdot BHa}{Sp + BHb}$$
 
-Finally, in addition to the recruitment options above, it is also possible to supplement recruits with external stocking. This is used to imitate, for example, supplementary stocking of salmon. Recruit stocking for a species XXX is set setting [flagstockingXXX]{style="color: orange;"}=1 and providing details on recruit stocking files. These files, and the code the recruit stocking triggers, are the same used to apply multiple time series of recruitment ([flagrecruitXXX]{style="color: orange;"}=18). See [this](https://confluence.csiro.au/display/Atlantis/2015/03/24/Recruit+stocking) post on the wiki for further details.
+Finally, in addition to the recruitment options above, it is also possible to supplement recruits with external stocking. This is used to imitate, for example, supplementary stocking of salmon. Recruit stocking for a species XXX is set setting [flagstockingXXX]{style="color: orange;"}=1 and providing details on recruit stocking files. These files, and the code the recruit stocking triggers, are the same used to apply multiple time series of recruitment ([flagrecruitXXX]{style="color: orange;"}=18). See [this](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/recruit-stocking.html) post on the wiki for further details.
 
 **20)** **Ricker recruitment using SSB [flagrecruitXXX]{style="color: orange;"}=20**
 
@@ -1334,7 +1334,7 @@ The final number of recruits in a cell is then given as
 
 Recruits_in_cell = AllRecruits · All_scalars · Vertical_distribution · Horizontal_distribution
 
-It is also possible to apply an externally forced larval dispersal matrix (if [RecruitType]{style="color: orange;"} is set to 3 in the *functional_groups.csv* file) to modify the horizontal and vertical distribution of the recruits. This is described further [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&title=Recruitment+Options).
+It is also possible to apply an externally forced larval dispersal matrix (if [RecruitType]{style="color: orange;"} is set to 3 in the *functional_groups.csv* file) to modify the horizontal and vertical distribution of the recruits. This is described further [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/recruitment-options.html).
 
 It is possible that the sum of the final Recruits_in_cell may not sum to 1.0. If this final non-normalised value is desired set the flag [norm_larval_distrib]{style="color: orange;"} to 0 (i.e. to have it sum to 1.0 set the flag to 1). It may be desirable to have a non-normalised value if the desires is to capture variation in recruitment due to environmental conditions and dispersal (e.g. if environmental conditions are such that many cells have become unsuitable or if habitat conditions more larvae than would have normally survived under the assumed stock recruit relationship survive).
 

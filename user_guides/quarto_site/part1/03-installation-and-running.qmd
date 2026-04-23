@@ -2,6 +2,8 @@
 title: "2. INSTALLATION AND RUNNING"
 ---
 
+** THIS SECTION IS OUT OF DATE **
+
 ## **2.1 How to check out and install the code**
 
 ::: callout-important
@@ -12,19 +14,19 @@ Atlantis is dynamic and new modifications are introduced almost every month. In 
 
 Atlantis source code is hosted in a subversion (abbreviated as SVN) repository. SVN is a commonly used version control system that is used to manage the collections of files that are changed over time. It keeps a history of the code base and the changes that have been made to it, so developers can recall past code versions for reproducibility. It also allows several people to work on the code simultaneously and merge it back together. **As a normal user you will have read-only access to the Atlantis code repository.**
 
-If you want **to modify the code**, please check out wiki for instructions on how to create a [new branch](https://confluence.csiro.au/display/Atlantis/Switch+working+copy+to+another+branch) from your working copy or [merge](http://svnbook.red-bean.com/en/1.5/svn.branchmerge.basicmerging.html) your modifications with new updates. The Atlantis wiki also has more information on modifying the code, such as creating and adding [a new input parameter](https://confluence.csiro.au/display/Atlantis/Add+a+input+parameter) or adding [a new type of functional groups](https://confluence.csiro.au/display/Atlantis/Adding+a+new+GroupType).
+If you want **to modify the code**, please check out wiki for instructions on how to create a [new branch](https://atlantis-ecosystem-model.github.io/atlantis-wiki/switch-working-copy-to-another-branch.html) from your working copy or [merge](http://svnbook.red-bean.com/en/1.5/svn.branchmerge.basicmerging.html) your modifications with new updates. The Atlantis wiki also has more information on modifying the code, such as creating and adding [a new input parameter](https://atlantis-ecosystem-model.github.io/atlantis-wiki/add-a-input-parameter.html) or adding [a new type of functional groups](https://atlantis-ecosystem-model.github.io/atlantis-wiki/adding-a-new-grouptype.html).
 
 To check out the code and install the code on your computer follow these steps:
 
-**1. Get access to Atlantis SVN repository** by joining the [Atlantis Wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Ecosystem+Model+Home+Page), signing the user licence agreement and requesting [access to the SVN](https://confluence.csiro.au/display/Atlantis/CSIRO+licence+and+repository+request) repository. The response time on this should not take more than a couple of days (if it does poke Beth again as she is likely on the road and has not seen the email).
+**1. Get access to Atlantis SVN repository** by joining the [Atlantis Wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/), signing the user licence agreement and requesting [access to the SVN](https://atlantis-ecosystem-model.github.io/atlantis-wiki/csiro-licence-and-repository-request.html) repository. The response time on this should not take more than a couple of days (if it does poke Beth again as she is likely on the road and has not seen the email).
 
 **2. Check out the code from SVN to your computer.** Experienced users can check out the code by using svn commands through a command line terminal (dos or terminal window). Alternatively, you can use special software to make things easier.
 
-**Windows** users can use the free package [TortoiseSVN](http://tortoisesvn.tigris.org/), which works like a plugin for Windows Explorer. To check out the code with TortoiseSVN first install it on your computer. Next, create a new folder where you will keep the code, e.g. C:/AtlantisCode. Rick-click the mouse on this folder and chose "SVN Checkout..." option. This will bring up the TortoiseSVN menu:
+**Windows** users can use the free package [TortoiseSVN](https://tortoisesvn.net/), which works like a plugin for Windows Explorer. To check out the code with TortoiseSVN first install it on your computer. Next, create a new folder where you will keep the code, e.g. C:/AtlantisCode. Rick-click the mouse on this folder and chose "SVN Checkout..." option. This will bring up the TortoiseSVN menu:
 
 ![](media/image3.png){width="4.15625in" height="3.029166666666667in"}
 
-Enter the URL of the code depository, provided on the Atlantis Wiki source code [page](https://confluence.csiro.au/display/Atlantis/Getting+the+source+%20code), making sure the directory to install the code on your computer is correct, and chose "Fully recursive" Checkout Depth and "HEAD revision". Detailed instructions on how to check out the code with TortoiseSVN are available on the wiki ([here).](file:///C:\HY-Data\ASAUDZIJ\documents\manual\HYPERLINK%20%22https:\confluence.csiro.au\display\Atlantis\TortoiseSVN)
+Enter the URL of the code depository, provided on the Atlantis Wiki source code [page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/getting-the-source-code.html), making sure the directory to install the code on your computer is correct, and chose "Fully recursive" Checkout Depth and "HEAD revision". Detailed instructions on how to check out the code with TortoiseSVN are available on the wiki ([here).](https://atlantis-ecosystem-model.github.io/atlantis-wiki/tortoisesvn.html)
 
 **Mac** users can check out the code using the app [Versions](http://versionsapp.com/), while Linux users can use [RedBean](http://svnbook.red-bean.com/en/1.6/svn.ref.svn.c.checkout.html).
 
@@ -34,13 +36,17 @@ When updating the code, make sure you always update to your main directory where
 
 **3. Install software for compiling the code.** Compiling Atlantis code in Windows and Linux operating systems is easy. It is **a lot harder to set up on Mac operating** systems (although once installed everything runs smoothly enough).
 
-Windows users can build the code using freely available Microsoft Visual Studio software. Currently supported versions are 2005/2008/2010/2012 and, as of March 2016, you can download 2010 and 2012 Visual Studio installers from the Atlantis wiki by clicking on [the paperclip sign](https://confluence.csiro.au/pages/viewpageattachments.action?pageId=43155524&metadataLink=true) on the [wiki](https://confluence.csiro.au/display/Atlantis/Building+under+windows).
 
-Instructions for software and building Atlantis under Linux and other platforms are available [on the wiki](https://confluence.csiro.au/display/Atlantis/Building+Atlantis). If you are a Mac user you may find the use of comfort food at this stage a good idea, each Mac installation appears to face its own challenges, sometimes it goes very easily other times you can spend a day or more wrestling to get one of the supporting libraries to work with your architecture. There does not seem to be any rhyme or reason to this! Macs are just special that way.
+**This is no longer true**
+```
+Windows users can build the code using freely available Microsoft Visual Studio software. Currently supported versions are 2005/2008/2010/2012 and, as of March 2016, you can download 2010 and 2012 Visual Studio installers from the Atlantis wiki by clicking on [the paperclip sign](https://confluence.csiro.au/pages/viewpageattachments.action?pageId=43155524&metadataLink=true) on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html#building-in-visual-studio).
+```
 
-**4. Install the NetCDF 4 libraries.** These libraries are required for running Atlantis. Detailed instructions on installing NetCDF and updating the path are available [on the wiki](https://confluence.csiro.au/display/Atlantis/NetCDF+4+in+Windows). It is very important that you do this properly, as Atlantis will not run otherwise. Windows users can download pre-compiled libraries, Mac and Linux users will need to down load the source and compile locally.
+Instructions for software and building Atlantis under Linux and other platforms are available [on the wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-atlantis.html). If you are a Mac user you may find the use of comfort food at this stage a good idea, each Mac installation appears to face its own challenges, sometimes it goes very easily other times you can spend a day or more wrestling to get one of the supporting libraries to work with your architecture. There does not seem to be any rhyme or reason to this! Macs are just special that way.
 
-**5. Compile the code.** In Windows compiling the code does not require any programming skills. All you need to do is double-click the Visual Studio SLN file (chose the version suitable for your Visual Studio, e.g. Atlantis_VS2010.sln) located in the main directory of where you checked out the code (e.g. C:\\programs\\Atlantis). This will load the project into Visual Studio. Then go to the Visual Studio Build menu and chose "Build Solution". Detailed instructions are given on Atlantis Wiki [building](https://confluence.csiro.au/%20display/Atlantis/Building+Atlantis) page.
+**4. Install the NetCDF 4 libraries.** These libraries are required for running Atlantis. Detailed instructions on installing NetCDF and updating the path are available [on the wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/netcdf-4-in-windows.html). It is very important that you do this properly, as Atlantis will not run otherwise. Windows users can download pre-compiled libraries, Mac and Linux users will need to down load the source and compile locally.
+
+**5. Compile the code.** In Windows compiling the code does not require any programming skills. All you need to do is double-click the Visual Studio SLN file (chose the version suitable for your Visual Studio, e.g. Atlantis_VS2010.sln) located in the main directory of where you checked out the code (e.g. C:\\programs\\Atlantis). This will load the project into Visual Studio. Then go to the Visual Studio Build menu and chose "Build Solution". Detailed instructions are given on Atlantis Wiki [building](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-atlantis.html) page.
 
 ![](media/image4.jpg){width="5.141510279965004in" height="3.6365266841644797in"}
 
@@ -50,7 +56,7 @@ Once the build has successfully completed you will find the latest executable *a
 You will need to recompile or build the code anew every time you update it from the SVN repository.
 :::
 
-On Linux (and Mac) platforms GCC is recommended for compiling the code. Other options for compiling are also available for users who for any reason do not want to use Microsoft Visual Studio or GCC. These options include the [Intel compiler](https://confluence.csiro.au/display/Atlantis/Using+the+Intel+Compiler) and [Cygwin](https://confluence.csiro.au/display/Atlantis/Building+under+cygwin). However, these are not recommended compilers and users will potentially have to work out solutions to issues themselves.
+On Linux (and Mac) platforms GCC is recommended for compiling the code. Other options for compiling are also available for users who for any reason do not want to use Microsoft Visual Studio or GCC. These options include the [Intel compiler](https://atlantis-ecosystem-model.github.io/atlantis-wiki/using-the-intel-compiler.html) and [Cygwin](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-cygwin.html). However, these are not recommended compilers and users will potentially have to work out solutions to issues themselves.
 
 **6. Create a directory for your simulations.**
 
@@ -61,7 +67,7 @@ Please make sure not to use spaces in the name of the directory (e.g. use C:\\At
 [^1]: We do endeavour to update things for new naming conventions, but we also find it is better to err on the side of caution.
 
 ::: callout-note
-The [**South East Tasmanian (SETas) model**](https://confluence.csiro.au/display/Atlantis/Sample+input+files) is freely available from the Atlantis SVN repository as a learning tool. It is a simple model with only a few boxes and few functional groups. All required input and parameter files for SETas model can be downloaded from the wiki and used as templates for new model applications.
+The [**South East Tasmanian (SETas) model**](https://atlantis-ecosystem-model.github.io/atlantis-wiki/sample-input-files.html) is freely available from the Atlantis SVN repository as a learning tool. It is a simple model with only a few boxes and few functional groups. All required input and parameter files for SETas model can be downloaded from the wiki and used as templates for new model applications.
 
 Make sure you use SVN checkout to download these files. Don't use the web browser to copy the files. Also make sure you download files for the correct version of the Atlantis code (*trunk* or *bec_dev*).
 :::
@@ -83,7 +89,7 @@ copy C:\\...your Code directory \\atlantismain\\Debug\\atlantismain.exe .
 
 The dot at the end of the line means that the file atlantismain.exe from Debug directory will be copied to the same directory as the BAT file.
 
-See the [wiki](https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt) for details.
+See the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/windows-command-prompt.html) for details.
 :::
 
 ::: {.callout-tip title="Good practice tip 1"}
@@ -112,7 +118,7 @@ Atlantis input files come in six file formats:
 All files except for NC files can be opened and edited using any basic text editing software (such as TextPad or NotePad). Until recently this was the usual way to setup and modify model parameters. However, some PRM files are thousands of lines long, which means that hand editing can be tedious and a source of error. New R-based tools are currently under development to help users visualise and modify parameter files in a more streamlined way (see below)
 
 ::: callout-caution
-**PC, Mac and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://confluence.csiro.au/display/Atlantis/File+Formats). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
+**PC, Mac and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://atlantis-ecosystem-model.github.io/atlantis-wiki/file-formats.html). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
 
 ![](media/image60_1.png){width="5.88799978127734in" height="3.8225634295713036in"}
 :::
@@ -143,7 +149,7 @@ The *main()* routine is in the **atlantismain.c** file in the **atlantismain** l
 
 This chapter aims to give a very brief introduction into the Atlantis code. You do not need to use the code to run simulations. However, if you can navigate around the code and find routines that use the parameters and execute the processes you are interested in, it will most helpful and informative. In the end, this is the best way to understand what exactly the model does.
 
-Of course, reading the code will require at least some programming skills. Check out a number of C tutorials available online for basic understanding about programming and C. The internet is an ever changing place so the best idea is to use your favourite search engine to find some good c tutorials for someone with your level of coding experience. At time of writing the following were potentially helpful sites [www.cprogramming.com](http://www.cprogramming.com) and [www.tutorialspoint.com/cprogramming](http://www.tutorialspoint.com/cprogramming) and [www.imada.sdu.dk/\~svalle/courses/dm14-2005/mirror/c/](http://www.imada.sdu.dk/~svalle/courses/dm14-2005/mirror/c/)
+Of course, reading the code will require at least some programming skills. Check out a number of C tutorials available online for basic understanding about programming and C. The internet is an ever changing place so the best idea is to use your favourite search engine to find some good c tutorials for someone with your level of coding experience. At time of writing the following were potentially helpful sites [www.cprogramming.com](cprogramming.com) and [www.tutorialspoint.com/cprogramming](https://www.tutorialspoint.com/cprogramming/index.htm).
 
 However, even without a background in c coding, two approaches might be useful in starting to navigate through the code.
 
@@ -173,7 +179,7 @@ Another useful tool in exploring the code is the **Call Hierarchy** tool. It all
 
 ### *2.5.1. Crash introduction into Command line interfaces*
 
-Atlantis is an "old style" program that runs from a command line. This is done using "[Command Prompt](https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt)" on Windows or "[Terminal](http://guides.macrumors.com/Terminal)" on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g. tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).
+Atlantis is an "old style" program that runs from a command line. This is done using "[Command Prompt](https://atlantis-ecosystem-model.github.io/atlantis-wiki/windows-command-prompt.html)" on Windows or Terminal on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g. tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | Command                    | What it does                                                                                                                 |
@@ -213,7 +219,7 @@ You will still have to make sure that correct paths of forcing files (for hydrod
 While the *migrations.csv* file is marked as optional here, it is usually used as most models include some form of migration into/out of the model.
 :::
 
-If the *--t \<name of folder containing parameter files\>* is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g. using sudo make install in [Linux](https://confluence.csiro.au/display/Atlantis/Building+under+linux) or adding it to the Windows recognised path names, see the [wiki](https://confluence.csiro.au/display/Atlantis/Building+under+windows)) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g. *atlantismain* in the example) rather than name.exe in the command line.
+If the *--t \<name of folder containing parameter files\>* is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g. using sudo make install in [Linux](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-linux.html) or adding it to the Windows recognised path names, see the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g. *atlantismain* in the example) rather than name.exe in the command line.
 
 Names of the parameter files must be given after an appropriate one letter argument which indicates what the following filename represents. For example, ***-i*** tells the executable that the following filename is the input file that details initial conditions. The actual names of the parameter files are flexible, as long as the file extensions are correct. For example, the initial conditions file could be named as initial_conditions.nc, start_of_the_run.nc, start_of_the_fun.nc, a.nc or fred.nc. It does not matter so long as it is an NC file. It is **only** the one letter flag command (e.g. -i, -o, -p and others) preceding the filename that tells Atlantis which kind of file to expect.
 
@@ -303,7 +309,7 @@ If, for some reason you need to stop your run before it is finished, go to the o
 During the simulations Atlantis runs many outputs into its internal memory. This means that even though all the output files are created at the beginning of the simulation, they may not contain much information until the runs are actually finished. So, do not get disturbed if you want to peek into some output file during the simulation and find it empty, even if the simulation has already been running for a long time.
 :::
 
-Don't despair if the simulation does not start so smoothly. Error messages are an important part of this adventure! Check out the chapter on troubleshooting and the dedicated Atlantis wiki [page](https://confluence.csiro.au/display/Atlantis/Common+Windows+Build+Errors)
+Don't despair if the simulation does not start so smoothly. Error messages are an important part of this adventure! Check out the chapter on troubleshooting and the dedicated Atlantis wiki [page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/common-windows-build-errors.html)
 
 ## **2.6. Simulation outputs**
 
@@ -319,7 +325,7 @@ The list of output files in your output folder will look like this (it indeed ha
 
 The table below lists the main output files. Some output files will be produced only if relevant flags are active (e.g. evolution, different management or fisheries options) and are not included in the table.
 
-Table 3. Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files) for any changes.
+Table 3. Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/atlantis-output-files.html) for any changes.
 
 ::: {.table-responsive}
 | **Name** | **Contents** | **Units** | **Comments** |
@@ -363,7 +369,7 @@ Table 3. Main Atlantis output files. The main output files of interest for begin
 
 The *initial_conditions.nc* file in Atlantis must list all variables to be tracked throughout the simulation, their initial values or concentrations in the spatial domain, and some of their key characteristics. It is important to get them right. The *initial_conditions.nc* file is huge and it is not advisable to edit it by hand (see below for tools available to set and modify it). However, it is useful to open and explore the file by converting the NC file to a CDF file.
 
-Two small programs, **ncdump.exe** and **ncgen.exe,** can be used to convert NC files into CDF files (to create human readable and editable files) and from CDF to NC respectively (in case you modified the CDF file and need to convert it back into the computer-readable format). The two packages are included in the NetCDF libraries required for compiling Atlantis (see step 4 in the Chapter 2.1). To convert the files, open the Command Prompt, navigate into the folder that includes the NC or CDF files you want to convert and call the appropriate command with its parameters, as shown below. For example, if you want to convert NC into CDF, type: ncdump.exe somedata.nc \> otherdata.cdf. Note, the name of the NC file created by the ncgen.exe, will be the same as the name given in the first line of the CDF file (so NOT necessarily the same name as typed in the command prompt). If you install NetCDF and update the paths as described on the [wiki](https://confluence.csiro.au/display/Atlantis/NetCDF+4+in+Windows) the Command Prompt will automatically locate ncdump.exe or ncgen.exe files, so you don't need to have the EXE files in the same folder as the file you want to convert. The names of the NC and CDF files don't have to be the same.
+Two small programs, **ncdump.exe** and **ncgen.exe,** can be used to convert NC files into CDF files (to create human readable and editable files) and from CDF to NC respectively (in case you modified the CDF file and need to convert it back into the computer-readable format). The two packages are included in the NetCDF libraries required for compiling Atlantis (see step 4 in the Chapter 2.1). To convert the files, open the Command Prompt, navigate into the folder that includes the NC or CDF files you want to convert and call the appropriate command with its parameters, as shown below. For example, if you want to convert NC into CDF, type: ncdump.exe somedata.nc \> otherdata.cdf. Note, the name of the NC file created by the ncgen.exe, will be the same as the name given in the first line of the CDF file (so NOT necessarily the same name as typed in the command prompt). If you install NetCDF and update the paths as described on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/netcdf-4-in-windows.html) the Command Prompt will automatically locate ncdump.exe or ncgen.exe files, so you don't need to have the EXE files in the same folder as the file you want to convert. The names of the NC and CDF files don't have to be the same.
 
 ncdump.exe My_Data.nc \> My_Data.cdf ncgen.exe -b My_Data.cdf
 
@@ -456,8 +462,8 @@ There are three kinds of obligatory and two kinds of optional variables used in 
 1.  "phys" - physical properties of the model
 2.  "tracer" -- three-dimensional dynamic variables (either in the water column or the sediments) of the model domain
 3.  "epibenthos" -- two-dimensional dynamic benthic variables
-4.  ["icetracer"](https://confluence.csiro.au/display/Atlantis/Changed+to+Initial+Conditions+NetCDF+file) -- a variable that exists in ice layers (if the model explicitly includes ice)
-5.  "[terrestrial](https://confluence.csiro.au/display/Atlantis/Land+in+Atlantis)" -- tracers used to identify land variables (if the model explicitly includes land)
+4.  ["icetracer"](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changed-to-initial-conditions-netcdf-file.html) -- a variable that exists in ice layers (if the model explicitly includes ice)
+5.  "[terrestrial](https://atlantis-ecosystem-model.github.io/atlantis-wiki/land-in-atlantis.html)" -- tracers used to identify land variables (if the model explicitly includes land)
 
 Each variable declaration includes the expected numerical precision. A few variables (e.g. numlayers) are marked as short, which means they are expecting integer input variables, but most variables are `doubles`, which indicates that they are a double precision floating point number format (a computer way saying this is a real number not simply an integer). The precision identifier is followed by the variable name and the expected dimensions. Variables can be one dimensional (time), two dimensional (time, box) or three dimensional (time, box, layer). It is important to make sure the data entered has this many dimensions (with no omissions) as Atlantis assumes the dimensions are fully filled when it loads the data.
 
@@ -504,16 +510,16 @@ Table 4. Parameters used to describe characteristics of Atlantis variables in th
 The Atlantis community has developed a number of different tools to view and analyse these outputs. The main tools used currently include:
 
 1. An R package "atlantistools" contributed by Alexander Keth, available from https://github.com/alketh/atlantistools
-2. A number of excel template files, matlab and R scripts developed by different users and available on [Atlantis wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Helper+Tools)
+2. A number of excel template files, matlab and R scripts developed by different users and available on [Atlantis wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/atlantis-helper-tools.html)
 3. An R package "rlantis", available on <https://github.com/mareframe/rlantis>
-4. netcdf viewing packages [Olive and Dive](https://confluence.csiro.au/display/Atlantis/How+to+view) useful for spatial plotting of variables in the NC files
+4. netcdf viewing packages [Olive and Dive](https://atlantis-ecosystem-model.github.io/atlantis-wiki/how-to-view.html) useful for spatial plotting of variables in the NC files
 5. R based Shiny application "shinyrAtlantis" contributed by Shane Richards and available on <https://github.com/shanearichards/shinyrAtlantis>. This package is very useful for visualising the *initial_conditions.nc* and parameter files in a spatial context.
 
 A number of other packages and tools are in different stages of development. So stay tuned with updates by joining the [Atlantis google group](https://groups.google.com/forum/#!forum/atlantis-ecosystem-model) and regularly checking for updates on the Atlantis wiki. If you have a tool you think others would benefit from please feel free to share it via the wiki or the Atlantis google group.
 
 ## **2.10. Troubleshooting on installation and running**
 
-Don't be disappointed if your first run attempt fails. This is very common! Below is a list of some common errors and more are available on the [Atlantis wiki](https://confluence.csiro.au/display/Atlantis/Common+Windows+Build+Errors):
+Don't be disappointed if your first run attempt fails. This is very common! Below is a list of some common errors and more are available on the [Atlantis wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/common-windows-build-errors.html):
 
 **1. Missing DLL files.** This is one of the most common problems for Windows users. Make sure you have installed the right version of the NetCDF library and updated the path as described on the wiki. If issues still persist, you might need to remove and reinstall the NetCDF library.
 
@@ -535,7 +541,7 @@ the run went smoothly
 
 **3. Failed to find a parameter.** If some of the required parameters in the PRM files are missing Atlantis will quit and give an error message. In the case below Atlantis could not find a parameter FCD_mL. This happens when mistakes were made in formatting parameter files (e.g. if you used excel to create your file check to see if the PRM file contains " " around a parameter name, if does remove them and just leave the name) or when new obligatory parameters were added during the code update to account for new functionality (and you have updated the code on your computer)
 
-Keep an eye on the Atlantis wiki [news blog](https://confluence.csiro.au/pages/viewrecentblogposts.action?key=Atlantis) for information on modifications to the code and any new required parameters. To find the missing parameters search the Atlantis wiki for the parameter name to see what is expected.
+Keep an eye on the Atlantis wiki [change log](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changelog.html) for information on modifications to the code and any new required parameters. To find the missing parameters search the Atlantis wiki for the parameter name to see what is expected.
 
 ![](media/image19.png){width="5.183999343832021in" height="3.350449475065617in"}
 
@@ -560,7 +566,7 @@ where %d values will be replaced by specific numbers.
 Finding the routine that leads to the error message may not immediately answer your questions, but it might give ideas about where things went wrong and which parameters might have to change (look at the parameters used in this routine). It is not necessarily straightforward and easy, but as you get used to searching through the code and understand it better, things will slowly start making sense.
 
 A document compiling error messages is available on Google Doc file (available on March 20, 2016):
-
+*CURRENTLY INACTIVE*
 <https://docs.google.com/document/d/1B3X6_Y29gZxtKzjZY2oyylAJBxVtYXXu72pVbwv6mWw/edit>
 
 Please check this document for further information and to contribute to it by posting error messages you get.

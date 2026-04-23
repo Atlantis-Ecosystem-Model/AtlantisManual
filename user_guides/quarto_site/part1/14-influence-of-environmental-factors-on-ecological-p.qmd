@@ -6,7 +6,7 @@ title: "13. INFLUENCE OF ENVIRONMENTAL FACTORS ON ECOLOGICAL PROCESSES"
 
 Temperature can have a large influence on many biogeochemical and ecological processes, but in Atlantis the user has an option to turn the temperature effects off, by setting [flagq10]{style="color: orange;"}=0 (NOT recommended given the fundamental temperature dependence of most physiological processes). Temperature effects are mostly applied through the Tcorr scalar calculated in the *Get_Tcorr()* routine. Setting [flagq10]{style="color: orange;"}=0 means that Tcorr scalar will be set to 1.
 
-There are two ways to calculate the Tcorr scalar and different methods can be applied for different species, selected with the [q10_method_XXX]{style="color: orange;"} parameter. Some details on the calculations are given [here](https://confluence.csiro.au/display/Atlantis/Effect+of+temperature+on+functional+groups).
+There are two ways to calculate the Tcorr scalar and different methods can be applied for different species, selected with the [q10_method_XXX]{style="color: orange;"} parameter. Some details on the calculations are given [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/effect-of-temperature-on-functional-groups.html).
 
 If the [q10_method_XXX]{style="color: orange;"}=0 then a simple Q10 based correction scalar is calculated, using the reference temperature of 15C:
 
@@ -101,7 +101,7 @@ The **salinity** effects on **biomass pool and age structured group** physiologi
 
 Atlantis has an option to include effects of acidification on different physiological processes, predatory interactions and non-predation mortality. The pH effects are activated by setting [flagmodelpH]{style="color: orange;"} to 1 and [flagpHsensitive_XXX]{style="color: orange;"} to 1.
 
-The calculation of the pH correction scalar (pHCorr) is described in detail on wiki [here](https://confluence.csiro.au/display/Atlantis/2012/10/19/Handling+effects+of+acidification).
+The calculation of the pH correction scalar (pHCorr) is described in detail on wiki [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html).
 
 Briefly, depending on the [pH_sensitivity_model]{style="color: orange;"} selected, Atlantis will calculate the pHCorr using monodynamic, non-linear, linear, piecewise or quadratic approaches (see link above for details). The scalar will be \<1 at decreasing pH values. It can be based on the pH values of ∆ \[H+\] (set [flag_use_deltaH]{style="color: orange;"} to 1 to use ∆ \[H+\]).
 
@@ -109,7 +109,7 @@ As for the Scorr scalar, **for age structured groups** the pHCorr will be applie
 
 The pH can also affect other processes, as listed in Table 26.
 
-[]{#_Toc526762778 .anchor}Table 26. Effects of pH on physiological and ecological processes. See detailed description [here](https://confluence.csiro.au/display/Atlantis/2012/10/19/Handling+effects+of+acidification)
+[]{#_Toc526762778 .anchor}Table 26. Effects of pH on physiological and ecological processes. See detailed description [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html)
 
 | What is affected | How to activate | How is it applied |
 |:-----------------|:----------------|:------------------|
@@ -123,7 +123,7 @@ The pH can also affect other processes, as listed in Table 26.
 | Reduced larval survival before recruitment | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagfecundsensitive_XXX]{style="color: orange;"} =1 | The number of recruits is multiplied by pHCorr and therefore decreased |
 | Modifying thermal tolerance of a species | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagcontract_tol_XXX]{style="color: orange;"} = 1 | The thermal tolerance decreases according to [contract_tol_XXX]{style="color: orange;"} parameter which defined the number of degrees to contract the temperature tolerances by as pH drops |
 | Additional mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagPHmortcase]{style="color: orange;"} >0 | Extra mortality applied for ALL groups |
-| Extra mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[pHmortstart]{style="color: orange;"} = 1 | Another logistic extra mortality term is added, see details [here](https://confluence.csiro.au/display/Atlantis/2015/05/14/Acidification+induced+mortality) |
+| Extra mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[pHmortstart]{style="color: orange;"} = 1 | Another logistic extra mortality term is added, see details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) |
 
 ## **13.5. Oxygen** 
 
