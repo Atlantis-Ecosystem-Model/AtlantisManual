@@ -1,7 +1,4 @@
----
-title: "Appendix 1: Tips for Calibrating Biological Model: Notes from the 2015 Atlantis Summit"
-number-sections: false
----
+# Appendix 1: Tips for Calibrating Biological Model: Notes from the 2015 Atlantis Summit
 
 *by Isaac Kaplan and Atlantis community*
 
