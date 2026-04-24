@@ -52,7 +52,7 @@ Cons (temp_exp) = 3
 
 [**Purple**]{style="color: purple;"}: ø~corr~ = 100 (1000)
 
-## **Temperature: effects on feeding parameters and assimilation efficiency** 
+## **Temperature: effects on feeding parameters and assimilation efficiency** {#sec-temp-feeding-params}
 
 Once the Tcorr scalar has been calculated for the species and its ambient temperature in the cell using one of the two methods above, it is applied as a scalar to a range of processes. Typically, parameters that are scaled by Tcorr are indicated with T15, but this is not always the case.
 
@@ -116,7 +116,7 @@ The pH can also affect other processes, as listed in @tbl-pH-effects.
 
 | What is affected | How to activate | How is it applied |
 |:-----------------|:----------------|:------------------|
-| **Processes for which pHCorr scalar is applied at the same time as the Tcorr scalar, described in chapter 13.2** | | |
+| **Processes for which pHCorr scalar is applied at the same time as the Tcorr scalar, described in @sec-temp-feeding-params** | | |
 | Growth and non-predation mortality rates | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>For age structured groups it is applied only if:<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1 | Growth and non-predation mortality are affected in opposite ways by pH. The unmodified [C]{style="color: orange;"} and [mum]{style="color: orange;"} will be multiplied by pHCorr (and decrease as a result) and the unmodified [mL]{style="color: orange;"} and [mQ]{style="color: orange;"} multiplied by 1.0/pHCorr (and increase) |
 | Search volume (if [predcase]{style="color: orange;"}=5) | [flagpHsensitive_XXX]{style="color: orange;"}=1 | The [vla_T15]{style="color: orange;"} is multiplied by pHCorr (and decreases)<br><br>This is only applied for age structured groups |
 | Assimilation efficiency | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1<br><br>[flagq10eff_XXX]{style="color: orange;"}=1 or 2 | Four assimilation efficiencies are multiplied by pHCorr (and decrease) |
@@ -136,4 +136,4 @@ The oxygen dependency is modelled differently from the temperature, salinity and
 
 The effect of oxygen limitation on feeding rates and linear mortality of biomass pool groups is non-optional and is modelled with [O2case]{style="color: orange;"}, [mO_XXX]{style="color: orange;"}, [mD_XXX]{style="color: orange;"}, [KO2_XXX]{style="color: orange;"} and [KO2LIM_XXX]{style="color: orange;"} parameters
 
-The sensitivity of distributions and recruitment on oxygen concentration is optional. It is applied to both age structured groups and biomass pools and is activated by a global [flagO2depend]{style="color: orange;"} parameter and species-specific minimum oxygen concentrations [XXX_min_O2]{style="color: orange;"} parameter, setting the minimum tolerated oxygen level. If this option is used then species distribution will contract to areas above the minimum oxygen level. Further, the recruits that arrive into cells with oxygen concentrations lower than the minimum will be killed (not contracted!, see chapter 10.9.3.).
+The sensitivity of distributions and recruitment on oxygen concentration is optional. It is applied to both age structured groups and biomass pools and is activated by a global [flagO2depend]{style="color: orange;"} parameter and species-specific minimum oxygen concentrations [XXX_min_O2]{style="color: orange;"} parameter, setting the minimum tolerated oxygen level. If this option is used then species distribution will contract to areas above the minimum oxygen level. Further, the recruits that arrive into cells with oxygen concentrations lower than the minimum will be killed (not contracted!, see @sec-envio-habitat-recruitment).

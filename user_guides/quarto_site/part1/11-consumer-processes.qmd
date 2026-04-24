@@ -407,7 +407,7 @@ The availability of fisheries catches is an optional set of parameters that allo
 
 ### *Effect of temperature and salinity on feeding parameters* 
 
-Feeding rates and assimilation efficiencies will be temperature dependent if a species is temperature sensitive. Salinity dependency is optional. See chapter13 for further details.
+Feeding rates and assimilation efficiencies will be temperature dependent if a species is temperature sensitive. Salinity dependency is optional. @sec-environmental-factors for further details.
 
 ### *Effect of oxygen limitation on epibenthic invertebrate feeding rates* {#sec-o2-limitations}
 
@@ -428,7 +428,7 @@ $$
 ![Oxygen limitation scalar $\delta_{O_2}$ for different ambient oxygen concentrations, assuming $KO_2 = 50$ mgO~2~ m^-3^ and $KO_{2,lim} = 100$ mgO~2~ m^-3^.](media/image38.png){#fig-oxygen-limitation width=4.34in height=3.10in}
 
 
-**2. Depth based limitation** ([O2case]{style="color: orange;"}=1) only uses sediment depth of half oxygen mortality mD ([mD_XXX]{style="color: orange;"}, m) parameter and depth of the oxygenated sediment layer [sedoxdepth]{style="color: orange;"} (see chapter 5.6) where
+**2. Depth based limitation** ([O2case]{style="color: orange;"}=1) only uses sediment depth of half oxygen mortality mD ([mD_XXX]{style="color: orange;"}, m) parameter and depth of the oxygenated sediment layer [sedoxdepth]{style="color: orange;"} (@sec-output-physical-tracers) where
 
 δ~O2~=sedoxdepth/(sedoxdepth+mD)
 
@@ -444,9 +444,9 @@ This limitation only reflects reduced feeding within the sediment due to low oxy
 
 Space limitation can affect *C* or *mum* rates of benthic invertebrate biomass pools if:
 
-1\) A biomass pool group XXX is infauna or a filter feeder or mobile epibenthic group (SED_EP_FF and MOB_EP_OTHER [GroupType]{style="color: orange;"}) **and** is habitat dependent ([habdependXXX]{style="color: orange;"}=1) **and** space limitation is active ([flagXXXlim]{style="color: orange;"}=1 or 2). If these three conditions are satisfied then the Crowding Effect scalar is applied to the clearance rate *C* of XXX (see chapter 10.5.3).
+1\) A biomass pool group XXX is infauna or a filter feeder or mobile epibenthic group (SED_EP_FF and MOB_EP_OTHER [GroupType]{style="color: orange;"}) **and** is habitat dependent ([habdependXXX]{style="color: orange;"}=1) **and** space limitation is active ([flagXXXlim]{style="color: orange;"}=1 or 2). If these three conditions are satisfied then the Crowding Effect scalar is applied to the clearance rate *C* of XXX (see @sec-growth-consumer-biomass).
 
-2\) A biomass pool group is habitat dependent (with at least some habitat preference parameters not set to 1), benthic and [flag_benthos_sediment_link]{style="color: orange;"}=1. See chapter 10.5.3 for further details.
+2\) A biomass pool group is habitat dependent (with at least some habitat preference parameters not set to 1), benthic and [flag_benthos_sediment_link]{style="color: orange;"}=1. See @sec-growth-consumer-biomass for further details.
 
 ### *Other factors affecting feeding parameters* 
 
@@ -476,7 +476,7 @@ For other feeding responses handling time ([ht_XXX]{style="color: orange;"} in b
 
 **Acidification**
 
-Atlantis includes explicit representation of the possible effects of acidification. The model is activated with the [flagmodelPH]{style="color: orange;"}=1 in the *biology.prm* file. It allows the user to scale prey availability, assimilation efficiency, *C* and *mum* rates, mortality, recruitment and other processes. See chapter 13 for further details.
+Atlantis includes explicit representation of the possible effects of acidification. The model is activated with the [flagmodelPH]{style="color: orange;"}=1 in the *biology.prm* file. It allows the user to scale prey availability, assimilation efficiency, *C* and *mum* rates, mortality, recruitment and other processes. See @sec-environmental-factors for further details.
 
 ### *Other feeding functional responses* 
 
@@ -546,7 +546,7 @@ In age-structured consumers (CX) the assimilated food is allocated to a temporar
 
 $A_{CX} = \ \sum_{i}^{}{\left( E_{i} \cdot Gr_{prey} \right) \cdot gs}$
 
-Assimilation rate in age structured groups can be affected by temperature, salinity and pH (see chapter 13).
+Assimilation rate in age structured groups can be affected by temperature, salinity and pH (@sec-environmental-factors).
 
 ::: {.callout-caution}
 **Accounting for maintenance costs through assimilation efficiency** 
@@ -666,7 +666,7 @@ If respiration is included and [flag_shrinkfat]{style="color: orange;"} = 1 then
 There are different levels of starvation and they have increasing effects on ecological processes:
 
 1) When RN/X_RS\*SN \< 1
-\- the amount of spawn produced by an individual is reduced (see Spawn in Chapter 10.8).
+\- the amount of spawn produced by an individual is reduced (see @sec-spawn).
 
 2) When RN / X_RS\*SN \< [Kthresh1]{style="color: orange;"}
 \- handling time is scaled by the [KHTD]{style="color: orange;"} parameter value. This is only applied if [predcaseXXX]{style="color: orange;"} \> 4
@@ -675,9 +675,9 @@ There are different levels of starvation and they have increasing effects on eco
 \- handling time is scaled by the [KHTI]{style="color: orange;"} parameter value. This is only applied if [predcaseXXX]{style="color: orange;"} \> 4
 \- respiration rate is scaled by the [KST]{style="color: orange;"} parameter. This is only used if [flagresp]{style="color: orange;"} = 1 (respiration used)
 
-Additionally, starvation will lead to starvation mortality, as specified by the starvation mortality parameter, see Chapter 10.6.2
+Additionally, starvation will lead to starvation mortality, as specified by the starvation mortality parameter, see @sec-starvation-in-age
 
-### ***Growth in consumer biomass pools***
+### ***Growth in consumer biomass pools*** {#sec-growth-consumer-biomass}
 
 No explicit respiration costs are included in biomass pools, hence all assimilated energy *A~CP~* is allocated to growth. However, in epibenthic organisms space limitation scalar *δ~space~* is applied to limit growth in crowded conditions
 
@@ -772,14 +772,14 @@ At present this proportional access is assumed to match across all ages undertak
 | [pR_XXX]{style="color: orange;"} | Parameter controlling preference of energy allocation to RN and SN (@fig-energy-allocation-sn) |
 | [flag_shrinkfat]{style="color: orange;"} | If set to 1, negative energy budget at a given time step (when respiration costs exceed assimilated food intake) will be taken out of the RN pool. This is important for models that include respiration. If set to 0, negative energy budget is converted to 0. |
 | [flaghomog_sp]{style="color: orange;"} | If set to 1, body condition of age-structured groups is homogenised across the entire model domain after each timestep. This means that RN and SN ratio will be the same for a functional group throughout the whole model domain. If set to 0, condition can vary among boxes depending on food availability |
-| [flagXXXlim]{style="color: orange;"} | Flag defining what kind of space limitation should be applied to biomass pool consumers or benthic primary producers (see NOTE! in chapter 10.5.3) |
+| [flagXXXlim]{style="color: orange;"} | Flag defining what kind of space limitation should be applied to biomass pool consumers or benthic primary producers (see NOTE! in @sec-growth-consumer-biomass) |
 | [XXXmax]{style="color: orange;"} | Maximum biomass of a biomass pool consumer (mgN m^-2^), used in simple space limitation ([flagXXXlim]{style="color: orange;"}=1) |
 | [XXX_low]{style="color: orange;"}<br>[XXX_sat]{style="color: orange;"}<br>[XXXthresh]{style="color: orange;"} | Lower crowding threshold, crowding half saturation and crowding threshold (all in mgN m^-2^) used to calculate crowding effect in ERSEM based space limitation ([flagXXXlim]{style="color: orange;"}=2) |
 | [flag_competing_epiff]{style="color: orange;"} | If set to 1, space competition will be calculated taking into account all epifaunal groups (all epifaunal groups are assumed to compete for space) rather than only intra-functional competition |
 | [max_available_habitat]{style="color: orange;"} | Scalar for maximum available habitat for epifaunal groups. If > 1 epifaunal groups can grow on top of each other |
 | [flag_benthos_sediment_link]{style="color: orange;"} | Flag activating additional space limitation scaling in epibenthic and sediment biomass pool consumers, where *mum* values are scaled by the available habitat in the cell |
 | [flag_invert_biohab]{style="color: orange;"} | Flag allowing biomass pool consumers to access biohabitats, identified through [IsCover]{style="color: orange;"} parameter in the *functional_groups.csv* (e.g. corals, sponges, mussel beds). |
-| [flagdegrade]{style="color: orange;"} | Flag initiating geological habitat (REEF, FLAT, SOFT) degradation. If set to 1, additional parameters will be required as explained in chapter 10.5.3 |
+| [flagdegrade]{style="color: orange;"} | Flag initiating geological habitat (REEF, FLAT, SOFT) degradation. If set to 1, additional parameters will be required as explained in @sec-growth-consumer-biomass |
 | [Supp_XXX]{style="color: orange;"} | Proportion of a group's diet coming from outside the model domain (defined as a vector with one entry per box). Only needed if [isSupplemented]{style="color: orange;"} is set to 1 in the *run.prm* file. |
 
 : Parameters affecting growth in consumers. {#tbl-growth-parameters tbl-colwidths=[25,75]}
@@ -868,7 +868,7 @@ The natural non-predation mortality of an age-structured consumer CX (in numbers
 
 $$M_{CX} = \ \left( \left( mL + mQ \cdot Num_{CX} + mSt + mA + mE \right) \cdot Num_{CX} \right) \cdot mortsc$$
 
-where *mL* is an stage-specific (juvenile and adult) linear mortality for CX ([mL_XXX]{style="color: orange;"}, day^-1^), *mQ* is an stage-specific quadratic mortality for CX ([mQ_XXX]{style="color: orange;"}, day^-1^), *mSt* is the starvation mortality (day^-1^, see below), *mA* is an optional acidification mortality (see below), *mS* is the optional extra mortality due to seabirds and fish not included in the model (adopted from ERSEM I, Bryant *et al*. 1995) ([mS_XXX]{style="color: orange;"}, day^-1^), *Num* is the numbers in an age group and *mortsc* is the optional external mortality scalar, provided through forcing files. See chapter on the forcing file for details on extra mortality scaling.
+where *mL* is an stage-specific (juvenile and adult) linear mortality for CX ([mL_XXX]{style="color: orange;"}, day^-1^), *mQ* is an stage-specific quadratic mortality for CX ([mQ_XXX]{style="color: orange;"}, day^-1^), *mSt* is the starvation mortality (day^-1^, see below), *mA* is an optional acidification mortality (see below), *mS* is the optional extra mortality due to seabirds and fish not included in the model (adopted from ERSEM I, Bryant *et al*. 1995) ([mS_XXX]{style="color: orange;"}, day^-1^), *Num* is the numbers in an age group and *mortsc* is the optional external mortality scalar, provided through forcing files. See @sec-focing-files forcing file for details on extra mortality scaling.
 
 ::: {.callout-caution}
 **Terminal or senescence mortality in age structured groups and age structured biomass pools** 
@@ -938,7 +938,7 @@ As in age-structured groups, the age-structured biomass pools can have senescenc
 
 ### ***Temperature and acidification effect on mortality***
 
-Linear and quadratic mortality parameters can be temperature dependent, as described in chapter 13. If a model includes acidification effects ([flagmodelpH]{style="color: orange;"}=1) then parameters imposing additional acidification induced mortality can be specified.
+Linear and quadratic mortality parameters can be temperature dependent, as described in @sec-environmental-factors. If a model includes acidification effects ([flagmodelpH]{style="color: orange;"}=1) then parameters imposing additional acidification induced mortality can be specified.
 
 ### ***Turbidity effect on mortality***
 
@@ -1031,7 +1031,7 @@ The remaining fraction of the mortality products (1-FDM) and unassimilated food 
 
 : Parameters determining waste production processes. {#tbl-waste-production-parameters tbl-colwidths=[25,75]}
 
-## **Spawn** 
+## **Spawn** {#sec-spawn}
 
 Spawning and recruitment is only explicitly modelled in age structured groups and age-structured biomass pools. They are handled by multiple routines in the **atdemography.c** file. In simple biomass pools reproduction is implicitly included in the growth term.
 
@@ -1113,7 +1113,7 @@ Recruited individuals are attributed to the first year of the first age group. T
 
 ### ***Routines used to calculate recruitment in age-structured groups***
 
-Several routines in Atlantis are involved in obtaining the final number of recruits. For age-structured groups (vertebrates), the total spawn produced by a species (calculated in the routines above, in the chapter on spawning) is passed to:
+Several routines in Atlantis are involved in obtaining the final number of recruits. For age-structured groups (vertebrates), the total spawn produced by a species (calculated in the routines above, in @sec-spawn) is passed to:
 
 1)  The *Ecology_Find_Embryos()* routine, which applies environmental scalars, such as scaling by plankton production. It also applies external recruitment forcing, for cases where recruitment time series are supplied. In the case of Beverton-Holt or Ricker recruitment, which are dependent on the spawn or species biomass, nothing is done in this routine.
 2)  The value above is then passed to the *Get_Recruits()* routine which calculates the recruitment (*Rs*) depending on the chosen recruitment option.
@@ -1129,7 +1129,7 @@ The most common Beverton-Holt recruitment (selected as [flagrecruitXXX]{style="c
 
 $$Rc = \ \frac{Sp \cdot BHa}{Biom + BHb}$$
 
-where *BHa* and *BHb* are species-specific Beverton-Holt alpha and Beverton-Holt beta parameters ([BHalpha_XXX]{style="color: orange;"} and [Bhbeta_XXX]{style="color: orange;"}, mgN), *Sp* is the spawn produced (mgN, see Spawn chapter) and *Biom* is the species total biomass. Note that because this *Rc* is dealing with nitrogen and not recruits entering a fishery, the obtained values will not match those given in stock assessment models.
+where *BHa* and *BHb* are species-specific Beverton-Holt alpha and Beverton-Holt beta parameters ([BHalpha_XXX]{style="color: orange;"} and [Bhbeta_XXX]{style="color: orange;"}, mgN), *Sp* is the spawn produced (mgN, see @sec-spawn) and *Biom* is the species total biomass. Note that because this *Rc* is dealing with nitrogen and not recruits entering a fishery, the obtained values will not match those given in stock assessment models.
 
 ::: {.callout-caution}
 **Converting recruit biomass *Rc* to numbers** 
@@ -1295,7 +1295,7 @@ Rc=Rc\*[intersp_depend_scale]{style="color: orange;"}/biomassY
 If several stocks per species are used (identified with [NumStocks]{style="color: orange;"} parameter in the functional\_ group.csv file) the procedures described above calculate recruitment for each stock separately, using the biomass of that stock rather than the total species biomass. The user also has an option to use stock specific recruitment scalars [recSTOCK_XXX]{style="color: orange;"} to upscale or downscale recruitment in different stocks.
 :::
 
-### ***Environmental, habitat and external recruitment scalars***
+### ***Environmental, habitat and external recruitment scalars*** {#sec-envio-habitat-recruitment}
 
 The recruitment value *Rc* calculated above can be further modified by habitat availability, biomass of other species, environmental conditions, and additional recruit supplementing (stocking). All of these factors are optional and will be applied as multipliers on the base recruitment. Most of them affect recruitment in a negative way. When several scalars are applied (pH, temperature, contaminants), the user must be careful about the multiplicative nature of all these scalars, as they can drastically reduce recruitment.
 

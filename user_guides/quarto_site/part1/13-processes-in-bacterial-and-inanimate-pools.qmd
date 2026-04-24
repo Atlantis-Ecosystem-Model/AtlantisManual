@@ -32,7 +32,7 @@ $G_{BP} = mum \cdot B \cdot \left( 1 - \frac{B}{XPB_{DL} \cdot DL + XPB_{DR} \cd
 
 where mum is the maximum growth rate ([mum_PB]{style="color: orange;"}), XPB~DL~ and XPB~DR~ is the maximum ratio of the bacteria to DL and DR biomass ([XPB_DL]{style="color: orange;"} and [XPB_DR]{style="color: orange;"} parameters), *B* is the biomass of the pelagic bacteria, *DL* and *DR* is the biomass of labile and refractory detritus and [k_PB]{style="color: orange;"} is the constant determining the exponent of growth (1- linear, 3-drop off before maximum, 5- drop off at maximum). The growth of sediment bacteria (BB) is modelled in the same way, except that [mum_BB]{style="color: orange;"} and [k_BB]{style="color: orange;"} parameters are used.
 
-There is an option to allow for stimulation of bacterial growth by bioirrigation and bioturbation. This option is turned setting [flagbactstim]{style="color: orange;"}=1 and will enhance growth depending on the biomass of infaunal organisms and porosity of the sediment (see chapter 4).
+There is an option to allow for stimulation of bacterial growth by bioirrigation and bioturbation. This option is turned setting [flagbactstim]{style="color: orange;"}=1 and will enhance growth depending on the biomass of infaunal organisms and porosity of the sediment (see @sec-focing-files).
 
 Mortality (non-predation) of pelagic and sediment bacteria is modelled as
 
