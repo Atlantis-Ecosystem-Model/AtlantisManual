@@ -1,9 +1,4 @@
----
-title: "Economics"
-number-sections: true
-crossref:
-  chapters: true
----
+# Economics
 
 ## **Introduction into the Economics submodel and its main principles**
 
@@ -60,10 +55,8 @@ Number of boats, hold size, crew size, behaviour flexibility, costs of fishing, 
 
 Gear selectivity, target species, fish escapement, incidental mortality, discarding, minimum and maximum fishing depth, fishing habitat characteristics and so on
 :::
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
+|:--------------|:----------------|
 | [YYY_nsubfleets]{style="color: orange;"} | Number of subfleets per each fishery. This value is only used if economics is switched on for that fishery. If the economics sub-model is being used then this value must be at least 1 or Atlantis will crash. |
 | [YYY_nlicence]{style="color: orange;"} | Number of licences for each fishery across all subfleets. It defines the maximum number of vessels that may be active in a fishery. |
 | [YYY_nboat]{style="color: orange;"} | Number of boats in each subfleet. The array should have as many entries as the maximum number of subfleets. For fisheries that have fewer or only 1 subfleet, give 0 for the remaining "empty" subfleets. For fisheries that have an effortmodel value < 12 then set all values to 0 (as they are not modelled using subfleets but instead use one of the effort models defined in the harvest sub-model). |
@@ -79,9 +72,8 @@ Gear selectivity, target species, fish escapement, incidental mortality, discard
 | [month_scalar]{style="color: orange;"} | Global parameter setting up the scalar in number of days per month that each subfleet can apply. It is used in calculating max_month_effort, see chapter 17. |
 | [BycatchCountDiscards]{style="color: orange;"} | This flag indicates whether the discard of bycatch species are used in calculations involving total catches (e.g. for calculating total catch per box vs profit or taxes, used in deciding where to target fishing effort). The inclusion of bycatch may be important if there are penalties or taxes for taking endangered species. |
 
-:::
+: General Economics and subfleet parameters. {#tbl-economics-subfleet-parameters tbl-colwidths=[25,75]}
 
-[]{#_Toc498434985 .anchor}**Table 15.** General Economics and subfleet parameters
 
 ## **Key routines of the Economics submodel**
 
@@ -169,18 +161,15 @@ $${Prc}_{fuel,J,Y,m,y} = \left( a_{fuel} + Trend_{fuel} \cdot year + b_{fuel,mon
 
 *a~fuel~* is the baseline fuel cost (fuel_intercept, cents/litre); *Trend~fuel~* is the price trend coefficient fuel_trend_coefft (cents/litre) to be multiplied by the year of the simulation; the *b~fuel,\ month~* is the monthly market constant given in the FuelMonthCoefft parameter; and *c~fuel~* is a constant (fuel_auto_coefft) to be applied to the externally read fuel price residuals *residuals~fuel~*. The *δ~J,Y~* is the subfleet's specific fuel consumption value (YYY_fuelcost, liters/day of effort).
 
-[]{#_Toc498434986 .anchor}**Table 16.** Parameters relating to fish prices and fishing costs
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
-| [UseConstPrice]{style="color: orange;"} | Parameter determining whether to use constant fish prices given in `XXXsaleprice` parameter (if set to 1) or if prices should be updated dynamically using market based calculations (if set to 0). |
+|:--------------|:----------------|
+| [UseConstPrice]{style="color: orange;"} | Parameter determining whether to use constant fish prices given in [XXXsaleprice]{style="color: orange;"} parameter (if set to 1) or if prices should be updated dynamically using market based calculations (if set to 0). |
 | [XXXsaleprice]{style="color: orange;"} | Original fish price (\$/kg) for species XXX and given for each fishery. |
 | [K_num_markets]{style="color: orange;"} (in *run.prm*) | Number of independent markets determining fish prices (currently can only be 1 or 2). |
-| [MARKET_intercept1, MARKET_intercept2]{style="color: orange;"} | Market-specific scalar for each species fish price (unitless). |
-| [MARKET_trend1, MARKET_trend2]{style="color: orange;"} | Long term price trend coefficient constant for each market and species, to be multiplied by the simulation year number to get \$/kg. |
-| [JanMarketCoefft1, FebMarketCoefft1, ...]{style="color: orange;"} | Monthly market constant (\$/kg) in fish price. |
-| [MARKET_autocoefft1, MARKET_autocoefft2]{style="color: orange;"} | Market specific constants to be applied to externally read price residuals. |
+| [MARKET_intercept1]{style="color: orange;"}, [MARKET_intercept2]{style="color: orange;"} | Market-specific scalar for each species fish price (unitless). |
+| [MARKET_trend1]{style="color: orange;"}, [MARKET_trend2]{style="color: orange;"} | Long term price trend coefficient constant for each market and species, to be multiplied by the simulation year number to get \$/kg. |
+| [JanMarketCoefft1]{style="color: orange;"}, [FebMarketCoefft1]{style="color: orange;"}, ... | Monthly market constant (\$/kg) in fish price. |
+| [MARKET_autocoefft1]{style="color: orange;"}, [MARKET_autocoefft2]{style="color: orange;"} | Market specific constants to be applied to externally read price residuals. |
 | [YYY_homeport]{style="color: orange;"} | An array indicating which port each fishery and subfleet are associated with (each subfleet can only be associated with one port). |
 | [ports_markets]{style="color: orange;"} (in *harvest.prm*) | An array indicating which port is associated with which market (each port is only associated with one market). |
 | [DVstart]{style="color: orange;"} | Day of the simulation run when deemed fish price values will start being used. |
@@ -196,7 +185,8 @@ $${Prc}_{fuel,J,Y,m,y} = \left( a_{fuel} + Trend_{fuel} \cdot year + b_{fuel,mon
 | [FuelMonthCoefft]{style="color: orange;"} | Monthly fuel price constant (cents/litre). |
 | [fuel_auto_coefft]{style="color: orange;"} | A constant on fuel cost to be applied to externally read price residuals. |
 | [YYY_fuelcost]{style="color: orange;"} | Subfleet specific fuel consumption, litres/effort_day. |
-:::
+
+: Parameters relating to fish prices and fishing costs. {#tbl-fish-prices-parameters tbl-colwidths=[25,75]}
 
 ### ***Quota trading***
 
@@ -269,15 +259,11 @@ In the Newell et al (2005) model ([flagLease]{style="color: orange;"}=1) the ave
 If the [UseMinValue]{style="color: orange;"} global parameter is set to 1, then quota prices cannot fall below the minimum value given in a global [minValue]{style="color: orange;"} parameter (same for all species for which no quota price is estimated, or price is below the minimum value). If [UseMinValue]{style="color: orange;"}=0, quota prices for all species with no quota are set to 0
 
 A parameter [targetscale]{style="color: orange;"} is used to give the relative weighting key target species have in making quota trade decisions. Effectively, each kilo of a target species up for trade is [targetscale]{style="color: orange;"} times more attractive than a kilo of a secondary or byproduct species (i.e. a lower value but still saleable fish under a quota).
-
-[]{#_Toc498434987 .anchor}**Table 17.** Parameters relating to quota trading and quota prices
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
+|:--------------|:----------------|
 | [quota_trading]{style="color: orange;"} | If set to 1, then quota is traded in the simulation. |
 | [fish_withoutQ]{style="color: orange;"} | Whether fishing without quota is allowed (if set to 1). |
-| [OwnQuotaXXX_sub1, OwnQuotaXXX_sub2, ...]{style="color: orange;"} | Total allowable catch of quota (in tonnes) for each subfleet of each fishery (superseding the values for TACs set in *harvest.prm*). If set to 10^12^ then no quota for that species is applied. |
+| [OwnQuotaXXX_sub1]{style="color: orange;"}, [OwnQuotaXXX_sub2]{style="color: orange;"}, ... | Total allowable catch of quota (in tonnes) for each subfleet of each fishery (superseding the values for TACs set in *harvest.prm*). If set to 10^12^ then no quota for that species is applied. |
 | [prop_within]{style="color: orange;"} | Proportion of yearly quota fulfilled before attempting to buy more quota (a subfleet will not buy new quota if it has used up less than the set proportion of the quota). This proportion applies to the start of the year and will increase automatically and slowly through the year. |
 | [prop_spareend]{style="color: orange;"} | Proportion of quota left at which point a subfleet will try to sell quota. The proportion will increase automatically and gradually through the year, so that a subfleet is not left with any unused quota at the end of the year. |
 | [sp_by_sp]{style="color: orange;"} | Whether quota trading is done by single species (=1) or by species packages (=0). |
@@ -287,7 +273,8 @@ A parameter [targetscale]{style="color: orange;"} is used to give the relative w
 | [interest_rate]{style="color: orange;"} | The interest rate used for quota price calculation in the Little et al. 2009 quota price model. |
 | [UseMinValue]{style="color: orange;"} | If set to 1, quota prices are set at minimum values given in [minValue]{style="color: orange;"} parameter. Otherwise quota prices are allowed to fall to 0. |
 | [targetscale]{style="color: orange;"} | A scalar (unitless) used to give the relative weighting of key target species in making quota trade decisions. |
-:::
+
+: Parameters relating to quota trading and quota prices. {#tbl-quota-parameters tbl-colwidths=[25,75]}
 
 ## **Economic responses**
 
@@ -323,13 +310,10 @@ Currently in Atlantis port growth includes growth of the number of boats associa
 
 The number of boats per port will change as boats switch fisheries, because different fisheries are associated with different ports (see chapter 17.3.1). The number of boats associated with each port will affect the proportion of total fish weight that is sold in each market (chapter 17.3.1) and in this way will affect fish prices.
 
-[]{#_Toc498434988 .anchor}**Table 18.** Parameters determining economic responses through gear switching and changes in the number of boats.
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
-| [YYY_nlicences]{style="color: orange;"} | Numbers of licenses in each fishery, i.e. number of vessels/boats a fishery is allowed to have across all of its subfleets. |
-| [YYY_buybackdate]{style="color: orange;"} | A day of the simulation run when a proportion of boats given in the `YYY_propbuyback` parameter is taken out of the fishery (bought back). If buy back is not wanted set this date to a large value. |
+|:--------------|:----------------|
+| [YYY_nlicences]{style="color: orange;"} | Numbers of licences in each fishery, i.e. number of vessels/boats a fishery is allowed to have across all of its subfleets. |
+| [YYY_buybackdate]{style="color: orange;"} | A day of the simulation run when a proportion of boats given in the [YYY_propbuyback]{style="color: orange;"} parameter is taken out of the fishery (bought back). If buy back is not wanted set this date to a large value. |
 | [flagsupp_allowed]{style="color: orange;"} | If set to 1, subfleets are allowed to move across fisheries to simulate gear switching; if set to 2 subfleets are considered to have flexible gear (see chapter 17.4.1 for further details). |
 | [flagswitch]{style="color: orange;"} | If set to 1, subfleets are allowed to switch between fisheries. |
 | [YYY_suppcost]{style="color: orange;"} | Cost of gear supplementing and switching (in \$ per operator making the change). |
@@ -341,7 +325,9 @@ The number of boats per port will change as boats switch fisheries, because diff
 | [cripple_nboat_lost]{style="color: orange;"} | Proportion of boats lost after the [cripple_period]{style="color: orange;"} time of debt above the tolerable level. |
 | [flagnewboat]{style="color: orange;"} | If set to 1, a subfleet can buy boats when it is profitable. |
 | [YYY_newcost]{style="color: orange;"} | Cost of a new boat (\$ per boat) for each subfleet. |
-:::
+
+: Parameters determining economic responses through gear switching and changes in the number of boats. {#tbl-gear-switching-parameters tbl-colwidths=[25,75]}
+
 
 ## **Scheduling of fishing effort and final effort allocation**
 
@@ -403,7 +389,7 @@ $$Eff_{mothly,max} = monthSc \cdot \left( 1 - downTime_{J} \right) \cdot Nboats_
 
 Where *monthSc* is the monthly scalar in the [month_scalar]{style="color: orange;"} global parameter giving a maximum number of days of effort a boat can apply (it can be bigger than 30 if for example one boat has several gears), and *downTime~J~* is the proportion of time a boat from a subfleet J must stay in the port for maintenance given in the [YYY_minDownTime]{style="color: orange;"} parameter. A hypothetical maximum monthly effort limit is shown with a dashed red horizontal line in the graph below.
 
-![[]{#_Toc498434139 .anchor}**Figure 12.** The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){width="5.004166666666666in" height="3.9270833333333335in"}
+![The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){#fig-monthly-effort-scalar width=5.0in height=3.93in}
 
 6)  Assess whether a subfleet has very high debt levels which will reduce its ability to fish. The tolerable debt levels for each subfleet are set in [YYY_TolDebt]{style="color: orange;"} parameter. If the expected monthly profit from fishing will not increase the debt above the tolerable levels then monthly planned effort is reduced by a proportion set in a global [effort_reduction]{style="color: orange;"} parameter.
 
@@ -455,15 +441,12 @@ The [YYY_flexweight]{style="color: orange;"} parameter is used three times in th
 
 Once the effort has been allocation to each box of the model domain, the effort for all subfleets of a fishery is pooled within each box (to get fishery-specific effort per box) and passed to the Harvest submodel.
 
-[]{#_Toc498434989 .anchor}**Table 19.** Parameters related to effort allocation
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
+|:--------------|:----------------|
 | [MultiPlanEffort]{style="color: orange;"} | If set to 1, then baseline economic Atlantis model is used to determine effort allocation. If set to 0, the Dan Holland economics model is used (see chapter 17.5.3 for further details). |
-| [JanYYYEffort_sub1, FebYYYEffort_sub1, ...]{style="color: orange;"} | Historical average fishing effort (in effort days per box per month) -- given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
-| [JanCatchXXX_sub1, FebCatchXXX_sub1, ...]{style="color: orange;"} | Historical average catch per species (kg of catch per box per month) -- given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
-| [JanYYYCPUE_sub1, FebYYYCPUE_sub1, ...]{style="color: orange;"} | Historical average CPUE (kg of catch per one day of effort per box per month) -- given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
+| [JanYYYEffort_sub1]{style="color: orange;"}, [FebYYYEffort_sub1]{style="color: orange;"}, ... | Historical average fishing effort (in effort days per box per month) — given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
+| [JanCatchXXX_sub1]{style="color: orange;"}, [FebCatchXXX_sub1]{style="color: orange;"}, ... | Historical average catch per species (kg of catch per box per month) — given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
+| [JanYYYCPUE_sub1]{style="color: orange;"}, [FebYYYCPUE_sub1]{style="color: orange;"}, ... | Historical average CPUE (kg of catch per one day of effort per box per month) — given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
 | [OrigEconCalc]{style="color: orange;"} | If set to 1 then the expected yearly profit is calculated as earnings minus costs. If set to 0, then profit calculation takes into account CPUE data and proportional contribution of each fish in the catch (see chapter 17.5.1). |
 | [TemporalBycatchAvoid]{style="color: orange;"} | If set to 1, effort planning will take into account monthly historical bycatch and avoid months when bycatch is highest. |
 | [SpatialBycatchAvoid]{style="color: orange;"} | If set to 1, effort planning will take into account spatial historical bycatch and avoid boxes where bycatch is highest. |
@@ -474,4 +457,5 @@ Once the effort has been allocation to each box of the model domain, the effort 
 | [effort_reduction]{style="color: orange;"} | Global parameter setting a scalar of effort reduction that a subfleet will experience if its debt is higher than the value given in the [YYY_TolDebt]{style="color: orange;"} parameter. |
 | [YYY_FCwgtscale]{style="color: orange;"} | Scalar (from 0 to a very high value) that will affect the willingness of a subfleet to travel to distant boxes. |
 | [YYY_varcost]{style="color: orange;"} | Cost of fishing per subfleet per day (\$ / effort_day). |
-:::
+
+: Parameters related to effort allocation. {#tbl-effort-allocation-parameters tbl-colwidths=[25,75]}

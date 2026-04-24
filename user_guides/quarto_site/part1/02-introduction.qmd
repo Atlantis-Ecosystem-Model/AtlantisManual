@@ -1,9 +1,4 @@
----
-title: "Introduction"
-number-sections: true
-crossref:
-  chapters: true
----
+# Introduction
 
 ## **Goals of this manual and where to go from here**
 
@@ -161,7 +156,7 @@ Atlantis is not a simple model to implement and even the simplest parameterisati
 
 : Some example findings from Atlantis applications (modified after Fulton et al. 2011). {#tbl-atlantis-findings}
 
-## **How does Atlantis compare to other marine ecosystem models?**
+## **How does Atlantis compare to other marine ecosystem models?** {#sec-comp-es-models}
 
 The key characteristics of Atlantis is that it is 1) whole-of-system, 2) spatially explicit, 3) age structured, 4) deterministic, and 5) comprised of submodels that simulate human impacts and management.
 

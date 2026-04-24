@@ -1,11 +1,6 @@
----
-title: "Hydrodynamic, Salinity, and Temperature Forcing Data"
-number-sections: true
-crossref:
-  chapters: true
----
+# Hydrodynamic, Salinity, and Temperature Forcing Data {#sec-focing-files}
 
-## **General introduction to forcing of Atlantis models**
+## **General introduction to forcing of Atlantis models** 
 
 Like most other ecosystem models, Atlantis does not calculate water fluxes (current, circulation) itself, but uses outputs from specialised oceanographic models such as [ROMS](https://www.myroms.org/wiki/Documentation_Portal) (Regional Ocean Modeling System) (Shchepetkin and McWilliams 2005; Haidvogel et al. 2008), [BLUELINK](http://wp.csiro.au/bluelink/global/) (Brassington et al. 2007) or [HYCOM](https://hycom.org/) (Chassignet et al. 2006). In other words, Atlantis models are forced with hydrodynamic data from oceanographic models. At the minimum level Atlantis requires only a hydrodynamic forcing input file defining water fluxes across boxes and layers. The model will then use simple routines to calculate temperature and salinity conditions in each cell at each simulation time step. However, most Atlantis models, and other ecosystem models (Fiechter et al. 2014; Rose et al. 2015), also use oceanographic model output to force temperature and salinity conditions (and in some cases also oxygen, pH or other tracers). This is because oceanographic models are specialised to model temperature and salinity conditions, and their calculation of these parameters are deemed to be more accurate than those used in Atlantis. Moreover, taking the physical properties from the oceanographic model means they are consistent with the exchanges (currents) being read in from the oceanographic model. In rare cases, if oceanographic models are not available, water flux information can be pieced together from observations or literature to generate hydrodynamic forcing files manually. Lists some of the spatial domains and forcing characteristics of example model applications (@tbl-hydrodynamic-structure).
 
@@ -38,7 +33,7 @@ Oceanographic models simulate processes on their native grid, which is typically
 ![An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate.](media/image26.png){#fig-sigma-layers width=4in height=6in}
 
 
-## **Transforming oceanographic model output into Atlantis forcing files**
+## **Transforming oceanographic model output into Atlantis forcing files** {#sec-oceanographic-to-forcing}
 
 The interpolation of the oceanographic output into Atlantis forcing files requires transformation across different shaped grids and depth layers. Water fluxes must be transformed from the oceanographic grid to Atlantis faces, whereas temperature and salinity values must be averaged onto Atlantis cells and time steps. The transformation must also account for hyperdiffusion, which is caused by the different spatial scales of oceanographic and Atlantis models. Because concentration of tracers within a layer of a box is assumed to be uniform, a tracer that enters a box is instantaneously assumed to be equally distributed throughout the entire box. This means that flow of tracers in large boxes would be overstated by orders of magnitude if this hyperdifussion phenomenon is not taken into account. The (crude) correction simply divides the east-west water flows by the width of the box (in metres) in the east-west orientation and north-south flows by the width of the box in the north-south orientation. This is a simple and a standard approach to correct for hyperdifusion and can be further refined using the [horiz_mix]{style="color: orange;"} scalar in the BGM file.
 
@@ -92,7 +87,7 @@ The transport model uses the water exchanges from the hydrodynamic forcing files
 2. add local water inputs or sinks, such as river flows or outflows
 3. apply water exchanges through the surface layer due to precipitation and evaporation 
 
-The final flows of water are given in the output.nc file listed in [hdsource]{style="color: orange;"}, [hdsink]{style="color: orange;"}, [eflux]{style="color: orange;"} and [vflux]{style="color: orange;"} (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.
+The final flows of water are given in the output.nc file listed in [hdsource]{style="color: orange;"}, [hdsink]{style="color: orange;"}, [eflux]{style="color: orange;"} and [vflux]{style="color: orange;"} (see description of the ouput file parameters @sec-output-physical-tracers). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.
 :::
 
 ## **Numbering of vertical layers in the input and output NC files**
@@ -140,7 +135,7 @@ A good way to understand this is to look at temperature variables. Note that war
 | ... | ... |
 :::
 
-## **Viewing and checking forcing input files with R**
+## **Viewing and checking forcing input files with R**  {#sec-r-forcing-check}
 
 An R-package ***shinyrAtlantis*** is available on <https://github.com/shanearichards/shinyrAtlantis> and provides a number of shiny applications to help with viewing Atlantis forcing and parameter files.
 

@@ -34,27 +34,25 @@ When data on catches is available, modellers often use imposed catch to aid the 
 he choice between the user defined fishing mortality and dynamic fishing is determined by whether the user is mostly interested in the biological dynamics given a set fishing pressure, or whether fishery development and socio-economic aspects are of more interest. Of course, the actual fishery is never just a fixed annual pressure and biological dynamics will be determined by complex fisher behaviour and a range of socio-economic aspects that will determine the actual fishing pressure. Yet, all models are just a simplified version of reality and the level of simplification is determined by the questions that are to be addressed.
 :::
 
-[]{#_Toc498434971 .anchor}**Table 1.** General fisheries parameters
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
-| [flag_fisheries_on]{style="color: orange;"} in run.prm | Flag indicating that the Harvest submodel should be loaded. Must be set to 1 when applying fisheries |
-| [isImpacted]{style="color: orange;"} in functional_groups.csv | Flag indicated that the group is impacted by fisheries and other human activities. Must be set to 1 for any group that can be impacted through fishing, bycatch or incidental fishing mortality (e.g. where benthic habitat is crushed by fishing gear) |
+| [flag_fisheries_on]{style="color: orange;"} in *run.prm* | Flag indicating that the Harvest submodel should be loaded. Must be set to 1 when applying fisheries |
+| [isImpacted]{style="color: orange;"} in *functional_groups.csv* | Flag indicating that the group is impacted by fisheries and other human activities. Must be set to 1 for any group that can be impacted through fishing, bycatch or incidental fishing mortality (e.g. where benthic habitat is crushed by fishing gear) |
 | [YYY_tStart]{style="color: orange;"} | Day of the model run when a fishery YYY starts operating |
 | [YYY_tEnd]{style="color: orange;"} | Day of the model run when a fishery YYY ends operations |
-| [flagYYYday]{style="color: orange;"} | Period of activity in fisheries YYY. 0 -- fishery only operates at night, 1 -- fishery operates during the day, 2 -- fishery operates all the time. Note, this has implications for scaling of imposed catch (see chapter 15.2.1).<br><br>Species activity (set in [flagXXXday]{style="color: orange;"} in *biology.prm*) files does not affect its availability to fisheries -- an inactive species will still be fished. |
-| [flagfishXXX]{style="color: orange;"} | Flag indicating whether a species XXX is actively fished. This flag is similar to [isImpacted]{style="color: orange;"} in the .csv file, and is partly the legacy of earlier development. Currently [flagfishXXX]{style="color: orange;"} indicates that a species is directly affected by fishing, whereas isImpacted includes also other impacts, such as bycatch or incidental mortality. The [flagfishXXX]{style="color: orange;"} should be set to 1 for all fished species. |
-| [flagfinfish]{style="color: orange;"} | A global flag indicating that fisheries are operating.<br><br>Turning on fisheries through [flag_fisheries_on]{style="color: orange;"} in *run.prm* means that Atlantis will apply either direct fishing ([flagfinfish]{style="color: orange;"}=1) or incidental mortality ([flagincidmort]{style="color: orange;"}=1). So if [flagfinfish]{style="color: orange;"} =0, incidental mortality can still occur through bycatch if [flagincidmort]{style="color: orange;"}=1, meaning a species might still be affected by fishing activities. |
-| [flagincidmort]{style="color: orange;"} | A flag indicating whether fisheries can cause incidental mortality through bycatch. The bycatch will be determined depending on how a fishery is set: if imposed catches are used or user defined fishing mortality is set species in the model then bycatch of other species can be generated with the [FCcocatchXXX]{style="color: orange;"} parameter; whereas in dynamic fishing bycatch is determined by a range of parameters. |
-| [flag_access_thru_wc_XXX]{style="color: orange;"} | Whether a fishery has access to fish in the entire water column (e.g. do trawl doors remain open as the gear moves up/down through the water column there by interacting with species who do not live at the depth the trawl is most actively being towed) |
-| [flaghabitat_XXX]{style="color: orange;"} | Vectors indicate which habitat patchiness equation to use when undertaking dynamic fishing. 0=standard % overlap, 1=Ellis and Pantus based subgrid scale model |
+| [flagYYYday]{style="color: orange;"} | Period of activity in fishery YYY. 0 = fishery only operates at night, 1 = fishery operates during the day, 2 = fishery operates all the time. Note, this has implications for scaling of imposed catch (see chapter 15.2.1).<br><br>Species activity (set in [flagXXXday]{style="color: orange;"} in *biology.prm*) does not affect its availability to fisheries — an inactive species will still be fished. |
+| [flagfishXXX]{style="color: orange;"} | Flag indicating whether a species XXX is actively fished. This flag is similar to [isImpacted]{style="color: orange;"} in the .csv file, and is partly the legacy of earlier development. Currently [flagfishXXX]{style="color: orange;"} indicates that a species is directly affected by fishing, whereas [isImpacted]{style="color: orange;"} includes also other impacts, such as bycatch or incidental mortality. The [flagfishXXX]{style="color: orange;"} should be set to 1 for all fished species. |
+| [flagfinfish]{style="color: orange;"} | A global flag indicating that fisheries are operating.<br><br>Turning on fisheries through [flag_fisheries_on]{style="color: orange;"} in *run.prm* means that Atlantis will apply either direct fishing ([flagfinfish]{style="color: orange;"}=1) or incidental mortality ([flagincidmort]{style="color: orange;"}=1). So if [flagfinfish]{style="color: orange;"}=0, incidental mortality can still occur through bycatch if [flagincidmort]{style="color: orange;"}=1, meaning a species might still be affected by fishing activities. |
+| [flagincidmort]{style="color: orange;"} | A flag indicating whether fisheries can cause incidental mortality through bycatch. The bycatch will be determined depending on how a fishery is set: if imposed catches are used or user defined fishing mortality is set for species in the model then bycatch of other species can be generated with the [FCcocatchXXX]{style="color: orange;"} parameter; whereas in dynamic fishing bycatch is determined by a range of parameters. |
+| [flag_access_thru_wc_XXX]{style="color: orange;"} | Whether a fishery has access to fish in the entire water column (e.g. do trawl doors remain open as the gear moves up/down through the water column, thereby interacting with species that do not live at the depth the trawl is most actively being towed) |
+| [flaghabitat_XXX]{style="color: orange;"} | Vectors indicating which habitat patchiness equation to use when undertaking dynamic fishing. 0 = standard % overlap, 1 = Ellis and Pantus based subgrid scale model |
 | [YYY_flagdempelfishery]{style="color: orange;"} | This sets the flag for each group and fishery to show whether it is benthic or pelagic. 0 = pelagic, 1 = demersal. This will influence the vertical distribution scalar in dynamic fishing when the box is in shallow water (so there are less than the maximum number of layers); in this case the vertical distribution is contracted with a bias to bottom water column layers if defined as demersal or to surface layers if defined as pelagic. |
 | [k_mismatch]{style="color: orange;"} | Reduction in effectiveness of gear due to mismatch in water column distribution of gear and vertebrates. This positional scalar downscales the availability of target species if they are marked as demersal (pelagic) and the gear is marked as pelagic (demersal). |
 | [habitat_YYY]{style="color: orange;"} | Array of values indicating if fishery is excluded from certain habitats (0) |
-| [YYY_mindepth]{style="color: orange;"} | Minimum seafloor depths fishery will act over (so if won't fish shallower than 1500m put 1500 here) |
-| [YYY_maxdepth]{style="color: orange;"} | Maximum seafloor depths fishery will act over (so if won't fish deeper than 1500m put 1500 here) |
-:::
+| [YYY_mindepth]{style="color: orange;"} | Minimum seafloor depth the fishery will act over (so if it won't fish shallower than 1500m put 1500 here) |
+| [YYY_maxdepth]{style="color: orange;"} | Maximum seafloor depth the fishery will act over (so if it won't fish deeper than 1500m put 1500 here) |
+
+: General fisheries parameters. {#tbl-fisheries-general-parameters tbl-colwidths=[25,75]}
 
 ## **Setting up fishing mortality through imposed catch**
 
@@ -177,20 +175,18 @@ Note that this file gives the **total catch per box in mg per second** over all 
 
 It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the [typeCatchts]{style="color: orange;"} parameter in *force.prm* whether to use the last valid value ([typeCatchts]{style="color: orange;"} set to 1) or to interpolate between the two provided values ([typeCatchts]{style="color: orange;"} set to 0). See "Format of the time series (TS) forcing files" box in Chapter 8.
 
-[]{#_Toc498434972 .anchor}**Table 2.** Parameters required for imposed catch setup
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
-| [flagimposeglobal]{style="color: orange;"} | If >0 imposed catches are applied for at least one species-fishery combination and a forcing TS file must be supplied (or else Atlantis will quit). Values of 1 to 4 indicate which option of imposed catch to use |
-| [flagimposecatch_XXX]{style="color: orange;"} | A vector with as many values as there are fisheries (with the order assumed to match the order in the *fisheries.csv* file).<br><br>If >0 imposed catch is applied for species XXX for that fishery. Values of 1 to 4 indicate which option of imposed catch to use |
+| [flagimposeglobal]{style="color: orange;"} | If > 0, imposed catches are applied for at least one species-fishery combination and a forcing TS file must be supplied (or else Atlantis will quit). Values of 1 to 4 indicate which option of imposed catch to use |
+| [flagimposecatch_XXX]{style="color: orange;"} | A vector with as many values as there are fisheries (with the order assumed to match the order in the *fisheries.csv* file).<br><br>If > 0, imposed catch is applied for species XXX for that fishery. Values of 1 to 4 indicate which option of imposed catch to use |
 | [CatchTS_agedistribXXX]{style="color: orange;"} | Proportion of the imposed catch to take from the age group (if there is sufficient biomass over all fished age classes to cover the imposed catch). A vector should have as many values as there are age groups in the species XXX and should sum to 1.0. |
-| [imposecatchstart_XXX]{style="color: orange;"} | A vector with as many value as there are fisheries<br><br>Day of the model run that the imposed catch starts for a species XXX and the specified fishery |
-| [imposecatchend_XXX]{style="color: orange;"} | A vector with as many value as there are fisheries<br><br>Day of the model run that the imposed catch ends for a species XXX and the specified fishery |
-| [reportscale_XXX]{style="color: orange;"} | A vector with as many value as there are fisheries<br><br>A scalar for imposed catches to scale from reported catches to total catches when accounting for misreporting by each fishery. For example if there was an additional 25% of the catch that was not reported, so that total catch was equal to 125% of official reported catch, then the scalar should be set to 1.25 for that fishery |
-| [YYY_flagmanage]{style="color: orange;"} | If >0, management options will be applied to the fishery YYY and imposed catch may be scaled by a management scalar. |
-| [YYY_flagmpa]{style="color: orange;"} | If >0, the fishery YYY will be affected by MPAs and imposed catch will be scaled by the MPA scalar. |
-:::
+| [imposecatchstart_XXX]{style="color: orange;"} | A vector with as many values as there are fisheries.<br><br>Day of the model run that the imposed catch starts for a species XXX and the specified fishery |
+| [imposecatchend_XXX]{style="color: orange;"} | A vector with as many values as there are fisheries.<br><br>Day of the model run that the imposed catch ends for a species XXX and the specified fishery |
+| [reportscale_XXX]{style="color: orange;"} | A vector with as many values as there are fisheries.<br><br>A scalar for imposed catches to scale from reported catches to total catches when accounting for misreporting by each fishery. For example if there was an additional 25% of the catch that was not reported, so that total catch was equal to 125% of official reported catch, then the scalar should be set to 1.25 for that fishery |
+| [YYY_flagmanage]{style="color: orange;"} | If > 0, management options will be applied to the fishery YYY and imposed catch may be scaled by a management scalar. |
+| [YYY_flagmpa]{style="color: orange;"} | If > 0, the fishery YYY will be affected by MPAs and imposed catch will be scaled by the MPA scalar. |
+
+: Parameters required for imposed catch setup. {#tbl-imposed-catch-parameters tbl-colwidths=[25,75]}
 
 ## **Setting up fishing mortality through user defined non-dynamic fishing mortality**
 
@@ -296,27 +292,25 @@ If changes in F are required for a specific species and fishery combination, the
 
 The day(s) of the model run at which the change(s) in F start is set in [mFCchange_start_XXX]{style="color: orange;"} parameter. This parameter should have as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} parameter. The time period over which the change will occur is set using the [mFCchange_period_XXX]{style="color: orange;"} parameter, which again must have as many values as there are changes. This means that the change will not be instant but will be applied slowly (linearly interpolating from the original value to the new value) through the number of days indicated in [mFCchange_period_XXX]{style="color: orange;"}. Once the change period is finished the scalar on F does not return to the original value but is applied for the rest of the simulation unless another change is applied. The multiplier by which the ORIGINAL fishing mortality should be multiplied for each of the implemented changes is given in the [mFCchange_mult_XXX]{style="color: orange;"} parameter. This multiplier determines the factor that the original mFC value will be multiplied by to give the new (changed) F. If you are making multiple changes remember that these values multiply fishing by the original mFC value, not by whatever the fishing pressure was after the previous change.
 
-[]{#_Toc498434973 .anchor}**Table 3.** Parameters required to setup a user defined fishing mortality rate.
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [flagF_XXX]{style="color: orange;"} | Vector indicating which fishery (set as 1) should apply a fishing mortality for species XXX |
 | [mFC_XXX]{style="color: orange;"} | Fishing mortality rate for species XXX (per day). See note above on how to set correct rates |
 | [XXX_mFC_startage]{style="color: orange;"} | First age class (counting from 0) of species XXX for which the fishing mortality should be applied |
 | [XXX_mFC_endage]{style="color: orange;"} | Age class of species XXX where mFC is set back to zero. |
-| [flag_sel_with_mFC]{style="color: orange;"} | Whether the fishing mortality should use size based selectivity (if yes set to 1). If the size based selectivity option is selected here, it will apply to **ALL** fisheries-species combinations operating through a fishing mortality (i.e. all fisheries-species combinations with flagF > 0 and mFC > 0 will have selectivity applied) |
+| [flag_sel_with_mFC]{style="color: orange;"} | Whether the fishing mortality should use size based selectivity (if yes set to 1). If the size based selectivity option is selected here, it will apply to **ALL** fisheries-species combinations operating through a fishing mortality (i.e. all fisheries-species combinations with [flagF]{style="color: orange;"} > 0 and [mFC]{style="color: orange;"} > 0 will have selectivity applied) |
 | [YYY_selcurve]{style="color: orange;"} | Which size based selectivity curve the fishery YYY should use (see chapter 15.7) |
-| [flag_stop_F_tac]{style="color: orange;"} | If set to 1, the fishing will stop if the TAC is reached. If set to 0, all catch above the TAC is discarded. Note, that for the fishing mortality case, if [flag_stop_F_tac]{style="color: orange;"} is set to 1 then the TAC and weekly Trip Limits will be applied irrespective of the [YYY_flagmanage]{style="color: orange;"} settings! If no quota limits are wanted, then both TAC and TripLimit parameters should be set to 10^12^ (see chapter 15.9.1). |
+| [flag_stop_F_tac]{style="color: orange;"} | If set to 1, the fishing will stop if the TAC is reached. If set to 0, all catch above the TAC is discarded. Note that for the fishing mortality case, if [flag_stop_F_tac]{style="color: orange;"} is set to 1 then the TAC and weekly Trip Limits will be applied irrespective of the [YYY_flagmanage]{style="color: orange;"} settings! If no quota limits are wanted, then both TAC and TripLimit parameters should be set to 10^12^ (see chapter 15.9.1). |
 | [flaginfringe]{style="color: orange;"} | If set to 1, some fisheries will infringe MPAs. This flag is only relevant if MPAs have been setup through [flagmpa]{style="color: orange;"} and the [YYY_flagmpa]{style="color: orange;"} parameter, see chapter 15.6 |
 | [YYY_infringe]{style="color: orange;"} | The level of MPA infringement by fishery YYY (sets the minimum proportion of the box that is accessible, if an MPA is more restrictive than that then infringement occurs) |
 | [flagchangeF]{style="color: orange;"} | Flag indicating whether mFC values will change for at least one fishery during the simulation |
 | [flagFchange_XXX]{style="color: orange;"} | Which species and fishery combination for which F values change |
 | [XXX_mFC_changes]{style="color: orange;"} | Number of changes for a species-fishery combination |
-| [mFCchange_start_XXX]{style="color: orange;"} | Vector indicating when each change in fishing mortality begins in days of the model run. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} |
-| [mFCchange_period_XXX]{style="color: orange;"} | Period in days over which the change in fishing mortality will occur. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} |
-| [mFCchange_mult_XXX]{style="color: orange;"} | The multiplier by which the ORIGINAL fishing mortality is rescaled to obtain the new (changed) mortality rate. There should be as many entries as there are number of changes given in the [XXX_mFC_changes]{style="color: orange;"} See further details on the wiki. |
-:::
+| [mFCchange_start_XXX]{style="color: orange;"} | Vector indicating when each change in fishing mortality begins in days of the model run. There should be as many entries as there are number of changes given in [XXX_mFC_changes]{style="color: orange;"}. |
+| [mFCchange_period_XXX]{style="color: orange;"} | Period in days over which the change in fishing mortality will occur. There should be as many entries as there are number of changes given in [XXX_mFC_changes]{style="color: orange;"}. |
+| [mFCchange_mult_XXX]{style="color: orange;"} | The multiplier by which the ORIGINAL fishing mortality is rescaled to obtain the new (changed) mortality rate. There should be as many entries as there are number of changes given in [XXX_mFC_changes]{style="color: orange;"}. See further details on the wiki. |
+
+: Parameters required to setup a user defined fishing mortality rate. {#tbl-fishing-mortality-parameters tbl-colwidths=[25,75]}
 
 ## **General introduction to dynamic fishing**
 
@@ -496,17 +490,20 @@ The new ideal effort by the fishery Y in a box j (*idEff~Y,j~* in days day^-1^) 
 
 $${idEff}_{Y,j} = \frac{{Effmax}_{Y}}{1 + e^{\left( - {Effa}_{Y} \cdot {cpue}_{Y,j} \right)}}{- Effoffs}_{Y}$$
 
-where *Effmax*~Y~ is the maximum potential effort per box allowed per fishery Y ([YYY_mEff_max]{style="color: orange;"}, days day^-1^); *Effa~Y~* is the steepness of the effort increase to the maximum limit when CPUE is high ([YYY_mEff_a]{style="color: orange;"}, unitless and **typically in the range of 0.01 to 0.1**); and *Effoffs~Y\ ~*is the offset of the effort ([YYY_mEff_offset]{style="color: orange;"}, days day^-1^) to bring down effort in the lowest producibity boxes. This representation was originally developed for a location where fishing continued in locations even after CPUE had dropped to very low levels. In this approach if *Effoffs~Y~* is set to zero then the lowest possible effort levels is half of *Effmax*~Y~. If you do not want any effort in the boxes with very low CPUE levels (e.g. zero) then you will need to set *Effmax*~Y~ to twice the desired maximum effort level and *Effoffs~Y~* to half of that (i.e. the desired effort level). This approach may seem artificial, but it produces a range of fishing pressure with the desired spatial heterogeneity and magnitude. Figure 1 shows the ideal new effort given the previous day's CPUE and the *Effa* parameter setting the steepness of the effort increase.
+where *Effmax*~Y~ is the maximum potential effort per box allowed per fishery Y ([YYY_mEff_max]{style="color: orange;"}, days day^-1^); *Effa~Y~* is the steepness of the effort increase to the maximum limit when CPUE is high ([YYY_mEff_a]{style="color: orange;"}, unitless and **typically in the range of 0.01 to 0.1**); and *Effoffs~Y\ ~*is the offset of the effort ([YYY_mEff_offset]{style="color: orange;"}, days day^-1^) to bring down effort in the lowest producibity boxes. This representation was originally developed for a location where fishing continued in locations even after CPUE had dropped to very low levels. In this approach if *Effoffs~Y~* is set to zero then the lowest possible effort levels is half of *Effmax*~Y~. If you do not want any effort in the boxes with very low CPUE levels (e.g. zero) then you will need to set *Effmax*~Y~ to twice the desired maximum effort level and *Effoffs~Y~* to half of that (i.e. the desired effort level). This approach may seem artificial, but it produces a range of fishing pressure with the desired spatial heterogeneity and magnitude. The ideal new effort given the previous day's CPUE and the *Effa* parameter setting the steepness of the effort increase (@fig-effort-model-4).
 
-![](media/image2.png){width="4.625in" height="3.547222222222222in"}
+![Ideal effort allocation in [YYY_effortmodel]{style="color: orange;"}=4, where previous day's CPUE (tons day^-1^ per box) varies from 0 to 1000.](media/image2.png){#fig-effort-model-4 width=4.63in height=3.55in}
 
-**Figure 1.** Ideal effort allocation in [YYY_effortmodel]{style="color: orange;"}=4, where previous day's CPUE (tons day^-1^ per box) varies from 0 to 1000.
-mEff_max = 10 days day^-1^.
-[**Black**]{style="color: black;"}: mEff_a=0.01, offset=0.
-[**Red**]{style="color: red;"}: mEff_a=0.05, offset=0.
-[**Orange**]{style="color: orange;"}: mEff_a=0.005, offset=0.
-[**Blue**]{style="color: blue;"}: mEff_a=0.01, offset=5 days day^-1^.
-:::
+mEff_max = 10 days day^-1^
+
+**Black**: mEff_a=0.01, offset=0
+
+[**Red**]{style="color: red;"}: mEff_a=0.05, offset=0
+
+[**Orange**]{style="color: orange;"}: mEff_a=0.005, offset=0
+
+[**Blue**]{style="color: blue;"}: mEff_a=0.01, offset=5 days day^-1^
+
 
 In the second step, the ideal effort is linearly interpolated across the model domain according to the speed of the fishery boats to obtain the realised new effort. This means that a fishery may not be able to switch to a new box immediately, if the boxes is large. The realised new effort is calculated as
 
@@ -530,19 +527,21 @@ This new scaling used to interpolate new ideal effort and old effort uses distan
 
 $${newEff}_{Y,j} = \sum_{Z}^{}\frac{{mFCscale}_{Y}}{Z \cdot {distance}_{z,j}^{\ }} \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}$$
 
-where *mFCscale~Y~* ([YYY_mFCscale]{style="color: orange;"}, unitless) is a fishery specific scalar which can heighten or lessen the effects of distance and in this way capture social and economic forces that may encourage fishers to go far into the sea or stay close to home (e.g. different fisheries may have different preferences); *distance~Z~* is a distance to port z; and Z is the total number of **ports active** for fishery Y (i.e. the fishery operates from that port and the port is open, see below). Figure 2 shows the effect of [mFCscale]{style="color: orange;"} parameter on the relative weighing of ideal effort. When [mFCscale]{style="color: orange;"} is high the ideal effort can be achieved quickly, whereas when the [mFCscale]{style="color: orange;"} is smaller the switch between the old and new ideal effort distributions is slow. The user entered [mFCscale]{style="color: orange;"} should be from 0.001 to 10. The lower the [mFCscale]{style="color: orange;"} the more homogeneous the distribution across the boxes (and closer to previous day's effort -- i.e. the more stable the effort). The **higher the mFCscale the more the change in the effort will overshoot the new ideal effort** and the fishery will be effectively fishing only in the closest boxes. These patterns are achieved because the user entered [mFCscale]{style="color: orange;"} **is rescaled on read in** by the order of magnitude of the average distance of boxes to port.
+where *mFCscale~Y~* ([YYY_mFCscale]{style="color: orange;"}, unitless) is a fishery specific scalar which can heighten or lessen the effects of distance and in this way capture social and economic forces that may encourage fishers to go far into the sea or stay close to home (e.g. different fisheries may have different preferences); *distance~Z~* is a distance to port z; and Z is the total number of **ports active** for fishery Y (i.e. the fishery operates from that port and the port is open, see below). The effect of [mFCscale]{style="color: orange;"} parameter on the relative weighing of ideal effort (@fig-port-contribution-scalar). When [mFCscale]{style="color: orange;"} is high the ideal effort can be achieved quickly, whereas when the [mFCscale]{style="color: orange;"} is smaller the switch between the old and new ideal effort distributions is slow. The user entered [mFCscale]{style="color: orange;"} should be from 0.001 to 10. The lower the [mFCscale]{style="color: orange;"} the more homogeneous the distribution across the boxes (and closer to previous day's effort -- i.e. the more stable the effort). The **higher the mFCscale the more the change in the effort will overshoot the new ideal effort** and the fishery will be effectively fishing only in the closest boxes. These patterns are achieved because the user entered [mFCscale]{style="color: orange;"} **is rescaled on read in** by the order of magnitude of the average distance of boxes to port.
 
 For this option the user must give the number of ports ([K_num_ports]{style="color: orange;"}) in the *run.prm* file. The association of each fishery YYY with each port is given in the parameter [ports_YYY]{style="color: orange;"} which has as many entries as there are ports. The coordinates of the ports are given in the [ports_x]{style="color: orange;"} and [ports_y]{style="color: orange;"} parameters, which simply gives the xy coordinates (in metres) within the model space (these coordinates must be in the same projection as the BGM file and thus in metres). The easiest way of setting these coordinates is by using a GIS tool and converting the latitude and longitude coordinates using the projection string given in the top of the BGM file (see chapter 3). The time of port activity is given in [ports_start]{style="color: orange;"} and [ports_end]{style="color: orange;"} parameters, which allows for different ports to be active at different times of the simulation (perhaps reflecting historical settlement patterns).
 
-![](media/image3.png){width="4.659722222222222in" height="4.355555555555555in"}
+![The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e. the mFCscale would be rescaled by the average distance of 520 on read-in).](media/image3.png){#fig-port-contribution-scalar width=4.66in height=4.36in}
 
-**Figure 2.** The port contribution scalar (mFC/distanceZ) for five boxes with a distance to ports set at 100, 200, 500, 800 and 1000 km (i.e. the mFCscale would be rescaled by the average distance of 520 on read-in).
-[**Black**]{style="color: black;"}: mFCscale=0.004.
-[**Red**]{style="color: red;"}: mFCscale=0.01.
-[**Orange**]{style="color: orange;"}: mFCscale=0.02.
-[**Blue**]{style="color: blue;"}: mFCscale=0.04.
-[**Brown**]{style="color: brown;"}: mFCscale=0.1.
-:::
+**Black**: mFCscale=0.004
+
+[**Red**]{style="color: red;"}: mFCscale=0.01
+
+[**Orange**]{style="color: orange;"}: mFCscale=0.02
+
+[**Blue**]{style="color: blue;"}: mFCscale=0.04
+
+[**Brown**]{style="color: brown;"}: mFCscale=0.1
 
 When [mFCscale]{style="color: orange;"} values are very high it is possible that the effort will overshoot dramatically and will concentrate in one box with best CPUE of the previous day. This can be prevented by not setting a very high [mFCscale]{style="color: orange;"} value in the first place (or exploring how that might affect the effort), but also by capping the effort per cell. The effort cap is set by first identifying the fisheries where the effort per cell will be capped ([YYY_flagcap_peak]{style="color: orange;"}=1) and then setting the maximum effort per box using the [YYY_mFCpeak]{style="color: orange;"} parameter. If the effort is capped, then the effort in the most attractive cells will be reduced to the cap level given by [YYY_mFCpeak]{style="color: orange;"} and any additional effort instead redistributed and normalised across other attractive cells (which are below [YYY_mFCpeak]{style="color: orange;"}).
 
@@ -554,30 +553,28 @@ This option is activated with [YYY_effortmodel]{style="color: orange;"}=7 and is
 
 $${idEff}_{Y,j} = \frac{{cpue}_{Y,j}}{\sum_{j}^{}{cpue}_{Y,j}} \cdot {TotoldEff}_{Y}$$
 
-Changes in the distribution of the ideal fishing effort in response to the previous period CPUE can be illustrated with Table 1, showing a hypothetical example of fishing in five boxes. The initial effort in each box is 20 days and the first day's CPUE varies from 1 to 50 tons/day. The new ideal effort on the next day will be heavily skewed towards boxes with highest CPUE, but the total effort will not change.
+Changes in the distribution of the ideal fishing effort in response to the previous period CPUE can be illustrated (@tbl-effort-distribution-example), showing a hypothetical example of fishing in five boxes. The initial effort in each box is 20 days and the first day's CPUE varies from 1 to 50 tons/day. The new ideal effort on the next day will be heavily skewed towards boxes with highest CPUE, but the total effort will not change.
 
-[]{#_Toc498434974 .anchor}**Table 4.** Hypothetical example of changes in spatial ideal effort distribution in five boxes when effort is weighed by the previous day's (or other "memory" period) CPUE. Each box's distance to a port (only one port assumed) is indicated.
-
-::: {.table-responsive}
-|  | **Box 1**<br>100km | **Box 2**<br>200km | **Box 3**<br>500km | **Box 4**<br>800km | **Box 5**<br>1000km | **Total** |
+| | **Box 1**<br>100km | **Box 2**<br>200km | **Box 3**<br>500km | **Box 4**<br>800km | **Box 5**<br>1000km | **Total** |
 |:--|:--:|:--:|:--:|:--:|:--:|:--:|
 | *Effort day t (days day^-1^)* | 20 | 20 | 20 | 20 | 20 | **100** |
 | *CPUE day t (tons day^-1^)* | 5 | 10 | 50 | 20 | 1 | **86** |
-| *relCPUE t* | 0.058 | 0.116 | 0.581 | 0.233 | 0.012 |  |
+| *relCPUE t* | 0.058 | 0.116 | 0.581 | 0.233 | 0.012 | |
 | *Ideal effort on day t+1 (days day^-1^)* | 5.8 | 11.6 | 58.1 | 23.3 | 1.2 | **100** |
-|  |  |  |  |  |  |  |
-| *mFCscale/distance*<br>*(mFCscale = 0.004; rescaled on read in to 2)* | 0.02 | 0.01 | 0.004 | 0.0025 | 0.002 |  |
+| | | | | | | |
+| *mFCscale/distance (mFCscale = 0.004; rescaled on read in to 2)* | 0.02 | 0.01 | 0.004 | 0.0025 | 0.002 | |
 | *New effort day t+1* | 19.72 | 19.92 | 20.15 | 20.01 | 19.96 | **99.76** |
-|  |  |  |  |  |  |  |
-| *mFCscale/distance (mFCscale = 0.1; rescaled on read in to 50)* | 0.5 | 0.25 | 0.1 | 0.063 | 0.05 |  |
+| | | | | | | |
+| *mFCscale/distance (mFCscale = 0.1; rescaled on read in to 50)* | 0.5 | 0.25 | 0.1 | 0.063 | 0.05 | |
 | *New effort day t+1* | 12.91 | 17.91 | 23.81 | 20.20 | 19.06 | **93.89** |
-:::
+
+: Hypothetical example of changes in spatial ideal effort distribution in five boxes when effort is weighed by the previous day's (or other "memory" period) CPUE. Each box's distance to a port (only one port assumed) is indicated. {#tbl-effort-distribution-example tbl-colwidths=[28,10,10,10,10,10,12]}
 
 The new actual effort is then calculated as in [YYY_effortmodel]{style="color: orange;"}=5, where the speed by which the fishery can change the effort depends on the distance of the box to the ports and the [mFCscale]{style="color: orange;"} parameter
 
 $${newEff}_{Y,j} = \sum_{Z}^{}\frac{{mFCscale}_{Y}}{{Z \cdot distance}_{Z,j}} \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}$$
 
-This new effort then can be capped, as described in chapter 15.5.9. Note that even though in the first step the total amount of effort does not change but is only redistributed spatially, the introduction of the [mFCscalar]{style="color: orange;"} and distance to port scalar can lead to the changes in the total amount of realised effort (see Table 3).
+This new effort then can be capped, as described in chapter 15.5.9. Note that even though in the first step the total amount of effort does not change but is only redistributed spatially, the introduction of the [mFCscalar]{style="color: orange;"} and distance to port scalar can lead to the changes in the total amount of realised effort (see @tbl-effort-distribution-example).
 
 If set with [YYY_explore]{style="color: orange;"} = 1, once per year the fisheries will do **exploratory fishing** to update the CPUE matrices. This is especially relevant for boxes where no fishing has occurred in previous timesteps. It is recommended that exploratory fishing be included in all effort models that use a CPUE-based approach (see NOTE! on this topic above).
 
@@ -593,7 +590,7 @@ For the burn-in period of the simulation (set using the [tburn]{style="color: or
 
 $$w_{Y,j} = \frac{\sum_{Z}^{}\frac{{mFCscale}_{Y}}{{Z \cdot distance}_{Z,j}}}{\sum_{j}^{}{\sum_{Z}^{}\frac{{mFCscale}_{Y}}{{Z \cdot distance}_{Z,j}}}} \cdot \frac{{cpue}_{Y,j}}{\sum_{j}^{}{cpue}_{Y,j}}$$
 
-where the first term represents the relative distance of the box *j* and the second term is the relative CPUE in the box *j* by fishery Y. The mFCscale ([YYY_mFCscale]{style="color: orange;"}, unitless) is a fishery specific scalar which can heighten or lessen the effects of distance, see Figure 2.
+where the first term represents the relative distance of the box *j* and the second term is the relative CPUE in the box *j* by fishery Y. The mFCscale ([YYY_mFCscale]{style="color: orange;"}, unitless) is a fishery specific scalar which can heighten or lessen the effects of distance (@fig-port-contribution-scalar).
 
 The **key difference between this effortmodel=8 and the effortmodel=5 and 7 above**, is that here the distance to the box is used to assign the relative weight to each box when finding the ideal effort, whereas in the previous options the distance was only used to assess how quickly the new ideal effort can be achieved (or it may be never achieved if the new ideal effort changes faster than the fishery can react to this).
 
@@ -638,51 +635,49 @@ In this option the effort per fishery per box is calculated dynamically in a sep
 As with some other fishing parameters, users can set up temporal changes in the fishing effort, which means that the effort can be forced to increase or decrease over a set period of time. Several changes in the effort can be applied. The prescribed change in fishing effort is activated with a global [flag flagchangeeffort]{style="color: orange;"} and with fishery specific parameters -- [YYY_num_changes]{style="color: orange;"} indicating number of changes for each fishery, [EffortChange_start_YYY]{style="color: orange;"} giving the start date of each effort change, [EffortChange_period_YYY]{style="color: orange;"} giving the period over which each effort changes to the new desired level, [Effort_mult_YYY]{style="color: orange;"} giving the multiplier of the each change in the effort (\>1 if effort should increase and \<1 if it should decrease) and [flagpulseYYY]{style="color: orange;"} parameter to indicate whether each change in the effort is a pulse change ([flagpulseYYY]{style="color: orange;"}=1) or not. The pulse change means that after the change period the effort will return to the original value, while non-pulse change means that the changed effort will apply for the rest of the simulation or until the next change in the effort.
 
 For the effort models that use prescribed, i.e. constant total effort given in the [YYY_Effort]{style="color: orange;"} parameter ([effortmodel]{style="color: orange;"} 0, 1, 2, 3, 6, 9) the multiplier will be applied to this [YYY_Effort]{style="color: orange;"} parameter. This means that every new change in the effort will apply to the original effort value and NOT to the latest effort value. In the dynamic effort models, where total effort is determined dynamically based on CPUE, distance to ports or economic parameter, the effort change multiplier will be applied to the latest total effort calculated dynamically. This means that in addition to the dynamic change in the effort, the user can setup forced changes that will scale up or down the total effort over the set period. This could, for example, be used to simulate cases where some external factors not included in the model (fishery buy-outs, subsidies to fishers) might have affect the total effort. Remember that pulse change in the effort ([flagpulseYYY]{style="color: orange;"}=1) can be applied to both prescribed and dynamic effort models. If effort change is pulsed, for prescribed effort cases the effort will return to the values given in the parameter file ([YYY_Effort]{style="color: orange;"}) after the change period. For dynamic pulse effort, the total effort values after the change period will be divided by the change multiplier on the first time step after the pulse ends.
-
-[]{#_Toc498434975 .anchor}**Table 5.** Parameters used to setup different effort options
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [YYY_effortmodel]{style="color: orange;"} | Flag indicating which effort model determines the total effort by fishery YYY and its spatial distribution (options 0 to 13 available). |
 | [Effort_vdistribYYY]{style="color: orange;"} | A vector giving relative distribution of effort for fishery YYY across the vertical layers in each box (applied in the same way as the vectors determining vertical distribution of functional groups) |
 | [Effort_hdistribYYY1]{style="color: orange;"}<br>[Effort_hdistribYYY2]{style="color: orange;"}<br>[Effort_hdistribYYY3]{style="color: orange;"}<br>[Effort_hdistribYYY4]{style="color: orange;"} | A vector setting relative effort per box by the fishery YYY for each quarter of the year (1 to 4). It is used in combination with [YYY_Effort]{style="color: orange;"} to get the actual final effort per box in days per day |
 | [YYY_sweptarea]{style="color: orange;"} | The swept volume of water by gear of fishery YYY, m^3^ day^-1^. This is a volume, but called area to keep in line with the fisheries science usage. |
-| [flagescapement_XXX]{style="color: orange;"} | Flag setting which escapement formulation to use. 0 -- no escapement, 1- constant escapement per age class, 2 -- size based escapement. |
+| [flagescapement_XXX]{style="color: orange;"} | Flag setting which escapement formulation to use. 0 = no escapement, 1 = constant escapement per age class, 2 = size based escapement. |
 | [p_escape_XXX]{style="color: orange;"} | A vector giving proportions of each age class that will escape the fishing gear |
-| [Ka_escape_XXX]{style="color: orange;"} | The constant in length-based escapement formulation for species XXX (when [flagescapementXXX]{style="color: orange;"}=2) |
-| [Kb_escape_XXX]{style="color: orange;"} | The second constant in length-based escapement formulation for species XXX (when [flagescapementXXX]{style="color: orange;"}=2) |
-| [YYY_maxdepth]{style="color: orange;"} | The maximum depth that a fishery can operate at, in meters. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regarless of the effort model applied |
-| [YYY_mindepth]{style="color: orange;"} | The minimum depth that a fishery can operate at, in metres. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regardless of the effort model applied |
+| [Ka_escape_XXX]{style="color: orange;"} | The constant in length-based escapement formulation for species XXX (when [flagescapement_XXX]{style="color: orange;"}=2) |
+| [Kb_escape_XXX]{style="color: orange;"} | The second constant in length-based escapement formulation for species XXX (when [flagescapement_XXX]{style="color: orange;"}=2) |
+| [YYY_maxdepth]{style="color: orange;"} | The maximum depth that a fishery can operate at, in meters. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regardless of the effort model applied |
+| [YYY_mindepth]{style="color: orange;"} | The minimum depth that a fishery can operate at, in meters. This will constrain the area available to a fishery, which means that a fishery will not operate in a cell that is outside the depth limits, regardless of the effort model applied |
 | [YYY_Effort]{style="color: orange;"} | Average effort by the fishery YYY across the entire model domain throughout the year (days per day). When applied to recreational fisheries this sets the average effort by one fisher and not by the entire fishery (so the value should be much smaller) |
-| [mEff_YYY]{style="color: orange;"} | A vector of four values setting relative quarterly effort (used in combination with YYY_Effort to give the final effort in days per day) |
-| [ports_pop]{style="color: orange;"} | A vector giving the population of each port (should have the same number of values as there ports indicated in K_num_ports parameter in the *run.prm* file) |
+| [mEff_YYY]{style="color: orange;"} | A vector of four values setting relative quarterly effort (used in combination with [YYY_Effort]{style="color: orange;"} to give the final effort in days per day) |
+| [ports_pop]{style="color: orange;"} | A vector giving the population of each port (should have the same number of values as there are ports indicated in [K_num_ports]{style="color: orange;"} parameter in the *run.prm* file) |
 | [k_proprecfish]{style="color: orange;"} | Proportion of population in ALL ports that go recreational fishing. This parameter applies the same proportion to all ports |
-| [ports_popchange]{style="color: orange;"} | A vector of values indicating whether a port population changes during the simulation (0 -- no, 1 -- yes). It must have as many values as there are ports. |
+| [ports_popchange]{style="color: orange;"} | A vector of values indicating whether a port population changes during the simulation (0 = no, 1 = yes). It must have as many values as there are ports. |
 | [ports_popnumchange]{style="color: orange;"} | A vector of values indicating how many population changes occur in each port. It must have as many values as there are ports |
 | [PortPopChange_start_PortZ]{style="color: orange;"} | The day of the simulation when population change(s) in port Z start. There must be as many entries as there are changes in port Z. |
 | [PortPopChange_period_PortZ]{style="color: orange;"} | Period of time (in days) over which the population of port Z changes. There must be as many entries as there are changes in port Z. |
 | [PortPopChange_mult_PortZ]{style="color: orange;"} | The multiplier for the final port population, to be reached at the end of the change period. There must be as many entries as there are changes in port Z. |
 | [Speed_recboat]{style="color: orange;"} | Speed of recreational boats (m hour^-1^) |
-| [YYY_mEff_max]{style="color: orange;"} | The maximum effort per box allowed per fishery YYY in the exponential CPUE related effort allocation option (days day^-1^), used in [YYY_effortmodel]{style="color: orange;"} =4 and 5 |
-| [YYY_mEff_a]{style="color: orange;"} | Steepness of the effort increase in response to CPUE in the exponential CPUE related effort allocation option (unitless), used in [YYY_effortmodel]{style="color: orange;"} =4 and 5 |
+| [YYY_mEff_max]{style="color: orange;"} | The maximum effort per box allowed per fishery YYY in the exponential CPUE related effort allocation option (days day^-1^), used in [YYY_effortmodel]{style="color: orange;"}=4 and 5 |
+| [YYY_mEff_a]{style="color: orange;"} | Steepness of the effort increase in response to CPUE in the exponential CPUE related effort allocation option (unitless), used in [YYY_effortmodel]{style="color: orange;"}=4 and 5 |
 | [YYY_mEff_offset]{style="color: orange;"} | The effort offset (days day^-1^) to reduce the effort per box, used in [YYY_effortmodel]{style="color: orange;"}=4 and 5 |
 | [K_num_catchqueue]{style="color: orange;"} in *run.prm* | The length of the "memory" period to calculate the latest CPUE, used in all effort models that require CPUE estimates |
-| [target_YYY]{style="color: orange;"} | A Boolean vector indicating which species are targeted by the fishery YYY. The vector should have as many entries as there are values in the *functional_groups.csv* file. 1- species is targeted, 0 -- species is not targeted (see NOTE! above on what this parameter means) |
-| [YYY_flaguseall]{style="color: orange;"} | A flag indicating whether to use all species caught to define CPUE of a fishery YYY for CPUE based effort models (1=yes) or target species only (0). |
+| [target_YYY]{style="color: orange;"} | A Boolean vector indicating which species are targeted by the fishery YYY. The vector should have as many entries as there are values in the *functional_groups.csv* file. 1 = species is targeted, 0 = species is not targeted (see NOTE! above on what this parameter means) |
+| [YYY_flaguseall]{style="color: orange;"} | A flag indicating whether to use all species caught to define CPUE of a fishery YYY for CPUE based effort models (1 = yes) or target species only (0) |
 | [YYY_mFCscale]{style="color: orange;"} | A fishery specific distance scalar used in determining the effort distribution; it heightens or lessens the effects of distance between the optimal box and the ports (unitless) |
-| [ports_x]{style="color: orange;"} and [ports_y]{style="color: orange;"} | Vectors giving x and y coordinates of each port in metres in the model space projection. |
+| [ports_x]{style="color: orange;"} and [ports_y]{style="color: orange;"} | Vectors giving x and y coordinates of each port in metres in the model space projection |
 | [ports_start]{style="color: orange;"} and [ports_end]{style="color: orange;"} | Vectors giving the period of port activity during the simulation. The ports can be active from the first timestep or only for a set period of time. If a port is not active, then no fishery will work from that port. |
-| [ports_YYY]{style="color: orange;"} | A vector giving association of each fishery YYY with each port. It has as many entries as there ports, with a value of 1 indicating that the fishery works from that port and a 0 meaning that fishery does not work from the port. |
-| [YYY_flagcap_peak]{style="color: orange;"} | A flag indicating whether the effort of fishery YYY in any one box is capped (0 -- no, 1 -- yes) |
-| [YYY_mFCpeak]{style="color: orange;"} | If the effort of a fishery YYY is capped ([YYY_flagcap_peak]{style="color: orange;"}=1), this sets the maximum potential effort in any one box ( days day^-1^) |
-| [Speed_boat]{style="color: orange;"} | Speed of commercial fisheries boats (m hour^-1^). This is used across for all fisheries to estimate how quickly the new ideal effort can be realised. Applied in [YYY_effortmodel]{style="color: orange;"}=4 and 8 |
-| [YYY_explore]{style="color: orange;"} | Flag indicating whether once per year a fishery YYY will do exploratory fishing in all accessible boxes (within [YYY_maxdepth]{style="color: orange;"} and [YYY_mindepth]{style="color: orange;"} depth ranges). 1 -- yes, 0 -- no. Exploratory fishing is recommended with all CPUE based effort models |
+| [ports_YYY]{style="color: orange;"} | A vector giving association of each fishery YYY with each port. It has as many entries as there are ports, with a value of 1 indicating that the fishery works from that port and a 0 meaning that fishery does not work from the port. |
+| [YYY_flagcap_peak]{style="color: orange;"} | A flag indicating whether the effort of fishery YYY in any one box is capped (0 = no, 1 = yes) |
+| [YYY_mFCpeak]{style="color: orange;"} | If the effort of a fishery YYY is capped ([YYY_flagcap_peak]{style="color: orange;"}=1), this sets the maximum potential effort in any one box (days day^-1^) |
+| [Speed_boat]{style="color: orange;"} | Speed of commercial fisheries boats (m hour^-1^). This is used across all fisheries to estimate how quickly the new ideal effort can be realised. Applied in [YYY_effortmodel]{style="color: orange;"}=4 and 8 |
+| [YYY_explore]{style="color: orange;"} | Flag indicating whether once per year a fishery YYY will do exploratory fishing in all accessible boxes (within [YYY_maxdepth]{style="color: orange;"} and [YYY_mindepth]{style="color: orange;"} depth ranges). 1 = yes, 0 = no. Exploratory fishing is recommended with all CPUE based effort models |
 | [YYY_mEff_testfish]{style="color: orange;"} | The exploratory fishing effort (days day^-1^) to be applied to each box if [YYY_explore]{style="color: orange;"} is set to 1. Note, this effort is applied in addition to normal fishing |
 | [YYY_mEff_thresh]{style="color: orange;"} | The CPUE threshold (kg day^-1^) below which the fishery YYY will decrease the effort in [YYY_effortmodel]{style="color: orange;"}=8 |
-| [YYY_mEff_thresh_top]{style="color: orange;"} | The CPUE threshold (kg day^-1^) above which the fishery YYY will increase the effort in [YYY_effortmodel]{style="color: orange;"} =8 |
-| [YYY_mEff_shift]{style="color: orange;"} | The yearly proportional increase/decrease in effort if CPUE is above or below the threshold levels in [YYY_effortmodel]{style="color: orange;"} =8. The increase/decrease in threshold happens once per week and is decreased by [YYY_mEff_shift]{style="color: orange;"}/52 |
-:::
+| [YYY_mEff_thresh_top]{style="color: orange;"} | The CPUE threshold (kg day^-1^) above which the fishery YYY will increase the effort in [YYY_effortmodel]{style="color: orange;"}=8 |
+| [YYY_mEff_shift]{style="color: orange;"} | The yearly proportional increase/decrease in effort if CPUE is above or below the threshold levels in [YYY_effortmodel]{style="color: orange;"}=8. The increase/decrease in threshold happens once per week and is decreased by [YYY_mEff_shift]{style="color: orange;"}/52 |
+
+: Parameters used to setup different effort options. {#tbl-effort-options-parameters tbl-colwidths=[25,75]}
+
 
 ## **Effort displacement, caps and effort drop**
 
@@ -727,18 +722,16 @@ Applying caps means that the user either assumes that (i) there are some externa
 
 Some parameterisations of the CPUE and distance based models can lead to precipitous and unobserved drops in effort once fish stocks become depleted. This can be overcome (if well justified, see the Note! above) by setting [flagbuffereffort]{style="color: orange;"} to 1. This will use the weighting inherent to those [effortmodel]{style="color: orange;"} formulations to distribute effort, but will constrain any abnormally large increases or reductions in effort to those dictated by the management decisions in place (e.g. MPAS, quotas and the like) rather than any highly variable CPUE distributions.
 
-[]{#_Toc498434976 .anchor}**Table 6.** Parameters used to setup other fishery relevant different options
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [flagdisplace]{style="color: orange;"} | If set to 1, effort in dynamic fishery will be displaced into adjacent cells when CPUE falls below a certain threshold or when MPAs are imposed |
-| [YYY_mEff_thresh]{style="color: orange;"} level | Level of CPUE below which effort displacement occurs |
+| [YYY_mEff_thresh]{style="color: orange;"} | Level of CPUE below which effort displacement occurs |
 | [YYY_flagcap]{style="color: orange;"} | If set to 1, the effort will be capped at the maximum level set in [YYY_cap]{style="color: orange;"} |
 | [YYY_cap]{style="color: orange;"} | Effort cap of a fishery (maximum number of days per year) |
 | [flagchangecap]{style="color: orange;"} | If set to 1, effort caps can change through time. See chapter 15.10 on how temporal changes are implemented |
 | [flagbuffereffort]{style="color: orange;"} | If set to 1, sudden decreases in dynamic effort will be buffered through time (and hence not allowed). This should be avoided unless well justified (see Note! in chapter 15.6.2) |
-:::
+
+: Parameters used to setup other fishery relevant options. {#tbl-fishery-other-options-parameters tbl-colwidths=[25,75]}
 
 ## **Vertical, positional and habitat scalars of the fishing effort**
 
@@ -794,29 +787,31 @@ If the spatial coverage of the fishery is **set to change through time**, as set
 
 People interested in either **[flaghabitat_XXX]{style="color: orange;"}=1 or 2 should read Ellis and Pantus (2001, 2014)** so they have a full understanding of what this option does. It is a powerful representation, but requires some thought in application and parameterisation (preferably done with spatially resolved logbook data).
 
-![](media/image4.png){width="5.5in" height="4.697916666666667in"}
-![](media/image4.png)
+![Shape of the habitat scalar as a function of habitat overlap between a species and a fishery, when k_pattern=-1.](media/image4.png){#fig-habitat-scalar-overlap width=5.5in height=4.70in}
 
-**Figure 3.** Shape of the habitat scalar as a function of habitat overlap between a species and a fishery, when k_pattern=-1.
-**k_patches=2**.
-[**Black**]{style="color: black;"}: q=0.5, k_cover=0.5.
-[**Orange**]{style="color: orange;"}: q=0.5, k_cover=1.
-[**Red**]{style="color: red;"}: q=0.9, k_cover=0.5.
-[**Blue**]{style="color: blue;"}: q=0.9, k_cover=1.
-[**Yellow**]{style="color: yellow;"}: same as blue, but k_patches=3.
-[**Purple**]{style="color: purple;"}: same as blue, but k_patches=1.
+**k_patches=2**
+
+**Black**: q=0.5, k_cover=0.5
+
+[**Orange**]{style="color: orange;"}: q=0.5, k_cover=1
+
+[**Red**]{style="color: red;"}: q=0.9, k_cover=0.5
+
+[**Blue**]{style="color: blue;"}: q=0.9, k_cover=1
+
+[**Yellow**]{style="color: #CCAA00;"}: same as blue, but k_patches=3
+
+[**Purple**]{style="color: purple;"}: same as blue, but k_patches=1
 
 
-[]{#_Toc498434977 .anchor}**Table 7.** Parameters used to setup habitat scalar options
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [flag_access_thru_wc_YYY]{style="color: orange;"} | If set to 1, fishery has access to both demersal and pelagic species. Otherwise the effectiveness of the fisheries gear (which is pelagic or demersal) will be reduced by [k_mismatch]{style="color: orange;"} when targeting demersal or pelagic species respectively |
 | [k_mismatch]{style="color: orange;"} | See above, the reduction in fisheries gear effectiveness |
 | [flagchangep]{style="color: orange;"} | If set to 1, a spatial coverage of the fishery changes through time (see chapter 15.10) |
 | [k_pattern]{style="color: orange;"}<br>[k_patches]{style="color: orange;"}<br>[k_coverYYY]{style="color: orange;"} | Parameters used to set up Ellis and Pantus (2000) habitat refuge from fisheries (see chapter 15.7.3) |
-:::
+
+: Parameters used to setup habitat scalar options. {#tbl-habitat-scalar-parameters tbl-colwidths=[25,75]}
 
 ## **Fisheries gear selectivity, swept area and conflict**
 
@@ -870,15 +865,13 @@ $${psel}_{i} = \frac{1}{1 + exp( - selb \cdot ({len}_{i} - lsm)}$$
 
 where *len~i~* is the length of the age group i.
 
-![](media/image5.png){width="5.114583333333333in" height="3.5in"}
+![Shape of the logistic gear selectivity curve. The inflection point ([sel_lsm]{style="color: orange;"}) is set at 50cm.](media/image5.png){#fig-logistic-gear-selectivity width=5.11in height=3.5in}
 
-![](media/image5.png)
+**Black**: sel_b=0.5
 
-**Figure 4.** Shape of the logistic gear selectivity curve. The inflection point ([sel_lsm]{style="color: orange;"}) is set at 50cm.
-[**Black**]{style="color: black;"}: sel_b=0.5.
-[**Orange**]{style="color: orange;"}: sel_b=2.
-[**Blue**]{style="color: blue;"}: sel_b=0.1.
-:::
+[**Orange**]{style="color: orange;"}: sel_b=2
+
+[**Blue**]{style="color: blue;"}: sel_b=0.1
 
 If a change in selectivity is included in the simulation (using [flagchangesel]{style="color: orange;"}, [YYY_changeSEL]{style="color: orange;"} and other parameters, see above), then the *lsm* and *selb* parameters after the change takes place is set at
 
@@ -891,16 +884,15 @@ This option applies a normal distribution selectivity curve and is defined by tw
 
 $${psel}_{i} = exp\left( \frac{- \left( {len}_{i} - lsm \right)^{2}}{2 \cdot {sigma}^{2}} \right)$$
 
-where *len~i~* is the length of the age group i. The figure 5 shows the shape of the normal selectivity curve given three values of the *sigma* parameter.
+where *len~i~* is the length of the age group i. The shape of the normal selectivity curve given three values of the *sigma* parameter (@fig-normal-gear-selectivity).
 
-![](media/image6.png){width="5.072916666666667in" height="3.4270833333333335in"}
+![Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.](media/image6.png){#fig-normal-gear-selectivity width=5.07in height=3.43in}
 
-**Figure 5.** Shape of the normal gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.
-[**Black**]{style="color: black;"}: sigma=2.
-[**Orange**]{style="color: orange;"}: sigma=5.
-[**Blue**]{style="color: blue;"}: sigma=20.
-:::
+**Black**: sigma=2
 
+[**Orange**]{style="color: orange;"}: sigma=5
+
+[**Blue**]{style="color: blue;"}: sigma=20
 If a change in selectivity is included in the simulation (using [flagchangesel]{style="color: orange;"}, [YYY_changeSEL]{style="color: orange;"} and other parameters, see above), then the *lsm* and *sigma* parameters after the change are calculated as
 
 *lsm* + [SELchange_addlsm_YYY]{style="color: orange;"}
@@ -912,17 +904,16 @@ This option applies lognormal distribution selectivity curve and is defined by t
 
 $${psel}_{i} = \frac{\exp\left( \frac{{- \left( \log\left( {len}_{i} \right) - lsm \right)}^{2}}{2 \cdot {sigma}^{2}} \right)}{sigma \cdot \sqrt{2\pi}}$$
 
-The figure 6 shows the shape of the lognormal selectivity curve given two values of *lsm* and *sigma* parameters (note that the curve is very sensitive to the parameter values).
+The the shape of the lognormal selectivity curve given two values of *lsm* and *sigma* parameters (note that the curve is very sensitive to the parameter values, @fig-lognormal-gear-selectivity).
 
-![](media/image7.png){width="4.9847222222222225in" height="3.6638888888888888in"}
+![Shape of the lognormal gear selectivity curve for an organism of length 1-100cm.](media/image7.png){#fig-lognormal-gear-selectivity width=4.98in height=3.66in}
 
-![](media/image7.png)
+**Black**: lsm=2, sigma=0.4
 
-**Figure 6.** Shape of the lognormal gear selectivity curve for an organism of length 1-100cm.
-[**Black**]{style="color: black;"}: lsm=2, sigma=0.4.
-[**Orange**]{style="color: orange;"}: lsm=4, sigma=0.4.
-[**Blue**]{style="color: blue;"}: lsm=4, sigma=0.6.
-:::
+[**Orange**]{style="color: orange;"}: lsm=4, sigma=0.4
+
+[**Blue**]{style="color: blue;"}: lsm=4, sigma=0.6
+
 
 If a change in selectivity is included in the simulation (using [flagchangesel]{style="color: orange;"}, [YYY_changeSEL]{style="color: orange;"} and other parameters, see above), then the *lsm* and *sigma* parameters after the change are set at
 
@@ -939,17 +930,15 @@ where
 
 $$\beta = \frac{\sqrt{{lsm}^{2} + 4 \cdot {sigma}^{2}} - lsm}{2}$$
 
-where *len~i~* is the length of the age group i. The figure 7 shows the shape of the gamma selectivity curve given three values of the *sigma* parameter.
+where *len~i~* is the length of the age group i. The shape of the gamma selectivity curve given three values of the *sigma* parameter (@fig-gamma-gear-selectivity).
 
-![](media/image8.png){width="5.229166666666667in" height="3.1875in"}
+![Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.](media/image8.png){#fig-gamma-gear-selectivity width=5.23in height=3.19in}
 
-![](media/image8.png)
+**Black**: sigma=2
 
-**Figure 7.** Shape of the gamma gear selectivity curve for an organism of length 1-100cm. The highest selectivity point (*lsm*) is set at 50cm.
-[**Black**]{style="color: black;"}: sigma=2.
-[**Orange**]{style="color: orange;"}: sigma=10.
-[**Blue**]{style="color: blue;"}: sigma=20.
-:::
+[**Orange**]{style="color: orange;"}: sigma=10
+
+[**Blue**]{style="color: blue;"}: sigma=20
 
 If a change in selectivity is included in the simulation (using [flagchangesel]{style="color: orange;"}, [YYY_changeSEL]{style="color: orange;"} and other parameters, see above), then the *lsm* and *sigma* parameters after the change are set at
 
@@ -972,15 +961,15 @@ The selectivity of age group *i* is calculated as
 
 $${psel}_{i} = \max\left( \exp\left( \frac{- \left( {len}_{i} - lsm1 \right)^{2}}{2 \cdot {sigma}^{2}} \right),exp\left( \frac{- \left( {len}_{i} - lsm2 \right)^{2}}{2 \cdot {sigma}^{2}} \right) \right)$$
 
-where *len~i~* is the length of the age group *i*. The figure 8 shows the shape of the selectivity curve given three values of the *sigma* parameter. Note that same *sigma* (spread) parameter is applied to both *lsm1* and *lsm2*.
+where *len~i~* is the length of the age group *i*. The shape of the selectivity curve given three values of the *sigma* parameter. Note that same *sigma* (spread) parameter is applied to both *lsm1* and *lsm2* (@fig-bimodal-gear-selectivity).
 
-![](media/image9.png){width="4.9375in" height="3.2708333333333335in"}
+![Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity points (*lsm1* and *lsm2*) are set at 30cm and 60cm.](media/image9.png){#fig-bimodal-gear-selectivity width=4.94in height=3.27in}
 
-**Figure 8.** Shape of the bimodal gear selectivity curve for an organism of length 1-100cm. The highest right and left side selectivity points (*lsm1* and *lsm2*) are set at 30cm and 60cm.
-[**Black**]{style="color: black;"}: sigma=10.
-[**Orange**]{style="color: orange;"}: sigma=5.
-[**Blue**]{style="color: blue;"}: sigma=20.
-:::
+**Black**: sigma=10
+
+[**Orange**]{style="color: orange;"}: sigma=5
+
+[**Blue**]{style="color: blue;"}: sigma=20
 
 If a change in selectivity is included in the simulation (using [flagchangesel]{style="color: orange;"}, [YYY_changeSEL]{style="color: orange;"} and other parameters, see above), then both *lsm1* and *lsm2* are changed by adding the same [SELchange_addlsm_YYY]{style="color: orange;"} so that after the change takes place the parameters are
 
@@ -996,11 +985,11 @@ The selectivity of age group *i* is calculated as
 
 $${psel}_{i} = \max\left( \exp\left( \frac{- \left( {len}_{i} - lsm1 \right)^{2}}{2 \cdot {sigma}^{2}} \right),\left( ampli \cdot exp\left( \frac{- \left( {len}_{i} - lsm2 \right)^{2}}{2 \cdot {sigma2}^{2}} \right) \right) \right)$$
 
-where *len~i~* is the length of the age group *i*. The figure 9 shows the shape of the selectivity curve.
+where *len~i~* is the length of the age group *i*. The shape of the selectivity curve (@fig-binormal-gear-selectivity).
 
-![[]{#_Toc498434136 .anchor}**Figure 9.** Shape of the binormal gear selectivity curve for an organism of length 1-100cm.](media/image10.png){width="5.145833333333333in" height="3.59375in"}
+![Shape of the binormal gear selectivity curve for an organism of length 1-100cm.](media/image10.png){#fig-binormal-gear-selectivity width=5.15in height=3.59in}
 
-The highest right and left side selectivity point (*lsm1* and *lsm2*) are set at 30cm and 60cm, sigma1=5, sigma2=10 and the amplification = 1.5. The horizontal line shows that the selectivity is always capped at 1.
+The highest right and left side selectivity points (*lsm1* and *lsm2*) are set at 30cm and 60cm, sigma1=5, sigma2=10 and the amplification = 1.5. The horizontal line shows that the selectivity is always capped at 1.
 
 If a change in selectivity is included in the simulation (using [flagchangesel]{style="color: orange;"}, [YYY_changeSEL]{style="color: orange;"} and other parameters, see above), then both *lsm1* and *lsm2* are changed by adding the same [SELchange_addlsm_YYY]{style="color: orange;"} and both *sigma* and *sigma2* are changed by adding the same [SELchange_addsigma_YYY]{style="color: orange;"} so that the final parameters used are
 
@@ -1037,18 +1026,16 @@ Changes in swept volume are done by first turning on a global flag [flagchangesw
 
 Fisheries gear conflict value is calculated in Atlantis for reporting purposes, but has no effect on the model dynamics. The gear conflict between a pair of fisheries is calculated as a proportion of the box area in REEF, SOFT and FLAT physical habitats where **both** fisheries fish (identified with [habitat_YYY]{style="color: orange;"}), multiplied by the gear conflict parameter [gear_conflict_YYY]{style="color: orange;"} (which gives conflicts between fishery YYY and each of other fisheries) and multiplied further by the pelagic-demersal overlap (which is 1 when both fisheries are pelagic or demersal and 0 in other cases).
 
-[]{#_Toc498434978 .anchor}**Table 8.** Parameters used to setup fishing gear selectivity and swept area.
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [YYY_selcurve]{style="color: orange;"} | Shape of the gear selectivity curve for fishery YYY |
 | [flagchangesel]{style="color: orange;"} | If set to 1, fisheries gear selectivity changes through time (see chapter 15.10 and 15.8.1 for further explanations) |
-| [sel_XXX]{style="color: orange;"}<br>[sel_XXXjuv]{style="color: orange;"}<br>[sel_XXXad]{style="color: orange;"}<br>[YYYsel_lsm]{style="color: orange;"}<br>[YYYsel_b]{style="color: orange;"}<br>[YYY_lognormlsm]{style="color: orange;"}<br>[YYY_lognormsigma]{style="color: orange;"}<br>[YYY_gammalsm]{style="color: orange;"}<br>[YYY_gammasigma]{style="color: orange;"}<br>[YYY_bilsm1]{style="color: orange;"}<br>[YYY_bilsm2]{style="color: orange;"}<br>[YYY_bisigma]{style="color: orange;"}<br>[YYY_bisigma2]{style="color: orange;"}<br>[YYY_ampli]{style="color: orange;"} | Parameters used to set fisheries gear selectivity. They can have different meanings depending on the YYY_selcurve option. Check chapter 15.8.1-15.8.11 for details |
+| [sel_XXX]{style="color: orange;"}<br>[sel_XXXjuv]{style="color: orange;"}<br>[sel_XXXad]{style="color: orange;"}<br>[YYYsel_lsm]{style="color: orange;"}<br>[YYYsel_b]{style="color: orange;"}<br>[YYY_lognormlsm]{style="color: orange;"}<br>[YYY_lognormsigma]{style="color: orange;"}<br>[YYY_gammalsm]{style="color: orange;"}<br>[YYY_gammasigma]{style="color: orange;"}<br>[YYY_bilsm1]{style="color: orange;"}<br>[YYY_bilsm2]{style="color: orange;"}<br>[YYY_bisigma]{style="color: orange;"}<br>[YYY_bisigma2]{style="color: orange;"}<br>[YYY_ampli]{style="color: orange;"} | Parameters used to set fisheries gear selectivity. They can have different meanings depending on the [YYY_selcurve]{style="color: orange;"} option. Check chapter 15.8.1-15.8.11 for details |
 | [YYY_sweptarea]{style="color: orange;"} | Volume of water that is subjected to fishing at one effort unit (in m^3^) |
 | [flagchangeswept]{style="color: orange;"} | If set to 1, volume swept by a fishing gear can change through time. See chapter 15.8.13 and 15.10 for further details |
 | [gear_conflict_YYY]{style="color: orange;"} | A parameter used only for reporting purposes, and does not affect Atlantis calculations (see chapter 15.8.14). |
-:::
+
+: Parameters used to setup fishing gear selectivity and swept area. {#tbl-gear-selectivity-parameters tbl-colwidths=[25,75]}
 
 ## **Fisheries discarding** 
 
@@ -1161,27 +1148,24 @@ Market based discarding should be done only when the Economics submodel is activ
 
 In using the market based discarding, a species is discarded if its sale price falls below the threshold of the maximum sale price. The threshold is a global parameter [salethresh]{style="color: orange;"} in the *harvest.prm* file and the maximum sale price is specific to each fishery [YYY_maxsaleprice]{style="color: orange;"}. The maximum set price can be either fixed or updated dynamically ([UpdateMaxSalePrice]{style="color: orange;"}=1) in the course of the run.
 
-[]{#_Toc498434979 .anchor}**Table 9.** Parameters used to setup fisheries discarding.
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [flagdiscard_XXX]{style="color: orange;"} | Species specific flag setting up discarding options for each species/fishery combination. |
 | [incidmort_XXX]{style="color: orange;"} | Proportion of species XXX discards that **die** after discarding (so if set to 1, then all discards die) |
 | [flagchangediscrd]{style="color: orange;"} | If set to 1, discarding practices change through time. See chapter 15.9.2 and 15.10 on how to set up temporal changes. |
 | [k_waste_XXX]{style="color: orange;"} | Proportion of legal catch that is discarded as waste (guts, skin). This proportion cannot survive but is sent to DC pool. |
-| [FFCDR_XXX]{style="color: orange;"} | Proportion of species XXX catch that is discarded, in constant discarding formulation (when [flagdiscard_XXX]{style="color: orange;"} = 0). Same discarding is applied to all age classes. |
-| [FFCDR_XXXchrt]{style="color: orange;"}<br>[FFCDR_XXXchrtB]{style="color: orange;"} | Vectors giving two possible age specific discarding proportions when [flagdiscard_XXX]{style="color: orange;"} =1. Must have as many values as there are age groups in species XXX. The [FC_caseXXX]{style="color: orange;"} vector sets which of the two alternative formulations are used by each fishery (must have as many values are there are fisheries) |
-| [FCthreshli_XXX]{style="color: orange;"} | Minimum length of species XXX that can be retained when length based discarding is used ([flagdiscard_XXX]{style="color: orange;"} = 2) |
+| [FFCDR_XXX]{style="color: orange;"} | Proportion of species XXX catch that is discarded, in constant discarding formulation (when [flagdiscard_XXX]{style="color: orange;"}=0). Same discarding is applied to all age classes. |
+| [FFCDR_XXXchrt]{style="color: orange;"}<br>[FFCDR_XXXchrtB]{style="color: orange;"} | Vectors giving two possible age specific discarding proportions when [flagdiscard_XXX]{style="color: orange;"}=1. Must have as many values as there are age groups in species XXX. The [FC_caseXXX]{style="color: orange;"} vector sets which of the two alternative formulations are used by each fishery (must have as many values as there are fisheries) |
+| [FCthreshli_XXX]{style="color: orange;"} | Minimum length of species XXX that can be retained when length based discarding is used ([flagdiscard_XXX]{style="color: orange;"}=2) |
 | [k_retain_XXX]{style="color: orange;"} | A vector of values giving fishery-specific proportion of the undersized catch that will not be discarded |
-| [DiscardTS_agedistribXXX]{style="color: orange;"} | Proportional distribution of forced discarding over age groups (when forced discarding is used, [flagdiscard_XXX]{style="color: orange;"} =3) |
+| [DiscardTS_agedistribXXX]{style="color: orange;"} | Proportional distribution of forced discarding over age groups (when forced discarding is used, [flagdiscard_XXX]{style="color: orange;"}=3) |
 | [FCcocatch_XXX]{style="color: orange;"} | Density dependent discarding parameter, that can have different meanings depending on whether imposed or set as user defined or dynamic mortality (see chapter 15.9.8) |
 | [flaghighgrading]{style="color: orange;"} | If set to 1, fisheries will start discarding the youngest cohorts of the catch when they are approaching the TAC. The proportion of TAC fulfilled before highgrading starts is set in the global [prop_within]{style="color: orange;"} parameter |
-| [highgrade_thresh]{style="color: orange;"} | The proportion of catch an age group must make up, before it is retained during highgrading (see chapter 15.9.9) |
-| [highgrade_thresh]{style="color: orange;"} | If set to 1, discarding will be done according to the saleprice of fish species (set in [XXXsaleprice]{style="color: orange;"}). Should only be done when the Economics submodel is active, or else Atlantis will quit. |
-:::
+| [highgrade_thresh]{style="color: orange;"} | The proportion of catch an age group must make up, before it is retained during highgrading (see chapter 15.9.9). If set to 1, discarding will be done according to the saleprice of fish species (set in [XXXsaleprice]). Should only be done when the Economics submodel is active, or else Atlantis will quit. |
 
-![[]{#_Toc498434137 .anchor}**Figure 10.** The main algorithm in the *Get_Discards()* routine explaining what determines the final discard proportion of a given species and age group by a given fishery.](media/image11.jpeg){width="5.909091207349081in" height="7.007774496937882in"}
+: Parameters used to setup fisheries discarding. {#tbl-discarding-parameters tbl-colwidths=[25,75]}
+
+![The main algorithm in the *Get_Discards()* routine explaining what determines the final discard proportion of a given species and age group by a given fishery.](media/image11.jpeg){#fig-discards-algorithm width=5.91in height=7.01in}
 
 ## **Temporal changes in harvest parameters**
 
@@ -1202,21 +1186,18 @@ In general, Atlantis implements changes in fishing characteristics through 4 par
 This typical approach is implemented in the *Util_Get_Change_Scale()* routine in **atUtil.c**, but not all changes are applied through this routine.
 
 The various changes have been described in separate chapters, and this section only provides a general summary on how fisheries options can be changed.
-
-[]{#_Toc498434980 .anchor}**Table 10.** Parameters and description of main fisheries features that can change through time.
-
-::: {.table-responsive}
 | **What can change?** | **Global flag** | **Fisheries-specific flags** | **Comments** |
 |:---------------------|:----------------|:-----------------------------|:-------------|
 | Fisheries gear selectivity | [flagchangesel]{style="color: orange;"} | Change occurs in one time step and remains for the rest of the simulation or until the next change | Chapter 15.8 |
-| Swept volume by the fishing gear | [flagchangeswept]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period -- typical 4 parameter description | Chapter 15.8.13 |
-| Fishing mortality set through flagF | [flagchangeF]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period -- typical 4 parameter description | Chapter 15.3.4 |
+| Swept volume by the fishing gear | [flagchangeswept]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | Chapter 15.8.13 |
+| Fishing mortality set through flagF | [flagchangeF]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | Chapter 15.3.4 |
 | Total effort in dynamic fishing | [flagchangeeffort]{style="color: orange;"} | Change occurs over a set period, but pulsed changes are allowed. If pulse changes are applied the effort after the change period reverts to the original value | Chapter 15.5.13 |
 | Discarding | [flagchangediscrd]{style="color: orange;"} | Change occurs in one time step and remains for the rest of the simulation or until the next change | Chapter 15.9.2 |
-| Catchability | [flagchangeq]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period -- typical 4 parameter description | Described in the example above |
-| Effort caps -- whether effort per cell is capped | [flagchangecap]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period -- typical 4 parameter description | Chapter 15.6.2 |
-| Populations of ports -- relevant to recreational fishing models and Economics submodel | [flagchangepop]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period -- typical 4 parameter description | Chapter 15.5.4 |
+| Catchability | [flagchangeq]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | Described in the example above |
+| Effort caps — whether effort per cell is capped | [flagchangecap]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | Chapter 15.6.2 |
+| Populations of ports — relevant to recreational fishing models and Economics submodel | [flagchangepop]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | Chapter 15.5.4 |
 | Fisheries spatial coverage | [flagchangep]{style="color: orange;"} and [YYY_changeP]{style="color: orange;"} | Changes in spatial coverage are applied through the habitat overlap | Chapter 15.7.3 |
 | Length of the fishing season | [YYY_changeseason]{style="color: orange;"} | Fishing season can be reduced if biomass of fishing stocks or endangered species fall below a threshold level | Chapter 16.5 |
-| TAC of a fishery | [YYY_TACchange]{style="color: orange;"}<br><br>0 -- no change<br>1 -- dynamic change<br>2 -- forced change | Forced TAC change is implemented in the same way as other parameter change -- typical 4 parameter description<br><br>Dynamic change in TAC is implemented when some form of stock assessment is applied (see box in chapter 16.1) | Chapter 16.2.10 |
-:::
+| TAC of a fishery | [YYY_TACchange]{style="color: orange;"}<br><br>0 = no change<br>1 = dynamic change<br>2 = forced change | Forced TAC change is implemented in the same way as other parameter change — typical 4 parameter description<br><br>Dynamic change in TAC is implemented when some form of stock assessment is applied (see box in chapter 16.1) | Chapter 16.2.10 |
+
+: Parameters and description of main fisheries features that can change through time. {#tbl-temporal-changes-parameters tbl-colwidths=[25,20,35,20]}

@@ -1,11 +1,6 @@
----
-title: "Definitions of Functional Groups"
-number-sections: true
-crossref:
-  chapters: true
----
+# Definitions of Functional Groups  {#sec-functional-groups}
 
-## **Introduction to functional groups** 
+## **Introduction to functional groups**
 
 ***Types of functional groups***
 
@@ -98,7 +93,7 @@ Currently each group must have the following parameters (characteristics). For n
 | [NumGeneTypes]{style="color: orange;"} | Number of discrete phenotypes in each age group. This option is used when simulating evolution or multiple size-at-age representations and should only be set to >1 if [flag_do_evolution]{style="color: orange;"} is set to 1 in *biology.prm* file. If more than one phenotype is present, initial conditions will be have to be set up for each phenotype. |
 | [NumStages]{style="color: orange;"} | This parameter describes the number of separate stages in a functional group, which are set to 1 or 2 if juvenile and adult stages have separate parameters for distribution, mortality, migration, feeding and others. In principle, more than 2 stages are possible, although this has not been tested. Typically all age-structured groups have 2 stages, but age-structured biomass pools can also have separate parameters for juvenile and adult stages and thus have 2 stages. |
 | [NumSpawns]{style="color: orange;"} | Number of spawns in the year. Typically one per year, but more than one is possible (especially for ages structured biomass pool groups). The timing of spawn is given in [Time_Spawn_XXX]{style="color: orange;"} parameter in *biology.prm* file (if [NumSpawns]{style="color: orange;"} is 1 it expects a single value, otherwise it expects a vector of length [NumSpawns]{style="color: orange;"}). |
-| [NumAgeClassSize]{style="color: orange;"} | Number of calendar years in one age group. This can be set to be anything between a few months to many years and allows simulation of different longevity organisms without having to setup too many age groups (which reduces simulation speed). Note, all individuals in an age group are considered identical (unless different phenotypes are set in [NumGeneTypes]{style="color: orange;"}, in which case all individuals in one phenotype of one age group are identical). However, the proportion of an age group per annual cohort is tracked so that recruitment variation is represented through time and not homogenized away (see chapter 10.9.6). |
+| [NumAgeClassSize]{style="color: orange;"} | Number of calendar years in one age group. This can be set to be anything between a few months to many years and allows simulation of different longevity organisms without having to setup too many age groups (which reduces simulation speed). Note, all individuals in an age group are considered identical (unless different phenotypes are set in [NumGeneTypes]{style="color: orange;"}, in which case all individuals in one phenotype of one age group are identical). However, the proportion of an age group per annual cohort is tracked so that recruitment variation is represented through time and not homogenized away (@sec-age-at-recruit). |
 | [NumStocks]{style="color: orange;"} | This sets the number of geographically distinct stocks for age-structured groups and age-structured biomass pools. The stocks must occupy different boxes or layers, i.e. they do not spatially overlap.<br><br>Some biological parameters, like vulnerability to prey can be set as stock specific, which allows for better tuning. It has been applied to some groups that are known to include ecologically distinct stocks in different geographic areas. If [NumStocks]{style="color: orange;"} >1 then the corresponding number of stock specific parameters will be required in the *biology.prm* input file |
 | [VerticallyMigrates]{style="color: orange;"} | If true then the group can move vertically through the water column. This should be set to 1 except for debugging purposes. If this is set to 0, no vertical movement will happen even if it is specified in the *biology.prm* file and the vertical distribution of individuals in the *initial_conditions.nc* file will be retained throughout the simulation. |
 | [HorizontallyMigrates]{style="color: orange;"} | If true then the group can move horizontally throughout the model as well as migrate out of the model. No migration will happen if this is set to 0. Biomass pool groups which are marked as passive in the *initial_conditions.nc* will still be advected even if [HorizontallyMigrates]{style="color: orange;"} is set to 0. |

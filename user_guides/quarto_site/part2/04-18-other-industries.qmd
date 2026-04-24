@@ -1,9 +1,4 @@
----
-title: "Other Industries"
-number-sections: true
-crossref:
-  chapters: true
----
+# Other Industries
 
 ## **Pollution**
 

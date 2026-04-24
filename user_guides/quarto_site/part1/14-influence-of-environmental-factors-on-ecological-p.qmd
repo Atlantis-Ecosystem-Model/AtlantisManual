@@ -1,9 +1,4 @@
----
-title: "Influence of Environmental Factors on Ecological Processes"
-number-sections: true
-crossref:
-  chapters: true
----
+# Influence of Environmental Factors on Ecological Processes {#sec-environmental-factors}
 
 ## **Temperature: two methods to get temperature scalar** 
 
@@ -117,23 +112,23 @@ Briefly, depending on the [pH_sensitivity_model]{style="color: orange;"} selecte
 
 As for the Scorr scalar, **for age structured groups** the pHCorr will be applied to the processes affected by temperature (feeding rates, assimilation efficiency, mortality), **only if a species is sensitive to pH** ([flagpHsensitive_XXX]{style="color: orange;"}=1) **and sensitive to temperature.**
 
-The pH can also affect other processes, as listed in Table 26.
-
-[]{#_Toc526762778 .anchor}Table 26. Effects of pH on physiological and ecological processes. See detailed description [here](https://confluence.csiro.au/display/Atlantis/2012/10/19/Handling+effects+of+acidification)
+The pH can also affect other processes, as listed in @tbl-pH-effects.
 
 | What is affected | How to activate | How is it applied |
 |:-----------------|:----------------|:------------------|
-| **Processes for which pHcorr scalar is applied at the same time as the Tcorr scalar, described in chapter 13.2** |||
+| **Processes for which pHCorr scalar is applied at the same time as the Tcorr scalar, described in chapter 13.2** | | |
 | Growth and non-predation mortality rates | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>For age structured groups it is applied only if:<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1 | Growth and non-predation mortality are affected in opposite ways by pH. The unmodified [C]{style="color: orange;"} and [mum]{style="color: orange;"} will be multiplied by pHCorr (and decrease as a result) and the unmodified [mL]{style="color: orange;"} and [mQ]{style="color: orange;"} multiplied by 1.0/pHCorr (and increase) |
 | Search volume (if [predcase]{style="color: orange;"}=5) | [flagpHsensitive_XXX]{style="color: orange;"}=1 | The [vla_T15]{style="color: orange;"} is multiplied by pHCorr (and decreases)<br><br>This is only applied for age structured groups |
-| Assimilation efficiency | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1<br><br>[flagq10eff_XXX]{style="color: orange;"}=1 or 2 | Four assimilation efficiencies are multiplied by pHCorr (and decreases) |
-| **Processes for which pHcorr scalar is applied differently from Tcorr scalar** |||
-| Availability of prey to predators | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagpredavaileffect_XXX]{style="color: orange;"} = 1 | For **biomass pool prey** availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **increased** multiplying by 1.0/pHCorr<br><br>For **age structured group prey** availability to predators (defined in pPREY or ontogenetic diet matrices) is **decreased** multiplying by pHCorr |
-| Nutritional content of a species to its predators; mostly intended to simulate nutritional content of primary producers | flagpHsensitive_XXX=1<br><br>flagnutvaleffect_XXX=1 | The amount of prey biomass available to a predator (defined in pPREY or ontogenetic diet matrices) is further multiplied by pHCorr (to represent that more must be eaten to get the same nutritional content) and in this way decreased, reflecting lower nutritional content |
-| Reduced larval survival before recruitment | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagfecundsensitive_XXX]{style="color: orange;"} =1 | The number of recruits is multiplied by pHCorr and therefore decreased |
-| Modifying thermal tolerance of a species | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagcontract_tol_XXX]{style="color: orange;"} = 1 | The thermal tolerance decreases according to [contract_tol_XXX]{style="color: orange;"} parameter which defined the number of degrees to contract the temperature tolerances by as pH drops |
-| Additional mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagPHmortcase]{style="color: orange;"} >0 | Extra mortality applied for ALL groups |
-| Extra mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[pHmortstart]{style="color: orange;"} = 1 | Another logistic extra mortality term is added, see details [here](https://confluence.csiro.au/display/Atlantis/2015/05/14/Acidification+induced+mortality) |
+| Assimilation efficiency | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1<br><br>[flagq10eff_XXX]{style="color: orange;"}=1 or 2 | Four assimilation efficiencies are multiplied by pHCorr (and decrease) |
+| **Processes for which pHCorr scalar is applied differently from Tcorr scalar** | | |
+| Availability of prey to predators | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagpredavaileffect_XXX]{style="color: orange;"}=1 | For **biomass pool prey**, availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **increased** by multiplying by 1.0/pHCorr<br><br>For **age structured group prey**, availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **decreased** by multiplying by pHCorr |
+| Nutritional content of a species to its predators; mostly intended to simulate nutritional content of primary producers | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagnutvaleffect_XXX]{style="color: orange;"}=1 | The amount of prey biomass available to a predator (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is further multiplied by pHCorr (to represent that more must be eaten to get the same nutritional content) and in this way decreased, reflecting lower nutritional content |
+| Reduced larval survival before recruitment | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagfecundsensitive_XXX]{style="color: orange;"}=1 | The number of recruits is multiplied by pHCorr and therefore decreased |
+| Modifying thermal tolerance of a species | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagcontract_tol_XXX]{style="color: orange;"}=1 | The thermal tolerance decreases according to [contract_tol_XXX]{style="color: orange;"} parameter, which defines the number of degrees to contract the temperature tolerances by as pH drops |
+| Additional mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagPHmortcase]{style="color: orange;"} > 0 | Extra mortality applied for ALL groups |
+| Extra mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[pHmortstart]{style="color: orange;"}=1 | Another logistic extra mortality term is added, see details [here](https://confluence.csiro.au/display/Atlantis/2015/05/14/Acidification+induced+mortality) |
+
+: Effects of pH on physiological and ecological processes. See detailed description [here](https://confluence.csiro.au/display/Atlantis/2012/10/19/Handling+effects+of+acidification). {#tbl-pH-effects tbl-colwidths=[25,25,50]}
 
 ## **Oxygen** 
 

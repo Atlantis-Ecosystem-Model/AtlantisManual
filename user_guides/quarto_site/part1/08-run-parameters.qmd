@@ -1,6 +1,4 @@
----
-title: "Run Parameters"
----
+# Run Parameters
 
 The *run.prm* provides all the key information required to control the model run, load optional submodels and also parameters controlling the debugging and detailed output. The table below lists the main parameters used in the *run.prm*, but please remember to follow the news on the Atlantis wiki as new parameters are sometimes added.
 

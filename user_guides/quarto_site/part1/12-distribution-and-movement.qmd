@@ -1,9 +1,4 @@
----
-title: "Distribution and Movement"
-number-sections: true
-crossref:
-  chapters: true
----
+# Distribution and Movement
 
 The spatial distribution of organisms in the model domain is first set in the *initial_conditions.nc* file and is then updated at each time step. The main routine handling the distribution and movement is *Ecology_Total_Verts_And_Migration()* for fully age structured groups and *Ecology_Invert_Migration()* for biomass pools.
 
@@ -251,11 +246,9 @@ $$N_{ext\_ mort} = \left( m_{l\_ ext} + m_{p\_ ext} \right) \cdot N_{t}$$
 
 where *N~t~* is the number of individuals in an age class at time *t* and the mortality rates [mLext]{style="color: orange;"} and [mPext]{style="color: orange;"}. This population model also uses the existing Atlantis parameters [li_a_XXX]{style="color: orange;"}, [li_b_XXX]{style="color: orange;"}, [pR_XXX]{style="color: orange;"} and [age_mat_XXX]{style="color: orange;"}.
 
+It is possible to allow for an invading species (functional group) to enter the model domain. At present only a couple of simple representations of invasion exist, but further may come later (please check the wiki for the latest options). The parameters required by the current invasion models are given in @tbl-invading-species-parameters.
+
 ## **Invading species**
-
-It is possible to allow for an invading species (functional group) to enter the model domain. At present only a couple of simple representations of invasion exist, but further may come later (please check the wiki for the latest options). The parameters required by the current invasion models are given in Table 25.
-
-[]{#_Toc526762777 .anchor} Table 25. Parameters used in the invading species sub-model.
 | Parameter | Description |
 |:----------|:------------|
 | [invading_sp_model]{style="color: orange;"} | 0 = no invader; 1 = simple drip-feed entry into one box and spread from there; 2 = points of invasion and spread are determined by habitat and environmental conditions; 3 = complex invasion model (currently not implemented) |
@@ -267,10 +260,13 @@ It is possible to allow for an invading species (functional group) to enter the 
 | [InvaderMaxDepth]{style="color: orange;"} | Maximum depth invader tolerates |
 | [InvaderStartDay]{style="color: orange;"} | Day of the run the invasion begins |
 | [InvaderEndDay]{style="color: orange;"} | Day of run invasion ends |
-| [InvaderScalar]{style="color: orange;"} | Proportional scalar to represent drip feed of invaders to existing population -- used if [invading_sp_model]{style="color: orange;"} is set to 1 |
+| [InvaderScalar]{style="color: orange;"} | Proportional scalar to represent drip feed of invaders to existing population — used if [invading_sp_model]{style="color: orange;"} is set to 1 |
 | [InvaderSpeed]{style="color: orange;"} | Rate of spread of front of the invading species (m hr^-1^) |
-| [InvadersEntering]{style="color: orange;"} | 1 = if invaders begin from 0 baseline (in which case the starting numbers entering the model domain must be specified in [InvaderStartNums]{style="color: orange;"}); 0 = a small number of the invading species (functional group) are already in the model when the run begins and the invasion represents a range shift (or expansion of the population) or a turnover in the species composition of a functional group so the numbers group based on invaders |
+| [InvadersEntering]{style="color: orange;"} | 1 = invaders begin from 0 baseline (in which case the starting numbers entering the model domain must be specified in [InvaderStartNums]{style="color: orange;"}); 0 = a small number of the invading species (functional group) are already in the model when the run begins and the invasion represents a range shift (or expansion of the population) or a turnover in the species composition of a functional group so the numbers group based on invaders |
 | [InvaderStartNums]{style="color: orange;"} | The number of invaders entering (per age class) on first day of the invasion. If not all age classes are invading then set the numbers in the non-invading age classes to 0. |
 | [InvaderEntryLayer]{style="color: orange;"} | The water column layer the invaders enter through in the case where [InvadersEntering]{style="color: orange;"} is set to 1 |
+
+: Parameters used in the invading species sub-model. {#tbl-invading-species-parameters tbl-colwidths=[25,75]}
+
 
 In all cases invasion is represented via scaling the numbers (or biomass if a biomass pool) in the [InvaderEntryBox]{style="color: orange;"} (between days [InvaderStartDay]{style="color: orange;"} and [InvaderEndDay]{style="color: orange;"}). If [invading_sp_model]{style="color: orange;"} is set to 1 then the dispersal of invaders is given by standard movement for age structured groups and via spilling into adjacent cells for biomass pools (with new cells added once biomasses reach saturation points). If [invading_sp_model]{style="color: orange;"} is set to 2 the dispersal is based on depth, temperature and salinity preferences, habitat and prey fields.

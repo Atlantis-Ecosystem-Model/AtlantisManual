@@ -1,9 +1,4 @@
----
-title: "Process in Baterial and Inanimate Pools"
-number-sections: true
-crossref:
-  chapters: true
----
+# Process in Baterial and Inanimate Pools
 
 ## **Bacterial processes** 
 
@@ -55,4 +50,4 @@ Uptake of refractory detritus DR is modelled in the same way except that PB_DR i
 
 ## **Biogeochemical processes** 
 
-Details on the fluxes in the inanimate pools have been described in Fulton et al. 2004a and more recently in Link et al. 2011 [Atlantis-NEUS model report](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155482/341447378/Link_et_al_2011_NEUS_tech_memo.pdf). The table of inanimate pools tracked in the water column and sediments is given in chapter 6.1.
+Details on the fluxes in the inanimate pools have been described in Fulton et al. 2004a and more recently in Link et al. 2011 [Atlantis-NEUS model report](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155482/341447378/Link_et_al_2011_NEUS_tech_memo.pdf). The table of inanimate pools tracked in the water column and sediments is given in @tbl-state-variables.

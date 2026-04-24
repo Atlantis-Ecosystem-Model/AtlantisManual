@@ -1,9 +1,4 @@
----
-title: "Installation and Running"
-number-sections: true
-crossref:
-  chapters: true
----
+# Installation and Running
 
 ## How to check out and install the code**
 
@@ -101,16 +96,16 @@ It is a good idea to give parameter files meaningful names. For example, it woul
 ![](media/image50.png){width="4.76in" height="2.73in"}
 :::
 
-## **Input files**
+## **Input files** {#sec-input-files}
 
 Atlantis input files come in six file formats:
 
-1.  BGM file defining model geometry (see chapter 3)
-2.  NC initial conditions and forcing files (see chapter 2.8)
-3.  CSV files defining biological and fisheries groups (see chapter 6)
+1.  BGM file defining model geometry (@sec-geometry-model-domain)
+2.  NC initial conditions and forcing files (@sec-atlantis-variables)
+3.  CSV files defining biological and fisheries groups (@sec-geometry-model-domain)
 4.  PRM files listing flags to activate optional calculations and parameters values (described in detail in subsequent chapters)
-5.  TS files defining time series of external forcing drivers (see chapter 8)
-6.  BAT file used to initiate the run (see chapter 2.5)
+5.  TS files defining time series of external forcing drivers (@sec-force-parameters)
+6.  BAT file used to initiate the run (@sec-bat-file)
 
 All files except for NC files can be opened and edited using any basic text editing software (such as TextPad or NotePad). Until recently this was the usual way to setup and modify model parameters. However, some PRM files are thousands of lines long, which means that hand editing can be tedious and a source of error. New R-based tools are currently under development to help users visualise and modify parameter files in a more streamlined way (see below)
 
@@ -193,7 +188,7 @@ Atlantis is an "old style" program that runs from a command line. This is done u
 
 **Note:** In Mac and Linux use `/` instead of `\`
 
-### *Setting up the BAT file*
+### *Setting up the BAT file* {#sec-bat-file}
 
 At this stage you already have 1) compiled the code on your machine, 2) created a run directory for your simulations (C:\\AtlantisRuns\\MyModel), 3) copied all input and parameter files into the run directory, 4) copied the Atlantis executable (atlantismain.exe) from C:\\...\\atlantismain\\Debug into your run directory.
 
@@ -325,7 +320,7 @@ Lists the main output files (@tbl-atlantis-outputs). Some output files will be p
 | BoxBiomass.txt | **Snapshots** of biomasses of all active species for each of the model domain boxes, excluding boundary boxes | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
 | AgeBiomass.txt | **Snapshots** of biomasses of all active species per age group across the entire model domain | tonnes | This output is given if [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
 | DietCheck.txt | Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output | proportion | The total sum for each age group is 1 for all prey items |
-| DetailedDietCheck.txt | If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead | tonnes or proportion | Very useful for understanding model dynamics. Check out R codes for querying these outputs (chapter 2.9) |
+| DetailedDietCheck.txt | If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead | tonnes or proportion | Very useful for understanding model dynamics. Check out R codes for querying these outputs (@sec-tools) |
 | Mort.txt | Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at **relative M vs F values** for a species, as it does not give accurate mortalities | per year | Note, that if a species is set as isImpacted in the *functional_groups.csv* file, it will have some F value even if it is not explicitly targeted by fishing |
 | SpecificMort.txt | Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values are written **before** Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that **M or F in the file can sometimes exceed 1**. This will be corrected in a future release | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
 | SpecificPredMort.txt | **Cumulative** predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with SpecificMort.txt, **values can exceed 1** | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
@@ -447,7 +442,7 @@ data:  ## start of the data for each variable
 }
 ```
 
-## **Introduction to Atlantis variables**
+## **Introduction to Atlantis variables** {#sec-atlantis-variables}
 
 There are three kinds of obligatory and two kinds of optional variables used in Atlantis. Variable types are defined by the `bmtype` parameter:
 
@@ -496,7 +491,7 @@ The term "**tracer**" will be used often throughout the manual. Most of the vari
 : Parameters used to describe characteristics of Atlantis variables in the *initial_conditions.nc* file. These parameters are read in by the *readBMTracerInfo()* in [attracerIO.c]{.underline}. {#tbl-initial-conditions-params tbl-colwidths=[15,45,40]}
 
 
-## **Tools and packages to view and analyse Atlantis input and output files**
+## **Tools and packages to view and analyse Atlantis input and output files** {#sec-tools}
 
 The Atlantis community has developed a number of different tools to view and analyse these outputs. The main tools used currently include:
 

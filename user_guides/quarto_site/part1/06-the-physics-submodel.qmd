@@ -1,15 +1,10 @@
----
-title: "The Physics Submodel"
-number-sections: true
-crossref:
-  chapters: true
----
+# The Physics Submodel {#sec-physics-submodel}
 
 The Physics submodel deals with most physical and some biogeochemical processes in Atlantis, such as water and gas exchanges and mixing, nutrient inputs, deposition and resuspension of particulate matter, as well as some biological processes in the sediments, such as bioturbation and bioirrigation.
 
 The central part of the Physics submodel is the **transport model** that reads in water exchanges from the hydrodynamic forcing files, applies a number of optional routines to correct for lack of horizontal and vertical mixing (see below), distributes water flows through the model domain, and calculates new concentrations of dissolved or passively advected tracers, such as salinity, temperature, oxygen, pH and pelagic planktonic organisms. These calculations simultaneously account for diffusion, advection and dispersion processes. The transport model is preceded by a number of optional routines executing sediment mixing, resuspension, gas exchange with the atmosphere, bioirrigation and others (see below).
 
-Most of the details in the Atlantis Physics submodel are based on the Port Phillip Bay Integrated Model (PPBIM) described in Murray and Parslow (1997) and Walker (1997) and on the [ERSEM](http://www.meece.eu/library/ersem.html) model described in Ebenhöh et al. (1995) (see important references in Chapter 1.5). Atlantis users interested in understanding the physics processes deeper can learn more by consulting these references.
+Most of the details in the Atlantis Physics submodel are based on the Port Phillip Bay Integrated Model (PPBIM) described in Murray and Parslow (1997) and Walker (1997) and on the [ERSEM](http://www.meece.eu/library/ersem.html) model described in Ebenhöh et al. (1995) (see important references @sec-comp-es-models). Atlantis users interested in understanding the physics processes deeper can learn more by consulting these references.
 
 ::: {.callout-note}
 **The parameters and flags used in the Physics submodel are described in**:
@@ -128,7 +123,7 @@ Examples of currently used obligatory and optional physics and biogeochemical tr
 
 :::
 
-## **The main *physics()* routine**
+## **The main *physics()* routine** {#sec-main-physics-routine}
 
 The routine *physics()* defined in **atphysics.c** is the main physics routine, run at each timestep of the simulation. It is described below in the order of execution. The first column lists the routines, the flags to activate them, and shows which flags are active in the example SETas model. The second column describes routines and parameters. Remember that (as elsewhere in this manual) routines are listed in *italics() and* files containing these routines are bold and **[underlined]{.underline}** and libraries are **bold**. Parameter names from *physics.prm* are given [in orange]{style="color: orange;"} and those from *force.prm* file are also marked with an asterisk \*.
 
@@ -168,7 +163,7 @@ Bioturbation and bioirrigation are simulated as exchange in thin water and sedim
 | **Bioturbation: movement of particulate tracers throughout the sediment layers and into the water column due to biological activity. This routine works only if more than one sediment layer is present** — *bioturb()* in **[atbioturb.c]{.underline}** — [bioturbation]{style="color: orange;"} — 1 | Only **particulate** tracers that are not macrobenthos and are allowed in the sediments, i.e. sediment grains, settled phytoplankton, microphytobenthos, meiobenthos, detritus and sediment bacteria, can be acted upon by bioturbation. The *bioturb()* routine includes three subroutines (like the *bioirrig()* routine described above): *partic_diff()* implements particulate tracer diffusion within the sediments and is implemented in the same way as diffusion of dissolved tracers in the *dissol_diff()* subroutine described above. The diffusion rate is calculated as a product of: - the diffusion constant [bt_partic_kz]{style="color: orange;"} (m^2^s^-1^ per animal per m^2^); - density of biological activity; - scalar of biological activity as a function of depth (which depends on the profile described in the [biosedprofile]{style="color: orange;"}); - scalar of bioturbation enhancement. *expul()* applies expulsion of particulate tracers from sediments into the bottom water column. Like above, its constant is set by the [bt_expulsion]{style="color: orange;"} parameter (ms^-1^ per animal per m^2^), which is modified by the biomass density, scaling by depth and the bioturbation enhancement scalar. *mix_in()* applies exchange of particulate matter across sediment layers. The exchange constant is set in [bt_exchange]{style="color: orange;"} (ms^-1^ per animal per m^2^) which is modified by biomass density, scaling by depth, and bioturbation enhancement scalar |
 :::
 
-**III. Execute optional routines to enhance horizontal and vertical diffusion and mixing (see chapter 5.4 for why these routines may be needed):**  
+**III. Execute optional routines to enhance horizontal and vertical diffusion and mixing (@sec-vert-horz-transport for why these routines may be needed):**  
 
 | Process | Description |
 |---------|-------------|
@@ -255,7 +250,7 @@ It is possible to scale the input of nutrients from point sources given in the T
 
 [biooxprofile]{style="color: orange;"}: This was used in earlier Atlantis versions when the oxygen profile in the sediments was set and not dynamic. Currently the amount of oxygen in the sediments dynamically depends on the amount of biological activity and the parameter is not used.
 
-## **When to use vertical and horizontal transport and mixing?**
+## **When to use vertical and horizontal transport and mixing?** {#sec-vert-horz-transport}
 
 The horizontal and vertical diffusion routines *hdiffBMwc()* and *atvdiffBMwc()* were created and used most often at a time when oceanographic models were still quite coarse and did not capture the water fluxes with sufficient accuracy. They are rarely used in current models. However, a number of issues still remain due to the loss of spatial resolution when converting files into the Atlantis model domain. This is where activating optional vertical mixing and filler horizontal diffusion routines might be useful:
 
@@ -282,7 +277,7 @@ Ideally, such issues should be resolved in cooperation with oceanographers who d
 ::: {.callout-tip title="Good practice tip 5"}  
 The exploration of vertical and horizontal water fluxes is strongly recommended, especially during the model development stage. Currently there are two complementary ways to do it:  
 
-1\. Use a ***shinyrAtlantis*** R package (see chapter 4.4) to plot fluxes through time and connections among boxes. The tool helps to identify isolated boxes, visualise intensity and direction of fluxes among boxes and also plot the magnitude of vertical fluxes in each box. The user can then compare these fluxes with the existing oceanographic knowledge and decide whether the intensity of vertical mixing should be increased or decreased using box-specific parameters. 
+1\. Use a ***shinyrAtlantis*** R package (@sec-r-forcing-check) to plot fluxes through time and connections among boxes. The tool helps to identify isolated boxes, visualise intensity and direction of fluxes among boxes and also plot the magnitude of vertical fluxes in each box. The user can then compare these fluxes with the existing oceanographic knowledge and decide whether the intensity of vertical mixing should be increased or decreased using box-specific parameters. 
 
 2\. Use passive inert tracers, such as sediments (SED in the *initial_conditions.nc*) to explore dispersal of particles through the model domain. Sediments are not acted upon by any organisms, so they won't be eaten or decay (make sure :decay is 0). The initial concentrations of the tracer can be set in specific locations in the *initial_conditions.nc* file and their dispersal through the model domain followed in the model output. Alternatively, sediment inputs can be given in the TS files as forced point sources; and their dispersal from the point input locations can then be followed through time.
 :::
@@ -291,13 +286,13 @@ The exploration of vertical and horizontal water fluxes is strongly recommended,
 
 New functionality is added to Atlantis almost every month. At the time of writing of this manual (April 2016) three significant new features were being tested: land, ice and contaminants. They are described here briefly, but the users are advised to check Atlantis wiki for further developments and instructions.
 
-### ***Land***
+### ***Land*** {#sec-land}
 
 It is now possible to include [land](https://confluence.csiro.au/display/Atlantis/Land+in+Atlantis) in Atlantis. The key reason to include this functionality is to allow explicit modelling of the movement of nutrients, organisms and human activity between land and water (groups can only make this transition if they are marked as being able to live on land and in the water in the *functional_groups.csv* file). It also allows for the future development of Atlantis into an integrated water-land model (so you can model land organisms). Currently this may be useful for shallow water areas, harbours and estuaries that have a lot of islands.
 
 The optional land model is turned on by activating the flag [flagAllowLand]{style="color: orange;"} in the *run.prm* file. Land boxes are set up in the BGM file as having positive [botz]{style="color: orange;"} value. Land occupies water column layer 0 (bottom layer) and processes on land boxes are modelled in two-dimensional space, just like those for epibenthos. To obtain the total biomass, tracer values on land boxes are not multiplied by depth. It is also possible to include specific terrestrial tracers, by setting their [bmtype]{style="color: orange;"} = \"terrestrial\" in the *initial_conditions.nc* file. The values for these tracers would be stored in a different place than those for the water column tracers.
 
-### ***Ice***
+### ***Ice*** {#sec-ice}
 
 Atlantis applications for the northernmost and southernmost domains (Barents Sea, Baltic Sea, Antarctica and others) have prompted the development of an explicit [ice](https://confluence.csiro.au/display/Atlantis/Ice+in+Atlantis) model.
 
@@ -480,7 +475,7 @@ Movement and reproduction can both be scaled due to level of contaminants in the
 
 Maternal transfer is also possible (if the flag [flag_contamMaternalTransfer]{style="color: orange"} is set to1) in which case the maternal transfer rates need to be set -- both that for transfer during conception (recruitment) [XXX_ZZZZ_maternal_transfer]{style="color: orange"} and during suckling (if have maternal care) [XXX_ZZZZ_suckling_transfer]{style="color: orange"}.
 
-## **Outputs of physics tracers in the *output.nc* file**
+## **Outputs of physics tracers in the *output.nc* file**  {#sec-output-physical-tracers}
 
 Values of physical variables throughout the simulation are reported in the main *output.nc* file. Although not usually analysed in standard simulations, it might be useful to explore these values during the model development stage.
 | Name | Description, units | Comments |
@@ -498,11 +493,11 @@ Values of physical variables throughout the simulation are reported in the main 
 | `sedbiodepth (t, b)` | Depth of biological activity, m | Maximum depth of biological activity in the sediments. The shape of the profile of biological activity with depth is set in the biosedprofile in *physics.prm*. The actual depth of the activity will change depending on the amount of activity present and the oxygen levels |
 | `seddetdepth (t, b)` | Max depth of detritus, m | Depth of detritus in the sediment layer. It determines the depth of the habitat suitable for the infauna and changes through time due to sediment processes. It is dynamically calculated in *Bio_Box_Process()* routine in **atbiology.c**. |
 | `sedoxdepth (t, b)` | Depth of oxygen horizon, m | Depth of the oxygenated sediment layer. The initial values are set in the *initial_conditions.nc*, but the actual oxygen layer depth is dynamic and depends on the amount of oxygen in the water column and sediments, and amount of biological activity. |
-| `sedbiodens (t, b)` | Biological activity, Animals m² | The "background density" of biological activity that is always present in the sediment. It is set by the user and can vary among boxes to reflect different quality of the sediment (see description of bioirrigation and bioturbation in chapter 5.2). Even though this variable has time dimension, it does not currently change through time |
+| `sedbiodens (t, b)` | Biological activity, Animals m² | The "background density" of biological activity that is always present in the sediment. It is set by the user and can vary among boxes to reflect different quality of the sediment (see description of bioirrigation and bioturbation @sec-main-physics-routine). Even though this variable has time dimension, it does not currently change through time |
 | `sedirrigenh (t, b)` | Bioirrigation enhancement, 1 | Scalar of bioirrigation enhancement due to action of infauna species (marked with _INF in the GroupType of the *functional_groups.csv* file). It is calculated in the *Irrig_and_Turb()* routine in **atprocess.c** in **atecology** library |
 | `sedturbenh (t, b)` | Bioturbation enhancement, 1 | Scalar of bioturbation enhancement due to action of infauna species (marked with _INF in the GroupType of the *functional_groups.csv* file). It is calculated in the *Irrig_and_Turb()* routine in **atprocess.c** in **atecology** library |
 | `erosion_rate (t, b)` | Erosion rate m/s | Dynamic erosion rate variable, which depends on the supplied bottom stress values and the topk variable |
-| `eddy (t, b)` | Eddy strength, 1 | Eddy strength in each box at each time step, depending on the eddy seasonal values and scalars (see vertical mixing routine description in chapter 5.2) |
+| `eddy (t, b)` | Eddy strength, 1 | Eddy strength in each box at each time step, depending on the eddy seasonal values and scalars (see vertical mixing routine description @sec-main-physics-routine) |
 
 : List and characteristics of physics variables given in the *output.nc* files (the same variables are given in the *initial_conditions.nc* file but without the time dimension). {#tbl-physics-output-variables tbl-colwidths=[20,25,55]}
 
