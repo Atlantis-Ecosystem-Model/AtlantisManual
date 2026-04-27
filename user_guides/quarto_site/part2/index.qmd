@@ -1,16 +1,9 @@
----
-number-sections: false
-listing:
-  contents:
-  - "0[2-9]-*.qmd"
-  - "1[0-5]-*.qmd"
-  type: table
-  fields: [title]
-  sort: "filename"
-  sort-ui: false
-  filter-ui: false
----
+# Part II Index {.unnumbered}
 
-# Atlantis User Guide - Part II Index {.unnumbered}
+Chapters in this part cover model fisheries, managment, socioeconomic models
 
-Chapters in this part cover model fisheries, managment, socioeconomic models 
+- @sec-F-intro
+- @sec-management
+- @sec-economics-intro
+- @sec-other-industries
+- @sec-part2-refs

@@ -1,4 +1,4 @@
-# Final Overview of Ecological Routines
+# Final Overview of Ecological Routines {#sec-ecology-overview}
 
 The schematic representation below gives a brief overview of the key ecology routines and the order they are called. The Harvest and socio-economic routines are not included in this representation.
 

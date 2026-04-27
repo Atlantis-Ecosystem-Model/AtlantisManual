@@ -1,6 +1,6 @@
 # Definitions of Functional Groups  {#sec-functional-groups}
 
-## **Introduction to functional groups**
+## **Introduction to functional groups** {#sec-intro-functional-groups}
 
 ***Types of functional groups***
 
@@ -29,6 +29,7 @@ If the model also includes tracking of P and C ([trackAtomicRatio]{style="color:
 Atlantis models 3-5 explicit distribution types of organisms and inanimate pools through the model domain -- **water column**, **epibenthic layer** and **sediments** are tracked in all models and **ice** and **land** may also optionally be included. The water column and **sediment** are modelled as three dimensional spaces (units of variables are in m^3^), whereas the epibenthic layer is two-dimensional (units in m^2^). Most organisms are restricted to one type, such as sediments (infaunal invertebrates identified with INF in GroupType name), epibenthic layer (epibenthic organisms, identified with EP in the GroupType name) or water column (fully age-structured groups). Some of the smaller groups (e.g. microflora primary producers) and the inanimate pools can exist in both the sediments and water column (@tbl-state-variables).
 
 In the Atlantis code the water column, epibenthic, sediment, ice and land distributionns are referred to as "habitatType". However, remember that they are not the same as the ecological epibenthic habitats modelled in Atlantis (e.g. seagrass, corals, sponges etc.).
+
 | **Group** | **State variables tracked** | **[GroupType]{style="color: orange"} in CSV file or *initial_conditions.nc*** |
 |:----------|:-----------------------------|:------------------------------------------------------|
 | **Biomass pools** | | |

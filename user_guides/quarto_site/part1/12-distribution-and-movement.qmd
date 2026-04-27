@@ -1,4 +1,4 @@
-# Distribution and Movement
+# Distribution and Movement {#sec-distribution-movement}
 
 The spatial distribution of organisms in the model domain is first set in the *initial_conditions.nc* file and is then updated at each time step. The main routine handling the distribution and movement is *Ecology_Total_Verts_And_Migration()* for fully age structured groups and *Ecology_Invert_Migration()* for biomass pools.
 

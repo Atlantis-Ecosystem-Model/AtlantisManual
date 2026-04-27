@@ -168,7 +168,7 @@ where *m~CX,Y,j~* is the total biomass (over all age groups) to be taken out fro
 
 Note that this file gives the **total catch per box in mg per second** over all age groups of a species. The age distribution of the imposed catch is given separately in the [CatchTS_agedistribXXX]{style="color: orange;"} parameter.
 
-It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the [typeCatchts]{style="color: orange;"} parameter in *force.prm* whether to use the last valid value ([typeCatchts]{style="color: orange;"} set to 1) or to interpolate between the two provided values ([typeCatchts]{style="color: orange;"} set to 0). See "Format of the time series (TS) forcing files" box in @sec-force-parameter.
+It is not necessary to give catch for each day. The user can give data for set time periods (every month or every year) and then indicate via the [typeCatchts]{style="color: orange;"} parameter in *force.prm* whether to use the last valid value ([typeCatchts]{style="color: orange;"} set to 1) or to interpolate between the two provided values ([typeCatchts]{style="color: orange;"} set to 0). See "Format of the time series (TS) forcing files" box in @sec-force-parameters.
 
 | **Parameter** | **Description** |
 |:--------------|:----------------|
@@ -387,7 +387,7 @@ The effort by the fishery Y in a cell j (*Eff~Y,j~* in days day^-1^) in a given 
 $${Eff}_{Y,j} = {TotEff}_{Y} \cdot \left( \varepsilon \cdot \left( {hEff}_{Q+1,Y,j} - {hEff}_{Q,Y,j} \right) + {hEff}_{Q,Y,j} \right) \cdot \left( \varepsilon \cdot \left( {Eff}_{Q+1,Y,j} - {Eff}_{Q,Y,j} \right) + {Eff}_{Q,Y,j} \right)$$
 :::
 
-where *ɛ* is the proportion of the quarter of the year that has passed; *hEff~Q,Y~* and *hEff~Q+1,Y~* are the box-specific season-specific proportional effort of the fishery Y in quarter Q and Q+1 provided by the user ([Effort_hdistribYYY]{style="color: orange;"}); *Eff~Q,Y~* and *Eff~Q+1,Y~* are the seasonal scalars of the total effort of the fishery Y ([mEff_YYY]{style="color: orange;"}, unitless); and *TotEff ~Y~* is the total average daily effort (days day^-1^) of the fishery Y ([YYY_Effort]{style="color: orange;"}, days per day). The box-specific effort proportions must sum to 1 for each quarter of the year. The proportional effort is the season-specific scalar on the total yearly effort. The quarterly distributions and scalars are interpolated linearly through the year, in the same way as it is done in the prescribed vertebrate spatial distributions (see chapter 11.1).
+where *ɛ* is the proportion of the quarter of the year that has passed; *hEff~Q,Y~* and *hEff~Q+1,Y~* are the box-specific season-specific proportional effort of the fishery Y in quarter Q and Q+1 provided by the user ([Effort_hdistribYYY]{style="color: orange;"}); *Eff~Q,Y~* and *Eff~Q+1,Y~* are the seasonal scalars of the total effort of the fishery Y ([mEff_YYY]{style="color: orange;"}, unitless); and *TotEff ~Y~* is the total average daily effort (days day^-1^) of the fishery Y ([YYY_Effort]{style="color: orange;"}, days per day). The box-specific effort proportions must sum to 1 for each quarter of the year. The proportional effort is the season-specific scalar on the total yearly effort. The quarterly distributions and scalars are interpolated linearly through the year, in the same way as it is done in the prescribed vertebrate spatial distributions (see @sec-spatial-dist-no-mig).
 
 ### ***Human population-based recreational fishing (efformodel=6, effortmodel=12)*** {#sec-effort-model-6-12}
 
@@ -625,7 +625,7 @@ Occasionally in Atlantis the same parameter is used in different ways under diff
 
 In this option the effort per fishery per box is calculated dynamically in a separate Economics submodel. It is set through [YYY_effortmodel]{style="color: orange;"}=13 and will be described separately in @sec-economics-intro.
 
-### ***Prescribed changes in fishing effort*** {#sec-rx-effort-changes
+### ***Prescribed changes in fishing effort*** {#sec-rx-effort-changes}
 
 As with some other fishing parameters, users can set up temporal changes in the fishing effort, which means that the effort can be forced to increase or decrease over a set period of time. Several changes in the effort can be applied. The prescribed change in fishing effort is activated with a global [flag flagchangeeffort]{style="color: orange;"} and with fishery specific parameters -- [YYY_num_changes]{style="color: orange;"} indicating number of changes for each fishery, [EffortChange_start_YYY]{style="color: orange;"} giving the start date of each effort change, [EffortChange_period_YYY]{style="color: orange;"} giving the period over which each effort changes to the new desired level, [Effort_mult_YYY]{style="color: orange;"} giving the multiplier of the each change in the effort (\>1 if effort should increase and \<1 if it should decrease) and [flagpulseYYY]{style="color: orange;"} parameter to indicate whether each change in the effort is a pulse change ([flagpulseYYY]{style="color: orange;"}=1) or not. The pulse change means that after the change period the effort will return to the original value, while non-pulse change means that the changed effort will apply for the rest of the simulation or until the next change in the effort.
 
@@ -848,7 +848,7 @@ and
 
 ### ***Calculation of length for length-based selectivity***
 
-The remaining gear selectivity options use length of an average individual to calculate gear selectivity. Since length is dynamic and will change in response to feeding condition, the realised gear selectivity will also be dynamic through time. See NOTE! in chapter 10.2.5 on how length of different functional groups is calculated.
+The remaining gear selectivity options use length of an average individual to calculate gear selectivity. Since length is dynamic and will change in response to feeding condition, the realised gear selectivity will also be dynamic through time. See NOTE! in @sec-size-refuge on how length of different functional groups is calculated.
 
 ### ***Logistic length-based selectivity curve (selcurve=2)***
 

@@ -276,7 +276,7 @@ A parameter [targetscale]{style="color: orange;"} is used to give the relative w
 
 : Parameters relating to quota trading and quota prices. {#tbl-quota-parameters tbl-colwidths=[25,75]}
 
-## **Economic responses** {@sec-economic-responses}
+## **Economic responses** {#sec-economic-responses}
 
 ### ***Monthly updating of boat numbers*** {#sec-monthly-boat-numbers}
 

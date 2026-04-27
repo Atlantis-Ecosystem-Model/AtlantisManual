@@ -1,6 +1,6 @@
-# Installation and Running
+# Installation and Running {#sec-installation}
 
-## How to check out and install the code**
+## How to check out and install the code** {#sec-checkout-install}
 
 ::: callout-important
 AR note: as of March 2026 this section is no longer current as we moved to GitHub.

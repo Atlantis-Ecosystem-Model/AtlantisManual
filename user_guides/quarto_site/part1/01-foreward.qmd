@@ -1,4 +1,8 @@
-# Foreword {.unnumbered}
+---
+number-sections: false
+---
+
+# Foreword {#sec-foreword .unnumbered}
 
 Before delving into Atlantis we would like to provide a little bit of background on the modelling framework and this manual.
 

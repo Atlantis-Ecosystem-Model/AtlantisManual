@@ -1,4 +1,4 @@
-# Primary Producer Processes
+# Primary Producer Processes {#sec-primary-producer-processes}
 
 The main Atlantis model has six different types of primary producers, including two sizes of phytoplankton (large phytoplankton LG_PHY and small phytoplankton SM_PHY), mixotrohic dinoflagellates (DINOFLAG), microphytobenthos (MICROPHTYBENTHOS) and two epibenthic groups (seagrasses SEAGRASS and other phytobenthos PHYTOBEN). In models including ice, specific ice primary producers are modelled. Simialrly in models that dynamically represent land, the user can define terrestrial vegetation (primary producer) groups, which are restricted to land (e.g. MANGROVE, MARSH, with crops and agriculture also available as in industry if the land use model option is used). The description below will focus on the main model only.
 

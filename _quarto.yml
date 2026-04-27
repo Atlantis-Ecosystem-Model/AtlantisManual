@@ -12,10 +12,10 @@ book:
 
   chapters:
     - index.qmd
+    - user_guides/quarto_site/part1/01-foreward.qmd
     - part: "Part I - Setup, Physics, and Biology"
       chapters:
         - user_guides/quarto_site/part1/index.qmd
-        - user_guides/quarto_site/part1/01-foreward.qmd
         - user_guides/quarto_site/part1/02-introduction.qmd
         - user_guides/quarto_site/part1/03-installation-and-running.qmd
         - user_guides/quarto_site/part1/04-geometry-of-the-model-domain.qmd
