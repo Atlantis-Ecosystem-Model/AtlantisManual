@@ -1,95 +1,58 @@
 project:
-  type: website
+  type: book
   output-dir: _site
-  render:
-    - "**/*.qmd"
 
-website:
-  title: "Atlantis Documentation"
-  navbar:
-    background: primary
-    search: true
-    left:
-      - text: "Home"
-        href: index.qmd
-      - text: "User Guides"
-        menu:
-          - text: "Part I - Setup, Physics, and Biology"
-            href: user_guides/quarto_site/part1/index.qmd
-          - text: "Part II - Fisheries, Management, and Economics"
-            href: user_guides/quarto_site/part2/index.qmd
-      - text: "Confluence Wiki"
-        href: https://atlantis-ecosystem-model.github.io/atlantis-wiki/
-      - text: "Known Limitations"
-        href: known_limitations/index.qmd
-    right:
-      - icon: github
-        href: https://github.com/Atlantis-Ecosystem-Model/AtlantisManual
-
+book:
+  title: "Atlantis User Guide"
+  search: true
   sidebar:
-    - id: part1
-      title: "Atlantis User Guide - Part I"
-      style: "docked"
-      background: light
-      collapse-level: 2
-      contents:
-        - text: "Overview"
-          href: user_guides/quarto_site/part1/index.qmd
-        - text: "0. Foreword"
-          href: user_guides/quarto_site/part1/01-foreward.qmd
-        - text: "1. Introduction"
-          href: user_guides/quarto_site/part1/02-introduction.qmd
-        - text: "2. Installation and Running"
-          href: user_guides/quarto_site/part1/03-installation-and-running.qmd
-        - text: "3. Geometry of the Model Domain"
-          href: user_guides/quarto_site/part1/04-geometry-of-the-model-domain.qmd
-        - text: "4. Hydrodynamic, Salinity and Temperature Forcing Data"
-          href: user_guides/quarto_site/part1/05-hydrodynamic-salinity-and-temperature-forcing-data.qmd
-        - text: "5. The Physics Submodel"
-          href: user_guides/quarto_site/part1/06-the-physics-submodel.qmd
-        - text: "6. Definitions of Functional Groups"
-          href: user_guides/quarto_site/part1/07-definitions-of-functional-groups.qmd
-        - text: "7. Run Parameters"
-          href: user_guides/quarto_site/part1/08-run-parameters.qmd
-        - text: "8. Force Parameters"
-          href: user_guides/quarto_site/part1/09-force-parameters.qmd
-        - text: "9. Primary Producer Processes"
-          href: user_guides/quarto_site/part1/10-primary-producer-processes.qmd
-        - text: "10. Consumer Processes"
-          href: user_guides/quarto_site/part1/11-consumer-processes.qmd
-        - text: "11. Distribution and Movement"
-          href: user_guides/quarto_site/part1/12-distribution-and-movement.qmd
-        - text: "12. Processes in Bacterial and Inanimate Pools"
-          href: user_guides/quarto_site/part1/13-processes-in-bacterial-and-inanimate-pools.qmd
-        - text: "13. Influence of Environmental Factors on Ecological Processes"
-          href: user_guides/quarto_site/part1/14-influence-of-environmental-factors-on-ecological-p.qmd
-        - text: "14. Final Overview of Ecology Routines"
-          href: user_guides/quarto_site/part1/15-final-overview-of-ecology-routines.qmd
-        - text: "References"
-          href: user_guides/quarto_site/part1/16-references.qmd
-        - text: "Appendix 1: Tips for Calibrating Biological Model"
-          href: user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biological-model-n.qmd
-    - id: part2
-      title: "Atlantis User Guide - Part II"
-      style: "docked"
-      background: light
-      collapse-level: 2
-      contents:
-        - text: "Overview"
-          href: user_guides/quarto_site/part2/index.qmd
-        - text: "15. Fishing Mortality"
-          href: user_guides/quarto_site/part2/01-15-fishing-mortality.qmd
-        - text: "16. Management"
-          href: user_guides/quarto_site/part2/02-16-management.qmd
-        - text: "17. Economics"
-          href: user_guides/quarto_site/part2/03-17-economics.qmd
-        - text: "18. Other Industries"
-          href: user_guides/quarto_site/part2/04-18-other-industries.qmd
-        - text: "References"
-          href: user_guides/quarto_site/part2/05-references.qmd
+    style: "docked"
+    background: light
+    collapse-level: 2
+
+  chapters:
+    - index.qmd
+    - user_guides/quarto_site/part1/01-foreward.qmd
+    - part: "Part I - Setup, Physics, and Biology"
+      chapters:
+        - user_guides/quarto_site/part1/index.qmd
+        - user_guides/quarto_site/part1/02-introduction.qmd
+        - user_guides/quarto_site/part1/03-installation-and-running.qmd
+        - user_guides/quarto_site/part1/04-geometry-of-the-model-domain.qmd
+        - user_guides/quarto_site/part1/05-hydrodynamic-salinity-and-temperature-forcing-data.qmd
+        - user_guides/quarto_site/part1/06-the-physics-submodel.qmd
+        - user_guides/quarto_site/part1/07-definitions-of-functional-groups.qmd
+        - user_guides/quarto_site/part1/08-run-parameters.qmd
+        - user_guides/quarto_site/part1/09-force-parameters.qmd
+        - user_guides/quarto_site/part1/10-primary-producer-processes.qmd
+        - user_guides/quarto_site/part1/11-consumer-processes.qmd
+        - user_guides/quarto_site/part1/12-distribution-and-movement.qmd
+        - user_guides/quarto_site/part1/13-processes-in-bacterial-and-inanimate-pools.qmd
+        - user_guides/quarto_site/part1/14-influence-of-environmental-factors-on-ecological-p.qmd
+        - user_guides/quarto_site/part1/15-final-overview-of-ecology-routines.qmd
+        - user_guides/quarto_site/part1/16-references.qmd
+        - user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biological-model-n.qmd
+    - part: "Part II - Fisheries, Management, and Economics"
+      chapters:
+        - user_guides/quarto_site/part2/index.qmd
+        - user_guides/quarto_site/part2/01-15-fishing-mortality.qmd
+        - user_guides/quarto_site/part2/02-16-management.qmd
+        - user_guides/quarto_site/part2/03-17-economics.qmd
+        - user_guides/quarto_site/part2/04-18-other-industries.qmd       
+        - user_guides/quarto_site/part2/05-references.qmd
+
+  appendices:
+    - confluence/index.qmd
+    - resources/index.qmd
+    - contact/index.qmd
+
+crossref:
+  chapters: true
+
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
     toc-depth: 4
+    number-sections: true

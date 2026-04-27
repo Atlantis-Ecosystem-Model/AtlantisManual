@@ -1,10 +1,8 @@
----
-title: "9. PRIMARY PRODUCER PROCESSES"
----
+# Primary Producer Processes {#sec-primary-producer-processes}
 
 The main Atlantis model has six different types of primary producers, including two sizes of phytoplankton (large phytoplankton LG_PHY and small phytoplankton SM_PHY), mixotrohic dinoflagellates (DINOFLAG), microphytobenthos (MICROPHTYBENTHOS) and two epibenthic groups (seagrasses SEAGRASS and other phytobenthos PHYTOBEN). In models including ice, specific ice primary producers are modelled. Simialrly in models that dynamically represent land, the user can define terrestrial vegetation (primary producer) groups, which are restricted to land (e.g. MANGROVE, MARSH, with crops and agriculture also available as in industry if the land use model option is used). The description below will focus on the main model only.
 
-## **9.1. Fluxes in primary producers**
+## **Fluxes in primary producers**
 
 In primary producer pools the flux is determined by growth (*G~PP~*), natural mortality (*M~PP~*) and grazing (predation) (*Gr~PP,i~*). In addition, there is an optional encystment at certain times of the year or when temperatures (*Ec~out~*) reach a certain trigger level. Transfer back from cysts occurs when conditions are suitable (*Ec~in~*).
 
@@ -36,9 +34,9 @@ For SEAGRASS and PHYTOBEN:
 Most ecosystem models do not explicitly model microphytobenthos, which consists of small epibenthic primary producers. The Port Philip Bay Integrated Model (PPBIM) (Muray and Parslow 1997), which is used as a basis for simulating lower trophic level dynamics in Atlantis, included microphytobenthos, because it was well studied in the Port Phillip Bay and its production was shown to be significant. Other estuarine models also use microphytobenthos given its important role in those kinds of ecosystems. However, for the majority of coastal Atlantis models the group is not used due to the limited amount of data available for parameterisation and the deeper water depths, where it plays a less important role.
 :::
 
-## **9.2. Primary producer growth**
+## **Primary producer growth**
 
-The equations and processes governing primary production in Atlantis have been adopted from the PPBIM model of [Murray and Parslow (1997)](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155482/341447378/Link_et_al_2011_NEUS_tech_memo.pdf). Primary production processes are executed by *Primary_Production()* routine in **atprocess.c**
+The equations and processes governing primary production in Atlantis have been adopted from the PPBIM model of [Murray and Parslow (1997)](https://atlantis-ecosystem-model.github.io/atlantis-wiki/useful-reading.html). Primary production processes are executed by *Primary_Production()* routine in **atprocess.c**
 
 Growth of a primary producer *pp* is determined by **multiplying** the biomass of *pp* by the maximum specific growth rate (*mum*) and by three additional potentially limiting factors:
 
@@ -61,7 +59,7 @@ The *mum* parameter defines the maximum growth rate per day (mgN day^-1^).
 Atlantis has different options to design limitation by different nutrients (N, Si and P if phosphorus is tracked), set by the [flagnut]{style="color: orange;"} parameter, with choices of multiplicative or Leibig (minimum nutrient) limitation. However, this does not apply to combined limitation by nutrient, light and space, where simple multiplication is used. The quote above suggests caution when applying multiple limitations on growth, and careful assessment of whether the multiple impacts do not lead to overly constraining limitation.
 :::
 
-### ***9.2.1. Primary producer nutrient limitation***
+### ***Primary producer nutrient limitation***
 
 The **nutrient limitation** *δ~nutrient\ ~*scalar in case of limitation based on N only is calculated as
 
@@ -83,9 +81,9 @@ For illustration, assuming a hypothetical case of DIN and Si concentrations of 1
 
 Atlantis has an optional nutrient limitation for one additional tracer of micronutrients (currently used for iron). This option is set when [flagmicro]{style="color: orange;"}=1. If micronutrient limitation is used, half-saturation constants ([KF_XXX]{style="color: orange;"}) should be provided for all primary producer groups. Limitation by additional nutrients will be done according to the [flagnut]{style="color: orange;"} option described above.
 
-In models that track P and C ([TrackAtomicRatio]{style="color: orange;"} =1 in *run.prm* file) primary production will also be limited by P and C. Further details are available on the [wiki](https://confluence.csiro.au/display/Atlantis/2013/04/23/New+Phosphorus+tracking).
+In models that track P and C ([TrackAtomicRatio]{style="color: orange;"} =1 in *run.prm* file) primary production will also be limited by P and C. Further details are available on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/new-phosphorus-tracking.html).
 
-### ***9.2.2. Primary producer light limitation***
+### ***Primary producer light limitation***
 
 Photosynthesis in the model is potentially light-limited and the available suitable light (W m^-2^) -- the photosytenthically active radiation (PAR) - in the water column and at the sediment surface is modelled explicitly. The **light limitation** *δ~light\ ~*factor is calculated in *Light_Lim()* in **atproces.c** as:
 
@@ -99,7 +97,7 @@ If light adaptation is used the light limitation is calculated as
 
 $$\delta_{light} = \min\left( \frac{IRR}{KI + optIRR},1 \right)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ light\ adaptation\ is\ used\ (flaglight = 1)$$
 
-The amount of light falling on the surface of the top layer is either provided through external time series or calculated in Atlantis depending on the [lim_sun_hours]{style="color: orange;"} setting (described in chapter 5, Physics).
+The amount of light falling on the surface of the top layer is either provided through external time series or calculated in Atlantis depending on the [lim_sun_hours]{style="color: orange;"} setting (described in @sec-focing-files, Physics).
 
 The **light attenuation** *Kd* through the water column (described in Fulton 2001) defines the availability of light to primary producers at different depths and is calculated as
 
@@ -114,7 +112,7 @@ The equation shows that light attenuation is simply defined by the background bl
 5. labile and refractory detritus and the coefficient [k_DL]{style="color: orange;"}
 6. light absorption by suspended sediment [k_SED]{style="color: orange;"}, used only if the model is estuary ([flagIsEstuary]{style="color: orange;"}=1)
 
-### ***9.2.3. Primary macrophyte producer space limitation***
+### ***Primary macrophyte producer space limitation***
 
 Space limitation is only applied to epibenthic primary producers, defined by PHYTOBEN or SEAGRASS
 
@@ -124,25 +122,25 @@ $$\delta_{space} = \frac{B_{PP}}{SPmax \cdot P_{area}}$$
 
 where *SPmax* is the coefficient setting maximum biomass of the epibenthic primary producer ([XXmax]{style="color: orange;"}) in mgN m^-2^ and *P~area\ ~*is the proportion of the cell covered with suitable habitat scaled by the habitat degradation scalar (if used). Space limitation is activated using [flagXXXlim]{style="color: orange;"}.
 
-### ***9.2.4 Effect of eddies on primary production***
+### ***Effect of eddies on primary production***
 
 The effect of eddies, or the **eddy scalar** *δ~eddy~*, on primary production is modelled by simple scaling (multiplication) using the user defined eddy_scale parameter. This dimensionless parameters is multiplied by the eddy strength in a given box to obtain *δ~eddy~*
 
 $$\delta_{eddy} = {eddy}_{scale} \cdot {eddy}_{strength}$$
 
-Eddy strengths for each box and each quarter are set in the *physics.prm* file (see Chapter 5.2, section III).
+Eddy strengths for each box and each quarter are set in the *physics.prm* file (@sec-main-physics-routine, section III).
 
 ::: {.callout-caution}
 **Effect of eddies on primary production**  
 
 There is good evidence to suggest that the presence of eddies significantly enhances primary production through vertical water column mixing creating spatial and seasonal variation. There are two ways to add this variation in Atlantis and users are encouraged to make use of these parameters.
 
-First, the effects of eddies on vertical mixing alone can be included through the parameters in the *physics.prm* ([eddy_vertmix]{style="color: orange;"}, [eddy_S1]{style="color: orange;"} to [eddy_S2]{style="color: orange;"}, [eddy_mixscale]{style="color: orange;"} -- see chapter 5.2, section III). This should increase vertical mixing in the water column and bring extra nutrients to the surface.
+First, the effects of eddies on vertical mixing alone can be included through the parameters in the *physics.prm* ([eddy_vertmix]{style="color: orange;"}, [eddy_S1]{style="color: orange;"} to [eddy_S2]{style="color: orange;"}, [eddy_mixscale]{style="color: orange;"} -- @sec-main-physics-routine, section III). This should increase vertical mixing in the water column and bring extra nutrients to the surface.
 
 Second, the user can add an extra scalar *δ~eddy\ ~*on primary production through the [eddy_scale]{style="color: orange;"} parameter in the *biology.prm* file. This scalar will take the eddy values and re-scale the primary production calculated for the available amount of light and nutrients based on eddy strength. The second approach assumes that additional nutrients are implicitly supplied through eddies, increasing primary production (these nutrients do not appear in the tracer values but represent just an assumed increase). This *ad hoc* approach can be taken if the model fails to accurately reflect spatial and seasonal variation in primary production, but the explicit dynamics of nutrient turnover is not resolved accurately enough to enhance primary production sufficiently through nutrient mixing alone. It is not recommended for models that focus on nutrient dynamics and lower trophic levels, but might be useful for models that focus on the dynamics at higher trophic levels and socio-economic aspects.
 :::
 
-## **9.3. Primary producer mortality**
+## **Primary producer mortality**
 
 ::: {.callout-caution}
 **Primary producers in water column, sediments and epibenthos** 
@@ -172,24 +170,28 @@ $$mS_{MA} = \ STRESS \cdot \ mS\_\_ MA$$
 
 $$mS_{SG} = \ DIN \cdot \ mS\_\_ SG$$
 
-where *mS_MA* is the algal mortality rate (day^-1^) due to abrasion by bottom stress or waves (*STRESS*), provided through external forcing or calculated in the model (see Chapter 5, Physics) and [mS_SG]{style="color: orange;"} is the seagrass mortality rate (day^-1^) due to fouling by epiphytes in water of high nutrient concentration, and *DIN* is the concentration of NH3 and NO3.
+where *mS_MA* is the algal mortality rate (day^-1^) due to abrasion by bottom stress or waves (*STRESS*), provided through external forcing or calculated in the model (@sec-physics-submodel, Physics) and [mS_SG]{style="color: orange;"} is the seagrass mortality rate (day^-1^) due to fouling by epiphytes in water of high nutrient concentration, and *DIN* is the concentration of NH3 and NO3.
 
 ::: {.callout-caution}
 **What is the difference between lysis and linear mortality?**                                                    
 Lysis represents cell leakage and is inversely related to nutrient concentration, whereas linear mortality is just a constant mortality term. PPBIM only had the linear mortality, but ERSEM also included lysis, and both options are included in Atlantis. The users have an option to use either or both, depending on the mortality parameter values set.
 :::
 
-Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2012%2F10%2F19&title=Handling+effects+of+acidification) and [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2015%2F5%2F14&title=Acidification+induced+mortality) and in Chapter 13. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
+<<<<<<< main
+Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html) and [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) and in Chapter 13. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
+=======
+Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2012%2F10%2F19&title=Handling+effects+of+acidification) and [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2015%2F5%2F14&title=Acidification+induced+mortality) and in @sec-environmental-factors. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
+>>>>>>> bug/i14-dynamic-figure-indexing
 
 Primary producer mortality is handled by *Primary_Production()* in **atprocess.c** and *Phytoplankton\_ Process()* in **atGroupProcess.c** routines.
 
-## **9.4. Encystment of primary producers**
+## **Encystment of primary producers**
 
-It is possible to include the encystment of primary producers, triggered by time of the year or temperature. This option is only modelled for groups that have [isOverWinter]{style="color: orange;"} set to 1 in the *functional_groups.csv* file and is described in further detail on the wiki [here](https://confluence.csiro.au/pages/viewpage.action?pageId=43155510).
+It is possible to include the encystment of primary producers, triggered by time of the year or temperature. This option is only modelled for groups that have [isOverWinter]{style="color: orange;"} set to 1 in the *functional_groups.csv* file and is described in further detail on the wiki [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/overwintering-encystment.html).
 
-## **9.5. Effect of temperature and salinity on primary production**
+## **Effect of temperature and salinity on primary production**
 
-Both light saturation ([KI_XXX_T15]{style="color: orange;"}) and maximum growth rate ([mum_XXX_T15]{style="color: orange;"}) are dependent on **temperature** and will be scaled by *Tcorr* calculated based on the current water temperature as described in chapter 13.
+Both light saturation ([KI_XXX_T15]{style="color: orange;"}) and maximum growth rate ([mum_XXX_T15]{style="color: orange;"}) are dependent on **temperature** and will be scaled by *Tcorr* calculated based on the current water temperature as described in @sec-environmental-factors.
 
 The **salinity** effect on light saturation and maximum growth rate are optional, where the *Scorr* is applied only when:
 
@@ -198,7 +200,7 @@ The **salinity** effect on light saturation and maximum growth rate are optional
 
 If the two conditions are fulfilled, the *Scorr* scalar provided by the user as [salt_correction_XXX]{style="color: orange;"} parameter, is applied to [KI_XXX_T15]{style="color: orange;"} and [mum_XXX_T15]{style="color: orange;"} (along with the *Tcorr* described above).
 
-## **9.6. Growth of mixotrophic primary producers**
+## **Growth of mixotrophic primary producers**
 
 Atlantis includes a mixotrophic dinaflagelate group DINOFLAG, the growth of which is determined by both primary production and heterotrophic consumption.
 
@@ -210,40 +212,33 @@ Mixotrophic growth due to consumption is calculated by first determining potenti
 
 Nutrient stress related lysis of DINOFLAG is also corrected to account for the mitigating effects of phagotrophy), with the corection dictated by the proportion of photosynthetic nutrient made up by the grazing.
 
----
-title: "PRIMARY PRODUCTION PARAMETERS"
----
 
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | **Key parameters defining primary production and primary producer mortality** | |
 | [KN_XXX]{style="color: orange;"} | Half-saturation constant for XXX growth on DIN (mgN m^-3^) |
-| [KS_XXX]{style="color: orange;"} | Half-saturation constant for XXX growth on Si (mgN m^-3^ ) -- only important for Si limited groups, as defined in the *functional_groups.csv* file |
-| [KI_XXX_T15]{style="color: orange;"} | Light saturation of XXX at 15C (W m^-2^) - this parameter is temperature dependent (and potentially salinity dependent), and a scalar is applied based on current temperature (and salinity) conditions. |
-| [mum_XXX_T15]{style="color: orange;"} | Maximum primary producer XXX growth rate at 15C (mgN mgN^-1^ day^-1^) -- this parameter is temperature dependent (and potentially salinity dependent), and a scalar is applied based on current temperature (and salinity) conditions. |
+| [KS_XXX]{style="color: orange;"} | Half-saturation constant for XXX growth on Si (mgN m^-3^) — only important for Si limited groups, as defined in the *functional_groups.csv* file |
+| [KI_XXX_T15]{style="color: orange;"} | Light saturation of XXX at 15°C (W m^-2^) — this parameter is temperature dependent (and potentially salinity dependent), and a scalar is applied based on current temperature (and salinity) conditions. |
+| [mum_XXX_T15]{style="color: orange;"} | Maximum primary producer XXX growth rate at 15°C (mgN mgN^-1^ day^-1^) — this parameter is temperature dependent (and potentially salinity dependent), and a scalar is applied based on current temperature (and salinity) conditions. |
 | [XXmax]{style="color: orange;"} | Maximum biomass of large epibenthic primary producers (phytobenthos and macroalgae) (mgN m^-2^) |
 | [mL_XXX]{style="color: orange;"} | Linear mortality of primary producers (day^-1^) |
 | [KLYS_XXX]{style="color: orange;"} | Lysis rate of primary producers (day^-1^) |
 | [mS_XXX]{style="color: orange;"} | Extra mortality of macroalgae (PHYTOBEN) due to wave action (day^-1^) |
 | [mS_XXX]{style="color: orange;"} | Extra mortality of seagrasses (SEAGRASS) due to fouling (day^-1^) |
 | **Further modification of primary production** | |
-| [flaglight]{style="color: orange;"} | Flag indication whether light adaptation in primary producers is activated (0=no, 1=yes), It set to 1 (i.e. activated) it will increase production at low light levels, but it will also require four additional parameters: [KIOP_min]{style="color: orange;"}, [KIOP_shift]{style="color: orange;"}, [KI_avail]{style="color: orange;"}, [K_addepth]{style="color: orange;"} (see SETas model example of *biology.prm* file) |
-| flag_macro_model | Flag indicated whetehr a more detailed seagrass model is activated, see details [here](https://confluence.csiro.au/display/Atlantis/2012/12/12/new+seagrass+modelling+option) (0=no, 1=yes). If the flag is set to 1 then three separate pools will be initiated and tracked for each SEAGRASS group type: main biomass, epiphyte biomass and below ground biomass |
-| [flagnut]{style="color: orange;"} | Nutrient limitation form used if primary production is limited by several nutrients (0=Leibig's law where limitation is set by the most limiting nutrient; 1= multiplicative; 2=WQI) |
-| [flagmicronut]{style="color: orange;"} | Flag indications whether there is micronutrient limitation (0=no, 1=yes)<br><br>If set to 1, half-saturation constant for the micronutrient (typically Fe) is required ([KF_XXX]{style="color: orange;"}) |
+| [flaglight]{style="color: orange;"} | Flag indicating whether light adaptation in primary producers is activated (0 = no, 1 = yes). If set to 1 (i.e. activated) it will increase production at low light levels, but it will also require four additional parameters: [KIOP_min]{style="color: orange;"}, [KIOP_shift]{style="color: orange;"}, [KI_avail]{style="color: orange;"}, [K_addepth]{style="color: orange;"} (see SETas model example of *biology.prm* file) |
+| [flag_macro_model]{style="color: orange;"} | Flag indicating whether a more detailed seagrass model is activated, see details [here](https://confluence.csiro.au/display/Atlantis/2012/12/12/new+seagrass+modelling+option) (0 = no, 1 = yes). If the flag is set to 1 then three separate pools will be initiated and tracked for each SEAGRASS group type: main biomass, epiphyte biomass and below ground biomass |
+| [flagnut]{style="color: orange;"} | Nutrient limitation form used if primary production is limited by several nutrients (0 = Liebig's law where limitation is set by the most limiting nutrient; 1 = multiplicative; 2 = WQI) |
+| [flagmicronut]{style="color: orange;"} | Flag indicating whether there is micronutrient limitation (0 = no, 1 = yes)<br><br>If set to 1, half-saturation constant for the micronutrient (typically Fe) is required ([KF_XXX]{style="color: orange;"}) |
 | [eddy_scale]{style="color: orange;"} | Coefficient scaling eddy strength impact on phytoplankton growth |
-| [swr_scalar]{style="color: orange;"} | Proportion of shortwave radiation available to photosynthesis -- usually set to 0.45 |
-| [swr_const]{style="color: orange;"} | Constant in the equation for the shortwave radiation available to photosynthesis -- usually set to 1367.0 |
-| [swr_cos_coefft]{style="color: orange;"} | Coefficient of the cos term in the equation for the shortwave radiation available to photosynthesis -- usually set to 0.034 |
-| [swr_cos_offset]{style="color: orange;"} | Offset term in the cos term in the equation for the shortwave radiation available to photosynthesis -- usually set to 0.0 |
-| [MB_wc]{style="color: orange;"} | Scalar for microphytobenthos growth in the water column -- growth should be strongly reduced as it is not on the substrate (which is its primary habitat). Only important when microphytobenthos is being modelled. |
+| [swr_scalar]{style="color: orange;"} | Proportion of shortwave radiation available to photosynthesis — usually set to 0.45 |
+| [swr_const]{style="color: orange;"} | Constant in the equation for the shortwave radiation available to photosynthesis — usually set to 1367.0 |
+| [swr_cos_coefft]{style="color: orange;"} | Coefficient of the cos term in the equation for the shortwave radiation available to photosynthesis — usually set to 0.034 |
+| [swr_cos_offset]{style="color: orange;"} | Offset term in the cos term in the equation for the shortwave radiation available to photosynthesis — usually set to 0.0 |
+| [MB_wc]{style="color: orange;"} | Scalar for microphytobenthos growth in the water column — growth should be strongly reduced as it is not on the substrate (which is its primary habitat). Only important when microphytobenthos is being modelled. |
 
-: Primary production parameters for Atlantis model configuration {#tbl-primary-production-parameters}
-:::
+: Primary production parameters for Atlantis model configuration. {#tbl-primary-production-parameters tbl-colwidths=[25,75]}
 
 ::: {.callout-note}
 **If [TrackAtomicRatio]{style="color: orange;"} is set to 1** in *run.prm* file and the model tracks N:P:C many additional parameters are required to describe P, and C effect on primary production. See details [here](https://confluence.csiro.au/display/Atlantis/2013/04/23/New+Phosphorus+tracking) and sample SETas model *biology.prm* file
 :::
-
-: []{#_Toc526762765 .anchor}Table 13. Parameters used for primary producer processes

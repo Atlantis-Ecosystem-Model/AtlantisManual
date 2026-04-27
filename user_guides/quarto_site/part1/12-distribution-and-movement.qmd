@@ -1,14 +1,13 @@
----
-title: "11. DISTRIBUTION AND MOVEMENT"
----
+# Distribution and Movement {#sec-distribution-movement}
 
 The spatial distribution of organisms in the model domain is first set in the *initial_conditions.nc* file and is then updated at each time step. The main routine handling the distribution and movement is *Ecology_Total_Verts_And_Migration()* for fully age structured groups and *Ecology_Invert_Migration()* for biomass pools.
 
-The simplest form of spatial distribution is called "prescribed movement" and is done when species do not have any density dependent movement ([XXX_ddepend_move]{style="color: orange;"}=0) or migrations ([NumMigrations]{style="color: orange;"} =0 in the *functional_groups.csv* file). In this case the spatial distribution is determined or prescribed by FXXX_SY parameters where the Y is typically 1-4 (representing seasonal shifts), but can now be set to whatever number the user desires (see details [here](https://confluence.csiro.au/pages/viewpage.action?pageId=346916326)). These vectors determine the horizontal distribution, whereas [VERTnight_XXX]{style="color: orange;"} and [VERTday_XXX]{style="color: orange;"} parameters define vertical distribution. This is described in chapter 11.1
+
+The simplest form of spatial distribution is called "prescribed movement" and is done when species do not have any density dependent movement ([XXX_ddepend_move]{style="color: orange;"}=0) or migrations ([NumMigrations]{style="color: orange;"} =0 in the *functional_groups.csv* file). In this case the spatial distribution is determined or prescribed by FXXX_SY parameters where the Y is typically 1-4 (representing seasonal shifts), but can now be set to whatever number the user desires (see details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/change-to-prescribed-movement-flexible-number-of-time-period.html)). These vectors determine the horizontal distribution, whereas [VERTnight_XXX]{style="color: orange;"} and [VERTday_XXX]{style="color: orange;"} parameters define vertical distribution. This is described in @sec-spatial-dist-no-mig.
 
 When [XXX_ddepend_move]{style="color: orange;"}=1 a species is set as sedentary. This means that once an individual (biomass) recruits into a box, there will be no further horizontal movement. So no prescribed movement parameters ([FXXX_S1]{style="color: orange;"} to [FXXX_S4]{style="color: orange;"}) will be applied! The vertical movement is still allowed.
 
-When density dependent movement is used ([XXX_ddepend_move]{style="color: orange;"}=2, 3, 5, 7) the parameters for "prescribed" horizontal movement are mostly or entirely overwritten by the movement and distribution due to food availability (except for the movement of the spawning and not feeding individuals during the spawning period, see below). This is a very important aspect of the model and makes full use of the spatially explicit modelling approach. However, for many models parameterising the density dependent movement can be challenging and it is often applied only to a few key species. This is because turning the density dependent movement without proper parameterisation can lead to all individuals accumulating in one box and completely depleting the food resource, or switching between boxes too rapidly. This is described in chapter 11.2
+When density dependent movement is used ([XXX_ddepend_move]{style="color: orange;"}=2, 3, 5, 7) the parameters for "prescribed" horizontal movement are mostly or entirely overwritten by the movement and distribution due to food availability (except for the movement of the spawning and not feeding individuals during the spawning period, see below). This is a very important aspect of the model and makes full use of the spatially explicit modelling approach. However, for many models parameterising the density dependent movement can be challenging and it is often applied only to a few key species. This is because turning the density dependent movement without proper parameterisation can lead to all individuals accumulating in one box and completely depleting the food resource, or switching between boxes too rapidly. This is described in @sec-spatial-dist-dens-dep.
 
 When [XXX_ddepend_move]{style="color: orange;"}=4 no explicit movement, vertical or horizontal, is permitted.
 
@@ -18,11 +17,11 @@ Finally, when species have annual migrations then the spatial distribution is al
 
 Below the options determining spatial distribution are described in further detail
 
-## **11.1 Spatial distribution without migration or density dependent movement**
+## **Spatial distribution without migration or density dependent movement** {#sec-spatial-dist-no-mig}
 
 Atlantis updates horizontal and vertical distribution of species at each time step. When no density dependent or migratory movement is used, this is simply done by interpolating the proportion of biomass provided by the user in each box for each quarter of the year given in the FXXX_SY (typically [FXXX_S1]{style="color: orange;"} to [FXXX_S4]{style="color: orange;"}) parameters. Note, that for the remainder of this discussion it will be assumed that [numMoveEntries]{style="color: orange;"} is set to 4 (representing traditional quarterly shifts in movement distributions). The same logic applies if [numMoveEntries]{style="color: orange;"} does not equal 4, just adjust the frequency and number of entries accordingly.
 
-The horizontal distributions are given separately for adult and juvenile stages of the species, and the transition from juveniles to adults is given by the [XXX_age_mat]{style="color: orange;"} parameter, indicating the first mature age class (this does not mean that all individuals in that age class are mature or will spawn, see the chapter on Spawning for further details).
+The horizontal distributions are given separately for adult and juvenile stages of the species, and the transition from juveniles to adults is given by the [XXX_age_mat]{style="color: orange;"} parameter, indicating the first mature age class (this does not mean that all individuals in that age class are mature or will spawn, see the @sec-spawn for further details).
 
 The abundance of species CX (juvenile or adult) in a cell j (*Abund~j~*) at a given timestep is calculated as
 
@@ -48,7 +47,7 @@ The setting of these sensitivity flags indicates what form of tolerance to inclu
 If [flagenviro_kill]{style="color: orange;"} is set to 0 then the individuals displaced by the environment will not die but simply move. **If none of the cells have suitable conditions the species will disappear from the model domain.** If [flagenviro_kill]{style="color: orange;"} is set to 1 then any individuals that do not find suitable cells die and are added to water column detritus in their source cell.
 :::
 
-## **11.2 Spatial distribution with density dependent movement**
+## **Spatial distribution with density dependent movement** {#sec-spatial-dist-dens-dep}
 
 Vertebrates and pelagic invertebrates can have density dependent movement, which means that the spatial distribution will be determined by the food availability in different boxes. At each time step Atlantis will evaluate potential feeding rates of each age group of a species (for which density dependent movement is turned on) in each box of the model. This will construct a spatial landscape of boxes determined by the potential feeding possibilities they provide. The distribution at each step will then be determined according to this landscape and two parameters, setting the threshold difference and ranking (see below). Two types of density dependent movement are available in Atlantis -- basic ([XXX_ddepend_move]{style="color: orange;"}=2) and "sticky" ([XXX_ddepend_move]{style="color: orange;"}=3). We first describe how the basic density depdent movement works.
 
@@ -109,7 +108,7 @@ When [XXX_ddepend_move]{style="color: orange;"}=5 only prescribed movement for t
 Note, that currently there is no way to eliminate prescribed movement during spawning for "sticky" density dependent movement. This can however be set by selecting a flag [feed_while_spawn]{style="color: orange;"}=1 
 :::
 
-## **11.3. Forcing the model distributions with species distribution models**
+## **Forcing the model distributions with species distribution models**
 
 You may want to change the species distributions through time based on the output of another model, such as a species distribution model. This can be done by loading in forcing files for the new distributions. To do this in *force.prm* set [use_move_entries]{style="color: orange;"} 1 and then provide the information on the groups to influence and files to use as follows (this example has two groups, FXX and FYY, and 2 stages)
 
@@ -174,9 +173,9 @@ Also note that regardless of the t values provided in the forcing file it will s
 
 The number of time slices per year to include in the forcing file must match the value for [numMoveEntries]{style="color: orange;"} in *functional_groups.csv* to ensure that the species distribution model slices are correctly read in Atlantis. The number of time slices per year should also be reflected by the initial seasonal distributions in the *biology.prm* file seasonal distributions. For instance, in the case of a monthly-resolved species distribution model [FXXX_S1]{style="color: orange;"} to [FXXX_S12]{style="color: orange;"} should be provided.
 
-## **11.4. Migration into and out of the model domain**
+## **Migration into and out of the model domain**
 
-### ***11.4.1. Annual migrations***
+### ***Annual migrations***
 
 It is possible to allow a part or all of an age cohort or biomass pool to leave the model domain for a set period of time. This is used to imitate seasonal migrations to areas outside the model domain. This option is typically used for large mammals such as whales, which only spend a specific period of time within the model domain, but it can be applied to any group. For age-structured groups separate migration parameters are given for juveniles and adults, and one parameter is needed for biomass pools. Migration is handled by the *Ecology_Invert_Migration()* and E*cology_Total_Verts_And\_ Migration()* routines in **atmovement.c**
 
@@ -226,11 +225,11 @@ Within the model, when it is a migration time, the code checks what proportion o
 
 :::
 
-### ***11.4.2. Multi-year migrations***
+### ***Multi-year migrations***
 
 To trigger multi-year migrations set [MultiYrMigrations]{style="color: orange;"} to 1 for the group in the *functional_groups.csv* file. The time of year when the group leaves, returns and the periods of time over which migration occur are set as for annual migrations, as is the [MigIOBox_XXX.]{style="color: orange;"} The number of years spent away -- set using [MinTimeAway]{style="color: orange;"} and [MaxTimeAway]{style="color: orange;"} is important for specifying how long these multi-year migrations last and whether there are any staggered returns or the entire set of migrants return together.
 
-## **11.5. External population model**
+## **External population model**
 
 To represent the juvenile (at sea) period, which occurs outside the model domain, a specific population model is triggered, which deals explicitly with growth and mortality during this external period (rather than the simple handling typical of standard Atlantis external migrations). To trigger this population model set [external_populations]{style="color: orange;"} to 1 in the *run.prm* file and then indicate which species use this option using the [isExternal]{style="color: orange;"} flag in the *functional_groups.csv* file. This will then execute the external population model on all animals for that species in the MIGRATION array (i.e. any individuals of that functional group that are outside the model domain).
 
@@ -248,11 +247,9 @@ $$N_{ext\_ mort} = \left( m_{l\_ ext} + m_{p\_ ext} \right) \cdot N_{t}$$
 
 where *N~t~* is the number of individuals in an age class at time *t* and the mortality rates [mLext]{style="color: orange;"} and [mPext]{style="color: orange;"}. This population model also uses the existing Atlantis parameters [li_a_XXX]{style="color: orange;"}, [li_b_XXX]{style="color: orange;"}, [pR_XXX]{style="color: orange;"} and [age_mat_XXX]{style="color: orange;"}.
 
-## **11.6. Invading species**
+It is possible to allow for an invading species (functional group) to enter the model domain. At present only a couple of simple representations of invasion exist, but further may come later (please check the wiki for the latest options). The parameters required by the current invasion models are given in @tbl-invading-species-parameters.
 
-It is possible to allow for an invading species (functional group) to enter the model domain. At present only a couple of simple representations of invasion exist, but further may come later (please check the wiki for the latest options). The parameters required by the current invasion models are given in Table 25.
-
-[]{#_Toc526762777 .anchor} Table 25. Parameters used in the invading species sub-model.
+## **Invading species**
 | Parameter | Description |
 |:----------|:------------|
 | [invading_sp_model]{style="color: orange;"} | 0 = no invader; 1 = simple drip-feed entry into one box and spread from there; 2 = points of invasion and spread are determined by habitat and environmental conditions; 3 = complex invasion model (currently not implemented) |
@@ -264,10 +261,13 @@ It is possible to allow for an invading species (functional group) to enter the 
 | [InvaderMaxDepth]{style="color: orange;"} | Maximum depth invader tolerates |
 | [InvaderStartDay]{style="color: orange;"} | Day of the run the invasion begins |
 | [InvaderEndDay]{style="color: orange;"} | Day of run invasion ends |
-| [InvaderScalar]{style="color: orange;"} | Proportional scalar to represent drip feed of invaders to existing population -- used if [invading_sp_model]{style="color: orange;"} is set to 1 |
+| [InvaderScalar]{style="color: orange;"} | Proportional scalar to represent drip feed of invaders to existing population — used if [invading_sp_model]{style="color: orange;"} is set to 1 |
 | [InvaderSpeed]{style="color: orange;"} | Rate of spread of front of the invading species (m hr^-1^) |
-| [InvadersEntering]{style="color: orange;"} | 1 = if invaders begin from 0 baseline (in which case the starting numbers entering the model domain must be specified in [InvaderStartNums]{style="color: orange;"}); 0 = a small number of the invading species (functional group) are already in the model when the run begins and the invasion represents a range shift (or expansion of the population) or a turnover in the species composition of a functional group so the numbers group based on invaders |
+| [InvadersEntering]{style="color: orange;"} | 1 = invaders begin from 0 baseline (in which case the starting numbers entering the model domain must be specified in [InvaderStartNums]{style="color: orange;"}); 0 = a small number of the invading species (functional group) are already in the model when the run begins and the invasion represents a range shift (or expansion of the population) or a turnover in the species composition of a functional group so the numbers group based on invaders |
 | [InvaderStartNums]{style="color: orange;"} | The number of invaders entering (per age class) on first day of the invasion. If not all age classes are invading then set the numbers in the non-invading age classes to 0. |
 | [InvaderEntryLayer]{style="color: orange;"} | The water column layer the invaders enter through in the case where [InvadersEntering]{style="color: orange;"} is set to 1 |
+
+: Parameters used in the invading species sub-model. {#tbl-invading-species-parameters tbl-colwidths=[25,75]}
+
 
 In all cases invasion is represented via scaling the numbers (or biomass if a biomass pool) in the [InvaderEntryBox]{style="color: orange;"} (between days [InvaderStartDay]{style="color: orange;"} and [InvaderEndDay]{style="color: orange;"}). If [invading_sp_model]{style="color: orange;"} is set to 1 then the dispersal of invaders is given by standard movement for age structured groups and via spilling into adjacent cells for biomass pools (with new cells added once biomasses reach saturation points). If [invading_sp_model]{style="color: orange;"} is set to 2 the dispersal is based on depth, temperature and salinity preferences, habitat and prey fields.
