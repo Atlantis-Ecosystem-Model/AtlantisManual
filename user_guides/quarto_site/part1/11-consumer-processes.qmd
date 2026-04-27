@@ -1,22 +1,20 @@
----
-title: "10. CONSUMER PROCESSES"
----
+# Consumer Processes {#sec-consumer-processes}
 
 Consumers in Atlantis are modelled as biomass pools, age-structured biomass pools or age-structured groups. The age-structured groups are typically used for vertebrates and in the text below the terms age-structured groups and vertebrates may be used interchangeably. Non-vertebrates are largely modelled as biomass pools, which in age-structured biomass pools can be explicitly subdivided into ontogenetic stages (similar to stanzas in Ecosim).
 
 The group types FISH, MAMMAL, SHARK, BIRD and FISH_INVERT are automatically assigned to age-structured groups. Other group types that have [NumCohort]{style="color: orange;"}=1 in the *functional_groups.csv* file are modelled as biomass pools, and if [NumCohort]{style="color: orange;"}\>1 they are modelled as age-structured biomass pools, where [NumCohort]{style="color: orange;"} parameter determines how many biomass pools to model.
 
-## **10.1. Fluxes in consumer biomass pools**
+## **Fluxes in consumer biomass pools**
 
 In **biomass pool or age-structured biomass pool consumers** (CP in the following equations) the only variable tracked is N (i.e. not Si or the micronutrient; although when P and C tracking is enabled then N, P and C are all tracked for consumers). The flux through a consumer biomass pool is determined by growth (*G~CP~*), natural mortality (*M~CP~*), grazing (predation) for *i* predators (*Gr~CP,i~*) and optional fishing mortality (*F~CP~*). In addition, there is an optional encystment out of the system at certain times of the year or temperatures (*Ec~out~*) and transfer back from cysts into the system when conditions are suitable (*Ec~in~*).
 
-**Biomass pool** consumers maybe in the sediment, epibenthic layer or water column (depending on group type). A single N (P, C) pool is tracked per biomass pool age group (see Table 14):
+**Biomass pool** consumers maybe in the sediment, epibenthic layer or water column (depending on group type). A single N (P, C) pool is tracked per biomass pool age group (@tbl-feeding-parameters):
 
 $$\frac{d(CP)}{dt} = G_{PP} - M_{PP} - \sum_{i = predators}^{}{Gr_{PP,i}} - F_{CP} - Ec_{out} + Ec_{in}$$
 
 In **age-structured consumers** (abbreviated as CX) the nitrogen pool is partitioned into the reserve (RN) and structural (SN) nitrogen of an average individual of each age group. Atlantis also tracks the numbers (Num) of individuals per age group. As a result for each age group three state variables are tracked -- RN, SN and Num.
 
-**Fluxes through the RN and SN pool** are determined by growth (G~CX~), proportion of G~CX~ allocated to SN versus RN (λ) and spawn (Sp~CX~), which is taken out of the RN pool on spawning (with timing defined in the *biology.prm* file, but typically once per year). Details determining λ are given in chapter 10.5.1. Note, that if respiration is included, then growth (G~CX~) can also be negative, and all energy required to cover respiration (or maintenance) costs will be taken out from the RN pool (see chapter 10.4)
+**Fluxes through the RN and SN pool** are determined by growth (G~CX~), proportion of G~CX~ allocated to SN versus RN (λ) and spawn (Sp~CX~), which is taken out of the RN pool on spawning (with timing defined in the *biology.prm* file, but typically once per year). Details determining λ are given in @sec-growth-energy. Note, that if respiration is included, then growth (G~CX~) can also be negative, and all energy required to cover respiration (or maintenance) costs will be taken out from the RN pool (@sec-maintenance-consumers)
 
 $$\frac{d(RN_{CX})}{dt} = G_{CX} \cdot \lambda - Sp_{CX}$$
 
@@ -30,20 +28,20 @@ $$\frac{d(Nm_{CX})}{dt} = Nm_{CX - 1,ageup} - Nm_{CX,ageup} - M_{CX} - \sum_{i =
 
 The numbers are converted to biomass as (SN + RN) · Nums.
 
-## **10.2. Consumer feeding** 
+## **Consumer feeding** 
 
 
 ::: {.callout-caution}
 **What determines growth in consumers?** 
 
-**Growth in biomass pool consumers** is determined by the intake or grazing (Gr) and assimilation efficiency. The consumed food or grazing term (Gr) is then assimilated according to the assimilation efficiencies for different food types (live, plant, labile detritus and refractory detritus). The unassimilated food is sent to the labile detritus, refractory detritus and ammonia pools according to the parameter determining detritus allocation (chapter 10.7), whereas all assimilated food is sent to growth.
+**Growth in biomass pool consumers** is determined by the intake or grazing (Gr) and assimilation efficiency. The consumed food or grazing term (Gr) is then assimilated according to the assimilation efficiencies for different food types (live, plant, labile detritus and refractory detritus). The unassimilated food is sent to the labile detritus, refractory detritus and ammonia pools according to the parameter determining detritus allocation (@sec-waste), whereas all assimilated food is sent to growth.
 
-**Growth in age-structured consumers** is determined by the intake or grazing (Gr), assimilation efficiency and optional maintenance or respiration costs (Rs). The consumed food or grazing term (Gr) is then assimilated according to the assimilation efficiencies for different food types (live, plant, labile detritus and refractory detritus). The unassimilated food is sent to the labile detritus, refractory detritus and ammonia pools according to the parameter determining detritus allocation (chapter 10.7). The assimilated food represents a temporary energy pool (A). This A pool is used to meet the optional maintenance or respiration costs (Rs) and all remaining energy is allocated to SN and RN, i.e. to growth. The proportion of energy going into SN and RN is determined by λ, which is calculated at each time step dynamically depending on the individual's condition and parameters determining energy allocation rules. The SN pool cannot decrease, whereas the RN pool can decrease, as it is used for reproduction and for meeting optional maintenance needs if assimilated food is insufficient.
+**Growth in age-structured consumers** is determined by the intake or grazing (Gr), assimilation efficiency and optional maintenance or respiration costs (Rs). The consumed food or grazing term (Gr) is then assimilated according to the assimilation efficiencies for different food types (live, plant, labile detritus and refractory detritus). The unassimilated food is sent to the labile detritus, refractory detritus and ammonia pools according to the parameter determining detritus allocation (@sec-waste). The assimilated food represents a temporary energy pool (A). This A pool is used to meet the optional maintenance or respiration costs (Rs) and all remaining energy is allocated to SN and RN, i.e. to growth. The proportion of energy going into SN and RN is determined by λ, which is calculated at each time step dynamically depending on the individual's condition and parameters determining energy allocation rules. The SN pool cannot decrease, whereas the RN pool can decrease, as it is used for reproduction and for meeting optional maintenance needs if assimilated food is insufficient.
 :::
 
 The following chapters will describe these key processes: grazing (Gr), assimilation (A), maintenance (Rs) and energy allocation to SN and RN.
 
-### *10.2.1 Grazing* 
+### *Grazing* 
 
 Grazing or predatory interactions are modelled in a similar way for both biomass pools and age-structured groups, except that age-structured and biomass pool groups have different options for refuge from predation. Feeding interactions are modelled through biomass, which in age-structured groups is then converted to numbers to track individual mortality. In Atlantis predatory interactions are determined by:
 
@@ -76,7 +74,7 @@ The *E~i~* is the assimilation efficiency of consumer CX on prey group category 
 ::: {.callout-caution}
 **Use of assimilation efficiency *E~i~* in the grazing term** 
 
-Even though assimilation efficiency is included in the grazing term *Gr* it **does not** define the final assimilated food, but is only used **in modified Holling feeding** responses (see Chapter 10.3) to scale the maximum consumption rate of a consumer. **Higher assimilation efficiencies lead to lower Gr value**, as the predator need not intake as much food as it can extract more energy from what it does consume.
+Even though assimilation efficiency is included in the grazing term *Gr* it **does not** define the final assimilated food, but is only used **in modified Holling feeding** responses (see @sec-food-assimlation) to scale the maximum consumption rate of a consumer. **Higher assimilation efficiencies lead to lower Gr value**, as the predator need not intake as much food as it can extract more energy from what it does consume.
 :::
 
 ::: {.callout-caution}
@@ -87,7 +85,7 @@ The [flagfishrates]{style="color: orange;"} parameter defines whether *mum* and 
 Regardless of whether absolute or mass-specific rates are used, separate *C* and *mum* parameters are required for each age group, so that [C_XXX]{style="color: orange;"} and [mum_XXX]{style="color: orange;"} strings in the *biology.prm* file contain as many values as there are groups in an age-structured functional group XXX. This means that Atlantis allows users to assume that the relationship between *C* and *mum* and body weight can change with ontogeny. 
 :::
 
-### *10.2.2 What are the* C *and* mum *parameters?*
+### *What are the* C *and* mum *parameters?*
 
 Some Atlantis users have been confused about the meaning of *C* and *mum* parameters in the modified Holling representations. The *mum* parameter was initially adopted by Murray & Parslow (1997), who replaced the standard Holling Type II maximum ingestion rate parameter (inverse of handling time) with a "maximum growth rate" *mum* by scaling it by assimilation efficiency:
 
@@ -125,11 +123,9 @@ The *mum* parameter is only used in the modified Holling feeding responses (modi
 As described in Muray and Parslow (1997) mum relates to the maximum ingestion rate (*Gmax*) as *mum = Gmax\*E*, where *E* is the assimilation efficiency. The maximum ingestion rate is in turn the inverse of a more familiar "handling time" parameter (*ht*). Hence *mum* can also be seen as an inverse of the handling time as *mum=E/ht*
 :::
 
-There is no clear consensus among currently used models as to the exact relationship between *C* and *mum* parameters. Theoretically the *mum* value should always be larger than *C*, but in some models and for some species the opposite is true. This is explored in Figure 10, which shows values of *Gr~prey~* for different prey biomass, and different *C* and *mum* rates. In general mum sets the level of the eventual asymptote -- the higher the *mum* the higher the realised feeding regardless of the *C* used. The ratio of *C* and *mum* dictates the steepness of the curve. As the ratio *C:mum* increases (i.e. the more that *C* exceeds *mum*) the gentler the curve, rising gradually in a smooth arc to the asymptote. As the ratio *C:mum* decreases (i.e. the more that *mum* exceeds *C*) the more the curve is converted to a flat rate across all but the lowest of prey biomass levels.
+There is no clear consensus among currently used models as to the exact relationship between *C* and *mum* parameters. Theoretically the *mum* value should always be larger than *C*, but in some models and for some species the opposite is true. This is explored (@fig-grazing-term) which shows values of *Gr~prey~* for different prey biomass, and different *C* and *mum* rates. In general mum sets the level of the eventual asymptote -- the higher the *mum* the higher the realised feeding regardless of the *C* used. The ratio of *C* and *mum* dictates the steepness of the curve. As the ratio *C:mum* increases (i.e. the more that *C* exceeds *mum*) the gentler the curve, rising gradually in a smooth arc to the asymptote. As the ratio *C:mum* decreases (i.e. the more that *mum* exceeds *C*) the more the curve is converted to a flat rate across all but the lowest of prey biomass levels.
 
-![](media/image33.png){width="5.216858048993876in" height="3.5660378390201224in"}
-
-[]{#_Toc526762790 .anchor}Figure 10. The value of grazing term (*Gr*) as a function of prey biomass (ranging from 0 to 1x of the predator biomass) and different assumptions on the ratio between *C* and *mum*. Predators biomass is 1000mgN, *C* = 100 m^3^ ind^-1^ day^-1^. The calculations assume only one prey, no refuge (*δ~refuge~*=1), maximum availability p~prey,CX~ of 1, and assimilation efficiencies *E~prey,i~* of 1. Black: *mum* = *C,* [orange]{style="color: orange;"}: *mum* = *C*\*3, [blue]{style="color: blue;"}: *mum* =*C*/5
+![The value of grazing term (*Gr*) as a function of prey biomass (ranging from 0 to 1x of the predator biomass) and different assumptions on the ratio between *C* and *mum*. Predators biomass is 1000mgN, *C* = 100 m^3^ ind^-1^ day^-1^. The calculations assume only one prey, no refuge (*δ~refuge~*=1), maximum availability p~prey,CX~ of 1, and assimilation efficiencies *E~prey,i~* of 1. Black: *mum* = *C,* [orange]{style="color: orange;"}: *mum* = *C*\*3, [blue]{style="color: blue;"}: *mum* =*C*/5.](media/image33.png){#fig-grazing-term width=5.22in height=3.57in}
 
 
 ::: {.callout-caution}
@@ -137,22 +133,19 @@ There is no clear consensus among currently used models as to the exact relation
 
 Atlantis **does not** implement optimal prey choice. The clearance rate *C* is specific to each predator but identical for all prey. Once all the available prey is assessed (based on overlap, size and habitat refuge) the consumption is applied **uniformly** **across all available prey groups proportionally to the available prey biomass** (prey biomass · pPREY). This means that if the available prey includes 1000mg of clams and 1mg of fish, and the clearance rate determines that only 10% of all available biomass can be consumed for a given time step, the predator will ingest 10% of available clam biomass and 10% of available fish biomass or 100mg of clams and 0.1mg of fish. 
 
-This has important implications for optimising the maximum available biomass p~prey,CX~ in the prey availability matrix. The availability of biomass pool and especially detritus prey should be low for predators that prefer to eat fish. Otherwise a predator, such as a seal, might entirely fill up on invertebrate prey and impose no top-down control on fishes. Note, this can happen even if the availability of invertebrates to seals is as low as 0.001, as the final proportion in the diet is determined by availability and the biomass in the box. It is of crucial importance to **carefully inspect realised diets** from *DietCheck.txt* and *DetailedDietCheck.txt* output files, which can be analysed using for example atlantistools R package or other tools described in chapter 2.9.
+This has important implications for optimising the maximum available biomass p~prey,CX~ in the prey availability matrix. The availability of biomass pool and especially detritus prey should be low for predators that prefer to eat fish. Otherwise a predator, such as a seal, might entirely fill up on invertebrate prey and impose no top-down control on fishes. Note, this can happen even if the availability of invertebrates to seals is as low as 0.001, as the final proportion in the diet is determined by availability and the biomass in the box. It is of crucial importance to **carefully inspect realised diets** from *DietCheck.txt* and *DetailedDietCheck.txt* output files, which can be analysed using for example atlantistools R package or other tools described in @sec-tools.
 :::
 
-: []{#_Toc526762766 .anchor}Table 14. General feeding parameters and units
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | **Key parameters for modified Holling Type II functional response** | |
 | [predcase_XXX]{style="color: orange;"} | Flag indicating the feeding functional response to use for a predator XXX |
 | [flagfishrates]{style="color: orange;"} | Flag defining whether fully age-structured C\_ and mum\_ parameters are absolute (given per individual) or mass-specific (per unit of body mass) |
-| [mum_XXX_T15]{style="color: orange;"} | Maximum ingestion rate of biomass pools at 15C |
-| [C_XXX_T15]{style="color: orange;"} | Clearance rate of biomass pools at 15C |
+| [mum_XXX_T15]{style="color: orange;"} | Maximum ingestion rate of biomass pools at 15°C |
+| [C_XXX_T15]{style="color: orange;"} | Clearance rate of biomass pools at 15°C |
 | [mum_XXX]{style="color: orange;"} | Age specific maximum ingestion rate for age structured groups: mgN ind^-1^ day^-1^ or mgN mgN^-1^ day^-1^ |
 | [C_XXX]{style="color: orange;"} | Age specific clearance rate for age structured groups: m^3^ mgN^-1^ day^-1^ or m^3^ ind^-1^ day^-1^ |
-| [pPREY1XXX1]{style="color: orange;"}<br>[pPREY1XXX2]{style="color: orange;"}<br>[pPREY2XXX1]{style="color: orange;"}<br>[pPREY2XXX1]{style="color: orange;"} | Maximum availability of prey to a predator XXX (given as a vector with the column the prey group in the same order as in the *functional_groups.csv* file). Four values are given for each predator-prey combination: juv-juv, juv-ad, ad-juv, ad-ad. |
+| [pPREY1XXX1]{style="color: orange;"}<br>[pPREY1XXX2]{style="color: orange;"}<br>[pPREY2XXX1]{style="color: orange;"}<br>[pPREY2XXX2]{style="color: orange;"} | Maximum availability of prey to a predator XXX (given as a vector with the column the prey group in the same order as in the *functional_groups.csv* file). Four values are given for each predator-prey combination: juv-juv, juv-ad, ad-juv, ad-ad. |
 | [E_XXX]{style="color: orange;"} | Assimilation efficiency when feeding on animal prey |
 | [EPlant_XXX]{style="color: orange;"} | Assimilation efficiency when feeding on plant prey |
 | [EDR_XXX]{style="color: orange;"} | Assimilation efficiency when feeding on refractory detritus |
@@ -161,10 +154,11 @@ This has important implications for optimising the maximum available biomass p~p
 | [flag_fine_ontogenetic_diets]{style="color: orange;"} | Flag indicating whether more refined, age-specific, prey availability should be used (so an availability value is required per predator age class rather than per stage (typically juvenile and adult)) |
 | [p_split_YY]{style="color: orange;"} | Flag identifying prey groups YY for which age-specific diets should be given |
 | [age_structured_prey_XXX]{style="color: orange;"} | Flag identifying predators for which age-specific diets should be given |
-| [p_YYXXX]{style="color: orange;"} | A vector of maximum prey availability for each combination of prey YY and predator XXX identified in p_split_YY and age_structured_prey_XXX parameters |
-:::
+| [p_YYXXX]{style="color: orange;"} | A vector of maximum prey availability for each combination of prey YY and predator XXX identified in [p_split_YY]{style="color: orange;"} and [age_structured_prey_XXX]{style="color: orange;"} parameters |
 
-### ***10.2.3. What determines prey biomass available for predation?***
+: General feeding parameters and units. {#tbl-feeding-parameters tbl-colwidths=[25,75]}
+
+### ***What determines prey biomass available for predation?***
 
 The proportion of prey biomass available to a predator at any given time is determined dynamically as
 
@@ -194,7 +188,7 @@ The *δ~overlap\ ~*is dependent on the physical overlap of prey and predator. It
 
 Atlantis determines whether a prey and predator (both age structured and biomass pools) can access same habitats. If a predator **cannot access any of the habitats inhabited by the prey** (has 0 for prey habitat types), then it also cannot access any prey biomass associated with that habitat type. If a predator **can access at least one** of the habitats that the prey is associated with, then it is assumed to have **access to all of the prey biomass**.
 
-### ***10.2.4. Habitat refuge***
+### ***Habitat refuge***
 
 The *δ~habitat\ ~*is the **optional prey habitat refuge** which is activated **only** when **all** of the points below are true:
 
@@ -241,18 +235,26 @@ If [flag_rel_cover]{style="color: orange;"} is set to 1 the amount of available 
 
 The habitat refuge can be interpreted as a scalar on the available prey biomass determined by the available suitable habitat cover in the cell.
 
-**Figure 11.** Habitat refuge scalar on prey availability as a function of cell area covered with suitable habitats (see box above for details on calculations of suitable cover area).](media/image34.png){width="4.425694444444445in" height="4.250694444444444in"}
+![Habitat refuge scalar on prey availability as a function of cell area covered with suitable habitats (see box above for details on calculations of suitable cover area).](media/image34.png){#fig-habitat-refuge width=4.43in height=4.25in}
+
 **Black**: Acov=1, Bcov=0.6, Kcov=3 (parameters similar to SETas model and originally derived from a meta-analysis of prey accessibility on coral and temperate reefs)
+
 *Effect of Kcov:*
+
 [**Orange**]{style="color: orange;"}: Acov=1, Bcov=0.6, Kcov=2
+
 [**Red**]{style="color: red;"}: Acov=1, Bcov=0.6, Kcov=1
+
 *Effect of Bcov:*
-[**Light blue**]{style="color: lighblue;"}: Acov=1, Bcov=0.4, Kcov=3
+
+[**Light blue**]{style="color: lightblue;"}: Acov=1, Bcov=0.4, Kcov=3
+
 [**Dark blue**]{style="color: darkblue;"}: Acov=1, Bcov=0.8, Kcov=3
-The Acov is a linear scalar that only affects the height of the curve along the y axis. If needed it could be used to scale prey availability to 1 when cover=0
+
+The Acov is a linear scalar that only affects the height of the curve along the y axis. If needed it could be used to scale prey availability to 1 when cover=0.
 
 ::: {.callout-caution}
-When habitat dependency and refuge are used then the models are often parameterised so that **prey availability is upscaled (\>1) when a cell contains zero available habitat** (as prey are more exposed than normal to predators). It is assumed that normally around 0.2-0.3 of the cell will have suitable habitat, which is why prey availability scalar is \~1 at this proportion of cover available (see Fig. 11). This is based on a (now \>10 year old) meta-analysis of prey accessibility on coral and temperate reefs.
+When habitat dependency and refuge are used then the models are often parameterised so that **prey availability is upscaled (\>1) when a cell contains zero available habitat** (as prey are more exposed than normal to predators). It is assumed that normally around 0.2-0.3 of the cell will have suitable habitat, which is why prey availability scalar is \~1 at this proportion of cover available (@fig-habitat-refuge). This is based on a (now \>10 year old) meta-analysis of prey accessibility on coral and temperate reefs.
 :::
 
 ::: {.callout-caution}
@@ -263,31 +265,29 @@ When habitat dependency and refuge are used then the models are often parameteri
 3)  This approach ignores the use of cover by predators, where improved cover can actually lead to higher predation.
 :::
 
-For **biomass pools** (CP) the *δ~habitat\ ~*refuge is available only for prey living in the **sediments** and is calculated by the depth the predators can dig into (set in KDEP_XXX) and depth of the oxygenated layer [sedoxdepth]{style="color: orange;"}, calculated and reported in the *output.nc* file, see Chapter 5.6). If [sedoxdepth]{style="color: orange;"} \< [KDEP]{style="color: orange;"} then no refuge is provided by the sediment (*δ~habitat~* = 1), if [sedoxdepth]{style="color: orange;"} \> [KDEP]{style="color: orange;"} then
+For **biomass pools** (CP) the *δ~habitat\ ~*refuge is available only for prey living in the **sediments** and is calculated by the depth the predators can dig into (set in KDEP_XXX) and depth of the oxygenated layer [sedoxdepth]{style="color: orange;"}, calculated and reported in the *output.nc* file, see @sec-output-physical-tracers). If [sedoxdepth]{style="color: orange;"} \< [KDEP]{style="color: orange;"} then no refuge is provided by the sediment (*δ~habitat~* = 1), if [sedoxdepth]{style="color: orange;"} \> [KDEP]{style="color: orange;"} then
 
 *δ~habitat~* = (sedoxdepth - KDEP)/ sedoxdepth,
 
-For example, if the oxygenated layer depth is twice as deep as the sediment penetration depth, then only half of the sediment living biomass pool will be available (and this will be further scaled by *p~prey,CX~* value). If [sedoxdepth]{style="color: orange;"}=0 a small number (1e-08) is added to avoid division by zero
+For example, if the oxygenated layer depth is twice as deep as the sediment penetration depth, then only half of the sediment living biomass pool will be available (and this will be further scaled by *p~prey,CX~* value). If [sedoxdepth]{style="color: orange;"}=0 a small number (1e-08) is added to avoid division by zero.
 
-: []{#_Toc526762767 .anchor}Table 15. Parameters defining habitat associations and habitat refuge.
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [flaghabdepend]{style="color: orange;"} | Flag turning on habitat dependency routines. If it is set to 0, all habitat associations and routines are ignored. |
 | [XXX_habdepend]{style="color: orange;"} | Flag identifying which age structured groups are habitat dependent |
-| [habitat_XXX]{style="color: orange;"} | A vector of values identifying which of the available habitat preferences for biomass pool group XXX. Traditionally these used to be only 0 or 1 values, indicating absence or presence in each habitat. Now more resolved setting is allowed. A value > 0 indicated that the organism prefers the habitat and of < 0 it avoids it. The absolute value indicates the relative weighting, where proportion of suitable habitat is calculated as a multiplier of habitat proportion and habitat preference given in [habitat_XXX]{style="color: orange;"} vector. |
+| [habitat_XXX]{style="color: orange;"} | A vector of values identifying which of the available habitat preferences for biomass pool group XXX. Traditionally these used to be only 0 or 1 values, indicating absence or presence in each habitat. Now more resolved setting is allowed. A value > 0 indicates that the organism prefers the habitat and if < 0 it avoids it. The absolute value indicates the relative weighting, where proportion of suitable habitat is calculated as a multiplier of habitat proportion and habitat preference given in the [habitat_XXX]{style="color: orange;"} vector. |
 | [juv_habitat_XXX]{style="color: orange;"}<br>[ad_habitat_XXX]{style="color: orange;"} | Same as above but applied for age structured groups and setting available habitats for juvenile and adult life history stages separately |
-| [flag_refuge_model]{style="color: orange;"} | If set to 0, no habitat refuge for age structured groups will be applied. If set to 1 the standard refuge is calculated as described above. If set to 2 the habitat refuge is rugosity related |
+| [flag_refuge_model]{style="color: orange;"} | If set to 0, no habitat refuge for age structured groups will be applied. If set to 1 the standard refuge is calculated as described above. If set to 2 the habitat refuge is rugosity related. |
 | [flag_rel_cover]{style="color: orange;"} | A flag indicating whether to use cumulative habitat (0) or average relative cover (1) when interacting with predators |
-| [Kcov_juv_XXX]{style="color: orange;"}<br>[Kcov_ad_XXX]{style="color: orange;"} | exponent of refuge provided by the habitat for age structured groups (provided for juveniles and adults) |
-| [Acov_juv_XXX]{style="color: orange;"}<br>[Acov_ad_XXX]{style="color: orange;"} | scalar of the overall habitat refuge for age structured groups (provided for juveniles and adults) |
-| [Bcov_juv_XXX]{style="color: orange;"}<br>[Bcov_ad_XXX]{style="color: orange;"} | habitat steepness coefficient for age structured groups (provided for juveniles and adults) |
-| [KDEP_XXX]{style="color: orange;"} | depth consumers can dig into the sediment, in meters. Used to determine habitat refuge for prey digging in the sediments |
+| [Kcov_juv_XXX]{style="color: orange;"}<br>[Kcov_ad_XXX]{style="color: orange;"} | Exponent of refuge provided by the habitat for age structured groups (provided for juveniles and adults) |
+| [Acov_juv_XXX]{style="color: orange;"}<br>[Acov_ad_XXX]{style="color: orange;"} | Scalar of the overall habitat refuge for age structured groups (provided for juveniles and adults) |
+| [Bcov_juv_XXX]{style="color: orange;"}<br>[Bcov_ad_XXX]{style="color: orange;"} | Habitat steepness coefficient for age structured groups (provided for juveniles and adults) |
+| [KDEP_XXX]{style="color: orange;"} | Depth consumers can dig into the sediment, in meters. Used to determine habitat refuge for prey digging in the sediments |
 | [isCover]{style="color: orange;"} in .csv | Which epibenthic groups also serve as a habitat |
-:::
 
-### ***10.2.5. Size refuge from predation***
+: Parameters defining habitat associations and habitat refuge. {#tbl-habitat-parameters tbl-colwidths=[25,75]}
+
+### ***Size refuge from predation*** {#sec-size-refuge}
 
 The **non-optional size refuge of age-structured prey** *δ~size\ ~*is defined by gape limitation, which is used to simulated size selectivity and physical limitation of predators when feeding (i.e. what can fit in their mouth). The gape limitation can be calculated in two ways -- ***hard feeding window*** or ***smooth feeding curve*** (defined by the [UseHardFeedingWindow]{style="color: orange;"} flag)
 
@@ -308,14 +308,20 @@ $$relSize = \frac{SN_{prey}}{SN \cdot KUP}$$
 
 represents **relative size** of the prey compared to the predator's upper size limit (*KUP*), and *Kmax* ([Kmax_coefft_XXX]{style="color: orange;"}) is the steepness of the smooth selectivity curve.
 
-**Figure 12.** Prey availability scalar Size_Scalar~prey~ of different sized prey for different [Kmax_coefft]{style="color: orange;"} values for humped selectivity curve.](media/image35.png){width="4.735416666666667in" height="3.763888888888889in"}
-[**Black**]{style="color: black;"}: *Kmax* = 2
-[**Orange**]{style="color: orange;"}: *Kmax* = 1
-[**Red**]{style="color: red;"}: *Kmax* = 3
-[**Blue**]{style="color: blue;"}: *Kmax* = 5
-Predators SN=10mg and KUP=0.4 (shown by vertical blue line). The horizontal black line shows that the maximum value of δ~size~ is set to 1 (values larger than one are capped at 1)
+![Prey availability scalar Size_Scalar~prey~ of different sized prey for different [Kmax_coefft]{style="color: orange;"} values for humped selectivity curve.](media/image35.png){#fig-prey-size-scalar width=4.74in height=3.76in}
 
-As Fig. 12 shows, the humped window calculation is very sensitive to the [Kmax_coefft_XXX]{style="color: orange;"} parameter, where availability of prey at lower size limit can increase very rapidly. An alternative formulation is now available as a logistic shaped curve to calculate δ~size~. This option is applied if [UseHardFeedingWindow]{style="color: orange;"} = 0 and [UseBiLogisticFeedingWindow]{style="color: orange;"}= 1 **and it is based on total length rather than SN of predator and prey**
+[**Black**]{style="color: black;"}: *Kmax* = 2
+
+[**Orange**]{style="color: orange;"}: *Kmax* = 1
+
+[**Red**]{style="color: red;"}: *Kmax* = 3
+
+[**Blue**]{style="color: blue;"}: *Kmax* = 5
+
+Predators SN=10mg and KUP=0.4 (shown by vertical blue line). The horizontal black line shows that the maximum value of δ~size~ is set to 1 (values larger than one are capped at 1).
+
+
+The humped window calculation is very sensitive to the [Kmax_coefft_XXX]{style="color: orange;"} parameter, where availability of prey at lower size limit can increase very rapidly (@fig-prey-size-scalar). An alternative formulation is now available as a logistic shaped curve to calculate δ~size~. This option is applied if [UseHardFeedingWindow]{style="color: orange;"} = 0 and [UseBiLogisticFeedingWindow]{style="color: orange;"}= 1 **and it is based on total length rather than SN of predator and prey**
 
 $$\delta_{size} = \ \left\{ \begin{array}{r}
  = \frac{1}{1 + e^{\left( - Kmax \cdot \left( Len_{prey} - Len_{prey,50\% KLP} \right) \right)}},\ \ if\ Len_{prey} < Avail_{top} \cdot Len_{pred} \\
@@ -326,14 +332,18 @@ where *Kmax* is the steepness of the logistic selectivity curve ([Kmax_coefft_XX
 
 The *Avail~top~* is calculated as a midpoint between the KLP and KUP values, hence assuming a symmetrical selectivity curve. For example, if the KLP=0.2 and KUP=0.6, the *Avail~top~* = 0.4. Similarly the *Len~prey,50%KLP~* is the midpoint between the lower ([KLP_XXX]{style="color: orange;"}) predator size limits and the *Avail~top~*, and *Len~prey,50%KUP~* is the midpoint between the upper ([KUP_XXX]{style="color: orange;"}) predator size limits and the *Avail~top~*. In the example above the *Len~prey,50%KLP~* = 0.3 and *Len~prey,50%KUP~* = 0.5.
 
-Note, that if the steepness of the curve (*Kmax* value) is low, the the δ~size~ in the equation above may never reach 1 (see Figure 13). It is NOT recommended to use Kmax values lower than 0.5 because it makes the feeding window very wide and allows feeding on almost all sizes of prey (orange line in Fig. 13).
+Note, that if the steepness of the curve (*Kmax* value) is low, the the δ~size~ in the equation above may never reach 1 (@fig-prey-bilogistic). It is NOT recommended to use Kmax values lower than 0.5 because it makes the feeding window very wide and allows feeding on almost all sizes of prey (orange line, @fig-prey-bilogistic).
 
-![](media/image36.png){width="4.71875in" height="3.6902777777777778in"}The bilogistic feeding window uses length rather than SN of prey and predator, because large differences between SN (many orders of magnitude) makes the size scalar highly sensitive to the Kmax parameter.
+The bilogistic feeding window uses length rather than SN of prey and predator, because large differences between SN (many orders of magnitude) makes the size scalar highly sensitive to the Kmax parameter.
 
-**Figure 13.** Prey availability scalar δ~size~ of different sized prey for bilogistic selectivity curve.
+![Prey availability scalar δ~size~ of different sized prey for bilogistic selectivity curve.](media/image36.png){#fig-prey-bilogistic width=4.72in height=3.69in}
+
 **Black**: Kmax = 1, KLP=0.2, KUP=0.6
-[**Red**]{style="color: red;"}: Kmax=0.5 , KLP=0.2, KUP=0.6
+
+[**Red**]{style="color: red;"}: Kmax=0.5, KLP=0.2, KUP=0.6
+
 [**Orange**]{style="color: orange;"}: Kmax = 0.2, KLP=0.2, KUP=0.6
+
 
 ::: {.callout-caution}
 **Calculating length in age-structured groups and biomass pools**
@@ -352,7 +362,7 @@ $wgt = a \cdot {length}^{b}$ or $length = \left( \frac{wgt}{a} \right)^{1/b}$
 
 where *a* is [li_a_XXX]{style="color: orange;"} and *b* is [li_b_XXX]{style="color: orange;"} in the *biology.prm*. Note that these parameters could be set in such a way to return length in metres instead, but by convention it is in cm (as are any other faunal lengths).
 
-Since for **biomass pools** only one nitrogen pool is tracked (individuals are not tracked separately), the structural nitrogen of an average individual must be given in the *biology.prm* file. This is given in the [XXX_sn]{style="color: orange;"} parameter for each consumer biomass pool group (not plants, bacteria or detrital pools). In addition to the length-based selectivity, this SN value is used in length-based feeding interactions when biomass pool predators feed on the age-structured prey (see chapter 10.2.5).
+Since for **biomass pools** only one nitrogen pool is tracked (individuals are not tracked separately), the structural nitrogen of an average individual must be given in the *biology.prm* file. This is given in the [XXX_sn]{style="color: orange;"} parameter for each consumer biomass pool group (not plants, bacteria or detrital pools). In addition to the length-based selectivity, this SN value is used in length-based feeding interactions when biomass pool predators feed on the age-structured prey (see @sec-size-refuge).
 
 The length of an average biomass pool invertebrate is calculated in the same way as for age structured groups above. However, before the calculation the SN is converted to the SN+RN weight using the [X_RS]{style="color: orange;"} ratio parameter in the *biology.prm* file, so that 
 
@@ -366,14 +376,11 @@ hence assuming that the ratio of hypothetical RN and SN in an invertebrate is op
 
 Applying hard feeding window (knife-edge selectivity) means that very small changes in prey's size can abruptly change their availability from 0 to 1. Although this approach is used in a range of ecological models it can lead to abrupt changes in growth or predation mortality between cohorts.
 
-If smoother transition on size selectivity is desired, a smooth feeding window should be used. Note, however, that the "humped" implementation of the smooth feeding curve extends the availability of prey above the upper gape limit ([KUP_XXX]{style="color: orange;"}) of the predator (Fig. 12). The curve is also very sensitive to the [Kmax_coefft]{style="color: orange;"} parameter. Applying this smooth feeding curve might require decreasing the [KUP_XXX]{style="color: orange;"} values.
+If smoother transition on size selectivity is desired, a smooth feeding window should be used. Note, however, that the "humped" implementation of the smooth feeding curve extends the availability of prey above the upper gape limit ([KUP_XXX]{style="color: orange;"}) of the predator (@fig-prey-size-scalar). The curve is also very sensitive to the [Kmax_coefft]{style="color: orange;"} parameter. Applying this smooth feeding curve might require decreasing the [KUP_XXX]{style="color: orange;"} values.
 
-When using bilogistic curve the prey availability is generally decreased compared to the hard feeding window -- the availability is equal to that of hard feeding window only for a small size range of the prey (Fig. 13). This means that when changes from hard to bilogistic curve are applied, the overall prey availability may have to be increased to ensure enough food for the predator.
+When using bilogistic curve the prey availability is generally decreased compared to the hard feeding window -- the availability is equal to that of hard feeding window only for a small size range of the prey (@fig-prey-bilogistic). This means that when changes from hard to bilogistic curve are applied, the overall prey availability may have to be increased to ensure enough food for the predator.
 :::
 
-: []{#_Toc526762768 .anchor}Table 16. Parameters defining size refuge for age structured groups
-  
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [KLP_XXX]{style="color: orange;"} | Min gape limit of the predator (age structured or biomass pool) |
@@ -382,27 +389,27 @@ When using bilogistic curve the prey availability is generally decreased compare
 | [UseBiLogisticFeedingWindow]{style="color: orange;"} | Flag indicating whether using humped (0) or bi-logistic (1) smooth feeding window |
 | [Kmax_coefft_XXX]{style="color: orange;"} | Steepness of the smooth feeding window curve of the predator |
 | [XXX_sn]{style="color: orange;"} | Typical size (amount of SN) of a biomass pool consumer to determine the size of age structured prey available to it |
-:::
 
-### ***10.2.6. Availability of fisheries catches to opportunistic catch-eaters***
+: Parameters defining size refuge for age structured groups. {#tbl-size-refuge-parameters tbl-colwidths=[30,70]}
+
+### ***Availability of fisheries catches to opportunistic catch-eaters***
 
 The availability of fisheries catches is an optional set of parameters that allow groups to access additional prey. Proportion of catch available from each fishery (set in [PropCatch_XXX]{style="color: orange;"} parameter) is added to the total available prey. No gape limitation (size refuge) is applied to fisheries catches.
 
-: []{#_Toc526762769 .anchor}Table 17. Parameters defining feeding on fisheries catches
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [isCatchGrazer]{style="color: orange;"} in .csv file | Identifies species that can feed on fisheries catches |
 | [pFCXXX]{style="color: orange;"} | A vector of values (0 and 1) identifying which of the fisheries catches are available to each catch eating species identified as [isCatchGrazer]{style="color: orange;"}. The vector should be as long as there are fisheries in the *fisheries.csv* file (assumes the same order as given in the *fisheries.csv* file). |
 | [PropCatch_XXX]{style="color: orange;"} | Proportion of the catch in each fishery that can be exploited by the [isCatchGrazer]{style="color: orange;"} groups |
-:::
 
-### *10.2.7. Effect of temperature and salinity on feeding parameters* 
+: Parameters defining feeding on fisheries catches. {#tbl-catch-feeding-parameters tbl-colwidths=[25,75]}
 
-Feeding rates and assimilation efficiencies will be temperature dependent if a species is temperature sensitive. Salinity dependency is optional. See chapter13 for further details.
 
-### *10.2.8. Effect of oxygen limitation on epibenthic invertebrate feeding rates* 
+### *Effect of temperature and salinity on feeding parameters* 
+
+Feeding rates and assimilation efficiencies will be temperature dependent if a species is temperature sensitive. Salinity dependency is optional. @sec-environmental-factors for further details.
+
+### *Effect of oxygen limitation on epibenthic invertebrate feeding rates* {#sec-o2-limitations}
 
 Oxygen limitation affects the feeding rates of SED_EP_FF, MOB_EP_OTHER, SED_EP_OTHER, SM_INF, LG_INF, CORAL and SPONGE functional groups (applied in group routines *Epibenthic_Ivert_Process()*, *Invert_Consumer_Process()* and *Coral_Process()*). This dependency is also an option for age structured groups in newer code releases that are currently in the pipeline.
 
@@ -410,13 +417,18 @@ The oxygen limitation scalar *δ~O2~* is applied to clearance rate *C*. Atlantis
 
 **1. Ambient oxygen limitation** ([O2case]{style="color: orange;"}=0) uses ambient oxygen levels O~amb~, lethal oxygen concentration ([KO2_XXX]{style="color: orange;"}, mgO2 m^-3^) and limiting oxygen concentration ([KO2lim_XXX]{style="color: orange;"}, mgO2 m^-3^) parameters. Remember that oxygen solubility in seawater at 5C and 1bar pressure is 10 mg/l or 10000 mg m^-3^.
 
-![](media/image37.png)
+$$
+\delta_{O_2} = \begin{cases}
+\dfrac{(O_{amb} - KO_2)^2}{(O_{amb} - KO_2)^2 + (KO_{2,lim} - KO_2)^2} & \text{if} \quad O_{amb} > KO_2 \quad \text{and} \quad KO_{2,lim} > KO_2 \\[1em]
+1 & \text{if} \quad O_{amb} > KO_2 \quad \text{and} \quad KO_{2,lim} < KO_2 \\[1em]
+0 & \text{if} \quad O_{amb} < KO_2
+\end{cases}
+$$
 
-![](media/image38.png){width="4.338888888888889in" height="3.1034722222222224in"}
+![Oxygen limitation scalar $\delta_{O_2}$ for different ambient oxygen concentrations, assuming $KO_2 = 50$ mgO~2~ m^-3^ and $KO_{2,lim} = 100$ mgO~2~ m^-3^.](media/image38.png){#fig-oxygen-limitation width=4.34in height=3.10in}
 
-[]{#_Toc526762794 .anchor}Figure 14. Oxygen limitation scalar *δ~O2\ ~*for different ambient oxygen concentrations, assuming KO2=50 mgO2 m^-3^ and KO2lim = 100 mgO2 m^-3^.
 
-**2. Depth based limitation** ([O2case]{style="color: orange;"}=1) only uses sediment depth of half oxygen mortality mD ([mD_XXX]{style="color: orange;"}, m) parameter and depth of the oxygenated sediment layer [sedoxdepth]{style="color: orange;"} (see chapter 5.6) where
+**2. Depth based limitation** ([O2case]{style="color: orange;"}=1) only uses sediment depth of half oxygen mortality mD ([mD_XXX]{style="color: orange;"}, m) parameter and depth of the oxygenated sediment layer [sedoxdepth]{style="color: orange;"} (@sec-output-physical-tracers) where
 
 δ~O2~=sedoxdepth/(sedoxdepth+mD)
 
@@ -428,15 +440,15 @@ This limitation only reflects reduced feeding within the sediment due to low oxy
 
 **4. Quadratic limitation** (O2case=3) calculates both ambient and depth based limitation (points 1 and 2 above) and uses the larger of the two values as the oxygen scalar δ~O2~
 
-### *10.2.9. Effect of space limitation on epibenthic invertebrate feeding rates* 
+### *Effect of space limitation on epibenthic invertebrate feeding rates* 
 
 Space limitation can affect *C* or *mum* rates of benthic invertebrate biomass pools if:
 
-1\) A biomass pool group XXX is infauna or a filter feeder or mobile epibenthic group (SED_EP_FF and MOB_EP_OTHER [GroupType]{style="color: orange;"}) **and** is habitat dependent ([habdependXXX]{style="color: orange;"}=1) **and** space limitation is active ([flagXXXlim]{style="color: orange;"}=1 or 2). If these three conditions are satisfied then the Crowding Effect scalar is applied to the clearance rate *C* of XXX (see chapter 10.5.3).
+1\) A biomass pool group XXX is infauna or a filter feeder or mobile epibenthic group (SED_EP_FF and MOB_EP_OTHER [GroupType]{style="color: orange;"}) **and** is habitat dependent ([habdependXXX]{style="color: orange;"}=1) **and** space limitation is active ([flagXXXlim]{style="color: orange;"}=1 or 2). If these three conditions are satisfied then the Crowding Effect scalar is applied to the clearance rate *C* of XXX (see @sec-growth-consumer-biomass).
 
-2\) A biomass pool group is habitat dependent (with at least some habitat preference parameters not set to 1), benthic and [flag_benthos_sediment_link]{style="color: orange;"}=1. See chapter 10.5.3 for further details.
+2\) A biomass pool group is habitat dependent (with at least some habitat preference parameters not set to 1), benthic and [flag_benthos_sediment_link]{style="color: orange;"}=1. See @sec-growth-consumer-biomass for further details.
 
-### *10.2.10. Other factors affecting feeding parameters* 
+### *Other factors affecting feeding parameters* 
 
 The feeding interactions described above are further dynamically modified by a range of ecological and environmental factors, such as species activity, starvation, or pH.
 
@@ -460,15 +472,15 @@ Species that are in the spawning period will not feed if the parameter [feed_whi
 
 Starvation has no effect on *C* and *mum* in the modified Holling functional responses ([predcase]{style="color: orange;"} 1-3) and ratio dependent feeding responses ([predcase]{style="color: orange;"} 4).
 
-For other feeding responses handling time ([ht_XXX]{style="color: orange;"} in biomass pools and [hta_XXX]{style="color: orange;"} and [htb_XXX]{style="color: orange;"} in age-structured groups) is scaled by [KHTD]{style="color: orange;"} or [KHTI]{style="color: orange;"} scalars when the condition of an age structured group falls below a limit set in [Kthresh1]{style="color: orange;"} and [Kthresh2]{style="color: orange;"} (see box below). See chapter 10.5.2 for further details on how starvation is determined and what it affects.
+For other feeding responses handling time ([ht_XXX]{style="color: orange;"} in biomass pools and [hta_XXX]{style="color: orange;"} and [htb_XXX]{style="color: orange;"} in age-structured groups) is scaled by [KHTD]{style="color: orange;"} or [KHTI]{style="color: orange;"} scalars when the condition of an age structured group falls below a limit set in [Kthresh1]{style="color: orange;"} and [Kthresh2]{style="color: orange;"} (see box below). See @sec-starvation for further details on how starvation is determined and what it affects.
 
 **Acidification**
 
-Atlantis includes explicit representation of the possible effects of acidification. The model is activated with the [flagmodelPH]{style="color: orange;"}=1 in the *biology.prm* file. It allows the user to scale prey availability, assimilation efficiency, *C* and *mum* rates, mortality, recruitment and other processes. See chapter 13 for further details.
+Atlantis includes explicit representation of the possible effects of acidification. The model is activated with the [flagmodelPH]{style="color: orange;"}=1 in the *biology.prm* file. It allows the user to scale prey availability, assimilation efficiency, *C* and *mum* rates, mortality, recruitment and other processes. See @sec-environmental-factors for further details.
 
-### *10.2.11 Other feeding functional responses* 
+### *Other feeding functional responses* 
 
-Twelve different feeding functional responses are currently implemented in Atlantis. They are selected using the [predcase_XXX]{style="color: orange;"} parameter, which can take values from 0 to 12 (option 3, Ecosim based feeding rate, is currently unavailable). The first three cases are for the modified Holling Type I-III responses adopted from the PPBIM. They use the *mum* parameter, as described above. Two responses -- minimum-maximum and Holling size dependent type III - are adopted from the ERSEM model (see Table 18), but have not been used in many models. The remaining responses can be grouped into standard Holling responses (Holling type I to IV) and ratio depdenent responses (see e.g. Arditi and Ginzburg 1989 and critique of the approach by Abrams 1994). The ratio dependent responses take into account not only the prey biomass but also the ratio of prey to predator biomass. These responses don't use the *mum* parameter but a mass specific handling time ([ht_XXX]{style="color: orange;"}) parameter.
+Twelve different feeding functional responses are currently implemented in Atlantis. They are selected using the [predcase_XXX]{style="color: orange;"} parameter, which can take values from 0 to 12 (option 3, Ecosim based feeding rate, is currently unavailable). The first three cases are for the modified Holling Type I-III responses adopted from the PPBIM. They use the *mum* parameter, as described above. Two responses -- minimum-maximum and Holling size dependent type III - are adopted from the ERSEM model (@tbl-functional-responses), but have not been used in many models. The remaining responses can be grouped into standard Holling responses (Holling type I to IV) and ratio depdenent responses (see e.g. Arditi and Ginzburg 1989 and critique of the approach by Abrams 1994). The ratio dependent responses take into account not only the prey biomass but also the ratio of prey to predator biomass. These responses don't use the *mum* parameter but a mass specific handling time ([ht_XXX]{style="color: orange;"}) parameter.
 
 ::: {.callout-caution}
 ***Search volume (vl) and handling time (ht) as alternative parameters to C and mum*** 
@@ -487,35 +499,34 @@ The handling time HT is calculated as
 
 ![](media/image40.png)
 
-where δ~starve~ is a scalar that reduces the handling time when an individual is starving (see chapter 10.5.2 on the effects of starvation).
+where δ~starve~ is a scalar that reduces the handling time when an individual is starving (see @sec-starvation on the effects of starvation).
 
 **Note, that only SN and not total nitrogen values are used for search volume and handling time calculations.**
 :::
 
-The table below gives equations for the 12 functional feeding response options. In all the equations B denotes the predator's biomass, B\*~prey~ is the available biomass of a given prey, scaled by the optional habitat refuge, and obligatory size and availability parameters, as explained above (note that prey list also includes the available fisheries catch, if the predator is identified as catch-eater in the *functional_groups.csv* file)
+The equations for the 12 functional feeding response options (@tbl-functional-responses). In all the equations B denotes the predator's biomass, B\*~prey~ is the available biomass of a given prey, scaled by the optional habitat refuge, and obligatory size and availability parameters, as explained above (note that prey list also includes the available fisheries catch, if the predator is identified as catch-eater in the *functional_groups.csv* file)
 
 $$B_{prey}^{*} = p_{prey,CX} \cdot \delta_{overlap} \cdot \delta_{habitat} \cdot \delta_{size} \cdot B_{prey}$$
 
 and *∑B~prey,i~* is the sum of all available prey.
 
-: []{#_Toc526762770 .anchor}Table 18. Equations defining grazing term in the twelve currently available feeding functional responses. Some of these responses are described and compared in Fulton et al. 2003a "Mortality and predation in ecosystem models: is it important how these are expressed?" *Ecological Modelling* 169,157--178
-
-::: {.table-responsive}
 | **Pred case** | **Functional response** | **Equations** |
 |:--------------|:------------------------|:--------------|
-| 0 | Modified Holling type II, adopted from PPBIM | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{1 + \frac{C \cdot \sum_{i}^{}\left( E_{i} \cdot B_{prey,i}^{*} \right)}{mum}}$$ |
-| 1 | Modified Holling type I, adopted from PPBIM<br><br>This response has linear increase with prey density, but is capped at the maximum determined by maximum growth rate (*mum*) divided by the assimilation efficiency on live prey (which is typically highest) | if (*C·B*~prey~) > (*mum* / E~preyLIVE~)<br><br>$$Gr_{prey} = \frac{B \cdot mum \cdot B_{prey}^{*}}{E_{\text{preyLIVE}} \cdot \sum_{i}^{}B_{prey,i}^{*}}$$<br><br>else<br><br>$$Gr_{prey} = B \cdot C \cdot B_{prey}^{*}$$ |
-| 2 | Modified Holling type III, adopted from PPBIM<br><br>Same as Holling type II, but prey biomasses are squared | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*2}}{1 + \frac{C \cdot \sum_{i}^{}\left( E_{i} \cdot B_{prey,i}^{*2} \right)}{mum}}$$ |
-| 4 | Minimum-maximum<br><br>Adopted from ERSEM, where it was used to describe fish feeding. However, it is not used in ERSEM anymore, because higher trophic level predators are not currently included in ERSEM | $$Gr_{prey} = \frac{B \cdot C \cdot mum \cdot \frac{B_{prey}^{*2}}{L + B_{prey}^{*}}}{U + \sum_{i}^{}\frac{B_{prey,i}^{*2}}{L + B_{prey}^{*}}}$$<br><br>*L* = lower prey biomass threshold for feeding by predator XX ([KL_XX]Note, that only SN and not total nitrogen values are used for search volume and handling time calculations. )<br><br>*U* = half saturation coefficient for feeding by predator XX([KU_XX]Note, that only SN and not total nitrogen values are used for search volume and handling time calculations. ) |
-| 5 | Holling type III -- size dependent<br><br>Adopted from ERSEM, where it was used to describe seabird and mammal feeding (it is not used in ERSEM anymore, see above) | $$Gr_{prey} = \frac{B \cdot VL \cdot B_{prey}^{*} \cdot \sum_{i}^{}B_{prey,i}}{1 + VL \cdot HT \cdot \sum_{i}^{}B_{prey,i}}$$<br><br>VL and HT are search volume and handling time (see above). ∑B~prey.i~ is the sum of all available prey.<br><br>Remember that for demersal species (flagdem=1), the search volume is halved |
-| 6 | Ratio dependent<br><br>See Arditi and Ginzburg 1989 and text above. This approach accounts for competition among predators through ratio of predator and prey biomasses | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i}^{}{B_{prey,i} + Compet}}$$<br><br>*Compet* = interpredator competition. Please check the wiki for further details as this part of the code is changing based on discussion with experts in the field. |
-| 7 | Standard Holling Type I<br><br>These are the standard Holling type responses. They have been added to Atlantis in 2015 | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{\sum_{i}^{}B_{prey,i}}$$ |
-| 8 | Standard Holling Type II<br><br>These are the standard Holling type responses. They have been added to Atlantis in 2015 | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i}^{}B_{prey,i}}$$ |
-| 9 | Standard Holling Type III<br><br>These are the standard Holling type responses. They have been added to Atlantis in 2015 | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*2}}{1 + C \cdot HT \cdot \sum_{i}^{}B_{prey,i}^{2}}$$<br><br>As in Holling Type II but the prey and total prey biomasses are squared |
-| 10 | Standard Holling Type IV<br><br>These are the standard Holling type responses. They have been added to Atlantis in 2015 | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i}^{}{B_{prey,i}^{2}}}$$<br><br>As in Holling Type II but the total prey biomasses are squared |
-| 11 | Hassel Varley<br><br>This response allows for interference among predators | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i}^{}{B_{prey,i} + TP^{HVM}}}$$<br><br>*TP* = total predator biomass or abundance<br><br>*HVM* = is the coefficient of mutual interference for the top carnivores |
-| 12 | Crowley Martin<br><br>Like Standard Holling type II but includes competition among predators as in option 6 | $$Gr_{prey} = \frac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i}^{}{B_{prey,i} \cdot (1.0 + Compet)}}$$<br><br>*Compet* = interpredator competition. Please check the wiki for further details as this part of the code is changing based on discussion with experts in the field. |
-:::
+| 0 | Modified Holling type II, adopted from PPBIM | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{1 + \frac{C \cdot \sum_{i}\left( E_{i} \cdot B_{prey,i}^{*} \right)}{mum}}$ |
+| 1 | Modified Holling type I, adopted from PPBIM.<br><br>This response has linear increase with prey density, but is capped at the maximum determined by maximum growth rate (*mum*) divided by the assimilation efficiency on live prey (which is typically highest) | if $(C \cdot B_{prey}) > (mum / E_{preyLIVE})$:<br><br>$Gr_{prey} = \dfrac{B \cdot mum \cdot B_{prey}^{*}}{E_{preyLIVE} \cdot \sum_{i} B_{prey,i}^{*}}$<br><br>else:<br><br>$Gr_{prey} = B \cdot C \cdot B_{prey}^{*}$ |
+| 2 | Modified Holling type III, adopted from PPBIM.<br><br>Same as Holling type II, but prey biomasses are squared | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*2}}{1 + \frac{C \cdot \sum_{i}\left( E_{i} \cdot B_{prey,i}^{*2} \right)}{mum}}$ |
+| 4 | Minimum-maximum.<br><br>Adopted from ERSEM, where it was used to describe fish feeding. However, it is not used in ERSEM anymore, because higher trophic level predators are not currently included in ERSEM | $Gr_{prey} = \dfrac{B \cdot C \cdot mum \cdot \frac{B_{prey}^{*2}}{L + B_{prey}^{*}}}{U + \sum_{i}\frac{B_{prey,i}^{*2}}{L + B_{prey}^{*}}}$<br><br>*L* = lower prey biomass threshold for feeding by predator XX ([KL_XX]{style="color: orange;"})<br><br>*U* = half saturation coefficient for feeding by predator XX ([KU_XX]{style="color: orange;"}) |
+| 5 | Holling type III — size dependent.<br><br>Adopted from ERSEM, where it was used to describe seabird and mammal feeding (it is not used in ERSEM anymore, see above) | $Gr_{prey} = \dfrac{B \cdot VL \cdot B_{prey}^{*} \cdot \sum_{i} B_{prey,i}}{1 + VL \cdot HT \cdot \sum_{i} B_{prey,i}}$<br><br>VL and HT are search volume and handling time (see above). $\sum B_{prey,i}$ is the sum of all available prey.<br><br>Remember that for demersal species ([flagdem]{style="color: orange;"}=1), the search volume is halved |
+| 6 | Ratio dependent.<br><br>See Arditi and Ginzburg 1989 and text above. This approach accounts for competition among predators through ratio of predator and prey biomasses | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i} B_{prey,i} + Compet}$<br><br>*Compet* = interpredator competition. Please check the wiki for further details as this part of the code is changing based on discussion with experts in the field. |
+| 7 | Standard Holling Type I.<br><br>These are the standard Holling type responses. They were added to Atlantis in 2015 | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{\sum_{i} B_{prey,i}}$ |
+| 8 | Standard Holling Type II.<br><br>These are the standard Holling type responses. They were added to Atlantis in 2015 | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i} B_{prey,i}}$ |
+| 9 | Standard Holling Type III.<br><br>These are the standard Holling type responses. They were added to Atlantis in 2015 | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*2}}{1 + C \cdot HT \cdot \sum_{i} B_{prey,i}^{2}}$<br><br>As in Holling Type II but the prey and total prey biomasses are squared |
+| 10 | Standard Holling Type IV.<br><br>These are the standard Holling type responses. They were added to Atlantis in 2015 | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i} B_{prey,i}^{2}}$<br><br>As in Holling Type II but the total prey biomasses are squared |
+| 11 | Hassell-Varley.<br><br>This response allows for interference among predators | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i} B_{prey,i} + TP^{HVM}}$<br><br>*TP* = total predator biomass or abundance<br><br>*HVM* = coefficient of mutual interference for the top carnivores |
+| 12 | Crowley-Martin.<br><br>Like Standard Holling type II but includes competition among predators as in option 6 | $Gr_{prey} = \dfrac{B \cdot C \cdot B_{prey}^{*}}{1 + C \cdot HT \cdot \sum_{i} B_{prey,i} \cdot (1.0 + Compet)}$<br><br>*Compet* = interpredator competition. Please check the wiki for further details as this part of the code is changing based on discussion with experts in the field. |
+
+: Equations defining grazing term in the twelve currently available feeding functional responses. Some of these responses are described and compared in Fulton et al. 2003a "Mortality and predation in ecosystem models: is it important how these are expressed?" *Ecological Modelling* 169, 157–178. {#tbl-functional-responses tbl-colwidths=[8,32,60]}
+
 
 Earlier when type I response was used it was important to cap the clearance rate of the predator, to ensure it does not get unrealistically high. This was done by setting [flag_satiation]=1. This approach caps the clearance rate at the value of *mum*/E~typeLIVE~ , where E~typeLIVE~ is the assimilation efficiency on live prey, which is typically the highest assimilation efficiency.
 
@@ -523,7 +534,7 @@ $$Gr_{prey} = \ \frac{B \cdot mum \cdot B_{prey}^{*}}{E_{typeLIVE}},\ if\ \ \ \ 
 
 The [flag_satiation]{style="color: orange;"} parameter is a special case and in most cases will not be required.
 
-## **10.3. Food assimilation in consumers**
+## **Food assimilation in consumers** {#sec-food-assimlation}
 
 The total consumed food ∑ *Gr~prey~* is assimilated according to the consumer assimilation efficiencies of four different types of prey *i*, defined as animals (including fisheries catch), plant, labile detritus and refractory detritus. The assimilation efficiency can be further externally scaled by a scalar *gs* supplied through forcing files and used to modify growth due to factors not included in the model.
 
@@ -535,7 +546,7 @@ In age-structured consumers (CX) the assimilated food is allocated to a temporar
 
 $A_{CX} = \ \sum_{i}^{}{\left( E_{i} \cdot Gr_{prey} \right) \cdot gs}$
 
-Assimilation rate in age structured groups can be affected by temperature, salinity and pH (see chapter 13).
+Assimilation rate in age structured groups can be affected by temperature, salinity and pH (@sec-environmental-factors).
 
 ::: {.callout-caution}
 **Accounting for maintenance costs through assimilation efficiency** 
@@ -549,9 +560,9 @@ This has important implications for obtaining assimilation efficiency values and
 If respiration of age structured groups is explicitly included in the model (see below), the assimilation efficiency of age structured groups and biomass are not directly comparable and the values for biomass pools should be much lower than that for age-structured groups.
 :::
 
-## **10.4. Maintenance (respiration) in consumers**
+## **Maintenance (respiration) in consumers** {#sec-maintenance-consumers}
 
-In Atlantis the only explicit maintenance costs are those of respiration. Respiration is only included in fully age structured groups and is optional. The majority of existing Atlantis models do not explicitly model maintenance or respiration. The respiration or maintenance costs are assumed to be implicitly accounted for by assimilation inefficiencies (see NOTE! in chapter 10.3).
+In Atlantis the only explicit maintenance costs are those of respiration. Respiration is only included in fully age structured groups and is optional. The majority of existing Atlantis models do not explicitly model maintenance or respiration. The respiration or maintenance costs are assumed to be implicitly accounted for by assimilation inefficiencies (see NOTE! in @sec-food-assimlation).
 
 Age-structured group respiration is carried out by the *Fish_Respiration()* routine in **atvertprocesses.c**
 
@@ -579,9 +590,9 @@ If a large proportion of the biomass of the total model is in age-structured gro
 One of the reasons that Atlantis was developed in place of the earlier IGBEM and ERSEM models is because the explicit physiological detail included in those models was unwieldy to use and calibrate in each new location (imagine that a model harder than Atlantis to use!!). Therefore a simpler representation that produce approximately the same dynamics was developed and implemented in Atlantis (see for example Fulton et al. 2004c). Explicit maintenance costs are excluded from many models, and their best representation remains a topic of debate (e.g. Persson et al. 2014).
 :::
 
-### ***10.4.1 Scaling of respiration costs depending on individual's condition***
+### ***Scaling of respiration costs depending on individual's condition***
 
-Respiration costs are scaled by a factor KST in starving individuals (see chapter 10.5.2. for further details on starvation).
+Respiration costs are scaled by a factor KST in starving individuals (see @sec-starvation for further details on starvation).
 
 The optimum RN to SN ratio is defined by a general [X_RS]{style="color: orange;"} parameter, which is typically set to 2.65. If the RN/SN is below the optimum, the respiration costs are scaled by a factor [KST]{style="color: orange;"}. The [Kthresh2]{style="color: orange;"} parameter controls how far below the optimum RN/SN the individual can be before the scaling of respiration costs starts.
 
@@ -589,21 +600,20 @@ $$if\ \frac{RN}{X_{RS}} \cdot SN < Kthresh2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ $$
 
 $$\ Rs = Rs \cdot KST\ $$
 
-: []{#_Toc526762771 .anchor}Table 19. Parameters defining respiration rates in age structured groups
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
-| [flagresp]{style="color: orange;"} | Flag turning-on explicit respiration in age structured groups |
-| [KA_XXX]{style="color: orange;"} | Scaling coefficient of allometric respiration- weight rate |
-| [KB_xxx]{style="color: orange;"} | Exponent of allometric respiration-weight rate |
+| [flagresp]{style="color: orange;"} | Flag turning on explicit respiration in age structured groups |
+| [KA_XXX]{style="color: orange;"} | Scaling coefficient of allometric respiration-weight rate |
+| [KB_XXX]{style="color: orange;"} | Exponent of allometric respiration-weight rate |
 | [Ktmp_fish]{style="color: orange;"}, [Ktmp_shark]{style="color: orange;"}, [Ktmp_bird]{style="color: orange;"}, [Ktmp_mammal]{style="color: orange;"} | Parameter defining how respiration increases with temperature in the four group types FISH (and FISH_INVERT), SHARK, BIRD and MAMMAL |
 | [Kthresh2]{style="color: orange;"} | Threshold relative reserve below which respiration rate is scaled by KST |
-| [KST_fish]{style="color: orange;"}, [KST_shark]{style="color: orange;"}, [KST_bird]{style="color: orange;"}, [KST_mammal]{style="color: orange;"} | Scalar of respiration when relative reserve drops below Kthresh2 for the four group types FISH (and FISH_INVERT), SHARK, BIRD and MAMMAL |
-:::
+| [KST_fish]{style="color: orange;"}, [KST_shark]{style="color: orange;"}, [KST_bird]{style="color: orange;"}, [KST_mammal]{style="color: orange;"} | Scalar of respiration when relative reserve drops below [Kthresh2]{style="color: orange;"} for the four group types FISH (and FISH_INVERT), SHARK, BIRD and MAMMAL |
 
-## **10.5. Growth** 
+: Parameters defining respiration rates in age structured groups. {#tbl-respiration-parameters tbl-colwidths=[30,70]}
 
-### ***10.5.1. Growth and energy allocation in age-structured groups***
+## **Growth** 
+
+### ***Growth and energy allocation in age-structured groups*** {#sec-growth-energy}
 
 Once the optional respiration costs (*Rs*) are subtracted from the temporary pool *A*, **ALL remaining** energy is allocated to RN and SN. The energy is partitioned between RN and SN depending on:
 
@@ -627,19 +637,21 @@ The equation above shows that if respiration costs are higher than assimilated e
 
 Traditionally in Atlantis negative (A-Rs) was not taken out of the RN and in fact most models do not include maintenance, so (A-Rs) never gets negative. To enable negative (A-Rs) to be taken out from RN pool, set the [flag_shrinkfat]{style="color: orange;"}=1. This is **strongly recommended for model that use respiration**. If [flag_shrinkfat]{style="color: orange;"}=0 (for legacy issues) the negative (A-Rs) is converted to zero and nothing is taken out from either RN or SN. This means that the only way RN pool can decrease is through spawning, as it is not used to cover maintenance costs during starvation.
 
-Figure 15 shows the value of λ (y axis) depending on the RN/SN. Until the RN/SN is close to the [X_RS]{style="color: orange;"} value, all available energy will go to rebuilding reserves (λ=0). Black and blue lines show energy allocation under two different X_RS parameters. Once RN/SN \> [X_RS]{style="color: orange;"}, the condition of the animal is considered to be good and some energy is allocated to growth of SN. Once RN is replenished, all available energy will be directed to SN. The steepness of the curve and value of RN/SN above which all energy will be sent to SN depends on the [pR_XXX]{style="color: orange;"} parameter, where **larger pR values lead to steeper curve and earlier allocation of all energy to SN**.
+The value of λ (y axis) depending on the RN/SN (@fig-energy-allocation-sn). Until the RN/SN is close to the [X_RS]{style="color: orange;"} value, all available energy will go to rebuilding reserves (λ=0). Black and blue lines show energy allocation under two different X_RS parameters. Once RN/SN \> [X_RS]{style="color: orange;"}, the condition of the animal is considered to be good and some energy is allocated to growth of SN. Once RN is replenished, all available energy will be directed to SN. The steepness of the curve and value of RN/SN above which all energy will be sent to SN depends on the [pR_XXX]{style="color: orange;"} parameter, where **larger pR values lead to steeper curve and earlier allocation of all energy to SN**.
 
-![](media/image54.png){width="4.338888888888889in" height="3.1034722222222224in"}
+![Proportion of available energy allocated to SN, depending on the individual's condition (RN/SN, on x axis), and pR and X_RS parameters.](media/image54.png){#fig-energy-allocation-sn width=4.34in height=3.10in}
 
-**Figure 15.** Proportion of available energy allocated to SN, depending on the individual's condition (RN/SN, on x axis), and pR and X_RS parameters.
 **Black**: X_RS=2.65, pR=3.5
+
 [**Red**]{style="color: red;"}: X_RS=2.65, pR=5
+
 [**Orange**]{style="color: orange;"}: X_RS=2.65, pR=10
+
 [**Blue**]{style="color: blue;"}: X_RS=2, pR=3.5
 
 Another option to consider when thinking about the representation of size in Atlantis is [flag_dynamicXRS]{style="color: orange;"}. This flag indicates whether to use a dynamically changing ratio between reserve and structural mass through time in Atlantis or to simply use a fixed value (as in the standard Atlantis code). This has implications for everything to do with size -- how the optimal weight of in individual is calculated, which influences reproductive capacity and allocation of material during growth. These additions are used most commonly when dealing with evolution in Atlantis.
 
-### *10.5.2. When is an age-structured group starving and what does it mean?* 
+### *When is an age-structured group starving and what does it mean?* {#sec-starvation}
 
 Condition of an age-structured group is determined by the optimal RN to SN ratio, defined by the X_RS parameter, which is typically set to 2.65. When RN \< X_RS\*SN the age structured group is considered to be starving (or at least food deprived).
 
@@ -654,7 +666,7 @@ If respiration is included and [flag_shrinkfat]{style="color: orange;"} = 1 then
 There are different levels of starvation and they have increasing effects on ecological processes:
 
 1) When RN/X_RS\*SN \< 1
-\- the amount of spawn produced by an individual is reduced (see Spawn in Chapter 10.8).
+\- the amount of spawn produced by an individual is reduced (see @sec-spawn).
 
 2) When RN / X_RS\*SN \< [Kthresh1]{style="color: orange;"}
 \- handling time is scaled by the [KHTD]{style="color: orange;"} parameter value. This is only applied if [predcaseXXX]{style="color: orange;"} \> 4
@@ -663,9 +675,9 @@ There are different levels of starvation and they have increasing effects on eco
 \- handling time is scaled by the [KHTI]{style="color: orange;"} parameter value. This is only applied if [predcaseXXX]{style="color: orange;"} \> 4
 \- respiration rate is scaled by the [KST]{style="color: orange;"} parameter. This is only used if [flagresp]{style="color: orange;"} = 1 (respiration used)
 
-Additionally, starvation will lead to starvation mortality, as specified by the starvation mortality parameter, see Chapter 10.6.2
+Additionally, starvation will lead to starvation mortality, as specified by the starvation mortality parameter, see @sec-starvation-in-age
 
-### ***10.5.3 Growth in consumer biomass pools***
+### ***Growth in consumer biomass pools*** {#sec-growth-consumer-biomass}
 
 No explicit respiration costs are included in biomass pools, hence all assimilated energy *A~CP~* is allocated to growth. However, in epibenthic organisms space limitation scalar *δ~space~* is applied to limit growth in crowded conditions
 
@@ -741,7 +753,7 @@ Lastly the boxes where the change will occur will need to be identified (with th
 where there are N entries, one for each box with 1 indicating changes occur in that box.
 :::
 
-### ***10.5.4 Feeding on material outside the model***
+### ***Feeding on material outside the model***
 
 During the first few months inside the model domain, salmon will stay close to shore and feed on terrestrial insects. To allow for this external input of food into salmon diet take the following steps
 
@@ -754,27 +766,26 @@ Supp_XXX 5
 
 At present this proportional access is assumed to match across all ages undertaking supplemental feeding. If this is not the case contact the Atlantis model developers for an update to the code. Also note that supplemental feeding only occurs in surface waters.
 
-: []{#_Toc526762772 .anchor}Table 20. Parameters affecting growth in consumers
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [X_RS]{style="color: orange;"} | Optimal RN to SN ratio in age-structured groups |
-| [pR_XXX]{style="color: orange;"} | Parameter controlling preference of energy allocation to RN and SN (Fig. 15) |
+| [pR_XXX]{style="color: orange;"} | Parameter controlling preference of energy allocation to RN and SN (@fig-energy-allocation-sn) |
 | [flag_shrinkfat]{style="color: orange;"} | If set to 1, negative energy budget at a given time step (when respiration costs exceed assimilated food intake) will be taken out of the RN pool. This is important for models that include respiration. If set to 0, negative energy budget is converted to 0. |
 | [flaghomog_sp]{style="color: orange;"} | If set to 1, body condition of age-structured groups is homogenised across the entire model domain after each timestep. This means that RN and SN ratio will be the same for a functional group throughout the whole model domain. If set to 0, condition can vary among boxes depending on food availability |
-| [flagXXXlim]{style="color: orange;"} | Flag defining what kind of space limitation should be applied to biomass pool consumers or benthic primary producers (see NOTE! in chapter 10.5.3) |
-| [XXXmax]{style="color: orange;"} | maximum biomass of a biomass pool consumer (mgN m^-2^), used in simple space limitation ([flagXXXlim]{style="color: orange;"}=1) |
-| [XXX_low]{style="color: orange;"}<br>[XXX_sat]{style="color: orange;"}<br>[XXXthresh]{style="color: orange;"} | Lower crowing threshold, crowding half saturation and crowding threshold (all in mgN m^-2^) used to calculate crowding effect in ERSEM based space limitation ([flagXXXlim]{style="color: orange;"}=2) |
+| [flagXXXlim]{style="color: orange;"} | Flag defining what kind of space limitation should be applied to biomass pool consumers or benthic primary producers (see NOTE! in @sec-growth-consumer-biomass) |
+| [XXXmax]{style="color: orange;"} | Maximum biomass of a biomass pool consumer (mgN m^-2^), used in simple space limitation ([flagXXXlim]{style="color: orange;"}=1) |
+| [XXX_low]{style="color: orange;"}<br>[XXX_sat]{style="color: orange;"}<br>[XXXthresh]{style="color: orange;"} | Lower crowding threshold, crowding half saturation and crowding threshold (all in mgN m^-2^) used to calculate crowding effect in ERSEM based space limitation ([flagXXXlim]{style="color: orange;"}=2) |
 | [flag_competing_epiff]{style="color: orange;"} | If set to 1, space competition will be calculated taking into account all epifaunal groups (all epifaunal groups are assumed to compete for space) rather than only intra-functional competition |
 | [max_available_habitat]{style="color: orange;"} | Scalar for maximum available habitat for epifaunal groups. If > 1 epifaunal groups can grow on top of each other |
 | [flag_benthos_sediment_link]{style="color: orange;"} | Flag activating additional space limitation scaling in epibenthic and sediment biomass pool consumers, where *mum* values are scaled by the available habitat in the cell |
 | [flag_invert_biohab]{style="color: orange;"} | Flag allowing biomass pool consumers to access biohabitats, identified through [IsCover]{style="color: orange;"} parameter in the *functional_groups.csv* (e.g. corals, sponges, mussel beds). |
-| [flagdegrade]{style="color: orange;"} | Flag initiating geological habitat (REEF, FLAT, SOFT) degradation. If set to 1, additional parameters will be required as explained in chapter 10.5.3 |
-| [Supp_XXX]{style="color: orange;"} | Proportion of a groups diet coming from outside the model domain (defined as a vector with one entry per box). On needed if [isSupplemented]{style="color: orange;"} is set to 1 in the *runs.prm* file. |
-:::
+| [flagdegrade]{style="color: orange;"} | Flag initiating geological habitat (REEF, FLAT, SOFT) degradation. If set to 1, additional parameters will be required as explained in @sec-growth-consumer-biomass |
+| [Supp_XXX]{style="color: orange;"} | Proportion of a group's diet coming from outside the model domain (defined as a vector with one entry per box). Only needed if [isSupplemented]{style="color: orange;"} is set to 1 in the *run.prm* file. |
+
+: Parameters affecting growth in consumers. {#tbl-growth-parameters tbl-colwidths=[25,75]}
 
 
-### ***10.5.5 Effect of contaminants on the growth model***
+### ***Effect of contaminants on the growth model***
 
 A contaminant tracer(s) is traced through the food web to allow for assessment of the accumulation of contaminants in the food chain. The handling and introduction of these contaminants follows the standard Atlantis contaminant procedures. The level of accumulated contaminants in the individual can impact its growth using the following logistic curve to set the scalar to be applied to the growth rate ([mum_XXX]{style="color: orange;"}), this again follows the same general form as for the turbidity effects:
 
@@ -812,18 +823,16 @@ The following parameters need to be added to the *biology.prm* file for each con
 [CCC_half_life]{style="color: orange;"} - Half life in seconds
 [CCC_temp_depend]{style="color: orange;"} - Flag indicating whether the contaminant effect is temperature dependent
 
-If there is more than one contaminant in the model, then interactions between them should be noted. Functional group level parameters are also required per contaminant included (see Table below).
+If there is more than one contaminant in the model, then interactions between them should be noted. Functional group level parameters are also required per contaminant included (@tbl-contaminant-parameters).
 
 Contaminants can also affect movement. There is the potential for mobile species (defined by the *VerticallyMigrates* and *HorizontallyMigrates* settings for the species in the *functional_groups.csv* file) to avoid the contaminants. It is not always appropriate biomass pool groups to show this behaviour so to turn it off set [biopools_dodge_contam]{style="color: orange;"} 0 in the *biology.prm*.
 
-[]{#_Toc526762773 .anchor}Table 21. Parameters needed for contaminant uptake model -- where XXX is the functional group code and CCC the contaminant name.
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [XXX_CCC_uptake_option]{style="color: orange;"} | Uptake option. 1 = linear, 2 = sigmoidal, 3 = piecewise linear |
-| [XXX_CCC_uptake_rate]{style="color: orange;"} | Uptake rate in mg/m^3 per second |
+| [XXX_CCC_uptake_rate]{style="color: orange;"} | Uptake rate in mg/m^3^ per second |
 | [XXX_CCC_InstantDoseMortality]{style="color: orange;"} | Instantaneous contact mortality rate |
-| [XXX_CCC_TimeToLD50]{style="color: orange;"} | The number of seconds that it takes to kill of 50% of the population |
+| [XXX_CCC_TimeToLD50]{style="color: orange;"} | The number of seconds that it takes to kill 50% of the population |
 | [XXX_CCC_LD50]{style="color: orange;"} | The concentration that will kill 50% of the population |
 | [XXX_CCC_LD100]{style="color: orange;"} | The concentration that will kill 100% of the population |
 | [XXX_CCC_LDChronic]{style="color: orange;"} | The concentration where chronic effects persist |
@@ -840,9 +849,10 @@ Contaminants can also affect movement. There is the potential for mobile species
 | [XXX_CCC_MoveEffect]{style="color: orange;"} | Effect on movement (as a scalar) |
 | [XXX_CCC_ReprodEffect]{style="color: orange;"} | Effect on reproduction (as a scalar) |
 | [XXX_CCC_sp_ContamScalar]{style="color: orange;"} | The scalar used to represent the generic effects of contaminants on other physiological parameters |
-:::
 
-## **10.6. Mortality in consumers** 
+: Parameters needed for contaminant uptake model — where XXX is the functional group code and CCC the contaminant name. {#tbl-contaminant-parameters tbl-colwidths=[30,70]}
+
+## **Mortality in consumers** 
 
 Mortality for age-structured groups is modelled through the numbers of individuals lost, whereas for biomass-pools it is expressed as biomass lost. The general non-predation and non-fishing mortality equation is:
 
@@ -852,20 +862,20 @@ where *mL* is linear mortality (day^-1^), *mQ* is quadratic mortality (day^-1^),
 
 Note that the oxygen mortality is assumed to only apply to benthic invertebrates as they cannot easily escape the oxygen minima, whereas fish and other vertebrates will move away (ultimately disappearing from the model if the entire domain becomes too oxygen poor and if the group is dependent on the oxygen -- [flagO2depend]{style="color: orange;"}).
 
-### ***10.6.1. Mortality in age-structured groups***
+### ***Mortality in age-structured groups*** {#sec-age-structured-mortality}
 
 The natural non-predation mortality of an age-structured consumer CX (in numbers not biomass) is calculated for each age group as:
 
 $$M_{CX} = \ \left( \left( mL + mQ \cdot Num_{CX} + mSt + mA + mE \right) \cdot Num_{CX} \right) \cdot mortsc$$
 
-where *mL* is an stage-specific (juvenile and adult) linear mortality for CX ([mL_XXX]{style="color: orange;"}, day^-1^), *mQ* is an stage-specific quadratic mortality for CX ([mQ_XXX]{style="color: orange;"}, day^-1^), *mSt* is the starvation mortality (day^-1^, see below), *mA* is an optional acidification mortality (see below), *mS* is the optional extra mortality due to seabirds and fish not included in the model (adopted from ERSEM I, Bryant *et al*. 1995) ([mS_XXX]{style="color: orange;"}, day^-1^), *Num* is the numbers in an age group and *mortsc* is the optional external mortality scalar, provided through forcing files. See chapter on the forcing file for details on extra mortality scaling.
+where *mL* is an stage-specific (juvenile and adult) linear mortality for CX ([mL_XXX]{style="color: orange;"}, day^-1^), *mQ* is an stage-specific quadratic mortality for CX ([mQ_XXX]{style="color: orange;"}, day^-1^), *mSt* is the starvation mortality (day^-1^, see below), *mA* is an optional acidification mortality (see below), *mS* is the optional extra mortality due to seabirds and fish not included in the model (adopted from ERSEM I, Bryant *et al*. 1995) ([mS_XXX]{style="color: orange;"}, day^-1^), *Num* is the numbers in an age group and *mortsc* is the optional external mortality scalar, provided through forcing files. See @sec-focing-files forcing file for details on extra mortality scaling.
 
 ::: {.callout-caution}
 **Terminal or senescence mortality in age structured groups and age structured biomass pools** 
 
 At the end of the lifespan the individuals (biomass) can either all die (senesce) or remain in the last cohort ("plus group" in stock assessment jargon) for as long as they survive predation or other mortality factors. The senescence mortality is activated by the parameter [flagsenesce.]{style="color: orange;"}
 
-If [flagsenesce]{style="color: orange;"}=1 all individuals above the maximum age die. The maximum age is set as the number of calendar years in an age group ([XXX_AgeClassSize]{style="color: orange;"}) multiplied by the number of age groups ([NumCohorts]{style="color: orange;"}). If [flagsenesce]{style="color: orange;"}=0 the oldest calendar year group in the oldest age group retains all the individuals (see chapter 10.9.6 on tracking calendar years in age groups).
+If [flagsenesce]{style="color: orange;"}=1 all individuals above the maximum age die. The maximum age is set as the number of calendar years in an age group ([XXX_AgeClassSize]{style="color: orange;"}) multiplied by the number of age groups ([NumCohorts]{style="color: orange;"}). If [flagsenesce]{style="color: orange;"}=0 the oldest calendar year group in the oldest age group retains all the individuals (see @sec-individual-ageing on tracking calendar years in age groups).
 
 Terminal mortality ([mT]{style="color: orange;"}) behaves somewhat similarly for biomass pools -- indicating what proportion of the oldest age class dies due to old age.
 :::
@@ -884,7 +894,7 @@ The exception is for top predators, such as mammals or seabirds, where predation
 Rates of linear and quadratic mortality are provided for juveniles and adults separately in age-structured groups. The age groups that belong to the juvenile versus adult stage are determined based on the [XXX_age_mat]{style="color: orange;"} parameter in the *biology.prm* file, which sets the first mature (adult) age group.
 :::
 
-### ***10.6.2. Starvation mortality in age-structured groups***
+### ***Starvation mortality in age-structured groups*** {#sec-starvation-in-age}
 
 Starvation mortality is only available in age-structured groups, as the condition (ration of SN to RN) is tracked for these groups only. Starvation mortality is modelled as
 
@@ -896,38 +906,41 @@ where *optCond* =(1.0 + [X_RS]{style="color: orange;"})·SN, *W* is weight calcu
 
 The calculations for starvation mortality are done in the *Vert_Mortality()* routine in **[atvertprocesses.c]{.underline}**
 
-![](media/image56.png){width="4.311111111111111in" height="3.4618055555555554in"}
+![Starvation mortality (per day) for different [Kthreshm]{style="color: orange;"} and [mStarve]{style="color: orange;"} values.](media/image56.png){#fig-starvation-mortality width=4.31in height=3.46in}
 
-**Figure 16.** Starvation mortality (per day) for different [Kthreshm]{style="color: orange;"} and [mStarve]{style="color: orange;"} values.
 [**Black**]{style="color: black;"}: Kthrem=0.9, mStarve=0.001
+
 [**Orange**]{style="color: orange;"}: Kthrem=0.8, mStarve=0.001
+
 [**Red**]{style="color: red;"}: Kthrem=0.7, mStarve=0.001
+
 [**LightBlue**]{style="color: lightblue;"}: Kthrem=0.9, mStarve=0.0005
+
 [**Blue**]{style="color: blue;"}: Kthrem=0.9, mStarve=0.01
 
-### ***10.6.3. Extra mortality in age-structured groups***
+### ***Extra mortality in age-structured groups***
 
 The **optional** extra mortality *mS* allows users to simulate **quarterly** **age structured group** mortality by seabirds and fish (or other top predators) **not included** in the model. It is given by [mS_SBXXX]{style="color: orange;"} (seabird imposed mortality on age structured group XXX) and [mS_FDXXX]{style="color: orange;"} (fish imposed mortality on age structured group XXX) parameters, each with four values, providing mortality for each quarter of the year.
 
-Additional parameters describe the assimilation efficiency of these top predators not included in the model; the unassimilated food is all added to the ammonia pool (see chapter 10.7 for further details)
+Additional parameters describe the assimilation efficiency of these top predators not included in the model; the unassimilated food is all added to the ammonia pool (see @sec-waste for further details)
 
 Note that the extra mortality is rarely used now, because models typically resolve all important functional groups explicitly in the model. As a result this form of mortality will likely be removed in future code releases.
 
-### ***10.6.4. Mortality in biomass pool consumers***
+### ***Mortality in biomass pool consumers***
 
 Non-predation mortality in consumers is expressed in term of the biomass lost to the biomass pool, where separate calculations are done for each pool in age-structured biomass pools.
 
 $$M_{CP} = \ \left( \left( mL + mQ \cdot B_{CP} + \left( 1 - \delta_{O2} \right) \cdot mO + mA \right) \cdot B_{CP} \right) \cdot mortsc$$
 
-Only one linear (*mL*) and quadratic (*mQ*) mortality parameter is provided for biomass pool groups, whereas for age-structured biomass pools separate parameters are needed for each pool. The oxygen mortality depends on the oxygen limitation scalar and the oxygen mortality rate ([mO_XXX]{style="color: orange;"}; day^-1^). The oxygen limitation mortality is determined by the *δ~O2~* oxygen scalar, described in chapter 10.2.8.
+Only one linear (*mL*) and quadratic (*mQ*) mortality parameter is provided for biomass pool groups, whereas for age-structured biomass pools separate parameters are needed for each pool. The oxygen mortality depends on the oxygen limitation scalar and the oxygen mortality rate ([mO_XXX]{style="color: orange;"}; day^-1^). The oxygen limitation mortality is determined by the *δ~O2~* oxygen scalar, described in @sec-o2-limitations.
 
-As in age-structured groups, the age-structured biomass pools can have senescence mortality (see chapter 10.6.1).
+As in age-structured groups, the age-structured biomass pools can have senescence mortality (see @sec-age-structured-mortality).
 
-### ***10.6.5. Temperature and acidification effect on mortality***
+### ***Temperature and acidification effect on mortality***
 
-Linear and quadratic mortality parameters can be temperature dependent, as described in chapter 13. If a model includes acidification effects ([flagmodelpH]{style="color: orange;"}=1) then parameters imposing additional acidification induced mortality can be specified.
+Linear and quadratic mortality parameters can be temperature dependent, as described in @sec-environmental-factors. If a model includes acidification effects ([flagmodelpH]{style="color: orange;"}=1) then parameters imposing additional acidification induced mortality can be specified.
 
-### ***10.6.6. Turbidity effect on mortality***
+### ***Turbidity effect on mortality***
 
 A logistic curve is applied to represent the escapement from predation due to turbidity:
 
@@ -943,39 +956,39 @@ To activate this effect (i) [flagIsEstuary]{style="color: orange;"} must be set 
 
 These vectors have the format like:
 
-[XXX_turbid_L]{style="color: orange;"} 2
-
+<div style="text-align: center;">
+<pre style="display: inline-block; text-align: left; margin: 0; line-height: 1;">
+<span style="color: orange;">[XXX_turbid_L]</span> 2
 1.0 0.8
+</pre>
+</div>
 
-: []{#_Toc526762774 .anchor}Table 22. Parameters affecting mortality in consumers
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [mL_XXX]{style="color: orange;"} | Stage-specific (juvenile and adult) linear mortality, day^-1^ |
 | [mQ_XXX]{style="color: orange;"} | Stage-specific (juvenile and adult) quadratic mortality, day^-1^ |
 | [mS_XXX]{style="color: orange;"} | Optional extra mortality due to seabirds and fish not included in the model, day^-1^ |
-| [flagsenesce]{style="color: orange;"} | If set to 1, all individuals or biomass in age-structured groups and age-structured biomass pools that are above the maximum age die (see NOTE! in chapter 10.6.1) |
+| [flagsenesce]{style="color: orange;"} | If set to 1, all individuals or biomass in age-structured groups and age-structured biomass pools that are above the maximum age die (see NOTE! in @sec-age-structured-mortality) |
 | [mT]{style="color: orange;"} | Terminal senescence mortality in age-structured biomass pools (proportion of biomass that dies from senescence when above maximum age) |
 | [mStarve_XXX]{style="color: orange;"} | Starvation mortality, day^-1^ |
 | [mS_SBXXX]{style="color: orange;"} | Extra mortality of age-structured groups due to seabirds not included in the model, day^-1^ |
 | [mS_FDXXX]{style="color: orange;"} | Extra mortality of age-structured groups due to fish not included in the model, day^-1^ |
 | [mO_XXX]{style="color: orange;"} | Oxygen mortality rate of biomass pool consumers, day^-1^ |
-| [Kthreshm]{style="color: orange;"} | Threshold starvation level, when starvation mortality starts (chapter 10.6.2) |
-| [turbid_refuge_XXX]{style="color: orange;"} | Flag indicating whether a group has its mortality effected by turbidity |
-| [XXX_turbid_L]{style="color: orange;"} | defines the minimum of the turbidity effect on mortality curve (per stage) |
-| [XXX_turbid_a]{style="color: orange;"} | defines the slope of the turbidity effect on mortality curve (per stage) |
-| [XXX_turbid_b]{style="color: orange;"} | defines the midpoint of the turbidity effect on mortality curve (per stage) |
-:::
+| [Kthreshm]{style="color: orange;"} | Threshold starvation level, when starvation mortality starts (@sec-starvation-in-age) |
+| [turbid_refuge_XXX]{style="color: orange;"} | Flag indicating whether a group has its mortality affected by turbidity |
+| [XXX_turbid_L]{style="color: orange;"} | Defines the minimum of the turbidity effect on mortality curve (per stage) |
+| [XXX_turbid_a]{style="color: orange;"} | Defines the slope of the turbidity effect on mortality curve (per stage) |
+| [XXX_turbid_b]{style="color: orange;"} | Defines the midpoint of the turbidity effect on mortality curve (per stage) |
 
-## **10.7. Waste production** 
+: Parameters affecting mortality in consumers. {#tbl-mortality-parameters tbl-colwidths=[25,75]}
+
+## **Waste production** {#sec-waste}
 
 The unassimilated food (faeces) and non-predation mortality products are sent to labile detritus (DL), refractory detritus (DR) and ammonia (NH) pools. The production of waste products by biomass pool and age structured group consumers are handled in the same way, but in the case of age structured groups the mortality terms are converted from numbers of individuals to biomass before being used in the following equations.
 
-Flow of nitrogen from food intake to detritus and the ammonia pool can be illustrated with the flowchart in Fig. 17. It shows that first, the assimilation efficiency parameters determine how much of the grazed food is assimilated. The rest is sent to waste products. The waste products are then split between detritus and the ammonia fraction, where the amount of detritus is determined by the detritus proportion parameters ([FDG]{style="color: orange;"}, [FDGDL]{style="color: orange;"}, [FDGDR]{style="color: orange;"}).
+Flow of nitrogen from food intake to detritus and the ammonia pool can be illustrated with the flowchart (@fig-nitrogen-flow). It shows that first, the assimilation efficiency parameters determine how much of the grazed food is assimilated. The rest is sent to waste products. The waste products are then split between detritus and the ammonia fraction, where the amount of detritus is determined by the detritus proportion parameters ([FDG]{style="color: orange;"}, [FDGDL]{style="color: orange;"}, [FDGDR]{style="color: orange;"}).
 
-![](media/image57.jpg){width="5.7928083989501316in" height="6.260416666666667in"}
-
-[]{#_Toc526762797 .anchor}Figure 17. Nitrogen flow from consumers to detrital and ammonia pools. Parameters that determine allocation between the pools are shown on the arrows. Optional fluxes are shown in dashed arrows.
+![Nitrogen flow from consumers to detrital and ammonia pools. Parameters that determine allocation between the pools are shown on the arrows. Optional fluxes are shown in dashed arrows.](media/image57.jpg){#fig-nitrogen-flow width=5.79in height=6.26in}
 
 Production of **labile detritus (DL)** by consumer group XX is given by:
 
@@ -986,7 +999,7 @@ where E~L~ is the assimilation efficiency on live prey ([E_XXX]{style="color: or
 Production of **refractory detritus (DR)** uses the same equation, except that:
 
 1)  the final multiplication is done not by the FDL parameter but by (1-FDL)
-2)  detritus produced from **all** unassimilated food consumed by optional seabirds and fish NOT explicitly represented in the model is added to DR (see Fig 17 and below)
+2)  detritus produced from **all** unassimilated food consumed by optional seabirds and fish NOT explicitly represented in the model is added to DR (@fig-nitrogen-flow)
 
 $$W_{DR} = \ \left( \left( 1 - E_{L} \right) \cdot FDG \cdot \sum_{i = type}^{}{Gr_{CX,i} + \left( 1 - E_{DL} \right) \cdot FDGDL \cdot Gr_{CX,DL} + \left( 1 - E_{DR} \right)} \cdot FDGDR \cdot Gr_{CX,DR} + FDM \cdot M_{CX} \right) \cdot (1 - FDL) + FFSB \cdot M_{S}$$
 
@@ -1004,8 +1017,7 @@ It only makes sense to include non-zero parameters for [FSBDR_XXX]{style="color:
 
 The remaining fraction of the mortality products (1-FDM) and unassimilated food (1-FDG, 1-FDGDL and 1-FDGDR) and nitrogen used up in respiration is sent to the **ammonia pool**.
 
-: []{#_Toc526762775 .anchor}Table 23. Parameters determining waste production processes
-::: {.table-responsive}
+
 | **Parameter** | **Description** |
 |:--------------|:----------------|
 | [E_XXX]{style="color: orange;"}<br>[EPlant_XXX]{style="color: orange;"}<br>[EDR_XXX]{style="color: orange;"}<br>[EDL_XXX]{style="color: orange;"} | Assimilation efficiency of consumer XXX when feeding on: animal prey (and catch), plant prey, refractory detritus and labile detritus |
@@ -1016,13 +1028,14 @@ The remaining fraction of the mortality products (1-FDM) and unassimilated food 
 | [FDL_fish]{style="color: orange;"}<br>[FDL_top]{style="color: orange;"}<br>[FDL_wc]{style="color: orange;"}<br>[FDL_benth]{style="color: orange;"} | Proportion of labile detritus of all detritus produced by each of the four groups: fish and sharks (fish), birds and mammals (top), water column biomass pools except CEP and PWN (wc) and other non-vertebrate biomass pools including CEP and PWN (benth) |
 | [FSBDR_XXX]{style="color: orange;"} | Assimilation inefficiency of seabirds not included in the model that feed on a functional group XXX. This proportion is sent to refractory detritus pool |
 | [FFDDR]{style="color: orange;"} | Assimilation inefficiency of fish not included in the model (same for all functional groups preyed upon). This proportion is sent to refractory detritus pool |
-:::
 
-## **10.8. Spawn** 
+: Parameters determining waste production processes. {#tbl-waste-production-parameters tbl-colwidths=[25,75]}
+
+## **Spawn** {#sec-spawn}
 
 Spawning and recruitment is only explicitly modelled in age structured groups and age-structured biomass pools. They are handled by multiple routines in the **atdemography.c** file. In simple biomass pools reproduction is implicitly included in the growth term.
 
-### *10.8.1. Sexual maturation in age-structured groups*
+### *Sexual maturation in age-structured groups*
 
 Maturation in age-structured groups is determined by two parameters. First, a fraction of each age class that is sexually mature is set in the [FSPB_XXX]{style="color: orange;"} parameter (ogive), with an option for gradual external change in this parameter through forcing files. Second, an optional minimum length (where the allometric length/weight conversion parameters [li_a_XXX]{style="color: orange;"} and [li_b_XXX]{style="color: orange;"} are used to get length) required for sexual maturation is set in [min_li_mat_XXX.]{style="color: orange;"} If this parameter is \> 0 then the no maturation will occur in an age class if it is below the maturation length even if FSPB parameter for that age class is \> 0.
 
@@ -1034,7 +1047,7 @@ Atlantis does not assume that the age of sexual maturation aligns with the ontog
 In contrast the age at which individuals switch from juvenile behaviour (in terms of feeding, habitat use, prey) to adult behaviour is given by [XXX_age_mat.]{style="color: orange;"} This is the first age group where adult behaviour is expressed and is modelled as a hard transition point with all individuals switching to adult behaviour at once.
 :::
 
-### ***10.8.2. Spawning in age-structured groups***
+### ***Spawning in age-structured groups***
 
 The number of times an age-structured group spawn per year is given by [NumSpawns]{style="color: orange;"} in the *functional_groups.csv* file, although it is typically 1 (more frequent spawning is new functionality so let us know if you are having issues with it). When spawning occurs all spawn is produced in one time step. The day of the year that a species XXX spawns is set by the parameter [XXX_Time_Spawn]{style="color: orange;"} (if more than one spawning event occurs per year a vector of values is required). Although there is a parameter called [XXX_spawn_period]{style="color: orange;"} in the *biology.prm* file, it does not control the spawn period, but is just used to calculate recruitment delays (see below).
 
@@ -1054,7 +1067,7 @@ The *KSPA* accounts for costs of reproduction or the amount of N taken out of we
 
 Vertebrate spawn is calculated by the *Ecology_Age_Structured_Spawn()* routine in **atdemography.c**. This routine is called from two other routines: *Ecology_Do_Internal_Age_Structured_Spawning()* and *Ecology_Do_External_Age_Structured_Spawning()*, both in **atdemography.c**. The latter two routines convert individual spawn to spawn produced by a species in the model (or individuals that migrated outside the model domain), summing spawn over age groups to get the total spawn produced by the group.
 
-### ***10.8.3. Maturation and spawn in age-structured biomass pools***
+### ***Maturation and spawn in age-structured biomass pools***
 
 In age-structured biomass pools the proportion of mature biomass in an age pool is set by the FSPB_XXX parameter. The amount of spawn (mgN) produced by an age biomass pool *i* is then calculated as
 
@@ -1066,20 +1079,19 @@ where *B~i~* is the biomass of the age pool (mgN), FSPB is the proportion of the
 
 Reproduction of age structured biomass pools is done in the *Invertebrate_Reproduction()* routine in **atdemography.c**
 
-: []{#_Toc526762776 .anchor}Table 24. Parameters determining maturation and spawn
-::: {.table-responsive}
 | **Parameter** | **Description** |
 |:--------------|:----------------|
-| [FSPB_XXX]{style="color: orange;"} | A fraction of each age class in an age-structured groups and age-structured biomass pools that is sexually mature |
+| [FSPB_XXX]{style="color: orange;"} | A fraction of each age class in an age-structured group or age-structured biomass pool that is sexually mature |
 | [min_li_mat_XXX]{style="color: orange;"} | Minimum length required for sexual maturation in age-structured groups (calculated using length-weight conversion parameters [li_a_XXX]{style="color: orange;"} and [li_b_XXX]{style="color: orange;"}) |
-| [XXX_age_mat]{style="color: orange;"} | The first age group where adult behaviour is expressed in distribution, feeding, prey availability. It is modelled as hard transition and can be different from sexual maturation defined by [FSPB_XXX]{style="color: orange;"} parameters |
+| [XXX_age_mat]{style="color: orange;"} | The first age group where adult behaviour is expressed in distribution, feeding, prey availability. It is modelled as a hard transition and can be different from sexual maturation defined by [FSPB_XXX]{style="color: orange;"} parameters |
 | [XXX_Time_Spawn]{style="color: orange;"} | Day of the year that a species XXX spawns (all spawn occurs at once) |
 | [FSP_XXX]{style="color: orange;"} | Proportion of ideal weight for spawn that is used for spawn |
-| [KSPA_XXX]{style="color: orange;"} | Constant used by the spawning formulation, it represents reproductive costs and does not contribute to spawn |
+| [KSPA_XXX]{style="color: orange;"} | Constant used by the spawning formulation; it represents reproductive costs and does not contribute to spawn |
 | [prop_spawn_lost_XXX]{style="color: orange;"} | Amount of nitrogen taken from age-structured biomass pool after spawning. Used to represent both nitrogen lost to spawn and reproduction related mortality |
-:::
 
-## **10.9. Recruitment and ageing**
+: Parameters determining maturation and spawn. {#tbl-maturation-spawn-parameters tbl-colwidths=[25,75]}
+
+## **Recruitment and ageing**
 
 Atlantis does not currently model the larval period explicitly. In fully age-structured groups and age-structured biomass pools nitrogen produced as spawn is temporarily taken out of the model and is returned as recruits after a set larval period. In simple (non-age structured) biomass pools reproduction is not modelled explicitly. The larval period is set as
 
@@ -1099,9 +1111,9 @@ The amount of recruits produced can be influenced by one or several of these fac
 
 Recruited individuals are attributed to the first year of the first age group. The day before the recruits "arrive", all other individuals age one year up, and can be allocated into a different age group depending on the number of years in each age group. Ageing is done in one time step, regardless of whether recruits arrive all at once or during a certain period of time.
 
-### ***10.9.1 Routines used to calculate recruitment in age-structured groups***
+### ***Routines used to calculate recruitment in age-structured groups***
 
-Several routines in Atlantis are involved in obtaining the final number of recruits. For age-structured groups (vertebrates), the total spawn produced by a species (calculated in the routines above, in the chapter on spawning) is passed to:
+Several routines in Atlantis are involved in obtaining the final number of recruits. For age-structured groups (vertebrates), the total spawn produced by a species (calculated in the routines above, in @sec-spawn) is passed to:
 
 1)  The *Ecology_Find_Embryos()* routine, which applies environmental scalars, such as scaling by plankton production. It also applies external recruitment forcing, for cases where recruitment time series are supplied. In the case of Beverton-Holt or Ricker recruitment, which are dependent on the spawn or species biomass, nothing is done in this routine.
 2)  The value above is then passed to the *Get_Recruits()* routine which calculates the recruitment (*Rs*) depending on the chosen recruitment option.
@@ -1111,13 +1123,13 @@ Several routines in Atlantis are involved in obtaining the final number of recru
 
 Next we will give details on how Atlantis calculates recruitment (*Rs*) from spawn (*Sp*) for different recruitment options. Equations below combine calculations done in both *Ecology_Find_Embryos()* and *Get_Recruits()* routines.
 
-### ***10.9.2. Stock-recruitment options***
+### ***Stock-recruitment options***
 
 The most common Beverton-Holt recruitment (selected as [flagrecruitXXX]{style="color: orange;"}=3) is implemented as:
 
 $$Rc = \ \frac{Sp \cdot BHa}{Biom + BHb}$$
 
-where *BHa* and *BHb* are species-specific Beverton-Holt alpha and Beverton-Holt beta parameters ([BHalpha_XXX]{style="color: orange;"} and [Bhbeta_XXX]{style="color: orange;"}, mgN), *Sp* is the spawn produced (mgN, see Spawn chapter) and *Biom* is the species total biomass. Note that because this *Rc* is dealing with nitrogen and not recruits entering a fishery, the obtained values will not match those given in stock assessment models.
+where *BHa* and *BHb* are species-specific Beverton-Holt alpha and Beverton-Holt beta parameters ([BHalpha_XXX]{style="color: orange;"} and [Bhbeta_XXX]{style="color: orange;"}, mgN), *Sp* is the spawn produced (mgN, see @sec-spawn) and *Biom* is the species total biomass. Note that because this *Rc* is dealing with nitrogen and not recruits entering a fishery, the obtained values will not match those given in stock assessment models.
 
 ::: {.callout-caution}
 **Converting recruit biomass *Rc* to numbers** 
@@ -1283,11 +1295,11 @@ Rc=Rc\*[intersp_depend_scale]{style="color: orange;"}/biomassY
 If several stocks per species are used (identified with [NumStocks]{style="color: orange;"} parameter in the functional\_ group.csv file) the procedures described above calculate recruitment for each stock separately, using the biomass of that stock rather than the total species biomass. The user also has an option to use stock specific recruitment scalars [recSTOCK_XXX]{style="color: orange;"} to upscale or downscale recruitment in different stocks.
 :::
 
-### ***10.9.3. Environmental, habitat and external recruitment scalars***
+### ***Environmental, habitat and external recruitment scalars*** {#sec-envio-habitat-recruitment}
 
 The recruitment value *Rc* calculated above can be further modified by habitat availability, biomass of other species, environmental conditions, and additional recruit supplementing (stocking). All of these factors are optional and will be applied as multipliers on the base recruitment. Most of them affect recruitment in a negative way. When several scalars are applied (pH, temperature, contaminants), the user must be careful about the multiplicative nature of all these scalars, as they can drastically reduce recruitment.
 
-The pH, temperature, salinity, contaminant and external time series scalars are calculated in *Get_Enviro_Recruit_Forcing()* routine. They use pHcorr, Tcorr and Scorr values that are applied to different physiological processes of a species and calculated in relevant pH and temperature routines (see chapter 13).
+The pH, temperature, salinity, contaminant and external time series scalars are calculated in *Get_Enviro_Recruit_Forcing()* routine. They use pHcorr, Tcorr and Scorr values that are applied to different physiological processes of a species and calculated in relevant pH and temperature routines (see @sec-environmental-factors).
 
 **1. pH scalar**
 
@@ -1313,7 +1325,7 @@ If the model tracks contaminants, then a scalar on recruitment due to contaminan
 
 **5. Externally forced scalar**
 
-Users can supply external recruitment forcing scalar through time series files, listed in the *force.prm* file (see chapter 8). The external scalar will act as a multiplier on all other scalars calculated above. To indicate that external environmental recruitment forcing will be used set [flagtsforcerecruit]{style="color: orange;"}=1 in the *biology.prm* file. If this flag is set to 1, but no external forcing is provided then Atlantis will quit. This forcing represents environmental influence on recruitment (such as El Nino etc) and is called from *Get_Enviro_Recruit_Forcing()*.
+Users can supply external recruitment forcing scalar through time series files, listed in the *force.prm* file (see @sec-force-parameters). The external scalar will act as a multiplier on all other scalars calculated above. To indicate that external environmental recruitment forcing will be used set [flagtsforcerecruit]{style="color: orange;"}=1 in the *biology.prm* file. If this flag is set to 1, but no external forcing is provided then Atlantis will quit. This forcing represents environmental influence on recruitment (such as El Nino etc) and is called from *Get_Enviro_Recruit_Forcing()*.
 
 On top of these scalars an additional external forcing can be applied to recruitment, in the same way as forcing is applied to growth, mortality or other processes. This recruitment forcing is done separately to allow further representation of external processes, such as for example contaminant spill. This final kind of *force.prm* recruitment scalar is applied within the *Get_Final_Distribution()* routine and is called from *Ecology_Get_Recruitment_Scalar()*.
 
@@ -1321,7 +1333,7 @@ On top of these scalars an additional external forcing can be applied to recruit
 
 Habitat scalar on recruitment acts as an additional multiplier on all environmental scalars above. It is applied if species recruitment is habitat dependent ([XXX_rec_HabDepend]{style="color: orange;"}=1). The habitat scalar is calculated as a proportion of suitable habitat in the cell.
 
-### ***10.9.4. Spatial distribution of recruits***
+### ***Spatial distribution of recruits***
 
 Once the recruitment biomass and/or numbers are calculated Atlantis will first define their vertical and then horizontal distribution. This is done in two routines *Get_Vertical_Recruit_Position()* and *Find_Final_Recruit_Distribtuion()*. The first routine uses the [XXX_recruit_vdistrib]{style="color: orange;"} parameters. This parameter provides entries for a maximum number of water layers so the routine rescales the vertical recruit distribution in each box depending on how many layers it has and weighs the vertical distribution towards the bottom or surface depending on whether a species is identified as demersal ([flagdemXXX]{style="color: orange;"}=1) or not.
 
@@ -1344,7 +1356,7 @@ It is possible that the sum of the final Recruits_in_cell may not sum to 1.0. If
 It is important to realise that **minimum and maximum spawn temperature and salinity act as scalars on recruitment in a box**. Unlike the way in which settled individuals will contract away from unsuitable conditions during movement, recruit distributions **do not** contract to the boxes with suitable conditions but rather **kill all the recruits** that end up in unsuitable boxes. This means that if many boxes have conditions that are outside the suitable recruitment values the total recruitment in the model can be greatly reduced.
 :::
 
-### ***10.9.5. Factors defining temporal arrival of recruits***
+### ***Factors defining temporal arrival of recruits***
 
 Once the total number of recruits to arrive in each cell is calculated using the procedures above, their arrival is spread throughout the [Recruit_Period_XXX.]{style="color: orange;"} This is done by the *Get_Settlers()* routine. Two options are available for this, controlled with a global (applied to all species) [flagtrecruitdistrib]{style="color: orange;"} parameter. The recruit arrival can be flat, so that same number of recruits arrive every day ([flagtrecruitdistrib]{style="color: orange;"}=1) or it can be humped (lognormal) ([flagtrecruitdistrib]{style="color: orange;"}=0).
 
@@ -1352,7 +1364,7 @@ If a lognormal distribution is used the user should also provide [rec_m]{style="
 
 Also note that there is an additional parameter [XXX_cohort_recruit_entry]{style="color: orange;"} that identifies which cohort recruits enter in. Typically, this is zero, but for multi-year and complicated migration patterns this may be set to a value of one or more.
 
-### ***10.9.6. Modifying size at recruitment***
+### ***Modifying size at recruitment*** {#sec-age-at-recruit}
 
 Representing differential survival can be done in two ways, both of which use a time series file. To activate these set [flag_modify_KWSR]{style="color: orange;"} in the *biology.prm* file to a value greater than 0.
 
@@ -1398,27 +1410,30 @@ If the absolute value case ([flag_modify_KWSR]{style="color: orange;"} set to 2)
 1 110.8
 2 112.1
 
-### ***10.9.7. Stochastic variation around mean recruitment***
+### ***Stochastic variation around mean recruitment***
 
 It is possible to use all of the above to set the level of recruitment and then add normally distributed random fluctuations around that value. To do this set [XXX_flag_recruit_stochastic]{style="color: orange;"} to 1 in the *biology.prm* file and then set the sigma for the normal distribution for that species group using [XXX_norm_sigma.]{style="color: orange;"} It will use the calculated level of recruitment as the "mean" of the distribution.
 
-### ***10.9.8. Ageing of individuals***
+### ***Ageing of individuals*** {#sec-individual-ageing}
 
 As recruits "arrive" they enter the first age group of a species. For species that have more than one calendar year per age group they are entered into the first year of the first age group.
 
 ::: {.callout-caution}
 **Tracking calendar years within Atlantis age groups** 
 
-Although some species have several calendar years in one age group for the purposes of simplifying the ecological processes, for aging Atlantis actually tracks individuals of each calendar year within age group separately. This is illustrated in the left Figure 18 below where three calendar years (bars of the same colour) are tracked in each of the four age groups (AG1-AG4). The ageing routines move the individuals from one calendar year to the next (solid line arrows).
+Although some species have several calendar years in one age group for the purposes of simplifying the ecological processes, for aging Atlantis actually tracks individuals of each calendar year within age group separately. This is illustrated in the left @fig-calendar-year-tracking below where three calendar years (bars of the same colour) are tracked in each of the four age groups (AG1-AG4). The ageing routines move the individuals from one calendar year to the next (solid line arrows).
 :::
 
-All individuals in one age group AG are assumed to be identical for predation, reproduction, fishing and other processes. Mortality can be proportionally allocated across annual age cohorts within an age class. However, it is also possible to dampen strong year classes during the ageing process and equalise their relative abundance. This assumes that the most abundant year classes will be more affected by predation and fishing that less abundant ones and that through time the relative abundance of year classes will even out. The figure on the right shows that the abundant youngest year class in year t becomes less abundant in year t+1, while the relative abundance of the other two year classes in that age group increases (shown with bold outlines). In the year t+1, the newly arrived year class is shown in green, and the oldest year class from age group 1 is now in the age group 2.
+All individuals in one age group AG are assumed to be identical for predation, reproduction, fishing and other processes. Mortality can be proportionally allocated across annual age cohorts within an age class. However, it is also possible to dampen strong year classes during the ageing process and equalise their relative abundance. This assumes that the most abundant year classes will be more affected by predation and fishing that less abundant ones and that through time the relative abundance of year classes will even out. The figure on the right (@fig-calendar-year-tracking) shows that the abundant youngest year class in year t becomes less abundant in year t+1, while the relative abundance of the other two year classes in that age group increases (shown with bold outlines). In the year t+1, the newly arrived year class is shown in green, and the oldest year class from age group 1 is now in the age group 2.
 
-![](media/image58.jpg){width="2.5833333333333335in" height="2.876388888888889in"}
+::: {#fig-calendar-year-tracking layout-ncol=2}
 
-![](media/image59.jpeg){width="2.7069444444444444in" height="2.70625in"}
+![Three calendar years for each of the four age groups (AG1–AG4) illustrated.](media/image58.jpg){#fig-calendar-years-ag width=2.58in height=2.88in}
 
-[]{#_Toc526762798 .anchor}Figure 18. Tracking of calendar years in Atlantis age groups. Left: three calendar years for each of the four age groups (AG1-AG4) illustrated. Right: dampening of strong year classes through time.
+![Dampening of strong year classes through time.](media/image59.jpeg){#fig-calendar-years-dampening width=2.71in height=2.71in}
+
+Tracking of calendar years in Atlantis age groups. Left: three calendar years for each of the four age groups (AG1–AG4) illustrated. Right: dampening of strong year classes through time.
+:::
 
 Dampening of strong year classes during ageing routines is controlled by the [flagrecpeakXXX]{style="color: orange;"} parameter used in the *Update_Age_Distrib()* routine. If [flagrecpeakXXX]{style="color: orange;"}=0 then dampening of strong year classes will use the [recruitRangeFlat]{style="color: orange;"} multiplier, and if the [flagrecpeakXXX]{style="color: orange;"}=1 then dampening of strong year classes will use the [recruitRange]{style="color: orange;"} multiplier. By setting the values for [recruitRangeFlat]{style="color: orange;"} and [recruitRange]{style="color: orange;"} the user can control how much dampening will occur. If no dampening is wanted set the values to 1.
 

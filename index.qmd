@@ -1,13 +1,21 @@
 ---
-title: "Atlantis Documentation Portal"
+date: last-modified
+date-format: "MMMM YYYY"
 ---
 
-## User Guides
+# Sections {.unnumbered}
 
-- **[Part I - Setup, Physics, and Biology](user_guides/quarto_site/part1/index.qmd)** - User guide covering model setup, configuration, input and output files, physical, biogeochemical, and biological processes.
-- **[Part II - Fisheries, Management, and Economics](user_guides/quarto_site/part2/index.qmd)** - User guide covering the human components of the Atlantis model: fishing, management, and economics.
+### [Part I: General Overview, Physics & Ecology](user_guides/quarto_site/part1/index.qmd)
 
-## Additional Resources
+Model setup, physical processes, and biological processes.
 
-- **[Confluence Wiki](confluence/index.qmd)** - *Coming soon*
-- **[Resources](resources/index.qmd)** - *Coming soon*
+### [Part II: Socio-Economics](user_guides/quarto_site/part2/index.qmd)
+
+Fisheries, management, economics, and other industries.
+
+**Authors:** Asta Audzijonyte, Rebecca Gorton, Isaac Kaplan, Jacob M. Kasper, Elizabeth A. Fulton
+
+**Original Date:** April 2017
+
+![](user_guides/quarto_site/part1/media/image1.jpg){width=1.87in height=1.87in fig-align="center"}
+

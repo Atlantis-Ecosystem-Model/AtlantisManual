@@ -1,6 +1,4 @@
----
-title: "Appendix 1: TIPS FOR CALIBRATING BIOLOGICAL MODEL: NOTES FROM THE 2015 ATLANTIS SUMMIT"
----
+# Appendix 1: Tips for Calibrating Biological Model: Notes from the 2015 Atlantis Summit {#sec-appendix-1}
 
 *by Isaac Kaplan and Atlantis community*
 
@@ -148,13 +146,3 @@ Several distinct approaches to handling ocean acidification impacts have been te
 A different approach would be to predict pH or aragonite saturation state from temperature, oxygen, salinity, depth (Alin *et al.* in revision; Juranek *et al.* 2009). Based on experience with Common Scenarios at the Atantis Summit, we suggest the first option, before delving into the more detailed approaches.
 
 After pH (or aragonite saturation state) fields are generated within or outside Atlantis, the biological response to pH must be parameterized. This is challenging and involves a high degree of uncertainty; global meta-analyses provide some guidance (Kroeker et al. 2013; Wittmann and Pörtner 2013) but local conditions may require additional expertise. One concern was that these biological responses should be updated periodically as new information becomes available.
-
-[^1]: There is also Beth's development version, that contains features being actively developed at any instant in time. As those features are tested and verified (and so are less likely to contain a bug that will blow up) they are moved to the trunk version for general access.
-
-[^2]: An agent-based extension exists for Atlantis, but it is not currently included in the standard Atlantis package and will not be discussed in the manual
-
-[^3]: We do endeavour to update things for new naming conventions, but we also find it is better to err on the side of caution.
-
-[^4]: A small amount of mismatch (typically to cover rounding error) is allowed over the total fluxes in a cell in any one time step, but if it becomes too large (i.e. exceeds the flux tolerance set in the *biology.prm* file, with typical values being on the order of 0.2 mgN\*m^-3^ per second) the model will quit and provide a warning message, as this indicates that there is a problem with the parameterisation
-
-[^5]: Expert users may be able to tinker directly with the BGM file, but extreme care should be taken and it should be documented so any future users can understand the changes made (as the master shapefile file will no longer 100% match the model geometry).

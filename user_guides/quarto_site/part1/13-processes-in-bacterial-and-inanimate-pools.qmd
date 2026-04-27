@@ -1,8 +1,6 @@
----
-title: "12. PROCESSES IN BACTERIAL AND INANIMATE POOLS"
----
+# Process in Baterial and Inanimate Pools {#sec-bacterial-inanimate}
 
-## **12.1. Bacterial processes** 
+## **Bacterial processes** 
 
 sBacteria can be represented explicitly or implicitly in Atlantis. Not all early ecosystem models included bacteria, and PPBIM did not explicitly model bacteria. Below is an excerpt of the PPBIM report justifying the decision not to include bacteria:
 
@@ -34,7 +32,7 @@ $G_{BP} = mum \cdot B \cdot \left( 1 - \frac{B}{XPB_{DL} \cdot DL + XPB_{DR} \cd
 
 where mum is the maximum growth rate ([mum_PB]{style="color: orange;"}), XPB~DL~ and XPB~DR~ is the maximum ratio of the bacteria to DL and DR biomass ([XPB_DL]{style="color: orange;"} and [XPB_DR]{style="color: orange;"} parameters), *B* is the biomass of the pelagic bacteria, *DL* and *DR* is the biomass of labile and refractory detritus and [k_PB]{style="color: orange;"} is the constant determining the exponent of growth (1- linear, 3-drop off before maximum, 5- drop off at maximum). The growth of sediment bacteria (BB) is modelled in the same way, except that [mum_BB]{style="color: orange;"} and [k_BB]{style="color: orange;"} parameters are used.
 
-There is an option to allow for stimulation of bacterial growth by bioirrigation and bioturbation. This option is turned setting [flagbactstim]{style="color: orange;"}=1 and will enhance growth depending on the biomass of infaunal organisms and porosity of the sediment (see chapter 4).
+There is an option to allow for stimulation of bacterial growth by bioirrigation and bioturbation. This option is turned setting [flagbactstim]{style="color: orange;"}=1 and will enhance growth depending on the biomass of infaunal organisms and porosity of the sediment (see @sec-focing-files).
 
 Mortality (non-predation) of pelagic and sediment bacteria is modelled as
 
@@ -50,6 +48,6 @@ where E~DL,\ PB~ is the assimilation efficiency on labile detritus ([EDL_BP]{sty
 
 Uptake of refractory detritus DR is modelled in the same way except that PB_DR is used and assimilation efficiencies on refractory detritus is used ([EDR_BP]{style="color: orange;"} and [EDR_BB]{style="color: orange;"}).
 
-## **12.2 Biogeochemical processes** 
+## **Biogeochemical processes** 
 
-Details on the fluxes in the inanimate pools have been described in Fulton et al. 2004a and more recently in Link et al. 2011 [Atlantis-NEUS model report](https://atlantis-ecosystem-model.github.io/atlantis-wiki/useful-reading.html). The table of inanimate pools tracked in the water column and sediments is given in chapter 6.1.
+Details on the fluxes in the inanimate pools have been described in Fulton et al. 2004a and more recently in Link et al. 2011 [Atlantis-NEUS model report](https://atlantis-ecosystem-model.github.io/atlantis-wiki/useful-reading.html). The table of inanimate pools tracked in the water column and sediments is given in @tbl-state-variables.

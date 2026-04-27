@@ -1,8 +1,6 @@
----
-title: "**17. ECONOMICS**"
----
+# Economics {#sec-economics-intro}
 
-## **17.1. Introduction into the Economics submodel and its main principles**
+## **Introduction into the Economics submodel and its main principles**
 
 The Economics submodel aims to capture socio-economic pressures that determine harvesting decisions. There is an increasing realisation that human behaviour and socio-economic drivers are important determinants of marine resource use, but many models do not attempt to capture this. To fill this gap, Atlantis includes Economics submodels. **However, users should be aware that the Economics submodel has not been used and tested as widely used as other submodels (e.g. biology) and should be used with caution.** When applying this submodel it is recommended to start with simple options, where model outputs against the expectations. In this manual only the key routines are described; users interested in further details should consult the key publications listed below, the Atlantis wiki, the Atlantis google groups or the Atlantis model developers.
 
@@ -32,7 +30,7 @@ The Economics submodel aims to capture socio-economic pressures that determine h
 
 3)  Under a TAC system, quota can be traded dynamically among fishers. Unlike in non-economics based fisheries effort models, TACs may not be fulfilled (i.e. no, or not all quota will be used) if fishing is unprofitable such as when fish prices are low or fishing costs are high.
 
-4)  Some level of non profit maximising human behaviour is allowed. Many fisheries decisions in the real world are based on criteria other than profit maximisation (lifestyle, beliefs, habit). In Atlantis, this is implemented through an extra parameter defining the flexibility of fishers to learn and so change effort to match the areas of highest CPUE (see chapter 17.5), and by introducing stochasticity in gear switching, vessel update routines and quota trading routines (see chapters 17.3 and 17.4.1).
+4)  Some level of non profit maximising human behaviour is allowed. Many fisheries decisions in the real world are based on criteria other than profit maximisation (lifestyle, beliefs, habit). In Atlantis, this is implemented through an extra parameter defining the flexibility of fishers to learn and so change effort to match the areas of highest CPUE (see @sec-scheduling-of-effort), and by introducing stochasticity in gear switching, vessel update routines and quota trading routines (see @sec-calculating-prices-costs and @sec-monthly-boat-numbers).
 
 5)  There is the potential to implement a quota trade network where for instance, there is preferential trading between fleets or subfleets. This can emulate empirically based or hypothetical preferential trading based on kinship, friendship, or business relationships. This is not activated in all versions of the code and anyone interested in using it should approach the Atlantis developers for support in its use.
 
@@ -43,7 +41,7 @@ The Economics submodel aims to capture socio-economic pressures that determine h
 
 Subfleets are used to model fisher behaviour at a higher resolution, along the lines of metiers as defined by Pelletier et al (2000) or Deporte et al (2012). The idea is to divide up fishing fleets into subfleets (metiers) with similar properties. The key aspects of subfleets is that they can have different costs of fishing, behavioural flexibility and quotas. The subfleet behaviour is used to better reflect dynamic effort changes of different fisheries. The profits of fishing operations are also tracked at the subfleet level and dynamic changes in the numbers or activities of subfleets shapes the realised fishing practices at the fleet level.
 
-Subfleets are only defined in the Economics submodel -- in the Harvest submodel the actual catches are done at the level of fisheries, as described in chapter 15.4. This is to maximise compatibility with the other ways of representing fisheries. However, it also means that regardless of the vessel sizes or fishing costs, all subfleets within one fishery are characterised by the same gear selectivity, fish escapement, incidental mortality and other fishery specific parameters given in the dynamic fishing equations in chapter 15.4. The only thing that is affected by subfleets in the Harvest submodel is the effort per fishery per box per timestep.
+Subfleets are only defined in the Economics submodel -- in the Harvest submodel the actual catches are done at the level of fisheries, as described in @sec-dynamic-fishing-intro. This is to maximise compatibility with the other ways of representing fisheries. However, it also means that regardless of the vessel sizes or fishing costs, all subfleets within one fishery are characterised by the same gear selectivity, fish escapement, incidental mortality and other fishery specific parameters given in the dynamic fishing equations in @sec-dynamic-fishing-intro. The only thing that is affected by subfleets in the Harvest submodel is the effort per fishery per box per timestep.
 
 The subdivision of fisheries into subfleets is used to have a more dynamic representation of effort allocation per box per time step. When the Economics submodel is used, effort allocation reflects fisher behaviour and subfleets can respond to markets and trade quota.
 
@@ -57,10 +55,8 @@ Number of boats, hold size, crew size, behaviour flexibility, costs of fishing, 
 
 Gear selectivity, target species, fish escapement, incidental mortality, discarding, minimum and maximum fishing depth, fishing habitat characteristics and so on
 :::
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
+|:--------------|:----------------|
 | [YYY_nsubfleets]{style="color: orange;"} | Number of subfleets per each fishery. This value is only used if economics is switched on for that fishery. If the economics sub-model is being used then this value must be at least 1 or Atlantis will crash. |
 | [YYY_nlicence]{style="color: orange;"} | Number of licences for each fishery across all subfleets. It defines the maximum number of vessels that may be active in a fishery. |
 | [YYY_nboat]{style="color: orange;"} | Number of boats in each subfleet. The array should have as many entries as the maximum number of subfleets. For fisheries that have fewer or only 1 subfleet, give 0 for the remaining "empty" subfleets. For fisheries that have an effortmodel value < 12 then set all values to 0 (as they are not modelled using subfleets but instead use one of the effort models defined in the harvest sub-model). |
@@ -76,11 +72,10 @@ Gear selectivity, target species, fish escapement, incidental mortality, discard
 | [month_scalar]{style="color: orange;"} | Global parameter setting up the scalar in number of days per month that each subfleet can apply. It is used in calculating max_month_effort, see chapter 17. |
 | [BycatchCountDiscards]{style="color: orange;"} | This flag indicates whether the discard of bycatch species are used in calculations involving total catches (e.g. for calculating total catch per box vs profit or taxes, used in deciding where to target fishing effort). The inclusion of bycatch may be important if there are penalties or taxes for taking endangered species. |
 
-:::
+: General Economics and subfleet parameters. {#tbl-economics-subfleet-parameters tbl-colwidths=[25,75]}
 
-[]{#_Toc498434985 .anchor}**Table 15.** General Economics and subfleet parameters
 
-## **17.2. Key routines of the Economics submodel**
+## **Key routines of the Economics submodel**
 
 If the Economics submodel is turned on ([flagecon]{style="color: orange;"}=1 in the *run.prm* file) the *Economics()* routine is called at every time step, setting up fishing dynamics based on sub-fleet parameters.
 
@@ -88,25 +83,25 @@ The key steps done in the *Economics()* routine are:
 
 1.  **Allocate catch** from the Harvest submodel to subfleets of each fishery. In the Harvest and Ecology submodels all catch is applied and recorded at the level of a fishery. In the Economics submodel, however, fisher behaviour and dynamic fishing is more resolved and modelled at the level of subfleets within each fishery. Once the harvest per species per age group per fishery per box is calculated in the Harvest submodel it is then passed back into the Economics submodel, where it is divided among subfleets. This allocation to subfleets is proportionally based on the effort for each subfleet in that cell in the previous time step (stored in the "black books" of each subfleet, see below) and the availability of quota for that subfleet. The allocation of catch among subfleets is done by the *Allocate_Catch()* routine **ateconresponse.c**.
 
-2.  **Assess the economic situation or market behaviour**, i.e. calculate fish prices (used in deciding what to fish), calculate quota prices (for quota trading) and a range of economic indicators. This is done in *Get_Fish_Prices()*, *Total_Quota_Price()* and *Economic_Indicators()* routines. The economic indicators are used for reporting purposes only and do not affect the simulations. See chapter 17.3 for further description.
+2.  **Assess the economic situation or market behaviour**, i.e. calculate fish prices (used in deciding what to fish), calculate quota prices (for quota trading) and a range of economic indicators. This is done in *Get_Fish_Prices()*, *Total_Quota_Price()* and *Economic_Indicators()* routines. The economic indicators are used for reporting purposes only and do not affect the simulations. See @sec-calculating-prices-costs for further description.
 
-3.  At the start of the month assess the subfleet's economic status and prospects, any **responses to the market** leading to buying or selling of boats, and update number of boats associated with ports and different markets. This is done in *Update_Vessel_Numbers()* and *Port_Growth()* routines. Subfleets can run at a loss (i.e. costs are greater than returns) for certain periods of time -- and debts (negative profits) are created. If expected profit is not sufficient to reduce the debt levels and debts become 'crippling', after a certain amount of time a subfleet will start decreasing effort. A subfleet may exit the fishery (i.e. boats are decommissioned) if the debt is large and continues for too long. See chapter 17.4 for further description.
+3.  At the start of the month assess the subfleet's economic status and prospects, any **responses to the market** leading to buying or selling of boats, and update number of boats associated with ports and different markets. This is done in *Update_Vessel_Numbers()* and *Port_Growth()* routines. Subfleets can run at a loss (i.e. costs are greater than returns) for certain periods of time -- and debts (negative profits) are created. If expected profit is not sufficient to reduce the debt levels and debts become 'crippling', after a certain amount of time a subfleet will start decreasing effort. A subfleet may exit the fishery (i.e. boats are decommissioned) if the debt is large and continues for too long. See @sec-economic-responses for further description.
 
-4.  **Make an** **annual** (start of the year) **and monthly** (start of the each month) **plan for fishing effort**. Here fishers make decisions where and how much they are planning to fish. The plan is first made for the whole year based on the historical catches and profits (stored in "black books" of each subfleet) versus expected profit for this year (the profit expectation might change depending on the costs of fishing, prices of fish and quota availability) and flexibility of fishers to change their behaviour. The main routines for annual effort planning is *Annual_Effort_Schedule()* and *Dynamic_Effort_Allocation()* in **atEconomicAnnual.c**. Then each month the annual effort plan is updated depending on whether realised catches are close to expected catches and (how the fishery is tracking in terms of the ratio of realised : expected catches versus the same time in the previous year) and on the availability of quota (remaining quota and traded quota). If realised catches are much lower than expected, then the monthly effort plan is updated and an increase in effort is planned (pending having quota in hand and/or the availability of quota on the quota market). If realised catches are much greater than planned then caps on monthly effort may come in to place (as maintenance time is required or it is physically impossible to fish more days). The monthly revision of the fishing plan is done in the *Monthy_Effort_Schedule()* routine. Note that this is still not the actual final effort, but only a monthly effort plan. See chapter 17.5 for further description.
+4.  **Make an** **annual** (start of the year) **and monthly** (start of the each month) **plan for fishing effort**. Here fishers make decisions where and how much they are planning to fish. The plan is first made for the whole year based on the historical catches and profits (stored in "black books" of each subfleet) versus expected profit for this year (the profit expectation might change depending on the costs of fishing, prices of fish and quota availability) and flexibility of fishers to change their behaviour. The main routines for annual effort planning is *Annual_Effort_Schedule()* and *Dynamic_Effort_Allocation()* in **atEconomicAnnual.c**. Then each month the annual effort plan is updated depending on whether realised catches are close to expected catches and (how the fishery is tracking in terms of the ratio of realised : expected catches versus the same time in the previous year) and on the availability of quota (remaining quota and traded quota). If realised catches are much lower than expected, then the monthly effort plan is updated and an increase in effort is planned (pending having quota in hand and/or the availability of quota on the quota market). If realised catches are much greater than planned then caps on monthly effort may come in to place (as maintenance time is required or it is physically impossible to fish more days). The monthly revision of the fishing plan is done in the *Monthy_Effort_Schedule()* routine. Note that this is still not the actual final effort, but only a monthly effort plan. See @sec-scheduling-of-effort for further description.
 
-5.  **Do quota trading**. If fishers are making a positive return they will assess their quota availability, fish prices and fishing expenses. If they do not have enough quota in hand -- and they therefore have a demand for quota, they make decisions to trade quota (or *vice versa* if they have quota left over, particularly if they are approaching the end of the calendar year). Quota trading is done among subfleets. Once the quota is traded then the final effort allocation can be made depending on how much quota each subfleet has for different species. This is done in *Quota_Trade()* routine in **atquota.c**. The quota trading is described together with quota prices in the chapter 17.3.
+5.  **Do quota trading**. If fishers are making a positive return they will assess their quota availability, fish prices and fishing expenses. If they do not have enough quota in hand -- and they therefore have a demand for quota, they make decisions to trade quota (or *vice versa* if they have quota left over, particularly if they are approaching the end of the calendar year). Quota trading is done among subfleets. Once the quota is traded then the final effort allocation can be made depending on how much quota each subfleet has for different species. This is done in *Quota_Trade()* routine in **atquota.c**. The quota trading is described together with quota prices in the @sec-calculating-prices-costs.
 
 6.  Make **final effort allocation** per sublfeet per box trip (done in *Allocate_Final_Effort()* routine), with the same effort assumed to hold for the length of the trip (in most cases this trip length is assumed to be weekly, but it can also be on shorter time frames). This can be done using the basic Atlantis economic model (*Multi_Plan_Effort\_ Final_Allocation()* routine used in the Fulton et al. publications) or the Dan Holland version of the economic model (used in Kaplan et al. 2014) (*Holland_Effort_Final_Allocation()* routine).
 
-In the basic model, fishers can update their monthly effort plan depending on the last month's catch per unit effort (CPUE), value per unit effort (VPUE) or discards per unit effort (DisPUE). This means that if CPUE in some boxes is high, fishers might decide to change their planned fishing schedule and instead go to those boxes. The speed of plan updating depends on the fisher's flexibility (set for each subfleet in a separate parameter). For example, some subfleets can be considered as traditionalist and will go to places where they always go. Others might be more flexible and quickly change their planned effort allocations depending on latest catch (see VanPutten et al. 2013 for an example study). The DisPUE is important in cases where bycatch avoidance is used. The final allocations also take into account the quota availability. See chapter 17.7 for further description.
+In the basic model, fishers can update their monthly effort plan depending on the last month's catch per unit effort (CPUE), value per unit effort (VPUE) or discards per unit effort (DisPUE). This means that if CPUE in some boxes is high, fishers might decide to change their planned fishing schedule and instead go to those boxes. The speed of plan updating depends on the fisher's flexibility (set for each subfleet in a separate parameter). For example, some subfleets can be considered as traditionalist and will go to places where they always go. Others might be more flexible and quickly change their planned effort allocations depending on latest catch (see VanPutten et al. 2013 for an example study). The DisPUE is important in cases where bycatch avoidance is used. The final allocations also take into account the quota availability. See @sec-final-effort-allocation for further description.
 
-Once the final effort allocation per subfleet is done, the effort from subfleets is pooled to the level of fisheries and passed on to the Harvest submodel to execute the actual catches given the effort, gear selectivity, and other parameters, as described in the chapter 15.4.
+Once the final effort allocation per subfleet is done, the effort from subfleets is pooled to the level of fisheries and passed on to the Harvest submodel to execute the actual catches given the effort, gear selectivity, and other parameters, as described in @sec-dynamic-fishing-intro.
 
-## **17.3. Calculating prices and costs**
+## **Calculating prices and costs** {#sec-calculating-prices-costs}
 
 Fish prices, taxes, penalties and fishing costs determine the profitability of fishing operations and are at the core of the Economics submodel. The profits of a subfleet are determined by the revenue from the fish sold, revenues from the deemed values for bycatch (if used), revenues of leased or sold quota units minus operating costs. The cash flows are tracked at the level of subfleet; a subfleet can have surplus cash reserves or go into debt (negative profits). If a debt is large and the fleet continues to make a negative profit for too long, a subfleet will decommission boats.
 
-### ***17.3.1. Fish prices***
+### ***Fish prices*** {#sec-fish-prices}
 
 Fish prices can remain static (constant) through the simulation (set through [UseConstPrice]{style="color: orange;"} = 1) or be dynamic (e.g. prices can vary according to a seasonal pattern) ([UseConstPrice]{style="color: orange;"} = 0). Static prices for each species and fishery combination are set in [XXXsaleprice]{style="color: orange;"} parameter (\$/kg). Dynamic prices are updated at each time step of the simulation and calculated in *Get_Fish_Price()* routine.
 
@@ -123,7 +118,7 @@ The *b~month,CX,x~* is the montly market constant for each species and market (i
 Finally, it is possible to add the additional coefficient with externally read price residuals represented by term *residuals~CX,x,t~*. The residuals for each species and market through time must be provided through an external forcing file. If this file is not provided, then no residual value is added. The *c~CX,x~* is the market and species specific constant ([MARKET_autocoefft1]{style="color: orange;"} and [MARKET_autocoefft2]{style="color: orange;"}) to be applied to the externally read residuals. The residuals are derived from fitting the empirical historical market prices to a model that includes yearly trends and monthly fluctuations. The *Wgt~x~* represents the proportion of total catch that goes to a given market. This is determined by the proportion of total landings in each port, where each subfleet is associated with only one port ([YYY_homeport]{style="color: orange;"}) and each port is associated only with one market (given in the ports_markets parameter in the *harvest.prm* file).
 
 
-### ***17.3.2. Deemed value prices***
+### ***Deemed value prices*** {#sec-deemed-value-prices}
 
 ::: {.callout-note}
 ## What is a deemed value and why are they needed?
@@ -149,7 +144,7 @@ $${DV}_{cx,Y,x,t} = {Prc}_{cx,Y,x,t} \cdot \left( 1 - {CrewPr}_{Y,J} - {deemed}_
 
 Where *Prc~CX,Y,x,t~* is the dynamic market price as calculated above; *Cre~PrY,J~* is the proportion of profit that is a crew share in fishery Y subfleet J ([YYY_crewshare]{style="color: orange;"}); *deemed~CX,Y~* is the deemed value scalar given in the [XXXdeemed]{style="color: orange;"} parameter (for each fishery and species); and *Cost~fixed,Y,J~* is the fixed cost of fishing (\$/day) per fishery Y subfleet J.
 
-### ***17.3.3. Fishing costs***
+### ***Fishing costs*** {#sec-fishing-costs}
 
 Costs are tracked at the subfleet level. The total operating costs (*Cost~J,Y,m,y~*) per subfleet *J* of fishery Y in month *m* of year *y* consists of fixed, market dependent, harvest dependent and effort dependent costs:
 
@@ -160,28 +155,25 @@ $$Cost_{J,Y,m,y} = \left( Cost_{fix,J,Y} + Cost_{cap,J,Y} \right) + \left( Cost_
 
 where *Cost~fix,i,j~* are the fixed costs of subfleet J (YYY_fixedcost, \$/day), which represent boat licence, management, insurance and maintenance costs and *Cost~cap,i,j~* are capital costs (YYY_capitalcost, \$/day), mostly representing depreciation. These two costs are fixed during the simulation. The *Cost~quota,i,j~* are quota lease costs for subfleet *i* of fleet *j* for quota traded in month *m* of year *y* (calculated dynamically using quota price and quota trading routines, see below); *Prc~fuel~* is the fuel price calculated dynamically (see below); *Eff~J,Y,m,y~* is the effort (in days) that a subfleet has expended in the month *m* of the year *y*. The second term of the equation include dynamic costs determined by the market (quota and fuel price). The *Cost~unload,i,j~* are unloading costs (YYY_unloadcost, \$/tonne) and *H~i,j,m,y\ ~*is the landed catch by subfleet *i* of fleet *j* in month *m* of year *y* -- this is the harvest dependent component of the cost. *Cost~gear,i,j~* are gear maintenance costs (YYY_gearcost, \$/day of fishing effort) currently set to be stable during the simulation. Like the fuel related cost, the gear maintenance costs are related to the effort expended.
 
-The fuel price is calculated similarly to the fish price described in chapter 17.3.1.
+The fuel price is calculated similarly to the fish price described in @sec-fish-prices.
 
 $${Prc}_{fuel,J,Y,m,y} = \left( a_{fuel} + Trend_{fuel} \cdot year + b_{fuel,month} + c_{fuel} \cdot residuals_{fuel} \right) \cdot \delta_{J,Y}\ $$
 
 *a~fuel~* is the baseline fuel cost (fuel_intercept, cents/litre); *Trend~fuel~* is the price trend coefficient fuel_trend_coefft (cents/litre) to be multiplied by the year of the simulation; the *b~fuel,\ month~* is the monthly market constant given in the FuelMonthCoefft parameter; and *c~fuel~* is a constant (fuel_auto_coefft) to be applied to the externally read fuel price residuals *residuals~fuel~*. The *δ~J,Y~* is the subfleet's specific fuel consumption value (YYY_fuelcost, liters/day of effort).
 
-[]{#_Toc498434986 .anchor}**Table 16.** Parameters relating to fish prices and fishing costs
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
-| [UseConstPrice]{style="color: orange;"} | Parameter determining whether to use constant fish prices given in `XXXsaleprice` parameter (if set to 1) or if prices should be updated dynamically using market based calculations (if set to 0). |
+|:--------------|:----------------|
+| [UseConstPrice]{style="color: orange;"} | Parameter determining whether to use constant fish prices given in [XXXsaleprice]{style="color: orange;"} parameter (if set to 1) or if prices should be updated dynamically using market based calculations (if set to 0). |
 | [XXXsaleprice]{style="color: orange;"} | Original fish price (\$/kg) for species XXX and given for each fishery. |
 | [K_num_markets]{style="color: orange;"} (in *run.prm*) | Number of independent markets determining fish prices (currently can only be 1 or 2). |
-| [MARKET_intercept1, MARKET_intercept2]{style="color: orange;"} | Market-specific scalar for each species fish price (unitless). |
-| [MARKET_trend1, MARKET_trend2]{style="color: orange;"} | Long term price trend coefficient constant for each market and species, to be multiplied by the simulation year number to get \$/kg. |
-| [JanMarketCoefft1, FebMarketCoefft1, ...]{style="color: orange;"} | Monthly market constant (\$/kg) in fish price. |
-| [MARKET_autocoefft1, MARKET_autocoefft2]{style="color: orange;"} | Market specific constants to be applied to externally read price residuals. |
+| [MARKET_intercept1]{style="color: orange;"}, [MARKET_intercept2]{style="color: orange;"} | Market-specific scalar for each species fish price (unitless). |
+| [MARKET_trend1]{style="color: orange;"}, [MARKET_trend2]{style="color: orange;"} | Long term price trend coefficient constant for each market and species, to be multiplied by the simulation year number to get \$/kg. |
+| [JanMarketCoefft1]{style="color: orange;"}, [FebMarketCoefft1]{style="color: orange;"}, ... | Monthly market constant (\$/kg) in fish price. |
+| [MARKET_autocoefft1]{style="color: orange;"}, [MARKET_autocoefft2]{style="color: orange;"} | Market specific constants to be applied to externally read price residuals. |
 | [YYY_homeport]{style="color: orange;"} | An array indicating which port each fishery and subfleet are associated with (each subfleet can only be associated with one port). |
 | [ports_markets]{style="color: orange;"} (in *harvest.prm*) | An array indicating which port is associated with which market (each port is only associated with one market). |
 | [DVstart]{style="color: orange;"} | Day of the simulation run when deemed fish price values will start being used. |
-| [YYY_flagDV]{style="color: orange;"} | Fishery specific flag determining whether to use no deemed value (=0), simple deemed value (=1), or complex deemed value (=2). See chapter 17.3.2. |
+| [YYY_flagDV]{style="color: orange;"} | Fishery specific flag determining whether to use no deemed value (=0), simple deemed value (=1), or complex deemed value (=2). See @sec-deemed-value-prices. |
 | [XXXdeemed]{style="color: orange;"} | Scalar applied to dynamically calculated fish price to get deemed value prices. |
 | [YYY_crewshare]{style="color: orange;"} | Proportion of profit (from 0 to 1) that goes to the crew in each subfleet, used for complex deemed fish value calculations and for calculating subfleet levels of profitability and future economic status. |
 | [YYY_fixedcost]{style="color: orange;"} | Fixed cost of fishing, \$/day, applied to each day of the simulation (not fishing days). |
@@ -193,9 +185,10 @@ $${Prc}_{fuel,J,Y,m,y} = \left( a_{fuel} + Trend_{fuel} \cdot year + b_{fuel,mon
 | [FuelMonthCoefft]{style="color: orange;"} | Monthly fuel price constant (cents/litre). |
 | [fuel_auto_coefft]{style="color: orange;"} | A constant on fuel cost to be applied to externally read price residuals. |
 | [YYY_fuelcost]{style="color: orange;"} | Subfleet specific fuel consumption, litres/effort_day. |
-:::
 
-### ***17.3.4. Quota trading***
+: Parameters relating to fish prices and fishing costs. {#tbl-fish-prices-parameters tbl-colwidths=[25,75]}
+
+### ***Quota trading***
 
 Quota trading constitutes an important aspect of the Economics submodel and has large effect on the profitability of a subfleet. It is based on the principle that individual quota is transferable (commonly referred to as ITQs). In Atlantis quota is traded among subfleets whereas in many fisheries quota is traded among individuals (quota owners). Quota trading is based on the principle that each subfleet aims to maximise profit. In other words, a subfleet that can increase its profit by purchasing quota and thus increasing its fishing activity will do so. Similarly, a subfleet that can increase its profit by selling quota and reducing fishing activity will also do so. Transferability of ITQs allows fishers to either continue fishing or transfer (by sale or lease) their quota holdings to other fishers or, for efficient fishers, to accumulate quota by purchase or lease. Quota trading therefore occurs between vessel (subfleets) wanting to increase fishing effort and a vessel (subfleets) wanting to reduce their effort. Quota trading in Atlantis is based on priciples described in Newel et al. (2005) and Little et al. (2009).
 
@@ -209,7 +202,7 @@ There is an important distinction between the **revenue**, **rent** and **profit
 
 Quota trading is done at the subfleet level and is applied only if a global flag [quota_trading]{style="color: orange;"} =1. Quota will be traded only for those species which are under quota. Fishing will only occur if fishing without quota is allowed ([fish_withoutQ]{style="color: orange;"} = 1) or if some quota is held ([fish_withoutQ]{style="color: orange;"} = 0); in the later case effort may be scaled down if insufficient quota is held for expected catches. Note this handling of fishing stems from the way in which quota fisheries are implemented around the world. In some countries quota must be held before fishing commences ([fish_withoutQ]{style="color: orange;"} = 0) or fishing may occur and quota is then sort to cover that catch before it is officially landed and sold ([fish_withoutQ]{style="color: orange;"} = 1).
 
-The initial allocation of quota (TAC) among subfleets is given in [OwnQuotaXXX_sub1]{style="color: orange;"}, [OwnQuotaXXX_sub2]{style="color: orange;"}, etc. parameter (an array has as many values as there are fisheries). These values supersede those from [TAC_XXX]{style="color: orange;"} in the *harvest.prm* file -- a warning to this effect is printed at the start of any run where the economics sub-model is used. For species that do not have quota for a given subfleet, the value should be set at 10^12^.These quota values are used through out the run unless the Assessment submodel is used and TACs are determined dynamically (see Note! in chapter 16.1). If dynamic quotas are being used then the allocation of quota per subfleet is based on the proportion of the previous year's quota held by that subfleet.
+The initial allocation of quota (TAC) among subfleets is given in [OwnQuotaXXX_sub1]{style="color: orange;"}, [OwnQuotaXXX_sub2]{style="color: orange;"}, etc. parameter (an array has as many values as there are fisheries). These values supersede those from [TAC_XXX]{style="color: orange;"} in the *harvest.prm* file -- a warning to this effect is printed at the start of any run where the economics sub-model is used. For species that do not have quota for a given subfleet, the value should be set at 10^12^.These quota values are used through out the run unless the Assessment submodel is used and TACs are determined dynamically (see Note! in @sec-mgmt-intro). If dynamic quotas are being used then the allocation of quota per subfleet is based on the proportion of the previous year's quota held by that subfleet.
 
 Quotas are typically allocated for one year and quota trading only applies to subfleets and species that have quotas (TAC) imposed. Quota trading is done with the same frequency as the "final effort allocation" step of the economics sub-model; in most cases this trip length is assumed to be weekly, but it can also be on shorter time frames. As the year passes quota trading operations intensify, as the subfleets aim to either offload the quota they are unlikely to use up or buy more quota if their catch exceeds expectations. Quota trading is determined by the cumulative versus expected catch, the proportion of quota left (in-hand), and the price of quota for that species and subfleet (determined dynamically, see below). The quota trading model assumes that subfleets whose marginal rents are highest (most positive) have the greatest incentive to lease or buy quota, while those with the lowest (most negative) marginal rents have the greatest incentive to sell their quota and not fish.
 
@@ -249,9 +242,9 @@ Finally, the sale of a quota means that a subfleet gets a set price for a quota 
 The price of a temporary quota lease is calculated dynamically. The permanent quota lease is typically more expensive -- the price is scaled by the `perm_coefft` scalar on the base quota lease price. Finally, the complete sale of the quota is usually even more expensive, as set in the `buy_coefft` scalar on the base quota lease price. Permanent transfers are more expensive because they should equal the discounted value of future profits that could be earned using that quota. Temporary transfers should equal the profit (or net revenue) from that unit of quota in that year.
 :::
 
-Quota can either be leased temporarily, leased permanently, or sold. This is determined by the relative cost scalar of the sale versus lease for a single quota unit (see the box above) and randomly drawn probability (similarly to the gear switching or boat selling probability described in chapter 17.4.1). See Fulton et al. 2007 appendix C equations B.21-22 for further details. Briefly, the price of the lease and sale of the quota unit sets a probability that it will be leased and sold. Because the sale price is typically much higher than the lease price, the probability of sale is much lower than the probability of lease; the probability of a permanent lease usually lies between the temporary lease and permanent sale price. Then Atlantis draws a random number and compares it to the probabilities above. If the random probability is lower than the temporary lease probability but higher the permanent lease probability, the temporary lease operation occurs. If the random probability is lower than permanent lease and but higher than permanent sale, then permanent lease occurs.
+Quota can either be leased temporarily, leased permanently, or sold. This is determined by the relative cost scalar of the sale versus lease for a single quota unit (see the box above) and randomly drawn probability (similarly to the gear switching or boat selling probability described in @sec-monthly-boat-numbers). See Fulton et al. 2007 appendix C equations B.21-22 for further details. Briefly, the price of the lease and sale of the quota unit sets a probability that it will be leased and sold. Because the sale price is typically much higher than the lease price, the probability of sale is much lower than the probability of lease; the probability of a permanent lease usually lies between the temporary lease and permanent sale price. Then Atlantis draws a random number and compares it to the probabilities above. If the random probability is lower than the temporary lease probability but higher the permanent lease probability, the temporary lease operation occurs. If the random probability is lower than permanent lease and but higher than permanent sale, then permanent lease occurs.
 
-### ***17.3.5. Quota prices*** 
+### ***Quota prices*** 
 
 Since quota trading is based on profit maximisation, the amount of quota traded will depend on quota prices. In Atlantis quota prices are calculated dynamically using either the model described in Little et al. (2009) ([flagLease]{style="color: orange;"}=0) or Newel et al. 2005 ([flagLease]{style="color: orange;"}=1). The quota prices are calculated in *Total_Quota_Price()* routine in **atquota.c**
 
@@ -266,15 +259,11 @@ In the Newell et al (2005) model ([flagLease]{style="color: orange;"}=1) the ave
 If the [UseMinValue]{style="color: orange;"} global parameter is set to 1, then quota prices cannot fall below the minimum value given in a global [minValue]{style="color: orange;"} parameter (same for all species for which no quota price is estimated, or price is below the minimum value). If [UseMinValue]{style="color: orange;"}=0, quota prices for all species with no quota are set to 0
 
 A parameter [targetscale]{style="color: orange;"} is used to give the relative weighting key target species have in making quota trade decisions. Effectively, each kilo of a target species up for trade is [targetscale]{style="color: orange;"} times more attractive than a kilo of a secondary or byproduct species (i.e. a lower value but still saleable fish under a quota).
-
-[]{#_Toc498434987 .anchor}**Table 17.** Parameters relating to quota trading and quota prices
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
+|:--------------|:----------------|
 | [quota_trading]{style="color: orange;"} | If set to 1, then quota is traded in the simulation. |
 | [fish_withoutQ]{style="color: orange;"} | Whether fishing without quota is allowed (if set to 1). |
-| [OwnQuotaXXX_sub1, OwnQuotaXXX_sub2, ...]{style="color: orange;"} | Total allowable catch of quota (in tonnes) for each subfleet of each fishery (superseding the values for TACs set in *harvest.prm*). If set to 10^12^ then no quota for that species is applied. |
+| [OwnQuotaXXX_sub1]{style="color: orange;"}, [OwnQuotaXXX_sub2]{style="color: orange;"}, ... | Total allowable catch of quota (in tonnes) for each subfleet of each fishery (superseding the values for TACs set in *harvest.prm*). If set to 10^12^ then no quota for that species is applied. |
 | [prop_within]{style="color: orange;"} | Proportion of yearly quota fulfilled before attempting to buy more quota (a subfleet will not buy new quota if it has used up less than the set proportion of the quota). This proportion applies to the start of the year and will increase automatically and slowly through the year. |
 | [prop_spareend]{style="color: orange;"} | Proportion of quota left at which point a subfleet will try to sell quota. The proportion will increase automatically and gradually through the year, so that a subfleet is not left with any unused quota at the end of the year. |
 | [sp_by_sp]{style="color: orange;"} | Whether quota trading is done by single species (=1) or by species packages (=0). |
@@ -284,11 +273,12 @@ A parameter [targetscale]{style="color: orange;"} is used to give the relative w
 | [interest_rate]{style="color: orange;"} | The interest rate used for quota price calculation in the Little et al. 2009 quota price model. |
 | [UseMinValue]{style="color: orange;"} | If set to 1, quota prices are set at minimum values given in [minValue]{style="color: orange;"} parameter. Otherwise quota prices are allowed to fall to 0. |
 | [targetscale]{style="color: orange;"} | A scalar (unitless) used to give the relative weighting of key target species in making quota trade decisions. |
-:::
 
-## **17.4 Economic responses**
+: Parameters relating to quota trading and quota prices. {#tbl-quota-parameters tbl-colwidths=[25,75]}
 
-### ***17.4.1. Monthly updating of boat numbers***
+## **Economic responses** {#sec-economic-responses}
+
+### ***Monthly updating of boat numbers*** {#sec-monthly-boat-numbers}
 
 In the Economics submodel boat (vessel) numbers are regulated by the number of licences. A licence is necessary for a boat to be allowed to fish. The number of licences for each fishery is set in [YYY_nlicences]{style="color: orange;"} parameter and are read in at the start of the simulation. Boats are distributed at the subfleet level, but each fishery can only have as many boats (for the entire subfleet) as it has licences. The number of licenses cannot increase during the simulation and fisheries do not trade licenses; but if boats switch among fisheries (by switching gear, see below) they take their licence with them. To ensure consistent results during the parameter set up the users should pay attention to the number of licences held by the fishery -- making sure that it is equal to or higher than the number of boats summed over all the subfleets in that fishery. Atlantis will quit on start-up if this is not the case.
 
@@ -314,20 +304,17 @@ The actual final proportion of boats that will switch a fishery (either due to s
 
 6)  Finally, if a subfleet is profitable and has enough cash reserves to afford a new boat (with boat price per subfleet given in [YYY_newcost]{style="color: orange;"} parameter, in \$ per boat) AND purchases of new boats is allowed in the simulation ([flagnewboat]{style="color: orange;"}=1), then it might purchase a new boat if there are spare licenses in that fishery. Remember, a fishery is allocated the number of licenses at the start of the simulation, and the number of boats cannot exceed the number of licenses. So a subfleet of a fishery can buy a new boat if in the previous steps some boats had to be sold, or if the fishery initially had fewer boats than licences. The purchase of a new boat is set as a random event, so even if conditions are right at the start of a given month, the purchase may not happen (but it will happen eventually if a subfleet stays profitable and has enough cash reserves).
 
-### ***17.4.2. Port growth***
+### ***Port growth***
 
-Currently in Atlantis port growth includes growth of the number of boats associated with each port and population growth per port. The base port population growth is set in the *harvest.prm* file and their change can be set as explained in chapter 15.5.4. Port population growth is also influenced by port activity levels (in the *Port_Growth()* routine), the number of boats coming into the port. Port population sizes will affect the effort in recreational fishing effort models.
+Currently in Atlantis port growth includes growth of the number of boats associated with each port and population growth per port. The base port population growth is set in the *harvest.prm* file and their change can be set as explained in @sec-effort-model-6-12. Port population growth is also influenced by port activity levels (in the *Port_Growth()* routine), the number of boats coming into the port. Port population sizes will affect the effort in recreational fishing effort models.
 
-The number of boats per port will change as boats switch fisheries, because different fisheries are associated with different ports (see chapter 17.3.1). The number of boats associated with each port will affect the proportion of total fish weight that is sold in each market (chapter 17.3.1) and in this way will affect fish prices.
+The number of boats per port will change as boats switch fisheries, because different fisheries are associated with different ports (see @sec-fish-prices). The number of boats associated with each port will affect the proportion of total fish weight that is sold in each market (@sec-fish-prices) and in this way will affect fish prices.
 
-[]{#_Toc498434988 .anchor}**Table 18.** Parameters determining economic responses through gear switching and changes in the number of boats.
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
-| [YYY_nlicences]{style="color: orange;"} | Numbers of licenses in each fishery, i.e. number of vessels/boats a fishery is allowed to have across all of its subfleets. |
-| [YYY_buybackdate]{style="color: orange;"} | A day of the simulation run when a proportion of boats given in the `YYY_propbuyback` parameter is taken out of the fishery (bought back). If buy back is not wanted set this date to a large value. |
-| [flagsupp_allowed]{style="color: orange;"} | If set to 1, subfleets are allowed to move across fisheries to simulate gear switching; if set to 2 subfleets are considered to have flexible gear (see chapter 17.4.1 for further details). |
+|:--------------|:----------------|
+| [YYY_nlicences]{style="color: orange;"} | Numbers of licences in each fishery, i.e. number of vessels/boats a fishery is allowed to have across all of its subfleets. |
+| [YYY_buybackdate]{style="color: orange;"} | A day of the simulation run when a proportion of boats given in the [YYY_propbuyback]{style="color: orange;"} parameter is taken out of the fishery (bought back). If buy back is not wanted set this date to a large value. |
+| [flagsupp_allowed]{style="color: orange;"} | If set to 1, subfleets are allowed to move across fisheries to simulate gear switching; if set to 2 subfleets are considered to have flexible gear (see @sec-monthly-boat-numbers). |
 | [flagswitch]{style="color: orange;"} | If set to 1, subfleets are allowed to switch between fisheries. |
 | [YYY_suppcost]{style="color: orange;"} | Cost of gear supplementing and switching (in \$ per operator making the change). |
 | [prop_supp]{style="color: orange;"} | Maximum proportion of boats in a subfleet that can supplement gears in any one month. |
@@ -338,13 +325,15 @@ The number of boats per port will change as boats switch fisheries, because diff
 | [cripple_nboat_lost]{style="color: orange;"} | Proportion of boats lost after the [cripple_period]{style="color: orange;"} time of debt above the tolerable level. |
 | [flagnewboat]{style="color: orange;"} | If set to 1, a subfleet can buy boats when it is profitable. |
 | [YYY_newcost]{style="color: orange;"} | Cost of a new boat (\$ per boat) for each subfleet. |
-:::
 
-## **17.5. Scheduling of fishing effort and final effort allocation**
+: Parameters determining economic responses through gear switching and changes in the number of boats. {#tbl-gear-switching-parameters tbl-colwidths=[25,75]}
+
+
+## **Scheduling of fishing effort and final effort allocation** {#sec-scheduling-of-effort}
 
 Each subfleet makes an annual fishing plan based on the expected and historical catches and effort and based on the available quota. This annual plan is then updated monthly in response to the realised catches (if catches are too low, the effort might be increased). Details and equations are provided in Fulton et al 2007, Appendix C, chapters B.3, B.7 and B.12.
 
-### ***17.5.1. Annual fishing plan***
+### ***Annual fishing plan*** {#sec-annual-fishing-plan}
 
 The annual fishing plan first distributes the total yearly effort temporally through the months of the year and then allocates that effort spatially across boxes proportionally to the historical effort expended in each box (stored in "spatial black books" of each subfleet). The historical effort is read at the start of the simulation from the *economics.prm* file ([JanYYYEffort_sub1]{style="color: orange;"}, [FebYYYEffort_sub1]{style="color: orange;"}, etc.) for each subfleet and month for each fishery. During the simulation the spatial black books are updated dynamically to store average effort expended by each subfleet in each box.
 
@@ -356,7 +345,7 @@ There are two ways to calculate the expected profit for each month, determined b
 
 $$Pft_{e,CX,Y,J,m =}{Prc}_{CX,Y,m} \cdot H_{e,CX,J.Y,m} - {Eff}_{h,J,Y,m} \cdot Cost_{Eff,J,Y,m}$$
 
-where *Prc~CX,Y,m~* is the historical price for that species in month m got by subfleets in a fishery Y (prices can be fisheries specific!); *H~e,CX,J,Y,m~* is the expected harvest of species CX in month m (based on historical records); *Eff~h,J,Y,m~* is the historical effort by the subfleet in that month; and *Cost~Eff,J,Y,m~* is the fishing cost per unit effort in that month (\$/day) of the previous year. The fishing cost per unit effort is calculated as total cost minus fixed and capital costs (e.g. minus the first term in the equation given in chapter 17.3.3), divided by effort in that month.
+where *Prc~CX,Y,m~* is the historical price for that species in month m got by subfleets in a fishery Y (prices can be fisheries specific!); *H~e,CX,J,Y,m~* is the expected harvest of species CX in month m (based on historical records); *Eff~h,J,Y,m~* is the historical effort by the subfleet in that month; and *Cost~Eff,J,Y,m~* is the fishing cost per unit effort in that month (\$/day) of the previous year. The fishing cost per unit effort is calculated as total cost minus fixed and capital costs (e.g. minus the first term in the equation given in @sec-fishing-costs), divided by effort in that month.
 
 Alternatively, if [OrigEconCalc]{style="color: orange;"}=0, the expected profit calculation takes into account the proportional contribution of each species to the total profit and is also based on the historical CPUE rather than harvest information only. In this case the expected profit *R~e~* for each species CX caught by subfleet J in the fishery Y in month *m* is calculated as
 
@@ -376,7 +365,7 @@ The general expectation used in the annual effort planning is that catches per u
 
 Target groups (the groups that the subfleet is specifically targeting and bases effort allocation decisions upon) are dynamically updated to match those with the highest expected returns (target groups that are no longer both profitable and desirable are stripped from the list and an effort switching notice is entered in the run log/event file). The target species identified in this way replace the list from the *harvest.prm* file, with the current target species list influences effort decisions, quota trading and any other fishery related decision dependent on target species.
 
-### ***17.5.2. Monthly updates to the fishing plan***
+### ***Monthly updates to the fishing plan***
 
 If the base economic model is used ([MultiPlanEffort]{style="color: orange;"}=1) the annual effort plan is updated each month depending on the realised catches, availability of quota and subfleet specific [YYY_choicebuffer]{style="color: orange;"} parameter that determines how quickly the subfleet will update the effort if it deviates from the yearly plan. If realised catches are lower than expected, then an increase in effort might be planned. If catches are higher than expectation, the effort will be reduced. Also, high levels of debt can decrease the effort. This is done in the *Monthy_Effort_Schedule()* routine. The monthly update is not done for the Dan Holland economic model ([MultiPlanEffort]{style="color: orange;"}=0).
 
@@ -400,11 +389,11 @@ $$Eff_{mothly,max} = monthSc \cdot \left( 1 - downTime_{J} \right) \cdot Nboats_
 
 Where *monthSc* is the monthly scalar in the [month_scalar]{style="color: orange;"} global parameter giving a maximum number of days of effort a boat can apply (it can be bigger than 30 if for example one boat has several gears), and *downTime~J~* is the proportion of time a boat from a subfleet J must stay in the port for maintenance given in the [YYY_minDownTime]{style="color: orange;"} parameter. A hypothetical maximum monthly effort limit is shown with a dashed red horizontal line in the graph below.
 
-![[]{#_Toc498434139 .anchor}**Figure 12.** The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){width="5.004166666666666in" height="3.9270833333333335in"}
+![The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){#fig-monthly-effort-scalar width=5.0in height=3.93in}
 
 6)  Assess whether a subfleet has very high debt levels which will reduce its ability to fish. The tolerable debt levels for each subfleet are set in [YYY_TolDebt]{style="color: orange;"} parameter. If the expected monthly profit from fishing will not increase the debt above the tolerable levels then monthly planned effort is reduced by a proportion set in a global [effort_reduction]{style="color: orange;"} parameter.
 
-### ***17.5.3. Final effort allocations***
+### ***Final effort allocations*** {#sec-final-effort-allocation}
 
 There are two ways to determine final effort allocations. The baseline model ([MultiPlanEffort]{style="color: orange;"}=1) and Dan Holland model ([MultiPlanEffort]{style="color: orange;"}=0). Here we describe only the baseline multi-plan effort, used in Fulton et al. 2007. The Dan Holland model has been described in Kaplan et al. 2014.
 
@@ -412,11 +401,11 @@ In the baseline model with each new week of the simulation the fishers make the 
 
 The final effort allocation is done through the following steps:
 
-1)  Determine the spatial information about the CPUE values. This is done by calculating the ratio of CPUE in each box by the total CPUE. For these calcualtions the CPUE information of the last month is used (so not the memory period, as applied in other effort models, described in chapter 15).
+1)  Determine the spatial information about the CPUE values. This is done by calculating the ratio of CPUE in each box by the total CPUE. For these calcualtions the CPUE information of the last month is used (so not the memory period, as applied in other effort models, described in @sec-F-intro).
 
 If value per unit effort information is used ([UseVPUE]{style="color: orange;"}=1) then boxes will be ranked not by CPUE but by VPUE details. Further, if spatial bycatch avoidance is used ([SpatialBycatchAvoid]{style="color: orange;"}=1) then boxes will highest bycatch in the last month will be downscaled.
 
-2)  Next, each box is weighted by their *mpasc~J,j~* ([MPAYYY]{style="color: orange;"} parameter from the *harvest.prm* file, see chapter 16.4), which will change the actual CPUE in this box if some of the box area is closed to fishing. This scaled value is used to calculate the ideal CPUE based effort (*CPUE~eff~*) given the latest CPUE knowledge, monthly effort plan (as explained above) and fisher behavioural flexibility.
+2)  Next, each box is weighted by their *mpasc~J,j~* ([MPAYYY]{style="color: orange;"} parameter from the *harvest.prm* file, see @sec-spatial-MPAs), which will change the actual CPUE in this box if some of the box area is closed to fishing. This scaled value is used to calculate the ideal CPUE based effort (*CPUE~eff~*) given the latest CPUE knowledge, monthly effort plan (as explained above) and fisher behavioural flexibility.
 
 $${CPUEeff}_{J,j} = {mpasc}_{J,j} \cdot Eff_{planned,J,j} \cdot \frac{Flexwgt_{J} \cdot \left( {cpue}_{t,j} - {cpue}_{t - 1,j}\  \right) + {cpue}_{t - 1,j}}{\sum_{j}^{}{cpue}_{J,j}}$$
 
@@ -430,20 +419,20 @@ $${idEff}_{J,j} = Flexwgt_{J} \cdot \left( {CPUEeff}_{J,j} - Eff_{planned,J} \ri
 
 $${DistanceWgt}_{J,j} = \sum_{Z}^{}\frac{Speed_{Y} \cdot dt}{{Z \cdot distance}_{z,j}^{*} \cdot Cost_{var,J}} \cdot FCwgt_{J}$$
 
-where *Speed~Y~* is the speed of the fishery boats, not defined specifically by fisheries but for the entire commercial fisheries ([Speed_boat]{style="color: orange;"}, m hour^-1^), *dt* is the number of hours between the timestep (usually 12, but can be 6 or 24), *distance~Z,J~* is a distance of the subfleet J to port Z, and Z is the total number of **ports active** for the subfleet J (a port is active if a fishery and subfleet operates from that port and the port is open, see chapter 15.5.9 for a similar case in dynamic fishing effort allocation).
+where *Speed~Y~* is the speed of the fishery boats, not defined specifically by fisheries but for the entire commercial fisheries ([Speed_boat]{style="color: orange;"}, m hour^-1^), *dt* is the number of hours between the timestep (usually 12, but can be 6 or 24), *distance~Z,J~* is a distance of the subfleet J to port Z, and Z is the total number of **ports active** for the subfleet J (a port is active if a fishery and subfleet operates from that port and the port is open, see @sec-effort-model-5 for a similar case in dynamic fishing effort allocation).
 
 5)  Finally, the final effort matrix of subfleet J in each box j is calculated by interpolating between the ideal effort matrix calculated in step 3 versus the effort matrix in the previous step while accounting for boat speed and width of the model domain. This is
 
 $${finalEff}_{J,j} = {DistanceWgt}_{J,j} \cdot \max\left( 1,\frac{{Speed}_{Y} \cdot dt}{width} \right) \cdot \left( {idEff}_{Y,j} - {oldEff}_{Y,j} \right) + {oldEff}_{Y,j}$$
 
-The (Speed\*dt/width) term was explained in the chapter 15.5.8 and simply calculates what distance a fishery Y can travel in one time step compared to the entire model domain (e.g. 0.1 of the maximum possible distance in the model). It shows that if the fishery can cross the entire model domain in one timestep and therefore find itself in any box of the model domain in one timestep, then the scalar will be 1 and the new effort will be the same as the ideal effort. If the scalar is smaller than one, then new effort will be a combination of the old effort and the ideal effort determined above. The *DistanceWgt~J,j\ ~*matrix has been calculated in step 4.
+The (Speed\*dt/width) term was explained in the @sec-effort-model-4 and simply calculates what distance a fishery Y can travel in one time step compared to the entire model domain (e.g. 0.1 of the maximum possible distance in the model). It shows that if the fishery can cross the entire model domain in one timestep and therefore find itself in any box of the model domain in one timestep, then the scalar will be 1 and the new effort will be the same as the ideal effort. If the scalar is smaller than one, then new effort will be a combination of the old effort and the ideal effort determined above. The *DistanceWgt~J,j\ ~*matrix has been calculated in step 4.
 
 ::: {.callout-caution}
 ## The role of [YYY_flexweight]{style="color: orange;"} parameter in effort allocation
 
 The [YYY_flexweight]{style="color: orange;"} parameter is used three times in the baseline model ([MultiPlanEffort]{style="color: orange;"}=1) effort allocation and should be carefully considered. It is used to:
 
-1. Update fisher response to latest price and CPUE information when making the annual fishing plan (see chapter 17.5.1).
+1. Update fisher response to latest price and CPUE information when making the annual fishing plan (see @sec-annual-fishing-plan).
 
 2. Weight the fisher response to the latest CPUE information (whether to use the latest CPUE data or old CPUE data) -- step 2 above.
 
@@ -452,23 +441,21 @@ The [YYY_flexweight]{style="color: orange;"} parameter is used three times in th
 
 Once the effort has been allocation to each box of the model domain, the effort for all subfleets of a fishery is pooled within each box (to get fishery-specific effort per box) and passed to the Harvest submodel.
 
-[]{#_Toc498434989 .anchor}**Table 19.** Parameters related to effort allocation
-
-::: {.table-responsive}
 | **Parameter** | **Description** |
-|---|---|
-| [MultiPlanEffort]{style="color: orange;"} | If set to 1, then baseline economic Atlantis model is used to determine effort allocation. If set to 0, the Dan Holland economics model is used (see chapter 17.5.3 for further details). |
-| [JanYYYEffort_sub1, FebYYYEffort_sub1, ...]{style="color: orange;"} | Historical average fishing effort (in effort days per box per month) -- given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
-| [JanCatchXXX_sub1, FebCatchXXX_sub1, ...]{style="color: orange;"} | Historical average catch per species (kg of catch per box per month) -- given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
-| [JanYYYCPUE_sub1, FebYYYCPUE_sub1, ...]{style="color: orange;"} | Historical average CPUE (kg of catch per one day of effort per box per month) -- given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
-| [OrigEconCalc]{style="color: orange;"} | If set to 1 then the expected yearly profit is calculated as earnings minus costs. If set to 0, then profit calculation takes into account CPUE data and proportional contribution of each fish in the catch (see chapter 17.5.1). |
+|:--------------|:----------------|
+| [MultiPlanEffort]{style="color: orange;"} | If set to 1, then baseline economic Atlantis model is used to determine effort allocation. If set to 0, the Dan Holland economics model is used (see @sec-final-effort-allocation for further details). |
+| [JanYYYEffort_sub1]{style="color: orange;"}, [FebYYYEffort_sub1]{style="color: orange;"}, ... | Historical average fishing effort (in effort days per box per month) — given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
+| [JanCatchXXX_sub1]{style="color: orange;"}, [FebCatchXXX_sub1]{style="color: orange;"}, ... | Historical average catch per species (kg of catch per box per month) — given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
+| [JanYYYCPUE_sub1]{style="color: orange;"}, [FebYYYCPUE_sub1]{style="color: orange;"}, ... | Historical average CPUE (kg of catch per one day of effort per box per month) — given for each subfleet of each fishery. This represents a part of the subfleet's "black books". |
+| [OrigEconCalc]{style="color: orange;"} | If set to 1 then the expected yearly profit is calculated as earnings minus costs. If set to 0, then profit calculation takes into account CPUE data and proportional contribution of each fish in the catch (see @sec-annual-fishing-plan). |
 | [TemporalBycatchAvoid]{style="color: orange;"} | If set to 1, effort planning will take into account monthly historical bycatch and avoid months when bycatch is highest. |
 | [SpatialBycatchAvoid]{style="color: orange;"} | If set to 1, effort planning will take into account spatial historical bycatch and avoid boxes where bycatch is highest. |
-| [YYY_flexweight]{style="color: orange;"} | Parameter setting behavioural flexibility of a subfleet (scalar from 0 to 1). See callout in chapter 17.5.3 for an explanation of how this parameter is used in three different calculations. |
+| [YYY_flexweight]{style="color: orange;"} | Parameter setting behavioural flexibility of a subfleet (scalar from 0 to 1). See callout in @sec-final-effort-allocation for an explanation of how this parameter is used in three different calculations. |
 | [YYY_choicebuffer]{style="color: orange;"} | Parameter (scalar from 0 to 1) setting how quickly a subfleet will update the effort if it deviates from the yearly plan. |
 | [UseVPUE]{style="color: orange;"} | If set to 1, instead of CPUE calculations, Atlantis will use Value per Unit Effort values (which takes into account fish prices at a given time). |
 | [YYY_minDownTime]{style="color: orange;"} | The minimum amount of time (proportion of a month, ranging from 0 to 1) a subfleet must stay in port and therefore cannot fish. |
 | [effort_reduction]{style="color: orange;"} | Global parameter setting a scalar of effort reduction that a subfleet will experience if its debt is higher than the value given in the [YYY_TolDebt]{style="color: orange;"} parameter. |
 | [YYY_FCwgtscale]{style="color: orange;"} | Scalar (from 0 to a very high value) that will affect the willingness of a subfleet to travel to distant boxes. |
 | [YYY_varcost]{style="color: orange;"} | Cost of fishing per subfleet per day (\$ / effort_day). |
-:::
+
+: Parameters related to effort allocation. {#tbl-effort-allocation-parameters tbl-colwidths=[25,75]}

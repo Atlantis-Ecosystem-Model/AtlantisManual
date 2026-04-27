@@ -1,12 +1,10 @@
----
-title: "6. DEFINITIONS OF FUNCTIONAL GROUPS"
----
+# Definitions of Functional Groups  {#sec-functional-groups}
 
-## **6.1. Introduction to functional groups** 
+## **Introduction to functional groups** {#sec-intro-functional-groups}
 
 ***Types of functional groups***
 
-Biological components are represented as **biomass pools** (most non-vertebrates), **age-structured biomass pools** (some invertebrates) or **age-structured groups** (vertebrates). These three group types are assigned according to the [GroupType]{style="color: orange"} and [NumCohorts]{style="color: orange"} parameters given in the *functional_groups.csv* file (Table 8). Group types FISH, FISH_INVERT, SHARK, MAMMAL, BIRD, REPTILE are assigned to the fully age-structured groups with the number of age groups given by [NumCohorts]{style="color: orange"}. Other groups are assigned to biomass pools. If [NumCohorts]{style="color: orange"} for a biomass pool is \>1 they will be assigned to an age-structured biomass pool. The age-structured biomass pools are similar to stanzas used in, for example, Ecosim and are used to allow for different juvenile and adult behaviour and parameters. All non-vertebrates that have [NumCohorts]{style="color: orange"}=1 are assigned to simple biomass pools.
+Biological components are represented as **biomass pools** (most non-vertebrates), **age-structured biomass pools** (some invertebrates) or **age-structured groups** (vertebrates). These three group types are assigned according to the [GroupType]{style="color: orange"} and [NumCohorts]{style="color: orange"} parameters given in the *functional_groups.csv* file (@tbl-state-variables). Group types FISH, FISH_INVERT, SHARK, MAMMAL, BIRD, REPTILE are assigned to the fully age-structured groups with the number of age groups given by [NumCohorts]{style="color: orange"}. Other groups are assigned to biomass pools. If [NumCohorts]{style="color: orange"} for a biomass pool is \>1 they will be assigned to an age-structured biomass pool. The age-structured biomass pools are similar to stanzas used in, for example, Ecosim and are used to allow for different juvenile and adult behaviour and parameters. All non-vertebrates that have [NumCohorts]{style="color: orange"}=1 are assigned to simple biomass pools.
 
 ::: {.callout-caution}
 **Can a non-vertebrate be modelled as an age-structured group?**
@@ -20,7 +18,7 @@ Atlantis does not explicitly model sex, but represents an average individual. Th
 
 *Main model*
 
-In models that are based on N only (i.e. do not explicitly track P and C) the only state variable tracked for most biomass pools is N, but both N and Si fluxes are tracked for Si limited biomass pools, such as diatoms. The Si limited groups are identified from the *functional_groups.csv* file parameter [IsSiliconDep]{style="color: orange"} (see below). In age-structured groups three variables are tracked for each age cohort: reserve N (RN), structural N (SN) and numbers (Num). In addition, fluxes in the water column and sediments are tracked through eight **inanimate pools**: ammonia (NH), nitrate (NO), dissolved silica (Si), detrital silica (DSi), dissolved oxygen (O2), dissolved organic nitrogen (DON), labile detritus (DL), and refractory detritus (DR). An additional inanimate pool, carrion (DC), is also required, though it is only dynamically used if the fisheries submodel is active; DC is then used to represent fisheries discards. State variables tracked for each group defined with the [GroupType]{style="color: orange"} parameter in the *functional_groups.csv* file are listed in Table 8.
+In models that are based on N only (i.e. do not explicitly track P and C) the only state variable tracked for most biomass pools is N, but both N and Si fluxes are tracked for Si limited biomass pools, such as diatoms. The Si limited groups are identified from the *functional_groups.csv* file parameter [IsSiliconDep]{style="color: orange"} (see below). In age-structured groups three variables are tracked for each age cohort: reserve N (RN), structural N (SN) and numbers (Num). In addition, fluxes in the water column and sediments are tracked through eight **inanimate pools**: ammonia (NH), nitrate (NO), dissolved silica (Si), detrital silica (DSi), dissolved oxygen (O2), dissolved organic nitrogen (DON), labile detritus (DL), and refractory detritus (DR). An additional inanimate pool, carrion (DC), is also required, though it is only dynamically used if the fisheries submodel is active; DC is then used to represent fisheries discards. State variables tracked for each group defined with the [GroupType]{style="color: orange"} parameter in the *functional_groups.csv* file are listed (@tbl-state-variables).
 
 *Extended models*
 
@@ -28,11 +26,10 @@ If the model also includes tracking of P and C ([trackAtomicRatio]{style="color:
 
 ***Allocation of pools throughout the vertical dimension: water column, epibenthos and sediment***
 
-Atlantis models 3-5 explicit distribution types of organisms and inanimate pools through the model domain -- **water column**, **epibenthic layer** and **sediments** are tracked in all models and **ice** and **land** may also optionally be included. The water column and **sediment** are modelled as three dimensional spaces (units of variables are in m^3^), whereas the epibenthic layer is two-dimensional (units in m^2^). Most organisms are restricted to one type, such as sediments (infaunal invertebrates identified with INF in GroupType name), epibenthic layer (epibenthic organisms, identified with EP in the GroupType name) or water column (fully age-structured groups). Some of the smaller groups (e.g. microflora primary producers) and the inanimate pools can exist in both the sediments and water column (Table 8).
+Atlantis models 3-5 explicit distribution types of organisms and inanimate pools through the model domain -- **water column**, **epibenthic layer** and **sediments** are tracked in all models and **ice** and **land** may also optionally be included. The water column and **sediment** are modelled as three dimensional spaces (units of variables are in m^3^), whereas the epibenthic layer is two-dimensional (units in m^2^). Most organisms are restricted to one type, such as sediments (infaunal invertebrates identified with INF in GroupType name), epibenthic layer (epibenthic organisms, identified with EP in the GroupType name) or water column (fully age-structured groups). Some of the smaller groups (e.g. microflora primary producers) and the inanimate pools can exist in both the sediments and water column (@tbl-state-variables).
 
 In the Atlantis code the water column, epibenthic, sediment, ice and land distributionns are referred to as "habitatType". However, remember that they are not the same as the ecological epibenthic habitats modelled in Atlantis (e.g. seagrass, corals, sponges etc.).
 
-::: {.table-responsive}
 | **Group** | **State variables tracked** | **[GroupType]{style="color: orange"} in CSV file or *initial_conditions.nc*** |
 |:----------|:-----------------------------|:------------------------------------------------------|
 | **Biomass pools** | | |
@@ -62,8 +59,9 @@ In the Atlantis code the water column, epibenthic, sediment, ice and land distri
 | Carrion (only dynamically tracked if fisheries are active) | N in water column<br>N in sediments | CARRION |
 | Sediment (only if [flagIsEstuary]{style="color: orange"}=1) | SED in water column | SED |
 
-: Table 8. State variables tracked in the main Atlantis model (no ice or land included). * indicates optional Si tracking in primary producers that are limited by Si. Primary producer Si limitation is set in *functional_groups.csv* file parameter [IsSiliconDep]{style="color: orange"} (see Table 9). In models that include C and P, both C and P are tracked like N (so the number of variable tracked is three times larger). {#tbl-state-variables}
-:::
+: State variables tracked in the main Atlantis model (no ice or land included). \* indicates optional Si tracking in primary producers that are limited by Si. Primary producer Si limitation is set in *functional_groups.csv* file parameter [IsSiliconDep]{style="color: orange"} (see @tbl-functional-group-params). In models that include C and P, both C and P are tracked like N (so the number of variable tracked is three times larger). {#tbl-state-variables tbl-colwidths=[30,45,25]}
+
+
 
 ***Timestep of the model***
 
@@ -75,7 +73,7 @@ The *adaptive timestep* means that for most of the groups the processes are repe
 
 The modelled biological processes include primary production, bacterial processes, feeding, assimilation, waste production, explicit respiration (optional and not used in most models), growth, movement and migration, non-predation mortality, maturation, reproduction and recruitment. In biomass pools all processes are modelled through biomass (nitrogen) turnover. In age-structured groups, the state variables are numbers-at-age and weight-at-age (tracked as reserve and structural nitrogen) which can be converted to biomass.
 
-## **6.2. Defining functional groups** 
+## **Defining functional groups** 
 
 The functional group input file sets all the biological groups in the model. It can be set in CSV or XML format (see examples [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/functional-group-definition-file.html)). The number of groups is entirely flexible, but each model must include three obligatory detritus groups: carrion (CARRION), labile detritus (LAB_DET) and refractory detritus (REF_DET).
 
@@ -85,9 +83,6 @@ The *functional_groups.csv* file defines the biological groups used in the model
 
 Currently each group must have the following parameters (characteristics). For new updates, check the Atlantis wiki [functional group page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/functional-group-definition-file.html)
 
-PICK UP FROM HERE
-
-::: {.table-responsive}
 | **Parameter name** | **Description** |
 |:-------------------|:----------------|
 | [GroupCode]{style="color: orange;"} | **2 or 3 letter code** of upper case letters used to identify each functional group. Atlantis will display an error message and quit if the group codes are not the correct format. This code is very important and applied to all functional group specific parameters |
@@ -99,7 +94,7 @@ PICK UP FROM HERE
 | [NumGeneTypes]{style="color: orange;"} | Number of discrete phenotypes in each age group. This option is used when simulating evolution or multiple size-at-age representations and should only be set to >1 if [flag_do_evolution]{style="color: orange;"} is set to 1 in *biology.prm* file. If more than one phenotype is present, initial conditions will be have to be set up for each phenotype. |
 | [NumStages]{style="color: orange;"} | This parameter describes the number of separate stages in a functional group, which are set to 1 or 2 if juvenile and adult stages have separate parameters for distribution, mortality, migration, feeding and others. In principle, more than 2 stages are possible, although this has not been tested. Typically all age-structured groups have 2 stages, but age-structured biomass pools can also have separate parameters for juvenile and adult stages and thus have 2 stages. |
 | [NumSpawns]{style="color: orange;"} | Number of spawns in the year. Typically one per year, but more than one is possible (especially for ages structured biomass pool groups). The timing of spawn is given in [Time_Spawn_XXX]{style="color: orange;"} parameter in *biology.prm* file (if [NumSpawns]{style="color: orange;"} is 1 it expects a single value, otherwise it expects a vector of length [NumSpawns]{style="color: orange;"}). |
-| [NumAgeClassSize]{style="color: orange;"} | Number of calendar years in one age group. This can be set to be anything between a few months to many years and allows simulation of different longevity organisms without having to setup too many age groups (which reduces simulation speed). Note, all individuals in an age group are considered identical (unless different phenotypes are set in [NumGeneTypes]{style="color: orange;"}, in which case all individuals in one phenotype of one age group are identical). However, the proportion of an age group per annual cohort is tracked so that recruitment variation is represented through time and not homogenized away (see chapter 10.9.6). |
+| [NumAgeClassSize]{style="color: orange;"} | Number of calendar years in one age group. This can be set to be anything between a few months to many years and allows simulation of different longevity organisms without having to setup too many age groups (which reduces simulation speed). Note, all individuals in an age group are considered identical (unless different phenotypes are set in [NumGeneTypes]{style="color: orange;"}, in which case all individuals in one phenotype of one age group are identical). However, the proportion of an age group per annual cohort is tracked so that recruitment variation is represented through time and not homogenized away (@sec-age-at-recruit). |
 | [NumStocks]{style="color: orange;"} | This sets the number of geographically distinct stocks for age-structured groups and age-structured biomass pools. The stocks must occupy different boxes or layers, i.e. they do not spatially overlap.<br><br>Some biological parameters, like vulnerability to prey can be set as stock specific, which allows for better tuning. It has been applied to some groups that are known to include ecologically distinct stocks in different geographic areas. If [NumStocks]{style="color: orange;"} >1 then the corresponding number of stock specific parameters will be required in the *biology.prm* input file |
 | [VerticallyMigrates]{style="color: orange;"} | If true then the group can move vertically through the water column. This should be set to 1 except for debugging purposes. If this is set to 0, no vertical movement will happen even if it is specified in the *biology.prm* file and the vertical distribution of individuals in the *initial_conditions.nc* file will be retained throughout the simulation. |
 | [HorizontallyMigrates]{style="color: orange;"} | If true then the group can move horizontally throughout the model as well as migrate out of the model. No migration will happen if this is set to 0. Biomass pool groups which are marked as passive in the *initial_conditions.nc* will still be advected even if [HorizontallyMigrates]{style="color: orange;"} is set to 0. |
@@ -127,8 +122,7 @@ PICK UP FROM HERE
 | [isLightEffected]{style="color: orange;"} | Marks the group as susceptible to light pollution. Only required if [flag_pollutant_impacts]{style="color: orange;"} is set to 1 in the *run.prm* file. |
 | [isNoiseEffected]{style="color: orange;"} | Marks the group as susceptible to noise pollution. Only required if [flag_pollutant_impacts]{style="color: orange;"} is set to 1 in the *run.prm* file. |
 
-: Table 9. Parameters in the *functional_groups.csv* file. {#tbl-functional-group-parameters}
-:::
+: Parameters in the *functional_groups.csv* file. {#tbl-functional-group-params tbl-colwidths=[25,75]}
 
 
 ::: {.callout-note}
@@ -141,9 +135,9 @@ PICK UP FROM HERE
 "[In nature] The pool of dissolved organic matter also contains a variety of compounds with diverse turnover rates. In oceanic waters there is a large pool of highly refractory DOM, whose average age has been estimated to be as much as 3400 years (Williams 1975). The bulk of this material is essentially irrelevant for the cycling of nutrients on the time scales of [model] interest. However the DOM pool also includes much more labile components. Highly labile sugars and amino acids released through cell lysis or messy feeding may be consumed by bacteria or break down on time scales of hours (Fuhrman 1987) to days (Holibaugh and Azam 1983). This material is not modelled explicitly, but is treated as though it was remineralised immediately to form dissolved inorganic nutrient. The model includes a single DOM pool with an assumed turnover time of the order of a hundred days. ... Because it turns over on time scales, which are long compared with both phytoplankton uptake of inorganic N, and transport within the Bay, it plays a role in reducing N sequestration in coastal waters."
 :::
 
-## **6.3. Defining the [GroupType]{style="color: orange;"} correctly**
+## **Defining the [GroupType]{style="color: orange;"} correctly**
 
-The definition of a group is very important as it will determine the ecological routines and the adaptive timestep applied for the group (see timestep description in chapter 6.1). Table 10 shows routines that are called for different group types. The routines are further modified depending on whether consumers live in the water column or sediment.
+The definition of a group is very important as it will determine the ecological routines and the adaptive timestep applied for the group (see timestep description in chapter 6.1). Routines that are called for different group types (@tbl-atlantis-routines). The routines are further modified depending on whether consumers live in the water column or sediment.
 
 | **Routine name in Atlantis code** | **[GroupType]{style="color: orange;"} for which the routine is applied** |
 |:-----------------------------------|:------------------------------------------------|
@@ -155,14 +149,14 @@ The definition of a group is very important as it will determine the ecological 
 | *Coral_Process()* | CORAL<br>SPONGE |
 | *Pelagic_Bacteria_Process()* | PL_BACT |
 | *Ice_Bacteria_Process()* | ICE_BACT |
-| *Sediment_Bacterica_Process()* | SED_BACT |
+| *Sediment_Bacteria_Process()* | SED_BACT |
 | *Labile_Detritus_Process()* | LAB_DET |
 | *Refractory_Detritus_Process()* | REF_DET |
 | *Carrion_Process()* | CARRION |
 
-: Table 10. Routines called for different non-vertebrate GroupTypes in Atlantis code. The *Call_Group_Process_Function()* routine in atecology.c determines the specific routine used from the atGroupProcess.c file non vertebrate groups. Note, that the greatest diversity ofroutines are called for different benthic invertebrate types (for clarity benthic invertebrates are shown in **bold**). {#tbl-atlantis-routines}
+: Routines called for different non-vertebrate GroupTypes in Atlantis code. The *Call_Group_Process_Function()* routine in **atecology.c** determines the specific routine used from the **atGroupProcess.c** file for non-vertebrate groups. Note that the greatest diversity of routines are called for different benthic invertebrate types (for clarity benthic invertebrates are shown in **bold**). {#tbl-atlantis-routines tbl-colwidths=[40,60]}
 
-## **6.4. Modifying functional groups in parameterised models**
+## **Modifying functional groups in parameterised models**
 
 Details on how to add a new functional group into an existing model are given on the wiki [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/adding-a-new-group.html). This will require a significant effort and reparameterisation of the model.
 
