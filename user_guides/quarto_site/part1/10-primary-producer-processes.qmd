@@ -177,11 +177,7 @@ where *mS_MA* is the algal mortality rate (day^-1^) due to abrasion by bottom st
 Lysis represents cell leakage and is inversely related to nutrient concentration, whereas linear mortality is just a constant mortality term. PPBIM only had the linear mortality, but ERSEM also included lysis, and both options are included in Atlantis. The users have an option to use either or both, depending on the mortality parameter values set.
 :::
 
-<<<<<<< main
-Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html) and [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) and in Chapter 13. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
-=======
-Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2012%2F10%2F19&title=Handling+effects+of+acidification) and [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2015%2F5%2F14&title=Acidification+induced+mortality) and in @sec-environmental-factors. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
->>>>>>> bug/i14-dynamic-figure-indexing
+Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html) and [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) and in @sec-environmental-factors. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
 
 Primary producer mortality is handled by *Primary_Production()* in **atprocess.c** and *Phytoplankton\_ Process()* in **atGroupProcess.c** routines.
 
