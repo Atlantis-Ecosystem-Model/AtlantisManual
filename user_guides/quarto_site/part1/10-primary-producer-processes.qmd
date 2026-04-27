@@ -36,7 +36,7 @@ Most ecosystem models do not explicitly model microphytobenthos, which consists 
 
 ## **Primary producer growth**
 
-The equations and processes governing primary production in Atlantis have been adopted from the PPBIM model of [Murray and Parslow (1997)](https://confluence.csiro.au/display/Atlantis/Useful+Reading?preview=/43155482/341447378/Link_et_al_2011_NEUS_tech_memo.pdf). Primary production processes are executed by *Primary_Production()* routine in **atprocess.c**
+The equations and processes governing primary production in Atlantis have been adopted from the PPBIM model of [Murray and Parslow (1997)](https://atlantis-ecosystem-model.github.io/atlantis-wiki/useful-reading.html). Primary production processes are executed by *Primary_Production()* routine in **atprocess.c**
 
 Growth of a primary producer *pp* is determined by **multiplying** the biomass of *pp* by the maximum specific growth rate (*mum*) and by three additional potentially limiting factors:
 
@@ -81,7 +81,7 @@ For illustration, assuming a hypothetical case of DIN and Si concentrations of 1
 
 Atlantis has an optional nutrient limitation for one additional tracer of micronutrients (currently used for iron). This option is set when [flagmicro]{style="color: orange;"}=1. If micronutrient limitation is used, half-saturation constants ([KF_XXX]{style="color: orange;"}) should be provided for all primary producer groups. Limitation by additional nutrients will be done according to the [flagnut]{style="color: orange;"} option described above.
 
-In models that track P and C ([TrackAtomicRatio]{style="color: orange;"} =1 in *run.prm* file) primary production will also be limited by P and C. Further details are available on the [wiki](https://confluence.csiro.au/display/Atlantis/2013/04/23/New+Phosphorus+tracking).
+In models that track P and C ([TrackAtomicRatio]{style="color: orange;"} =1 in *run.prm* file) primary production will also be limited by P and C. Further details are available on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/new-phosphorus-tracking.html).
 
 ### ***Primary producer light limitation***
 
@@ -177,13 +177,17 @@ where *mS_MA* is the algal mortality rate (day^-1^) due to abrasion by bottom st
 Lysis represents cell leakage and is inversely related to nutrient concentration, whereas linear mortality is just a constant mortality term. PPBIM only had the linear mortality, but ERSEM also included lysis, and both options are included in Atlantis. The users have an option to use either or both, depending on the mortality parameter values set.
 :::
 
+<<<<<<< main
+Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html) and [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) and in Chapter 13. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
+=======
 Finally, the extra mortality will also include any **optional acidification induced mortality**, described in details [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2012%2F10%2F19&title=Handling+effects+of+acidification) and [here](https://confluence.csiro.au/pages/viewpage.action?spaceKey=Atlantis&postingDay=2015%2F5%2F14&title=Acidification+induced+mortality) and in @sec-environmental-factors. The acidification mortality is only included if the model explicitly includes pH effects ([flagmodelpH]{style="color: orange;"}=1) and primary producers are identified as pH sensitive ([flagpHsensitive_XXX]{style="color: orange;"}=1).
+>>>>>>> bug/i14-dynamic-figure-indexing
 
 Primary producer mortality is handled by *Primary_Production()* in **atprocess.c** and *Phytoplankton\_ Process()* in **atGroupProcess.c** routines.
 
 ## **Encystment of primary producers**
 
-It is possible to include the encystment of primary producers, triggered by time of the year or temperature. This option is only modelled for groups that have [isOverWinter]{style="color: orange;"} set to 1 in the *functional_groups.csv* file and is described in further detail on the wiki [here](https://confluence.csiro.au/pages/viewpage.action?pageId=43155510).
+It is possible to include the encystment of primary producers, triggered by time of the year or temperature. This option is only modelled for groups that have [isOverWinter]{style="color: orange;"} set to 1 in the *functional_groups.csv* file and is described in further detail on the wiki [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/overwintering-encystment.html).
 
 ## **Effect of temperature and salinity on primary production**
 
