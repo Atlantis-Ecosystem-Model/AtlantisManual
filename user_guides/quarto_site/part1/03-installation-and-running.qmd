@@ -1,12 +1,6 @@
 # Installation and Running {#sec-installation}
 
-<<<<<<< main
-** THIS SECTION IS OUT OF DATE **
-
-## **2.1 How to check out and install the code**
-=======
 ## How to check out and install the code** {#sec-checkout-install}
->>>>>>> bug/i14-dynamic-figure-indexing
 
 ::: callout-important
 AR note: as of March 2026 this section is no longer current as we moved to GitHub.
@@ -120,11 +114,7 @@ Atlantis input files come in six file formats:
 All files except for NC files can be opened and edited using any basic text editing software (such as TextPad or NotePad). Until recently this was the usual way to setup and modify model parameters. However, some PRM files are thousands of lines long, which means that hand editing can be tedious and a source of error. New R-based tools are currently under development to help users visualise and modify parameter files in a more streamlined way (see below)
 
 ::: callout-caution
-<<<<<<< main
-**PC, Mac and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://atlantis-ecosystem-model.github.io/atlantis-wiki/file-formats.html). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
-=======
-**PC, Mac, and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://confluence.csiro.au/display/Atlantis/File+Formats). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
->>>>>>> bug/i14-dynamic-figure-indexing
+**PC, Mac, and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://atlantis-ecosystem-model.github.io/atlantis-wiki/file-formats.html). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
 
 ![](media/image60_1.png){width="5.9in" height="3.8in"}
 :::
