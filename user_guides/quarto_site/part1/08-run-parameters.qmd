@@ -8,7 +8,7 @@ The *run.prm* provides all the key information required to control the model run
 
 | **Parameter** | **Meaning** |
 |:--------------|:------------|
-| [title]{style="color: orange;"} | Title of the run. Ideally this should be an informative title (e.g. SE Tasmania model with constant forced fishing and base level fishing pressure on FMM increased 2000 fold) as it will written at the start of the *log.txt* file and into the *output.nc* file and will be displayed on the top of plots in visualization tools such as OLIVE or DIVE |
+| [title]{style="color: orange;"} | Title of the run. Ideally this should be an informative title (e.g. SE Tasmania model with constant forced fishing and base level fishing pressure on FMM increased 2000 fold) as it will be written at the start of the *log.txt* file and into the *output.nc* file and will be displayed on the top of plots in visualization tools such as OLIVE or DIVE |
 | [dt]{style="color: orange;"} | Timestep of the model. The timestep is typically given in hours (e.g. "12 hour"), however Atlantis reads the units together with the numerical value so other units "minute" or "day" may also be used. Typically the timestep is set to 12 or 24 hours, but it can be set to other intervals as well. It is not typically recommended to make it >24h and one should think carefully whether shorter than 12h is really needed, as the model will run slower. Some coastal, very dynamic, areas have 6h or even 3h timesteps, but that will require high resolution hydrodynamic forcing data. |
 | [tstop]{style="color: orange;"} | Day on which the model run will end. If you want to run the model for 10 years, set this to 3651 (technically 3650, however given most output is done annually it is best to add an extra day to make sure the final output is printed before the model stops). |
 | [tburnday]{style="color: orange;"} | Number of days that define the burn-in period. At the end of this period the "virgin" state of the model is stored. This means that every comparison of species biomass to the original or "virgin" state will use values stored at the end of the burn-in period and not those set in the initial conditions. This is useful for models that have unstable dynamics at the start of the model run. |
@@ -20,8 +20,8 @@ The *run.prm* provides all the key information required to control the model run
 | **Parameter** | **Meaning** |
 |:--------------|:------------|
 | [toutstart]{style="color: orange;"} | Day on which to start writing the output. This is normally set to 0, but can be set to a larger value for long runs if there is a need to save memory and there is no interest in the burn-in period dynamics. |
-| [toutinc]{style="color: orange;"} | Periodicity in days for the Ecology submodel snap shot output to the NC files, in days. In longer runs, this is often set to monthly (30) or yearly (365) so file sizes do not become very large. In poorly behaved runs (that are crashing), or ones with extreme events which condition subsequent behaviour, fine scale output (e.g. at the same level as the timestep) may be required. However, remember that a lot of output is written at each reporting period, so make sure you set reasonable values for long well-behaved runs (quarterly or even yearly).<br><br>Note that in Atlantis all years are 365 days long. If monthly output is required and it is set to 30 days then after one year the output would be shifting by 5 days every year. |
-| [toutfinc]{style="color: orange;"} | Periodicity of the cumulative output from the Harvest submodel (catches, quotas, discards, etc) to the NC files (*CATCH.nc*, *TOTCATCH.nc*). These values are the sum of all effort, catch (etc) since the last output dump. Unlike the ecology output, they are not snap shot values. |
+| [toutinc]{style="color: orange;"} | Periodicity in days for the Ecology submodel snapshot output to the NC files. In longer runs, this is often set to monthly (30) or yearly (365) so file sizes do not become very large. In poorly behaved runs (that are crashing), or ones with extreme events which condition subsequent behaviour, fine scale output (e.g. at the same level as the timestep) may be required. However, remember that a lot of output is written at each reporting period, so make sure you set reasonable values for long well-behaved runs (quarterly or even yearly).<br><br>Note that in Atlantis all years are 365 days long. If monthly output is required and it is set to 30 days then after one year the output would be shifting by 5 days every year. |
+| [toutfinc]{style="color: orange;"} | Periodicity of the cumulative output from the Harvest submodel (catches, quotas, discards, etc) to the NC files (*CATCH.nc*, *TOTCATCH.nc*). These values are the sum of all effort, catch (etc) since the last output dump. Unlike the ecology output, they are not snapshot values. |
 | [tsumout]{style="color: orange;"} | Periodicity of the output to the TXT files. |
 | [flagannual_Mest]{style="color: orange;"} | If 1, estimates of mortality per predator are written out annually, otherwise they are written at the [tsumout]{style="color: orange;"} frequency |
 | [fishout]{style="color: orange;"} | If 1, it switches on the fisheries output (it is recommended that this is on if you have fisheries in your model, but is unnecessary if it is an ecology model only). |
@@ -53,7 +53,7 @@ The *run.prm* provides all the key information required to control the model run
 | [checkbox]{style="color: orange;"} | Box number for which to give detailed outputs into *log.txt* file |
 | [checkstart]{style="color: orange;"} | Day on which the detailed output in the *log.txt* file for the box above should start |
 | [checkstop]{style="color: orange;"} | Day on which the detailed output in the *log.txt* file for the box above should end<br><br>**Note!** Detailed output will likely produce a huge amount of data, so make sure the time period of detailed reporting is not too long or the run is short |
-| [debug]{style="color: orange;"} | This parameter has a lot of options about what topic area or code path to give detailed outputs for (for debugging). These settings trigger fprintf lines in the code and print information to the *log.txt* file.<br><br>Each setting focuses on different processes. Setting it to 0 turns off detailed outputs.<br><br>Other parameter values include:<br><br>debug = 1 (for fisheries catch fprintf)<br>debug = 2 (for discards)<br>debug = 3 (for forced fish catches)<br>debug = 4 (for the assessment model processes)<br>debug = 5 (for spatial management)<br>debug = 6 (for basic effort options)<br>debug = 7 (for economically driven effort allocation model)<br>debug = 8 (for economic calculations)<br>debug = 9 (for quota setting and handling)<br>debug = 10 (for aging in age structured groups)<br>debug = 11 (for recruitment in age structured groups)<br>debug = 12 (for spawning in age structured groups)<br>debug = 13 (for migration in/out of model domain)<br>debug = 14 (for movement within the model domain)<br>debug = 15 (for stock-based allocations within a functional group)<br>debug = 16 (for basic overall biomass calculations)<br>debug = 17 (for feeding)<br>debug = 18 (for all ecological processes)<br>debug = 20 (print biology process function parameters)<br>debug = 21 (print prey function parameter)<br>debug = 22 (debug clam - atlantis linkage)<br>debug = 23 (for deposition in the physics sub-model)<br>debug = 24 (for the forced mortality scalar)<br>debug = 25 (for the forced growth scalar)<br>debug = 26 (for FSPB additions)<br>debug = 27 (for debugging the C and P code)<br>debug = 28 (for debugging the SS3 tiered code)<br>debug = 29 (for external scaling)<br><br>This list changes as new debugging issues arise. So if you want to know the latest list, the entire list of currently available debugging options can be seen in the **atlantisboxmodel.h** file (around line 750) in the Header files subfolder of the **atlantismain** library. There is also a list on the Atlantis [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/new-debug-flag-option-included-debug-24.html) |
+| [debug]{style="color: orange;"} | Controls which topic area or code path produces detailed debug output. See @sec-debug-values for the full list of values. |
 | [fishtest]{style="color: orange;"} | If 1, count up total population of age structured groups after each main subroutine |
 | [flaggape]{style="color: orange;"} | Periodically list prey vs gape statistics in *log.txt* |
 | [flagchecksize]{style="color: orange;"} | Periodically list relative size in *log.txt*. This is useful during model calibration for seeing the current size versus size given in the initial conditions. |
@@ -92,16 +92,54 @@ The *run.prm* provides all the key information required to control the model run
 |:--------------|:------------|
 | [mirror_invalid]{style="color: orange;"} | If this flag is set to 1 and the hydrodynamics model attempts to send water from one cell into an invalid cell (e.g. a layer in a box that does not exist) the water flow will instead be sent into the layer closest to the intended destination layer. This option was needed because historically some hydrodynamic models tried to send water into layers below what Atlantis was modelling, so water had to be redirected to the extant bottom layer instead. Set this flag to 0 if your hydrodynamic forcing is working well or you want Atlantis to quit with a warning that something is wrong with the hydrodynamic forcing files. |
 | [flag_replicated_old]{style="color: orange;"} | This flag is used to maintain legacy code options. While we fix true bugs sometimes we also update the code to better represent a process where we had made a rough first attempt that can now be done in a better way. However, such changes can change model dynamics and so for legacy models we need to keep the legacy options. When set to 1, the new code changes are not applied and the old results can be reproduced. However, for all new models it is recommended that this flag be set to 0, as the new code is more rigorous and defensible. |
-| [flag_replicated_old_PPmort]{style="color: orange;"} | Flag used to maintain old plankton mortality assumptions (from very early code versions that persisted as potential bug into newer models). Turning it on zeroes out phytoplankton mortality and only allows for lysis in phytoplankton. However, for all new models it is recommended that this flag be set to 0 so parameter application is transparent and contaminants are transferred appropriately.<br><br>If you are transitioning an old model and want to have this flag turned off but maintain your old model as close as possible, keep your lysis values as is and zero out mL. |
+| [flag_replicated_old_PPmort]{style="color: orange;"} | Flag used to maintain old plankton mortality assumptions (from very early code versions that persisted as a potential bug into newer models). Turning it on zeroes out phytoplankton mortality and only allows for lysis in phytoplankton. However, for all new models it is recommended that this flag be set to 0 so parameter application is transparent and contaminants are transferred appropriately.<br><br>If you are transitioning an old model and want to have this flag turned off but maintain your old model as close as possible, keep your lysis values as is and zero out mL. |
 | [flag_replicate_old_calendar]{style="color: orange;"} | This flag specifically allows for legacy models and the influence of environment on the distribution of recruits to be replicated in the newer code. It is recommended that all new models have this set to 0. |
 | [flag_old_embryo_init]{style="color: orange;"} | This flag is to allow legacy models to have the same starting conditions under the new code as they did in older versions. In the past, rather than use the stock-recruit relationship for a species to dictate the larvae already in the water column at the start of the model run, a simpler linear relationship with spawning stock was used. This has now been replaced by the use of the stock-recruit relationship (for improved consistency). All new models should set this parameter to 0, but legacy models trying to reproduce past model runs should set this value to 1. |
 | [check_dups]{style="color: orange;"} | If set to 1, Atlantis will check for duplicated parameters in the parameter files before starting the run. This can be used to ensure that the same parameter is not entered twice with different values. However, it takes a LONG time to execute (especially for big models). If it is set to 1 the model run will not start for quite a while until all possible duplicates are checked. If you are concerned about duplicate entries, go through the file once with this until all duplicates are found and then turn it off. |
-| [flagscaleinit]{style="color: orange;"} | If set to 1 this will cause the vector [init_scalar]{style="color: orange;"} to be read in. This vector contains one value per group listed in the *functional_groups.csv* file. These values are used to modify (scale) the initial conditions without requiring that NC file to be modified — for the vertebrates the number per age class is scaled and for biomass pools the biomass per cell and layer is scaled (for those groups in the water column, sediment layers and the epibenthos). |
+| [flagscaleinit]{style="color: orange;"} | If set to 1 this will cause the vector [init_scalar]{style="color: orange;"} to be read in. This vector contains one value per group listed in the *functional_groups.csv* file. These values are used to modify (scale) the initial conditions without requiring modification to the NC — for the vertebrates the number per age class is scaled and for biomass pools the biomass per cell and layer is scaled (for those groups in the water column, sediment layers and the epibenthos). |
 | [flag_sanity_check]{style="color: orange;"} | Set this to 1 to make sure that species with a gestation or recruitment period that is about the same length as the time between reproduction (spawning) events do not get cascading population growth (where recruits from one event accidentally also contribute to the next event). To replicate old code versions set this value to 0. |
 | [flagpassivetracer]{style="color: orange;"} | Set to 1 if you want to do particle tracking to validate physical forcing. This will require adding the SED_i variable to the *initial_conditions.nc* file. |
-| [flagenviro_warn]{style="color: orange;"} | Set to 1 if you want warnings about when environmental conditions constrain spawning or movement in a cell |
-
+| [flagenviro_warn]{style="color: orange;"} | Set to 1 if you want warnings about when environmental conditions constrain spawning or movement in a cell. |
 : Other parameters. {#tbl-run-parameters-other tbl-colwidths=[25,75]}
+
+## Debug parameter values {#sec-debug-values}
+
+The [debug]{style="color: orange;"} parameter triggers `fprintf` lines in the code and prints information to the *log.txt* file. Setting it to 0 turns off detailed outputs. Other values focus on different processes:
+
+| Value | Topic |
+|:-----:|:------|
+| 1 | Fisheries catch fprintf |
+| 2 | Discards |
+| 3 | Forced fish catches |
+| 4 | Assessment model processes |
+| 5 | Spatial management |
+| 6 | Basic effort options |
+| 7 | Economically driven effort allocation model |
+| 8 | Economic calculations |
+| 9 | Quota setting and handling |
+| 10 | Aging in age structured groups |
+| 11 | Recruitment in age structured groups |
+| 12 | Spawning in age structured groups |
+| 13 | Migration in/out of model domain |
+| 14 | Movement within the model domain |
+| 15 | Stock-based allocations within a functional group |
+| 16 | Basic overall biomass calculations |
+| 17 | Feeding |
+| 18 | All ecological processes |
+| 20 | Print biology process function parameters |
+| 21 | Print prey function parameter |
+| 22 | Debug clam-Atlantis linkage |
+| 23 | Deposition in the physics sub-model |
+| 24 | Forced mortality scalar |
+| 25 | Forced growth scalar |
+| 26 | FSPB additions |
+| 27 | C and P code |
+| 28 | SS3 tiered code |
+| 29 | External scaling |
+
+: Values for the [debug]{style="color: orange;"} parameter. {#tbl-debug-values tbl-colwidths=[15,85]}
+
+This list changes as new debugging options are added. For the current list, see the **atlantisboxmodel.h** file (around line 750) in the Header files subfolder of the **atlantismain** library, or the [Atlantis wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/new-debug-flag-option-included-debug-24.html).
 
 List and description of parameters in the *run.prm* file.
 

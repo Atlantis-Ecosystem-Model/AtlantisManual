@@ -1,6 +1,6 @@
 # Managment {#sec-management}
 
-## **General introduction to management** {#sec-mgmt-intro}
+## General introduction to management {#sec-mgmt-intro}
 
 Fisheries management is an optional feature in Atlantis. Its role is to regulate the fishing effort according to a set list of rules and options, such as ensuring that stocks don't fall below a certain threshold, implementing total allowable catch (TAC) rules, or protecting endangered species. Management comprises various measures of effort reduction through limitation on fishing and spatial closures (temporal or permanent). The limitations on fishing typically start applying once a set trigger has been reached, for example total allowable catch (TAC) has been reached, stock is below a threshold biomass, a certain amount of engendered species biomass has been caught, and so on (see full list below). Annual management actions such as setting TACs or scaling the effort if stocks decline below a set level occur on the first timestep of each year and are typically in place for the entire year.
 
@@ -52,15 +52,15 @@ A lot of management decisions are based on TACs -- when a fishery exceeds its TA
 The stock assessment options are not further described in the manual. For further details on the application of different assessment options see Fulton et al. 2007 or Dichmont et al. 2017.
 :::
 
-## **Stock adaptive and TAC-based management** {#sec-adaptive-management}
+## Stock adaptive and TAC-based management {#sec-adaptive-management}
 
 Stock adaptive and total allowable catch (TAC) based management is set through [flagmanage]{style="color: orange;"} flags. These settings limit, or completely stop, the fishing effort if stocks fall below a set threshold (stock adaptive management) or if the TAC has been reached. To allow for this management for each fishery select the specific management option with the [YYY_flagmanage]{style="color: orange;"} parameter.
 
-### ***No management on effort or catch applied*** {#sec-no-management-effort-catch}
+### No management on effort or catch applied* {#sec-no-management-effort-catch}
 
 When [YYY_flagmanage]{style="color: orange;"} = 0, the fishery will not be affected by stock size related management actions or TACs. The effort of the fishery is set based on effortmodel options only (or imposed catch or user defined fishing mortality) and will stay in place regardless of the stock abundance or quotas.
 
-### ***Adaptive management based on reference limits of stock biomass*** {#sec-adaptive-management-stock-biomass}
+### Adaptive management based on reference limits of stock biomass* {#sec-adaptive-management-stock-biomass}
 
 When [YYY_flagmanage]{style="color: orange;"} = 1, fishing effort is controlled by the stock abundance. The effort reduction is triggered when the stock falls below the level given by the [FC_threshold_XXX]{style="color: orange;"} -- a proportion of the "virgin" biomass. This virgin biomass can be either the biomass at the start of the run or after a burn-in period. To setup the burn-in period set the global [flagreinitpop]{style="color: orange;"}=1 and give the day (in the days of simulation run) which should be used as the point in the simulation to define virgin biomass in the [reinit_pop_day]{style="color: orange;"} parameter. The burn-in period might be useful if biomasses fluctuate a lot during the early years of the simulation and are not useful as a stock management reference point.
 
@@ -68,7 +68,7 @@ If the biomass of a species XXX falls below the FC_threshold_XXX proportion, the
 
 Remember, that the catch will be reduced via the mechanism of reducing effort (if using the effortmodel options) or the imposed catch. The assessment of the stock level is **done once per year** and the effort scalar is set and applied for the rest of the year. If more frequent assessments are desired, a user can set the second period after which the stock health will be assessed ([XXX_FC_period2]{style="color: orange;"}). If, after the time set in [XXX_FC_period2]{style="color: orange;"}, the biomass of a species XXX is above the [FC_high_threshold_XXX]{style="color: orange;"} proportion of the virgin biomass, the reduction in effort is lifted and the effort reverts to the original value before the restrictions. Note, the [FC_high_threshold_XXX]{style="color: orange;"} is often larger than the [FC_threshold_XXX]{style="color: orange;"}, which means that after a fishery has had effort restrictions imposed, a stock must recover to higher levels to allow for a return to the original effort.
 
-### ***Overview of the TAC based management***
+### Overview of the TAC based management* 
 
 All other options of effort management involves some form of TAC or other catch constraint and apply complete closures of relevant fishery(ies) when it(they) exceed the allocated TAC. The management options are set through [YYY_flagmanage]{style="color: orange;"} = 2 to 8 and only apply when fishing mortality is set through dynamic fishing. Unlike the stock adaptive management, where stock status is evaluated once per year, assessment of whether a fishery has reached its TAC is done **at every time step** of the simulation. The original TACs for all relevant species and fishery combination are set in the TAC_XXX parameter. However, these values may be modified if TACs for a fishery are based on several species, such as in the case of companion species or basket species quota. Also, TACs can be updated dynamically if stock assessment options are included in the model (see NOTE! below).
 
@@ -105,7 +105,7 @@ Dynamic changes are applied if users have at least one of the three available st
 
 The [YYY_flagmanage]{style="color: orange;"}=10 sets the USA-style management that was applied in the early 2000s (see Kaplan et al. 2013 for an example study). It involved cumulative trip limits based off TACs (often regional), and once the TAC was exhausted then spatial management actions were triggered. This system was deemed to be complicated and was replaced with transferable quotas in 2011. The option is not described here in further detail as it is specific to the historical fisheries management of the West Coast of the US. If its use is desired for historical hindcasts consult Kaplan et al. 2013 for explanations.
 
-### ***Species level TAC allocation*** {#sec-species-tac}
+### Species level TAC allocation* {#sec-species-tac}
 
 The TAC for each species XXX and fishery is given in the [TAC_XXX]{style="color: orange;"} array, which must have as many values as there are fisheries. However, the [TAC_XXX]{style="color: orange;"} parameter can be used differently depending on whether a species is managed through a single or multiple species TAC.
 
@@ -190,7 +190,7 @@ Irrespective of how the basket is made up, if the cumulative catch of shark (i.e
 9)  Make sure that the parameters above are consistent for all basket species, as currently Atlantis does not have internal checks for this. This means that if species A is in a basket with species B and C, the parameters for all three species should show that they are in the basket quota with each other.
 :::
 
-### ***Spatial TAC allocation: global or regional*** {#sec-spatial-tac}
+### Spatial TAC allocation: global or regional* {#sec-spatial-tac}
 
 TAC based management also allows users to either use a basic global TAC applied to the entire model domain (e.g. [YYY_flagmanage]{style="color: orange;"}=2, @tbl-flagmanage-options), or use regional TAC management (e.g. [YYY_flagmanage]{style="color: orange;"}=4, @tbl-flagmanage-options). The **regions can be defined based on fisheries stocks** identified in the biology.prm file **or based on management areas** (see NOTE! below). Parameter [manage_reg]{style="color: orange;"} identifies whether regional fisheries management is done based on stocks ([manage_reg]{style="color: orange;"} =0) or based on regions ([manage_reg]{style="color: orange;"} =1).
 
@@ -226,7 +226,7 @@ Remember that even if one defines separate stocks, they can still be managed as 
 The management regions are defined in the *biology.prm* in [regID]{style="color: orange;"} file where one box can be assigned only to one region. The management region can represent a separate TAC based region or other management unit. The biomass per group per region is output in the *BiomReg.txt* file.
 :::
 
-### ***Shared total allowable catch allocation across fisheries*** {#sec-shared-tac} 
+### Shared total allowable catch allocation across fisheries* {#sec-shared-tac}
 
 The [TAC_XXX]{style="color: orange;"} parameter is given for each species and fishery combination, and usually each fishery is only affected by its own TAC. However, it is possible to set up a shared TAC for several (or all) fisheries using [flagTACparticipate_YYY]{style="color: orange;"}=1 parameter. In that case only one common TAC pool is allowed, so a fishery can either participate in this pool or have its own independent TAC ([flagTACparticipate_YYY]{style="color: orange;"}=0). The shared TAC is independent of the [YYY_flagmanage]{style="color: orange;"} options discussed above.
 
@@ -243,7 +243,7 @@ A hypothetical example of three fisheries participating in a common TAC pool (@t
 
 : An example of how shared TACs among three fisheries might affect catch and fishery closures. Species marked with ⚠ are those for which catch exceeded total TAC. The three fisheries target different species but all participate in a shared common pool TAC. {#tbl-shared-tac-example tbl-colwidths=[18,8,8,8,8,8,8,8,13,13]}
 
-### **Multi-year TACs** {#sec-multi-year-tac}
+### Multi-year TACs {#sec-multi-year-tac}
 
 Typically TACs set a yearly catch limit and are re-assessed annually, but it is possible to also set multi-year TACs as well. The number of years for which the TACs are allocated are given in the [tac_resetperiodYYY]{style="color: orange;"} parameter. This value is most often set to 1, but could be any number of years.
 
@@ -253,17 +253,17 @@ The multi-year TAC can be applied in two cases:
 
 2)  If some form of assessment model is used (see Note! @sec-mgmt-intro) TACs are dynamic. In this case the multi year TAC option with [bulkTAC]{style="color: orange;"}=0 means that TACs are annual, as usual, but new assessments and new TACs are only done every few years, with the frequency given in the [tac_resetperiodYYY]{style="color: orange;"} parameter.
 
-### ***Trading closure after exceeding TAC with MPAs*** {#sec-trading-tac-MPAs}
+### Trading closure after exceeding TAC with MPAs* {#sec-trading-tac-MPAs}
 
 When some form of assessment is used (see Note! @sec-mgmt-intro) and TACs are dynamic, then a fishery might be given an option of imposed MPAs instead of reduction in TACs. This is based on the real-life situation where fishers prefer an imposition of MPAs instead of a reduction in TACs. To simulate this option in Atlantis, one must have dynamic TACs (and some form of stock assessment included) and set parameter [flagTradeTACvsMPA]{style="color: orange;"}=1. Further, to set up this option properly it is important to check that the correct options for [YYY_flagmpa]{style="color: orange;"} have been selected (see @sec-spatial-MPAs).
 
-### ***Temporal changes in TAC*** {#sec-temporal-tac-changes}
+### Temporal changes in TAC* {#sec-temporal-tac-changes}
 
 As with other harvest and management parameters, the user can allow for temporal changes in TACs. This can be done in a standard forced way ([YYY_TACchange]{style="color: orange;"}=2) or dynamically through the Assessment or pseudoassessment submodel ([YYY_TACchange]{style="color: orange;"}=1). The dynamic TAC change through the Assessment submodel aims to simulate real world assessment and decision making processes, where TACs are updated based on the stock assessments. The Assessment submodel is currently not covered in this version of the manual. Users are currently advised to consult the wiki, the Atlantis code and Atlantis developers for further details -- as assessment type, parameters, frequency of data collection and meta-rules around TAC setting (e.g. degree of political lobbying, buffers imposed at various decision steps) must also be set.
 
 When changes in TAC are forced, the changes are implemented in the same way as with other temporal changes in a parameter. [XXX_TAC_changes]{style="color: orange;"} indicates the number of TAC changes for each fishery and species XXX. The start day of each change is given in [TACchange_start_XXX]{style="color: orange;"}, the period over which the change occurs is given in [TACchange_period_XXX]{style="color: orange;"} and the multiplier for the TAC change to be achieved by the end of the change period is given in [TACchange_mult_XXX]{style="color: orange;"}. **At the end of the change period, the new TAC scalar applies for the rest of the simulation (or until another change takes place).**
 
-### ***Frame based TAC*** {#sec-frame-tac}
+### Frame based TAC* {#sec-frame-tac}
 
 Some species are managed using biomass thresholds, if biomass is above a specific level then fishing is allowed. To represent that in Atlantis for fishery YYY:
 
@@ -297,7 +297,7 @@ Some species are managed using biomass thresholds, if biomass is above a specifi
 : Parameters used in stock adaptive and TAC based management. {#tbl-tac-management-parameters tbl-colwidths=[25,75]}
 
 
-## **Broken stick harvest control rules and broken stick scalar** {#sec-broken-stick-hcr}
+## Broken stick harvest control rules and broken stick scalar {#sec-broken-stick-hcr}
 
 The "broken stick" scalar management is similar to the stock adaptive management option described in @sec-adaptive-management-stock-biomass. However, while the stock adaptive management is applied for the dynamic fishing option, the broken stick management is only available for the user defined fishing mortality option described in @sec-F-user-defined-non-dynamic. The setup of broken stick management is not affected by the [YYY_flagmanage]{style="color: orange;"} options used for dynamic fishing options described in @sec-adaptive-management.
 
@@ -406,7 +406,7 @@ where both the *β* are random numbers drawn form \[0,1\]. Lastly, if the logno
 
 $${B_{est} = B_{true} \cdot estBias \cdot e}^{\sqrt{- 2 \cdot log\left( \beta_{1} \right)} \cdot cos\left( 2\pi \cdot \beta_{2} \right) \cdot \sqrt{estCV} - \frac{estCV}{2}}$$
 
-## **Spatial management through MPAs** {#sec-spatial-MPAs}
+## Spatial management through MPAs {#sec-spatial-MPAs}
 
 Marine protected areas (MPAs) allow permanent or temporary closures of some model spatial domains to fishing. They are set as a proportion of the box that is covered by the MPA, which is treated as a scalar on box-specific effort, fishing mortality or imposed catch. The MPA scalar is fishery specific and is given in the [MPAYYY]{style="color: orange;"} parameter, listing scalars for each box of the model domain -- this scalar represents the proportion of the fishable habitat within the box that remains **open** to fishing.
 
@@ -452,7 +452,7 @@ The MPAs are setup in the routine *Setup_MPA_Lists()* in **atManageMPATS.c** whi
 
 It is possible to **allow for infringement of MPAs**. See @sec-optional-F-factors and the NOTE! in it on how to set the infringement up.
 
-## **Management through seasonal closures** {#sec-managment-seasonal-closures}
+## Management through seasonal closures {#sec-managment-seasonal-closures}
 
 Another management leaver can be applied through seasonal closures. This management is independent of the stock adaptive or TAC management set with [YYY_flagmanage]{style="color: orange;"} parameter or spatial management through MPAs. Seasonal closures refer to a complete halt of fishing activity for a set period of time every calendar year. Such seasonal closures are used to protect stocks during spawning seasons or to limit fishing effort for other reasons.
 
@@ -464,7 +464,7 @@ If a fishery operates through several management regions (see @sec-spatial-tac o
 
 If the length of the fishing season changes during the simulation set [YYY_changeseason]{style="color: orange;"} = 1. However, unlike the other temporal changes in the harvest parameter file, the user does not provide specific scalars to set the new length of the fishing season, but the scalars are taken from the effort scalar used for the stock adaptive management (see @sec-adaptive-management-stock-biomass) or the management of endangered species (@sec-endangered-species). If both scalars are available, then the smaller scalar is used. This basically means that if [YYY_changeseason]{style="color: orange;"}=1 then season will be REDUCED in length when stocks of fished species or endangered species fall below threshold levels. This is because stock adaptive management scalar or endangered species is scalar is set to the value \<1 when the trigger is tripped (biomasses go below threshold levels). This option will only be applied when either stock adaptive ([YYY_flagmanage]{style="color: orange;"} =1) or endangered species ([flagendangered]{style="color: orange;"}=1) management is used. This handling of the changing season link is because this is how fisheries using season length to control effort operate. If more direct control is required over fishing season please contact the Atlantis developers.
 
-## **Management of endangered species** {#sec-endangered-species}
+## Management of endangered species {#sec-endangered-species}
 
 Management of endangered species means that fishing effort will be reduced when stocks of endangered species fall below a set threshold level. The procedure is very similar to stock adaptive management described in @sec-no-management-effort-catch. This management option is independent of other management options, such as MPAs, seasonal closures, stock adaptive or TAC based management.
 
@@ -476,7 +476,7 @@ When the abundance of endangered species XXX falls below the threshold given in 
 
 ![](media/image13.jpeg){width="6in" height="10in"}
 
-## **Closing fisheries due to contaminants**
+## Closing fisheries due to contaminants 
 
 If contaminants are functional in the model then fisheries closures can be triggered. To activate such closures set [flag_contam_fisheries_mgmt]{style="color: orange;"} to 1 for closures to be triggered on a set day ([contam_fishery_closure_day]{style="color: orange;"}) and last a set period ([contam_fishery_closure_period]{style="color: orange;"} in days) -- the location of the closure is defined in the vector [ContamClosed]{style="color: orange;"}. This vector is nbox long. If the box is closed due to the contaminant set the value for the cell to 1.0, leave it as 0.0 if the box remains open.
 

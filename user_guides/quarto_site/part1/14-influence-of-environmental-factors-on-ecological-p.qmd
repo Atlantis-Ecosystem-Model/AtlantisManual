@@ -1,6 +1,6 @@
 # Influence of Environmental Factors on Ecological Processes {#sec-environmental-factors}
 
-## **Temperature: two methods to get temperature scalar** 
+## Temperature: two methods to get temperature scalar 
 
 Temperature can have a large influence on many biogeochemical and ecological processes, but in Atlantis the user has an option to turn the temperature effects off, by setting [flagq10]{style="color: orange;"}=0 (NOT recommended given the fundamental temperature dependence of most physiological processes). Temperature effects are mostly applied through the Tcorr scalar calculated in the *Get_Tcorr()* routine. Setting [flagq10]{style="color: orange;"}=0 means that Tcorr scalar will be set to 1.
 
@@ -52,7 +52,7 @@ Cons (temp_exp) = 3
 
 [**Purple**]{style="color: purple;"}: ø~corr~ = 100 (1000)
 
-## **Temperature: effects on feeding parameters and assimilation efficiency** {#sec-temp-feeding-params}
+## Temperature: effects on feeding parameters and assimilation efficiency {#sec-temp-feeding-params}
 
 Once the Tcorr scalar has been calculated for the species and its ambient temperature in the cell using one of the two methods above, it is applied as a scalar to a range of processes. Typically, parameters that are scaled by Tcorr are indicated with T15, but this is not always the case.
 
@@ -93,7 +93,7 @@ Parameters that determine the rate of breakdown are all scaled by the Tcorr scal
 [r_DSi_T15]{style="color: orange;"} -- rate of detrital silica breakdown (day^-1^)
 [K_nit_T15]{style="color: orange;"} -- rate of nitrification by free bacteria (mgN day^-1^)
 
-## **Salinity** 
+## Salinity 
 
 The **salinity** effects on **biomass pool and age structured group** physiological processes are modelled through an optional Scorr, designed to reflect the sensitivity of physiological processes to salinity conditions. The Scorr scalar is not calculated dynamically, but supplied by the user in [salt_correction_XXX]{style="color: orange;"} parameter. The Scorr scalar is applied only if:
 
@@ -102,7 +102,7 @@ The **salinity** effects on **biomass pool and age structured group** physiologi
 
 **The Scorr scalar is applied in the same way as for the Tcorr scalar described above. For age structured groups the Scorr cannot be applied alone without applying the Tcorr scalar.** This means that if a species is identified as sensitive to salinity, but NOT sensitive to temperature, the Scorr scalar will not be applied to the physiological processes that have optional temperature scaling. This is not the case for biomass pool groups, where Scorr is applied regardless.
 
-## **Acidification** 
+## Acidification 
 
 Atlantis has an option to include effects of acidification on different physiological processes, predatory interactions and non-predation mortality. The pH effects are activated by setting [flagmodelpH]{style="color: orange;"} to 1 and [flagpHsensitive_XXX]{style="color: orange;"} to 1.
 
@@ -132,7 +132,7 @@ The pH can also affect other processes, as listed in @tbl-pH-effects.
 : Effects of pH on physiological and ecological processes. See detailed description [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html). {#tbl-pH-effects tbl-colwidths=[25,25,50]}
 
 
-## **Oxygen** 
+## Oxygen 
 
 The oxygen dependency is modelled differently from the temperature, salinity and pH effects described above. The oxygen content of the water does not affect the physiological processes, but recruitment and distributions. It also can lead to oxygen stress induced mortality of biomass pool groups.
 

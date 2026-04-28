@@ -4,7 +4,7 @@ Consumers in Atlantis are modelled as biomass pools, age-structured biomass pool
 
 The group types FISH, MAMMAL, SHARK, BIRD and FISH_INVERT are automatically assigned to age-structured groups. Other group types that have [NumCohort]{style="color: orange;"}=1 in the *functional_groups.csv* file are modelled as biomass pools, and if [NumCohort]{style="color: orange;"}\>1 they are modelled as age-structured biomass pools, where [NumCohort]{style="color: orange;"} parameter determines how many biomass pools to model.
 
-## **Fluxes in consumer biomass pools**
+## Fluxes in consumer biomass pools 
 
 In **biomass pool or age-structured biomass pool consumers** (CP in the following equations) the only variable tracked is N (i.e. not Si or the micronutrient; although when P and C tracking is enabled then N, P and C are all tracked for consumers). The flux through a consumer biomass pool is determined by growth (*G~CP~*), natural mortality (*M~CP~*), grazing (predation) for *i* predators (*Gr~CP,i~*) and optional fishing mortality (*F~CP~*). In addition, there is an optional encystment out of the system at certain times of the year or temperatures (*Ec~out~*) and transfer back from cysts into the system when conditions are suitable (*Ec~in~*).
 
@@ -28,7 +28,7 @@ $$\frac{d(Nm_{CX})}{dt} = Nm_{CX - 1,ageup} - Nm_{CX,ageup} - M_{CX} - \sum_{i =
 
 The numbers are converted to biomass as (SN + RN) · Nums.
 
-## **Consumer feeding** 
+## Consumer feeding 
 
 
 ::: {.callout-caution}
@@ -41,7 +41,7 @@ The numbers are converted to biomass as (SN + RN) · Nums.
 
 The following chapters will describe these key processes: grazing (Gr), assimilation (A), maintenance (Rs) and energy allocation to SN and RN.
 
-### *Grazing* 
+### Grazing 
 
 Grazing or predatory interactions are modelled in a similar way for both biomass pools and age-structured groups, except that age-structured and biomass pool groups have different options for refuge from predation. Feeding interactions are modelled through biomass, which in age-structured groups is then converted to numbers to track individual mortality. In Atlantis predatory interactions are determined by:
 
@@ -85,7 +85,7 @@ The [flagfishrates]{style="color: orange;"} parameter defines whether *mum* and 
 Regardless of whether absolute or mass-specific rates are used, separate *C* and *mum* parameters are required for each age group, so that [C_XXX]{style="color: orange;"} and [mum_XXX]{style="color: orange;"} strings in the *biology.prm* file contain as many values as there are groups in an age-structured functional group XXX. This means that Atlantis allows users to assume that the relationship between *C* and *mum* and body weight can change with ontogeny. 
 :::
 
-### *What are the* C *and* mum *parameters?*
+### What are the *C* and *mum* parameters?
 
 Some Atlantis users have been confused about the meaning of *C* and *mum* parameters in the modified Holling representations. The *mum* parameter was initially adopted by Murray & Parslow (1997), who replaced the standard Holling Type II maximum ingestion rate parameter (inverse of handling time) with a "maximum growth rate" *mum* by scaling it by assimilation efficiency:
 
@@ -158,7 +158,7 @@ This has important implications for optimising the maximum available biomass p~p
 
 : General feeding parameters and units. {#tbl-feeding-parameters tbl-colwidths=[25,75]}
 
-### ***What determines prey biomass available for predation?***
+### What determines prey biomass available for predation?* 
 
 The proportion of prey biomass available to a predator at any given time is determined dynamically as
 
@@ -188,7 +188,7 @@ The *δ~overlap\ ~*is dependent on the physical overlap of prey and predator. It
 
 Atlantis determines whether a prey and predator (both age structured and biomass pools) can access same habitats. If a predator **cannot access any of the habitats inhabited by the prey** (has 0 for prey habitat types), then it also cannot access any prey biomass associated with that habitat type. If a predator **can access at least one** of the habitats that the prey is associated with, then it is assumed to have **access to all of the prey biomass**.
 
-### ***Habitat refuge***
+### Habitat refuge* 
 
 The *δ~habitat\ ~*is the **optional prey habitat refuge** which is activated **only** when **all** of the points below are true:
 
@@ -287,7 +287,7 @@ For example, if the oxygenated layer depth is twice as deep as the sediment pene
 
 : Parameters defining habitat associations and habitat refuge. {#tbl-habitat-parameters tbl-colwidths=[25,75]}
 
-### ***Size refuge from predation*** {#sec-size-refuge}
+### Size refuge from predation* {#sec-size-refuge}
 
 The **non-optional size refuge of age-structured prey** *δ~size\ ~*is defined by gape limitation, which is used to simulated size selectivity and physical limitation of predators when feeding (i.e. what can fit in their mouth). The gape limitation can be calculated in two ways -- ***hard feeding window*** or ***smooth feeding curve*** (defined by the [UseHardFeedingWindow]{style="color: orange;"} flag)
 
@@ -392,7 +392,7 @@ When using bilogistic curve the prey availability is generally decreased compare
 
 : Parameters defining size refuge for age structured groups. {#tbl-size-refuge-parameters tbl-colwidths=[30,70]}
 
-### ***Availability of fisheries catches to opportunistic catch-eaters***
+### Availability of fisheries catches to opportunistic catch-eaters* 
 
 The availability of fisheries catches is an optional set of parameters that allow groups to access additional prey. Proportion of catch available from each fishery (set in [PropCatch_XXX]{style="color: orange;"} parameter) is added to the total available prey. No gape limitation (size refuge) is applied to fisheries catches.
 
@@ -405,11 +405,11 @@ The availability of fisheries catches is an optional set of parameters that allo
 : Parameters defining feeding on fisheries catches. {#tbl-catch-feeding-parameters tbl-colwidths=[25,75]}
 
 
-### *Effect of temperature and salinity on feeding parameters* 
+### Effect of temperature and salinity on feeding parameters 
 
 Feeding rates and assimilation efficiencies will be temperature dependent if a species is temperature sensitive. Salinity dependency is optional. @sec-environmental-factors for further details.
 
-### *Effect of oxygen limitation on epibenthic invertebrate feeding rates* {#sec-o2-limitations}
+### Effect of oxygen limitation on epibenthic invertebrate feeding rates {#sec-o2-limitations}
 
 Oxygen limitation affects the feeding rates of SED_EP_FF, MOB_EP_OTHER, SED_EP_OTHER, SM_INF, LG_INF, CORAL and SPONGE functional groups (applied in group routines *Epibenthic_Ivert_Process()*, *Invert_Consumer_Process()* and *Coral_Process()*). This dependency is also an option for age structured groups in newer code releases that are currently in the pipeline.
 
@@ -440,7 +440,7 @@ This limitation only reflects reduced feeding within the sediment due to low oxy
 
 **4. Quadratic limitation** (O2case=3) calculates both ambient and depth based limitation (points 1 and 2 above) and uses the larger of the two values as the oxygen scalar δ~O2~
 
-### *Effect of space limitation on epibenthic invertebrate feeding rates* 
+### Effect of space limitation on epibenthic invertebrate feeding rates 
 
 Space limitation can affect *C* or *mum* rates of benthic invertebrate biomass pools if:
 
@@ -448,7 +448,7 @@ Space limitation can affect *C* or *mum* rates of benthic invertebrate biomass p
 
 2\) A biomass pool group is habitat dependent (with at least some habitat preference parameters not set to 1), benthic and [flag_benthos_sediment_link]{style="color: orange;"}=1. See @sec-growth-consumer-biomass for further details.
 
-### *Other factors affecting feeding parameters* 
+### Other factors affecting feeding parameters 
 
 The feeding interactions described above are further dynamically modified by a range of ecological and environmental factors, such as species activity, starvation, or pH.
 
@@ -478,7 +478,7 @@ For other feeding responses handling time ([ht_XXX]{style="color: orange;"} in b
 
 Atlantis includes explicit representation of the possible effects of acidification. The model is activated with the [flagmodelPH]{style="color: orange;"}=1 in the *biology.prm* file. It allows the user to scale prey availability, assimilation efficiency, *C* and *mum* rates, mortality, recruitment and other processes. See @sec-environmental-factors for further details.
 
-### *Other feeding functional responses* 
+### Other feeding functional responses 
 
 Twelve different feeding functional responses are currently implemented in Atlantis. They are selected using the [predcase_XXX]{style="color: orange;"} parameter, which can take values from 0 to 12 (option 3, Ecosim based feeding rate, is currently unavailable). The first three cases are for the modified Holling Type I-III responses adopted from the PPBIM. They use the *mum* parameter, as described above. Two responses -- minimum-maximum and Holling size dependent type III - are adopted from the ERSEM model (@tbl-functional-responses), but have not been used in many models. The remaining responses can be grouped into standard Holling responses (Holling type I to IV) and ratio depdenent responses (see e.g. Arditi and Ginzburg 1989 and critique of the approach by Abrams 1994). The ratio dependent responses take into account not only the prey biomass but also the ratio of prey to predator biomass. These responses don't use the *mum* parameter but a mass specific handling time ([ht_XXX]{style="color: orange;"}) parameter.
 
@@ -534,7 +534,7 @@ $$Gr_{prey} = \ \frac{B \cdot mum \cdot B_{prey}^{*}}{E_{typeLIVE}},\ if\ \ \ \ 
 
 The [flag_satiation]{style="color: orange;"} parameter is a special case and in most cases will not be required.
 
-## **Food assimilation in consumers** {#sec-food-assimlation}
+## Food assimilation in consumers {#sec-food-assimlation}
 
 The total consumed food ∑ *Gr~prey~* is assimilated according to the consumer assimilation efficiencies of four different types of prey *i*, defined as animals (including fisheries catch), plant, labile detritus and refractory detritus. The assimilation efficiency can be further externally scaled by a scalar *gs* supplied through forcing files and used to modify growth due to factors not included in the model.
 
@@ -560,7 +560,7 @@ This has important implications for obtaining assimilation efficiency values and
 If respiration of age structured groups is explicitly included in the model (see below), the assimilation efficiency of age structured groups and biomass are not directly comparable and the values for biomass pools should be much lower than that for age-structured groups.
 :::
 
-## **Maintenance (respiration) in consumers** {#sec-maintenance-consumers}
+## Maintenance (respiration) in consumers {#sec-maintenance-consumers}
 
 In Atlantis the only explicit maintenance costs are those of respiration. Respiration is only included in fully age structured groups and is optional. The majority of existing Atlantis models do not explicitly model maintenance or respiration. The respiration or maintenance costs are assumed to be implicitly accounted for by assimilation inefficiencies (see NOTE! in @sec-food-assimlation).
 
@@ -590,7 +590,7 @@ If a large proportion of the biomass of the total model is in age-structured gro
 One of the reasons that Atlantis was developed in place of the earlier IGBEM and ERSEM models is because the explicit physiological detail included in those models was unwieldy to use and calibrate in each new location (imagine that a model harder than Atlantis to use!!). Therefore a simpler representation that produce approximately the same dynamics was developed and implemented in Atlantis (see for example Fulton et al. 2004c). Explicit maintenance costs are excluded from many models, and their best representation remains a topic of debate (e.g. Persson et al. 2014).
 :::
 
-### ***Scaling of respiration costs depending on individual's condition***
+### Scaling of respiration costs depending on individual's condition* 
 
 Respiration costs are scaled by a factor KST in starving individuals (see @sec-starvation for further details on starvation).
 
@@ -611,9 +611,9 @@ $$\ Rs = Rs \cdot KST\ $$
 
 : Parameters defining respiration rates in age structured groups. {#tbl-respiration-parameters tbl-colwidths=[30,70]}
 
-## **Growth** 
+## Growth 
 
-### ***Growth and energy allocation in age-structured groups*** {#sec-growth-energy}
+### Growth and energy allocation in age-structured groups* {#sec-growth-energy}
 
 Once the optional respiration costs (*Rs*) are subtracted from the temporary pool *A*, **ALL remaining** energy is allocated to RN and SN. The energy is partitioned between RN and SN depending on:
 
@@ -651,7 +651,7 @@ The value of λ (y axis) depending on the RN/SN (@fig-energy-allocation-sn). Unt
 
 Another option to consider when thinking about the representation of size in Atlantis is [flag_dynamicXRS]{style="color: orange;"}. This flag indicates whether to use a dynamically changing ratio between reserve and structural mass through time in Atlantis or to simply use a fixed value (as in the standard Atlantis code). This has implications for everything to do with size -- how the optimal weight of in individual is calculated, which influences reproductive capacity and allocation of material during growth. These additions are used most commonly when dealing with evolution in Atlantis.
 
-### *When is an age-structured group starving and what does it mean?* {#sec-starvation}
+### When is an age-structured group starving and what does it mean? {#sec-starvation}
 
 Condition of an age-structured group is determined by the optimal RN to SN ratio, defined by the X_RS parameter, which is typically set to 2.65. When RN \< X_RS\*SN the age structured group is considered to be starving (or at least food deprived).
 
@@ -677,7 +677,7 @@ There are different levels of starvation and they have increasing effects on eco
 
 Additionally, starvation will lead to starvation mortality, as specified by the starvation mortality parameter, see @sec-starvation-in-age
 
-### ***Growth in consumer biomass pools*** {#sec-growth-consumer-biomass}
+### Growth in consumer biomass pools* {#sec-growth-consumer-biomass}
 
 No explicit respiration costs are included in biomass pools, hence all assimilated energy *A~CP~* is allocated to growth. However, in epibenthic organisms space limitation scalar *δ~space~* is applied to limit growth in crowded conditions
 
@@ -753,7 +753,7 @@ Lastly the boxes where the change will occur will need to be identified (with th
 where there are N entries, one for each box with 1 indicating changes occur in that box.
 :::
 
-### ***Feeding on material outside the model***
+### Feeding on material outside the model* 
 
 During the first few months inside the model domain, salmon will stay close to shore and feed on terrestrial insects. To allow for this external input of food into salmon diet take the following steps
 
@@ -785,7 +785,7 @@ At present this proportional access is assumed to match across all ages undertak
 : Parameters affecting growth in consumers. {#tbl-growth-parameters tbl-colwidths=[25,75]}
 
 
-### ***Effect of contaminants on the growth model***
+### Effect of contaminants on the growth model* 
 
 A contaminant tracer(s) is traced through the food web to allow for assessment of the accumulation of contaminants in the food chain. The handling and introduction of these contaminants follows the standard Atlantis contaminant procedures. The level of accumulated contaminants in the individual can impact its growth using the following logistic curve to set the scalar to be applied to the growth rate ([mum_XXX]{style="color: orange;"}), this again follows the same general form as for the turbidity effects:
 
@@ -852,7 +852,7 @@ Contaminants can also affect movement. There is the potential for mobile species
 
 : Parameters needed for contaminant uptake model — where XXX is the functional group code and CCC the contaminant name. {#tbl-contaminant-parameters tbl-colwidths=[30,70]}
 
-## **Mortality in consumers** 
+## Mortality in consumers 
 
 Mortality for age-structured groups is modelled through the numbers of individuals lost, whereas for biomass-pools it is expressed as biomass lost. The general non-predation and non-fishing mortality equation is:
 
@@ -862,13 +862,13 @@ where *mL* is linear mortality (day^-1^), *mQ* is quadratic mortality (day^-1^),
 
 Note that the oxygen mortality is assumed to only apply to benthic invertebrates as they cannot easily escape the oxygen minima, whereas fish and other vertebrates will move away (ultimately disappearing from the model if the entire domain becomes too oxygen poor and if the group is dependent on the oxygen -- [flagO2depend]{style="color: orange;"}).
 
-### ***Mortality in age-structured groups*** {#sec-age-structured-mortality}
+### Mortality in age-structured groups* {#sec-age-structured-mortality}
 
 The natural non-predation mortality of an age-structured consumer CX (in numbers not biomass) is calculated for each age group as:
 
 $$M_{CX} = \ \left( \left( mL + mQ \cdot Num_{CX} + mSt + mA + mE \right) \cdot Num_{CX} \right) \cdot mortsc$$
 
-where *mL* is an stage-specific (juvenile and adult) linear mortality for CX ([mL_XXX]{style="color: orange;"}, day^-1^), *mQ* is an stage-specific quadratic mortality for CX ([mQ_XXX]{style="color: orange;"}, day^-1^), *mSt* is the starvation mortality (day^-1^, see below), *mA* is an optional acidification mortality (see below), *mS* is the optional extra mortality due to seabirds and fish not included in the model (adopted from ERSEM I, Bryant *et al*. 1995) ([mS_XXX]{style="color: orange;"}, day^-1^), *Num* is the numbers in an age group and *mortsc* is the optional external mortality scalar, provided through forcing files. See @sec-focing-files forcing file for details on extra mortality scaling.
+where *mL* is an stage-specific (juvenile and adult) linear mortality for CX ([mL_XXX]{style="color: orange;"}, day^-1^), *mQ* is an stage-specific quadratic mortality for CX ([mQ_XXX]{style="color: orange;"}, day^-1^), *mSt* is the starvation mortality (day^-1^, see below), *mA* is an optional acidification mortality (see below), *mS* is the optional extra mortality due to seabirds and fish not included in the model (adopted from ERSEM I, Bryant *et al*. 1995) ([mS_XXX]{style="color: orange;"}, day^-1^), *Num* is the numbers in an age group and *mortsc* is the optional external mortality scalar, provided through forcing files. See @sec-forcing-files forcing file for details on extra mortality scaling.
 
 ::: {.callout-caution}
 **Terminal or senescence mortality in age structured groups and age structured biomass pools** 
@@ -894,7 +894,7 @@ The exception is for top predators, such as mammals or seabirds, where predation
 Rates of linear and quadratic mortality are provided for juveniles and adults separately in age-structured groups. The age groups that belong to the juvenile versus adult stage are determined based on the [XXX_age_mat]{style="color: orange;"} parameter in the *biology.prm* file, which sets the first mature (adult) age group.
 :::
 
-### ***Starvation mortality in age-structured groups*** {#sec-starvation-in-age}
+### Starvation mortality in age-structured groups* {#sec-starvation-in-age}
 
 Starvation mortality is only available in age-structured groups, as the condition (ration of SN to RN) is tracked for these groups only. Starvation mortality is modelled as
 
@@ -918,7 +918,7 @@ The calculations for starvation mortality are done in the *Vert_Mortality()* rou
 
 [**Blue**]{style="color: blue;"}: Kthrem=0.9, mStarve=0.01
 
-### ***Extra mortality in age-structured groups***
+### Extra mortality in age-structured groups* 
 
 The **optional** extra mortality *mS* allows users to simulate **quarterly** **age structured group** mortality by seabirds and fish (or other top predators) **not included** in the model. It is given by [mS_SBXXX]{style="color: orange;"} (seabird imposed mortality on age structured group XXX) and [mS_FDXXX]{style="color: orange;"} (fish imposed mortality on age structured group XXX) parameters, each with four values, providing mortality for each quarter of the year.
 
@@ -926,7 +926,7 @@ Additional parameters describe the assimilation efficiency of these top predator
 
 Note that the extra mortality is rarely used now, because models typically resolve all important functional groups explicitly in the model. As a result this form of mortality will likely be removed in future code releases.
 
-### ***Mortality in biomass pool consumers***
+### Mortality in biomass pool consumers* 
 
 Non-predation mortality in consumers is expressed in term of the biomass lost to the biomass pool, where separate calculations are done for each pool in age-structured biomass pools.
 
@@ -936,11 +936,11 @@ Only one linear (*mL*) and quadratic (*mQ*) mortality parameter is provided for 
 
 As in age-structured groups, the age-structured biomass pools can have senescence mortality (see @sec-age-structured-mortality).
 
-### ***Temperature and acidification effect on mortality***
+### Temperature and acidification effect on mortality* 
 
 Linear and quadratic mortality parameters can be temperature dependent, as described in @sec-environmental-factors. If a model includes acidification effects ([flagmodelpH]{style="color: orange;"}=1) then parameters imposing additional acidification induced mortality can be specified.
 
-### ***Turbidity effect on mortality***
+### Turbidity effect on mortality* 
 
 A logistic curve is applied to represent the escapement from predation due to turbidity:
 
@@ -982,7 +982,7 @@ These vectors have the format like:
 
 : Parameters affecting mortality in consumers. {#tbl-mortality-parameters tbl-colwidths=[25,75]}
 
-## **Waste production** {#sec-waste}
+## Waste production {#sec-waste}
 
 The unassimilated food (faeces) and non-predation mortality products are sent to labile detritus (DL), refractory detritus (DR) and ammonia (NH) pools. The production of waste products by biomass pool and age structured group consumers are handled in the same way, but in the case of age structured groups the mortality terms are converted from numbers of individuals to biomass before being used in the following equations.
 
@@ -1031,11 +1031,11 @@ The remaining fraction of the mortality products (1-FDM) and unassimilated food 
 
 : Parameters determining waste production processes. {#tbl-waste-production-parameters tbl-colwidths=[25,75]}
 
-## **Spawn** {#sec-spawn}
+## Spawn {#sec-spawn}
 
 Spawning and recruitment is only explicitly modelled in age structured groups and age-structured biomass pools. They are handled by multiple routines in the **atdemography.c** file. In simple biomass pools reproduction is implicitly included in the growth term.
 
-### *Sexual maturation in age-structured groups*
+### Sexual maturation in age-structured groups 
 
 Maturation in age-structured groups is determined by two parameters. First, a fraction of each age class that is sexually mature is set in the [FSPB_XXX]{style="color: orange;"} parameter (ogive), with an option for gradual external change in this parameter through forcing files. Second, an optional minimum length (where the allometric length/weight conversion parameters [li_a_XXX]{style="color: orange;"} and [li_b_XXX]{style="color: orange;"} are used to get length) required for sexual maturation is set in [min_li_mat_XXX.]{style="color: orange;"} If this parameter is \> 0 then the no maturation will occur in an age class if it is below the maturation length even if FSPB parameter for that age class is \> 0.
 
@@ -1047,7 +1047,7 @@ Atlantis does not assume that the age of sexual maturation aligns with the ontog
 In contrast the age at which individuals switch from juvenile behaviour (in terms of feeding, habitat use, prey) to adult behaviour is given by [XXX_age_mat.]{style="color: orange;"} This is the first age group where adult behaviour is expressed and is modelled as a hard transition point with all individuals switching to adult behaviour at once.
 :::
 
-### ***Spawning in age-structured groups***
+### Spawning in age-structured groups* 
 
 The number of times an age-structured group spawn per year is given by [NumSpawns]{style="color: orange;"} in the *functional_groups.csv* file, although it is typically 1 (more frequent spawning is new functionality so let us know if you are having issues with it). When spawning occurs all spawn is produced in one time step. The day of the year that a species XXX spawns is set by the parameter [XXX_Time_Spawn]{style="color: orange;"} (if more than one spawning event occurs per year a vector of values is required). Although there is a parameter called [XXX_spawn_period]{style="color: orange;"} in the *biology.prm* file, it does not control the spawn period, but is just used to calculate recruitment delays (see below).
 
@@ -1067,7 +1067,7 @@ The *KSPA* accounts for costs of reproduction or the amount of N taken out of we
 
 Vertebrate spawn is calculated by the *Ecology_Age_Structured_Spawn()* routine in **atdemography.c**. This routine is called from two other routines: *Ecology_Do_Internal_Age_Structured_Spawning()* and *Ecology_Do_External_Age_Structured_Spawning()*, both in **atdemography.c**. The latter two routines convert individual spawn to spawn produced by a species in the model (or individuals that migrated outside the model domain), summing spawn over age groups to get the total spawn produced by the group.
 
-### ***Maturation and spawn in age-structured biomass pools***
+### Maturation and spawn in age-structured biomass pools* 
 
 In age-structured biomass pools the proportion of mature biomass in an age pool is set by the FSPB_XXX parameter. The amount of spawn (mgN) produced by an age biomass pool *i* is then calculated as
 
@@ -1091,7 +1091,7 @@ Reproduction of age structured biomass pools is done in the *Invertebrate_Reprod
 
 : Parameters determining maturation and spawn. {#tbl-maturation-spawn-parameters tbl-colwidths=[25,75]}
 
-## **Recruitment and ageing**
+## Recruitment and ageing 
 
 Atlantis does not currently model the larval period explicitly. In fully age-structured groups and age-structured biomass pools nitrogen produced as spawn is temporarily taken out of the model and is returned as recruits after a set larval period. In simple (non-age structured) biomass pools reproduction is not modelled explicitly. The larval period is set as
 
@@ -1111,7 +1111,7 @@ The amount of recruits produced can be influenced by one or several of these fac
 
 Recruited individuals are attributed to the first year of the first age group. The day before the recruits "arrive", all other individuals age one year up, and can be allocated into a different age group depending on the number of years in each age group. Ageing is done in one time step, regardless of whether recruits arrive all at once or during a certain period of time.
 
-### ***Routines used to calculate recruitment in age-structured groups***
+### Routines used to calculate recruitment in age-structured groups* 
 
 Several routines in Atlantis are involved in obtaining the final number of recruits. For age-structured groups (vertebrates), the total spawn produced by a species (calculated in the routines above, in @sec-spawn) is passed to:
 
@@ -1123,7 +1123,7 @@ Several routines in Atlantis are involved in obtaining the final number of recru
 
 Next we will give details on how Atlantis calculates recruitment (*Rs*) from spawn (*Sp*) for different recruitment options. Equations below combine calculations done in both *Ecology_Find_Embryos()* and *Get_Recruits()* routines.
 
-### ***Stock-recruitment options***
+### Stock-recruitment options* 
 
 The most common Beverton-Holt recruitment (selected as [flagrecruitXXX]{style="color: orange;"}=3) is implemented as:
 
@@ -1295,7 +1295,7 @@ Rc=Rc\*[intersp_depend_scale]{style="color: orange;"}/biomassY
 If several stocks per species are used (identified with [NumStocks]{style="color: orange;"} parameter in the functional\_ group.csv file) the procedures described above calculate recruitment for each stock separately, using the biomass of that stock rather than the total species biomass. The user also has an option to use stock specific recruitment scalars [recSTOCK_XXX]{style="color: orange;"} to upscale or downscale recruitment in different stocks.
 :::
 
-### ***Environmental, habitat and external recruitment scalars*** {#sec-envio-habitat-recruitment}
+### Environmental, habitat and external recruitment scalars* {#sec-envio-habitat-recruitment}
 
 The recruitment value *Rc* calculated above can be further modified by habitat availability, biomass of other species, environmental conditions, and additional recruit supplementing (stocking). All of these factors are optional and will be applied as multipliers on the base recruitment. Most of them affect recruitment in a negative way. When several scalars are applied (pH, temperature, contaminants), the user must be careful about the multiplicative nature of all these scalars, as they can drastically reduce recruitment.
 
@@ -1333,7 +1333,7 @@ On top of these scalars an additional external forcing can be applied to recruit
 
 Habitat scalar on recruitment acts as an additional multiplier on all environmental scalars above. It is applied if species recruitment is habitat dependent ([XXX_rec_HabDepend]{style="color: orange;"}=1). The habitat scalar is calculated as a proportion of suitable habitat in the cell.
 
-### ***Spatial distribution of recruits***
+### Spatial distribution of recruits* 
 
 Once the recruitment biomass and/or numbers are calculated Atlantis will first define their vertical and then horizontal distribution. This is done in two routines *Get_Vertical_Recruit_Position()* and *Find_Final_Recruit_Distribtuion()*. The first routine uses the [XXX_recruit_vdistrib]{style="color: orange;"} parameters. This parameter provides entries for a maximum number of water layers so the routine rescales the vertical recruit distribution in each box depending on how many layers it has and weighs the vertical distribution towards the bottom or surface depending on whether a species is identified as demersal ([flagdemXXX]{style="color: orange;"}=1) or not.
 
@@ -1356,7 +1356,7 @@ It is possible that the sum of the final Recruits_in_cell may not sum to 1.0. If
 It is important to realise that **minimum and maximum spawn temperature and salinity act as scalars on recruitment in a box**. Unlike the way in which settled individuals will contract away from unsuitable conditions during movement, recruit distributions **do not** contract to the boxes with suitable conditions but rather **kill all the recruits** that end up in unsuitable boxes. This means that if many boxes have conditions that are outside the suitable recruitment values the total recruitment in the model can be greatly reduced.
 :::
 
-### ***Factors defining temporal arrival of recruits***
+### Factors defining temporal arrival of recruits* 
 
 Once the total number of recruits to arrive in each cell is calculated using the procedures above, their arrival is spread throughout the [Recruit_Period_XXX.]{style="color: orange;"} This is done by the *Get_Settlers()* routine. Two options are available for this, controlled with a global (applied to all species) [flagtrecruitdistrib]{style="color: orange;"} parameter. The recruit arrival can be flat, so that same number of recruits arrive every day ([flagtrecruitdistrib]{style="color: orange;"}=1) or it can be humped (lognormal) ([flagtrecruitdistrib]{style="color: orange;"}=0).
 
@@ -1364,7 +1364,7 @@ If a lognormal distribution is used the user should also provide [rec_m]{style="
 
 Also note that there is an additional parameter [XXX_cohort_recruit_entry]{style="color: orange;"} that identifies which cohort recruits enter in. Typically, this is zero, but for multi-year and complicated migration patterns this may be set to a value of one or more.
 
-### ***Modifying size at recruitment*** {#sec-age-at-recruit}
+### Modifying size at recruitment* {#sec-age-at-recruit}
 
 Representing differential survival can be done in two ways, both of which use a time series file. To activate these set [flag_modify_KWSR]{style="color: orange;"} in the *biology.prm* file to a value greater than 0.
 
@@ -1410,11 +1410,11 @@ If the absolute value case ([flag_modify_KWSR]{style="color: orange;"} set to 2)
 1 110.8
 2 112.1
 
-### ***Stochastic variation around mean recruitment***
+### Stochastic variation around mean recruitment* 
 
 It is possible to use all of the above to set the level of recruitment and then add normally distributed random fluctuations around that value. To do this set [XXX_flag_recruit_stochastic]{style="color: orange;"} to 1 in the *biology.prm* file and then set the sigma for the normal distribution for that species group using [XXX_norm_sigma.]{style="color: orange;"} It will use the calculated level of recruitment as the "mean" of the distribution.
 
-### ***Ageing of individuals*** {#sec-individual-ageing}
+### Ageing of individuals* {#sec-individual-ageing}
 
 As recruits "arrive" they enter the first age group of a species. For species that have more than one calendar year per age group they are entered into the first year of the first age group.
 

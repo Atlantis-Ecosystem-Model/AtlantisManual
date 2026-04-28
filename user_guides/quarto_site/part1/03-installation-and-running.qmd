@@ -1,6 +1,6 @@
 # Installation and Running {#sec-installation}
 
-## How to check out and install the code** {#sec-checkout-install}
+## How to check out and install the code {#sec-checkout-install}
 
 ::: callout-important
 AR note: as of March 2026 this section is no longer current as we moved to GitHub.
@@ -18,11 +18,11 @@ To check out the code and install the code on your computer follow these steps:
 
 **2. Check out the code from SVN to your computer.** Experienced users can check out the code by using svn commands through a command line terminal (dos or terminal window). Alternatively, you can use special software to make things easier.
 
-**Windows** users can use the free package [TortoiseSVN](https://tortoisesvn.net/), which works like a plugin for Windows Explorer. To check out the code with TortoiseSVN first install it on your computer. Next, create a new folder where you will keep the code, e.g. C:/AtlantisCode. Rick-click the mouse on this folder and chose "SVN Checkout..." option. This will bring up the TortoiseSVN menu:
+**Windows** users can use the free package [TortoiseSVN](https://tortoisesvn.net/), which works like a plugin for Windows Explorer. To check out the code with TortoiseSVN first install it on your computer. Next, create a new folder where you will keep the code, e.g. C:/AtlantisCode. Right-click the mouse on this folder and chose "SVN Checkout..." option. This will bring up the TortoiseSVN menu:
 
 ![](media/image3.png){width="4.2in" height="3.0in"}
 
-Enter the URL of the code depository, provided on the Atlantis Wiki source code [page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/getting-the-source-code.html), making sure the directory to install the code on your computer is correct, and chose "Fully recursive" Checkout Depth and "HEAD revision". Detailed instructions on how to check out the code with TortoiseSVN are available on the wiki ([here).](https://atlantis-ecosystem-model.github.io/atlantis-wiki/tortoisesvn.html)
+Enter the URL of the code depository, provided on the Atlantis Wiki source code [page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/getting-the-source-code.html), making sure the directory to install the code on your computer is correct, and chose "Fully recursive" Checkout Depth and "HEAD revision". Detailed instructions on how to check out the code with TortoiseSVN are available on the wiki [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/tortoisesvn.html).
 
 **Mac** users can check out the code using the app [Versions](http://versionsapp.com/), while Linux users can use [RedBean](http://svnbook.red-bean.com/en/1.6/svn.ref.svn.c.checkout.html).
 
@@ -30,23 +30,22 @@ Enter the URL of the code depository, provided on the Atlantis Wiki source code 
 When updating the code, make sure you always update to your main directory where all your code is located, such as C:/AtlantisCode, rather than any subfolders within it. This will ensure that libraries are updated properly.
 :::
 
-**3. Install software for compiling the code.** Compiling Atlantis code in Windows and Linux operating systems is easy. It is **a lot harder to set up on Mac operating** systems (although once installed everything runs smoothly enough).
+**3. Install software for compiling the code.** Compiling Atlantis code in Windows and Linux operating systems is easy. It is **a lot harder to set up on Mac operating systems** (although once installed everything runs smoothly enough).
 
 
-**This is no longer true**
-```
-Windows users can build the code using freely available Microsoft Visual Studio software. Currently supported versions are 2005/2008/2010/2012 and, as of March 2016, you can download 2010 and 2012 Visual Studio installers from the Atlantis wiki by clicking on [the paperclip sign](https://confluence.csiro.au/pages/viewpageattachments.action?pageId=43155524&metadataLink=true) on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html#building-in-visual-studio).
-```
+::: callout-warning ... **This information is out of date.**
+~~Windows users can build the code using freely available Microsoft Visual Studio software. Currently supported versions are 2005/2008/2010/2012 and, as of March 2016, you can download 2010 and 2012 Visual Studio installers from the Atlantis wiki by clicking on [the paperclip sign](https://confluence.csiro.au/pages/viewpageattachments.action?pageId=43155524&metadataLink=true) on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html#building-in-visual-studio).~~
+:::
 
 Instructions for software and building Atlantis under Linux and other platforms are available [on the wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-atlantis.html). If you are a Mac user you may find the use of comfort food at this stage a good idea, each Mac installation appears to face its own challenges, sometimes it goes very easily other times you can spend a day or more wrestling to get one of the supporting libraries to work with your architecture. There does not seem to be any rhyme or reason to this! Macs are just special that way.
 
-**4. Install the NetCDF 4 libraries.** These libraries are required for running Atlantis. Detailed instructions on installing NetCDF and updating the path are available [on the wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/netcdf-4-in-windows.html). It is very important that you do this properly, as Atlantis will not run otherwise. Windows users can download pre-compiled libraries, Mac and Linux users will need to down load the source and compile locally.
+**4. Install the NetCDF 4 libraries.** These libraries are required for running Atlantis. Detailed instructions on installing NetCDF and updating the path are available [on the wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/netcdf-4-in-windows.html). It is very important that you do this properly, as Atlantis will not run otherwise. Windows users can download pre-compiled libraries, Mac and Linux users will need to download the source and compile locally.
 
 **5. Compile the code.** In Windows compiling the code does not require any programming skills. All you need to do is double-click the Visual Studio SLN file (chose the version suitable for your Visual Studio, e.g. Atlantis_VS2010.sln) located in the main directory of where you checked out the code (e.g. C:\\programs\\Atlantis). This will load the project into Visual Studio. Then go to the Visual Studio Build menu and chose "Build Solution". Detailed instructions are given on Atlantis Wiki [building](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-atlantis.html) page.
 
 ![](media/image4.jpg){width="5.1in" height="3.6in"}
 
-Once the build has successfully completed you will find the latest executable *atlantismain.exe* in C:\\...\\Atlantis\\atlantismain\\Debug folder (where ... indicates your designated directory for the code)
+Once the build has successfully completed you will find the latest executable *atlantismain.exe* in C:\\...\\Atlantis\\atlantismain\\Debug folder (where ... indicates your designated directory for the code).
 
 ::: callout-caution
 You will need to recompile or build the code anew every time you update it from the SVN repository.
@@ -56,11 +55,11 @@ On Linux (and Mac) platforms GCC is recommended for compiling the code. Other op
 
 **6. Create a directory for your simulations.**
 
-This is where you will keep all your parameters and run outputs. This could be called C:\\AtlantisRuns\\... This is NOT the same directory as the code itself, so please make sure you understand the difference. If you use several models, such as California, SE Australia and Antarctica, might want to keep parameter files of each model in separate directories, e.g. C:\\AtlantisRuns\\California\\, C:\\AtlantisRuns\\SE_Australia\\ and so on.
+This is where you will keep all your parameters and run outputs. This could be called C:\\AtlantisRuns\\... This is NOT the same directory as the code itself, so please make sure you understand the difference. If you use several models, such as California, SE Australia and Antarctica, you might want to keep parameter files of each model in separate directories, e.g. C:\\AtlantisRuns\\California\\, C:\\AtlantisRuns\\SE_Australia\\ and so on.
 
-Please make sure not to use spaces in the name of the directory (e.g. use C:\\AtlantisRuns or C:\\Atlantis_Runs not C:\\Atlantis Runs as the core code of Atlantis was written before spaces were allowed in directory names and it may not correctly read file names if the directory structure includes spaces[^1]).
+Please make sure not to use spaces in the name of the directory (e.g. use C:\\AtlantisRuns or C:\\Atlantis_Runs not C:\\Atlantis Runs as the core code of Atlantis was written before spaces were allowed in directory names and it may not correctly read file names if the directory structure includes spaces[^space]).
 
-[^1]: We do endeavour to update things for new naming conventions, but we also find it is better to err on the side of caution.
+[^space]: We do endeavour to update things for new naming conventions, but we also find it is better to err on the side of caution.
 
 ::: callout-note
 The [**South East Tasmanian (SETas) model**](https://atlantis-ecosystem-model.github.io/atlantis-wiki/sample-input-files.html) is freely available from the Atlantis SVN repository as a learning tool. It is a simple model with only a few boxes and few functional groups. All required input and parameter files for SETas model can be downloaded from the wiki and used as templates for new model applications.
@@ -72,7 +71,7 @@ Make sure you use SVN checkout to download these files. Don't use the web browse
 
 Also copy the latest executable *atlantismain.exe* from the C:\\...\\Atlantis\\atlantismain\\Debug folder into the run directory you created before (e.g. C:\\AtlantisRuns).
 
-The executable **must** be in the same directory as the main BAT run file, required to initialise your runs
+The executable **must** be in the same directory as the main BAT run file, required to initialise your runs.
 
 ::: callout-caution
 Make sure you copy the new executable file from ...Atlantis\\atlantismain\\Debug into your run directory every time you update and recompile the code. Forgetting to do this is one of the more common mistakes.
@@ -100,18 +99,18 @@ It is a good idea to give parameter files meaningful names. For example, it woul
 ![](media/image50.png){width="4.76in" height="2.73in"}
 :::
 
-## **Input files** {#sec-input-files}
+## Input files {#sec-input-files}
 
 Atlantis input files come in six file formats:
 
 1.  BGM file defining model geometry (@sec-geometry-model-domain)
 2.  NC initial conditions and forcing files (@sec-atlantis-variables)
-3.  CSV files defining biological and fisheries groups (@sec-geometry-model-domain)
+3.  CSV files defining biological and fisheries groups (@sec-functional-groups)
 4.  PRM files listing flags to activate optional calculations and parameters values (described in detail in subsequent chapters)
 5.  TS files defining time series of external forcing drivers (@sec-force-parameters)
 6.  BAT file used to initiate the run (@sec-bat-file)
 
-All files except for NC files can be opened and edited using any basic text editing software (such as TextPad or NotePad). Until recently this was the usual way to setup and modify model parameters. However, some PRM files are thousands of lines long, which means that hand editing can be tedious and a source of error. New R-based tools are currently under development to help users visualise and modify parameter files in a more streamlined way (see below)
+All files except for NC files can be opened and edited using any basic text editing software (such as TextPad or NotePad). Until recently this was the usual way to setup and modify model parameters. However, some PRM files are thousands of lines long, which means that hand editing can be tedious and a source of error. New R-based tools are currently under development to help users visualise and modify parameter files in a more streamlined way (see below).
 
 ::: callout-caution
 **PC, Mac, and Unix computers use different syntax to indicate line end.** This means that should you receive files from someone using a different operating system, the PRM files will have to be converted to match your local operating system. In Linux this can be done using the ['flip' software](https://atlantis-ecosystem-model.github.io/atlantis-wiki/file-formats.html). If you only have a few files this can be done by simply opening the parameter files in a text editor (e.g. TextPad in Windows or TextWrangler in Mac) and saving them in a format suitable for your operating system (see menu "File Format"). More info on line terminators can be found on the wiki [here](http://en.wikipedia.org/wiki/Newline) or by searching in your favourite search engine.
@@ -119,9 +118,9 @@ All files except for NC files can be opened and edited using any basic text edit
 ![](media/image60_1.png){width="5.9in" height="3.8in"}
 :::
 
-## **Overview of Atlantis submodels and the main() routine**
+## Overview of Atlantis submodels and the main() routine 
 
-Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean (**Error! Reference source not found.**). A schematic of the Atlantis submodels overlaid one over another (@fig-atlantis-structure). At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.
+Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean — see @fig-atlantis-structure a schematic of the Atlantis submodels overlaid one over another. At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.
 
 ![Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with \* are required, others are optional.](media/image7.jpg){#fig-atlantis-structure width=6.69in height=4.51in}
 
@@ -134,15 +133,15 @@ The 3D structure of your model domain, or **Model Geometry**, is described in th
 
 In addition, all simulations require two supporting files *force.prm* and *run.prm* (see below for a brief description of all parameter files).
 
-The *main()* routine is in the **atlantismain.c** file in the **atlantismain** library. It calls in a set order all other routines that initialise and run the requested submodels and routines and write output files. Each submodel and their main routines will be described in detail below, overview provided (@fig-main-routine).
+The *main()* routine is in the **atlantismain.c** file in the **atlantismain** library. It calls in a set order all other routines that initialise and run the requested submodels and routines and write output files. Each submodel and its main routines will be described in detail below (@fig-main-routine).
 
 ![Brief overview of the Atlantis *main()* routine that calls other routines implemented in various submodels.](media/image8.jpeg){#fig-main-routine width=6.97in height=5.37in}
 
-## **Delving into the code: finding the files and routines that describe the processes you are interested in**
+## Delving into the code: finding the files and routines that describe the processes you are interested in 
 
 This chapter aims to give a very brief introduction into the Atlantis code. You do not need to use the code to run simulations. However, if you can navigate around the code and find routines that use the parameters and execute the processes you are interested in, it will most helpful and informative. In the end, this is the best way to understand what exactly the model does.
 
-Of course, reading the code will require at least some programming skills. Check out a number of C tutorials available online for basic understanding about programming and C. The internet is an ever changing place so the best idea is to use your favourite search engine to find some good c tutorials for someone with your level of coding experience. At time of writing the following were potentially helpful sites [www.cprogramming.com](cprogramming.com) and [www.tutorialspoint.com/cprogramming](https://www.tutorialspoint.com/cprogramming/index.htm).
+Of course, reading the code will require at least some programming skills. Check out a number of C tutorials available online for basic understanding about programming and C. The internet is an ever changing place so the best idea is to use your favourite search engine to find some good c tutorials for someone with your level of coding experience. At time of writing the following were potentially helpful sites [www.cprogramming.com](http://cprogramming.com) and [www.tutorialspoint.com/cprogramming](https://www.tutorialspoint.com/cprogramming/index.htm).
 
 However, even without a background in c coding, two approaches might be useful in starting to navigate through the code.
 
@@ -150,29 +149,30 @@ The first is the **Search** tool. In Visual Studio (or GCC, or another package) 
 
 In the example below, we search for the [include_atmosphere]{style="color: orange;"} parameter, used in the *physics.prm* file. Make sure you search in the "Entire Solution" if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click "Find Next" (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for [include_atmosphere]{style="color: orange;"} the relevant routine is called *Amonium_ROC()*, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file **atNutrient.c**
 
-![](media/image9.png){width="6.6930555555555555in" height="3.3208333333333333in"}Here we can see that if [include_atmosphere]{style="color: orange;"} flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.
+![](media/image9.png){width="6.7in" height="3.3in"}
+Here we can see that if [include_atmosphere]{style="color: orange;"} flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.
 
 The second approach is to simply browse the libraries, files and routines you might be interested in. Of course, to do this you will need to know the names of routines. This can be done by searching for relevant parameters as shown above or by looking in the drop down list of routine names (most GUIs for interrogating code have such a feature).
 
 As an example we will look at the formulation of the respiration processes in fully age structured groups.
 
-Once you open your solution file in Visual Studio C++, expand the submodel **atecology** (**1.**) and double click the **atvertprocesses.c** file (**2.**). The file will be opened (**3.**) and on the right side you have a drop-down menu to browse through the routines defined in the file (**4.**). By clicking on the *Fish_Respiration()*routine you will find the description of parameters and equations used to calculate it Note that the first reference to *Fish_Respiration()* in the drop-down menu has a small arrow next to it. By clicking on this option you will find where in the code the routine is called.
+Once you open your solution file in Visual Studio C++, expand the submodel **atecology** (**1.**) and double click the **atvertprocesses.c** file (**2.**). The file will be opened (**3.**) and on the right side you have a drop-down menu to browse through the routines defined in the file (**4.**). By clicking on the *Fish_Respiration()* routine you will find the description of parameters and equations used to calculate it Note that the first reference to *Fish_Respiration()* in the drop-down menu has a small arrow next to it. By clicking on this option you will find where in the code the routine is called.
 
-By exploring the code for the routine (**5.**) you can see that the routine needs variables calculated or defined elsewhere in the code, such as *guildcase*, *SN*, *RN*, *Dens* and *\*respire*, these variables are described within the parentheses *( )* right after the routine name. The routine also uses six parameters -- *KA_id*, *KB_id*, *KST_id*, *Ktmp_id, Kthresh2* and *X_CN*. You can find them in the biological parameters file by replacing the '*id*' with your functional group abbreviation (e.g. *KA_FCD)*, as defined in the functional group .csv file. Sometimes the *\_id* represents larger categories, such as \_fish or \_shark, as is the case for *KST_fish*, but you should be able to work it out by searching for the parameter name.
+By exploring the code for the routine (**5.**) you can see that the routine needs variables calculated or defined elsewhere in the code, such as *guildcase*, *SN*, *RN*, *Dens* and *\*respire*, these variables are described within the parentheses *( )* right after the routine name. The routine also uses six parameters -- *KA_id*, *KB_id*, *KST_id*, *Ktmp_id, Kthresh2* and *X_CN*. You can find them in the biological parameters file by replacing the '*id*' with your functional group abbreviation (e.g. *KA_FCD*), as defined in the functional group .csv file. Sometimes the *\_id* represents larger categories, such as \_fish or \_shark, as is the case for *KST_fish*, but you should be able to work it out by searching for the parameter name.
 
 ![](media/image10.jpeg){width="6.9527777777777775in" height="5.214583333333334in"}
 
 Now you only have to look through the equations and explore different parameter values in R or Excel, or on a piece of paper, and assess the shape of the response curve to different parameter values.
 
-Another useful tool in exploring the code is the **Call Hierarchy** tool. It allows you to see the routines that call or are called from the routine of your interest. In Visual Studio this can be called by clicking the right mouse button while holding the pointer over the routine name and selecting "View Call Hierarchy" option. In the example below, we can see that routine *Vertebrate_Activities()* is called from *Do_Vertebrate_Living()* routine, and that many other routines are called from *Vertebrate_Activities()*
+Another useful tool in exploring the code is the **Call Hierarchy** tool. It allows you to see the routines that call or are called from the routine of your interest. In Visual Studio this can be called by clicking the right mouse button while holding the pointer over the routine name and selecting "View Call Hierarchy" option. In the example below, we can see that routine *Vertebrate_Activities()* is called from *Do_Vertebrate_Living()* routine, and that many other routines are called from *Vertebrate_Activities()*.
 
 ![](media/image11.png){width="6.6930555555555555in" height="3.879166666666667in"}
 
-## **How to setup and start simulations**
+## How to setup and start simulations 
 
-### *Crash introduction into Command line interfaces*
+### Crash introduction into Command line interfaces 
 
-Atlantis is an "old style" program that runs from a command line. This is done using "[Command Prompt](https://atlantis-ecosystem-model.github.io/atlantis-wiki/windows-command-prompt.html)" on Windows or Terminal on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g. tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).
+Atlantis is an "old style" program that runs from a command line. This is done using "[Command Prompt](https://atlantis-ecosystem-model.github.io/atlantis-wiki/windows-command-prompt.html)" on Windows or Terminal on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g. https://tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | Command                    | What it does                                                                                                                 |
@@ -192,7 +192,7 @@ Atlantis is an "old style" program that runs from a command line. This is done u
 
 **Note:** In Mac and Linux use `/` instead of `\`
 
-### *Setting up the BAT file* {#sec-bat-file}
+### Setting up the BAT file {#sec-bat-file}
 
 At this stage you already have 1) compiled the code on your machine, 2) created a run directory for your simulations (C:\\AtlantisRuns\\MyModel), 3) copied all input and parameter files into the run directory, 4) copied the Atlantis executable (atlantismain.exe) from C:\\...\\atlantismain\\Debug into your run directory.
 
@@ -203,30 +203,30 @@ The easiest way to setup and modify the .bat file is in a text editor.
 ::: callout-note
 The BAT file initialising Atlantis simulation has one long command line calling the Atlantis executable and giving the names of the parameter files required for the run. For example in windows the command would look like:
 
-***atlantismain.exe -i MySea_initial.nc 0 -o simulationOutput1.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm** -m MySea_migrations.csv **-s Functional_groups.csv** -h MySea_harvest.prm -q MyFisheries.csv --a MySea_assess.prm --e MySea_econ.prm -d OutputFolder1 -t C:\\AtlantisRuns\\parameters*
+***atlantismain.exe -i MySea_initial.nc 0 -o simulationOutput1.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm** -m MySea_migrations.csv **-s Functional_groups.csv** -h MySea_harvest.prm -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -d OutputFolder1 -t C:\\AtlantisRuns\\parameters*
 
 Required parameters and files are shown **in bold**, optional parameters are in regular font.
 
-You will still have to make sure that correct paths of forcing files (for hydrodynamics, salinity, temperature and others) are given in the *force.prm* file. In the *force.prm* file the path of the inputs/ folder name often has to given as ../inputs/ which tells the program that the inputs/ folder is in the same higher level directory as the *force.prm* file. \|
+You will still have to make sure that correct paths of forcing files (for hydrodynamics, salinity, temperature and others) are given in the *force.prm* file. In the *force.prm* file the path of the inputs/ folder name often has to be given as ../inputs/ which tells the program that the inputs/ folder is in the same higher level directory as the *force.prm* file. 
 
 While the *migrations.csv* file is marked as optional here, it is usually used as most models include some form of migration into/out of the model.
 :::
 
-If the *--t \<name of folder containing parameter files\>* is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g. using sudo make install in [Linux](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-linux.html) or adding it to the Windows recognised path names, see the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g. *atlantismain* in the example) rather than name.exe in the command line.
+If the *--t \<name of folder containing parameter files\>* is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g. using sudo make install in [Linux](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-linux.html)) or adding it to the Windows recognised path names, see the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g. *atlantismain* in the example) rather than name.exe in the command line.
 
 Names of the parameter files must be given after an appropriate one letter argument which indicates what the following filename represents. For example, ***-i*** tells the executable that the following filename is the input file that details initial conditions. The actual names of the parameter files are flexible, as long as the file extensions are correct. For example, the initial conditions file could be named as initial_conditions.nc, start_of_the_run.nc, start_of_the_fun.nc, a.nc or fred.nc. It does not matter so long as it is an NC file. It is **only** the one letter flag command (e.g. -i, -o, -p and others) preceding the filename that tells Atlantis which kind of file to expect.
 
 ::: callout-note
 For example, your BAT file could look like the following and it will run perfectly well:
 
-***BestModellingTool.exe -i BigBang.nc 0 -o TheLastSimulationEver.nc -r HowToRun.prm -p CleverPhysics.prm -f AllThoseInputs.prm -b EatEachOther.prm -s Critters.csv** -m OurMovements.csv -h HowToCatchFish.prm -q Fishers.csv --a TryToAssess.prm --e MBAdomain.prm -d PutEverythingHere -t C:\\AtlantisRuns\\parameters*
+*BestModellingTool.exe -i BigBang.nc 0 -o TheLastSimulationEver.nc -r HowToRun.prm -p CleverPhysics.prm -f AllThoseInputs.prm -b EatEachOther.prm -s Critters.csv** -m OurMovements.csv -h HowToCatchFish.prm -q Fishers.csv -a TryToAssess.prm -e MBAdomain.prm -d PutEverythingHere -t C:\\AtlantisRuns\\parameters*
 :::
 
 **Don't forget to add number 0 after the name of the initial conditions file.** This requirement is a legacy of the model development, and Atlantis will not run without it.
 
 By default all simulation outputs will be placed in the same folder as the BAT file, but you can create an optional output folder (*-d OutputFolderName*). Specifying output folders is really important when running batch simulations (see below).
 
-### *Parameter files called in the BAT command line*
+### Parameter files called in the BAT command line 
 
 This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:
 
@@ -256,33 +256,33 @@ It is a good idea to give informative names to the parameter files. This way you
 It is **strongly recommended that you keep a good record of all parameter modifications** and outcomes they had on model simulations. We cannot stress this strongly enough! Almost every modeller has experienced difficult moments when trying to trace back what exactly was done at different steps of model development or scenario analyses.
 :::
 
-### *Setting up batch simulations*
+### Setting up batch simulations 
 
 To set up **batch simulations**, simply add more command lines in your BAT file:
 
 ::: callout-note
 *atlantismain.exe -i MySea_initial.nc 0 -**o NoFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvestNoFishing.prm** -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -**d OutputNoFishing** -t C:\\AtlantisRuns\\parameters*
 
-*atlantismain.exe -i MySea_initial.nc 0 **-o MedFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvestMedFishing.prm** -q MyFisheries.csv --a MySea_assess.prm -e MySea_econ.prm -**d OutputMedFishing** -t C:\\AtlantisRuns\\parameters*
+*atlantismain.exe -i MySea_initial.nc 0 **-o MedFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvestMedFishing.prm** -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -**d OutputMedFishing** -t C:\\AtlantisRuns\\parameters*
 
-*atlantismain.exe -i MySea_initial.nc 0 -**o HighFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvesHighFishing.prm** -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -**d OutputHighFishing** -t C:\\AtlantisRuns\\parameters*
+*atlantismain.exe -i MySea_initial.nc 0 -**o HighFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvestHighFishing.prm** -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -**d OutputHighFishing** -t C:\\AtlantisRuns\\parameters*
 :::
 
 Batch simulations would normally have some differences between runs (**shown in bold** in the example above). Make sure you place each output in a different folder (-d) and don't overwrite it! Also make sure you carefully check your command lines to ensure you call the correct parameter files. It is really disappointing to wait for a few days for your batch simulation outputs just to realise that the BAT file had wrong combinations of parameter files in it!
 
 ::: callout-caution
-If you run a lot of simulations it is good idea to keep your BAT files handy, so you can easily trace the parameter combinations used. The LOG file produced for each simulation includes the command line of the BAT file. However, some users find it convenient to add new commands to the BAT file and comment (deactivate) the old ones out with \# sign.
+If you run a lot of simulations it is good idea to keep your BAT files handy, so you can easily trace the parameter combinations used. The LOG file produced for each simulation includes the command line of the BAT file. However, some users find it convenient to add new commands to the BAT file and comment (deactivate) the old ones out with \ # sign.
 
 *#atlantismain.exe -i MySea_initial.nc 0 -o NoFishing.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -h MySea_harvestNoFishing.prm -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -d OutputNoFishing -t C:\\AtlantisRuns\\parameters*
 
-*atlantismain.exe -i MySea_initial.nc 0 **-o MedFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvestMedFishing.prm** -q MyFisheries.csv --a MySea_assess.prm -e MySea_econ.prm -**d OutputMedFishing** -t C:\\AtlantisRuns\\parameters*
+*atlantismain.exe -i MySea_initial.nc 0 **-o MedFishing.nc** -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -**h MySea_harvestMedFishing.prm** -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -**d OutputMedFishing** -t C:\\AtlantisRuns\\parameters*
 
 In this example, Atlantis will skip the first line and will only execute the second one (where the fishing parameters, harvest and output files are changed). This way you can easily keep a record of parameter combinations used in earlier simulations. Of course, if you run dozens of simulations at some point this BAT file will get too long and cluttered and you will need a different bookkeeping system (but make sure you have some system to trace each parameter combination in each simulation!)
 
-Note, that the line here refers to the whole command string, separated by line spaces. One command line is wrapped into four lines in the example above, but it does not contain any line breaks.
+Note that the line here refers to the whole command string, separated by line spaces. One command line is wrapped into four lines in the example above, but it does not contain any line breaks.
 :::
 
-### *Initialising simulations*
+### Initialising simulations 
 
 Once you have all the input and parameter files, EXE and BAT files ready, open the Command Prompt (or Terminal) window, navigate to your model run directory that has the BAT files in it (and the EXE if you have not formally installed Atlantis to the command line paths), type the name of your BAT file and press ENTER.
 
@@ -302,65 +302,65 @@ If, for some reason you need to stop your run before it is finished, go to the o
 During the simulations Atlantis runs many outputs into its internal memory. This means that even though all the output files are created at the beginning of the simulation, they may not contain much information until the runs are actually finished. So, do not get disturbed if you want to peek into some output file during the simulation and find it empty, even if the simulation has already been running for a long time.
 :::
 
-Don't despair if the simulation does not start so smoothly. Error messages are an important part of this adventure! Check out the chapter on troubleshooting and the dedicated Atlantis wiki [page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/common-windows-build-errors.html)
+Don't despair if the simulation does not start so smoothly. Error messages are an important part of this adventure! Check out the chapter on troubleshooting and the dedicated Atlantis wiki [page](https://atlantis-ecosystem-model.github.io/atlantis-wiki/common-windows-build-errors.html).
 
-## **Simulation outputs**
+
+## Simulation outputs 
 
 Once the simulation finishes Atlantis will generate **a lot of** **output files** in TXT and NC formats. The simulation output folder will also contain the *log.txt* file (with various details or messages generated during the run), as well as *exports.ts* and *inputs.ts*, which store information on flows into/out of the model domain, and a number of XML files, which are mostly just automatically generated files that are converted input files restructured to a format that Atlantis can more easily read in. Most users never touch the TS and XML output files. The XML files might be a useful means of storing the input parameters in a database but are otherwise of little ongoing use. The TS files however can be quite informative for showing how much material enters and exits the domain due to advection.
 
 ::: callout-caution
-The *log.txt* file does not start with the name given in the ***--o*** command. This means that if you accidentally start another simulation with the same output folder name (or without giving the output folder), the *log.txt* file will be overwritten.
+The *log.txt* file does not start with the name given in the ***-o*** command. This means that if you accidentally start another simulation with the same output folder name (or without giving the output folder), the *log.txt* file will be overwritten.
 :::
 
 ![](media/image15.png){width="6.084722222222222in" height="7.940277777777778in"}
 
 The list of output files in your output folder will look like this (it indeed has **a lot of** outputs!):
 
-Lists the main output files (@tbl-atlantis-outputs). Some output files will be produced only if relevant flags are active (e.g. evolution, different management or fisheries options) and are not included.
+List of the main output files (@tbl-atlantis-outputs). Some output files will be produced only if relevant flags are active (e.g. evolution, different management or fisheries options) and are not included.
 
-| **Name** | **Contents** | **Units** | **Comments** |
-|:---------|:-------------|:----------|:-------------|
-| BiomIndx.txt | **Snapshots** of biomasses of all active species (set in the *functional_groups.csv* file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don't forget to look at the box-specific biomasses! | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
-| BoxBiomass.txt | **Snapshots** of biomasses of all active species for each of the model domain boxes, excluding boundary boxes | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
-| AgeBiomass.txt | **Snapshots** of biomasses of all active species per age group across the entire model domain | tonnes | This output is given if [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
-| DietCheck.txt | Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output | proportion | The total sum for each age group is 1 for all prey items |
-| DetailedDietCheck.txt | If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead | tonnes or proportion | Very useful for understanding model dynamics. Check out R codes for querying these outputs (@sec-tools) |
-| Mort.txt | Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at **relative M vs F values** for a species, as it does not give accurate mortalities | per year | Note, that if a species is set as isImpacted in the *functional_groups.csv* file, it will have some F value even if it is not explicitly targeted by fishing |
-| SpecificMort.txt | Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values are written **before** Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that **M or F in the file can sometimes exceed 1**. This will be corrected in a future release | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
-| SpecificPredMort.txt | **Cumulative** predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with SpecificMort.txt, **values can exceed 1** | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
-| YOY.txt | Biomass of recruits per year (same as per spawning event, because a group only spawns once per year) summed over the total model domain. **Snapshot** at the time of spawning, regardless of when the output is written out | tonnes | |
-| Migration.txt | Total and migrating biomass (and proportion migrating) of migrating groups per adults and juveniles | tonnes | Data is given for groups that are tagged as migratory in *biology.prm* file |
-| VertSize.txt | Numbers, average sizes and biomass of each migrating age structured group in the model domain at the time of the output. Does not include sizes or numbers of individuals outside the model at the time of the output | | Data is given for groups that are tagged as migratory in *biology.prm* file |
-| .nc | 3D (time, box, layer) **snapshots** of the tracer values at the time of the output | mg/m³ or numb | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
-| TOT.nc | 2D (time, box) **snapshots** of tracer values per box (summed over layers) | tonnes/km² or numb | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
-| PROD.nc | 2D (time, box) **snapshots** of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and other diagnostic indices | mg/m³/day or mg/day/individ | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
-| ANNAGEBIO.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per box. Useful when tracking annual changes in species that have multiple years per age group. Also records average size of individuals of the associated model age group per box | number/box and g/individ/box | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
-| BoxLight.txt | Proportion of sun hours per time step (how long during that time step there was light) | | |
-| Catch.txt | **Cumulative** total catch per functional group over all commercial fisheries | tonnes | |
-| CatchPerFishery.txt | **Cumulative** total catch per functional group per fishery | tonnes | |
-| Discard.txt | **Cumulative** total discards per functional group over all commercial fisheries | tonnes | |
-| DiscardPerFishery.txt | **Cumulative** total discards per functional group per fishery | tonnes | |
-| Effort.txt | **Cumulative** number of days each fishery spends fishing | days | Output given only if dynamic effort is turned on in *harvest.prm* |
-| HarvestIndx.txt | Fisheries and management indices, e.g. average size of catch, total landings, total discards, number of changes in gear, bycatch of threatened or endangered species, habitat impacts, total effort expended, social acceptance, conflict between fisheries sectors, management access, management costs | | Many indices only make sense when appropriate fisheries flags are turned on (see chapter on the Harvest submodel) |
-| RecCatch.txt | **Cumulative** total catch per functional group over all recreational fisheries | tonnes | The fleet must be marked as recreational ([isREC]{style="color: orange;"}) in *fisheries.csv* |
-| SSB.txt | **Snapshot** of mature biomass at the time of spawning | tonnes | |
-| TAC.txt | Total allowable catch per species per year. It can be fixed or dynamic dependent on the fishing scenarios | tonnes | Only written when fisheries use TAC for management, set in [flagManage]{style="color: orange;"} in *harvest.prm* |
-| BrokenStick.txt | Indices related to broken stick harvest strategy (current F, target F, current biomass and resulting scalar to apply as calculated by the broken stick) | | Only written when broken stick harvesting is turned on in *harvest.prm* |
-| CATCH.nc | **2D** (time, box) file of **cumulative** values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes) | tonnes or number | Frequency of output controlled with [toutfinc]{style="color: orange;"} in *run.prm* |
-| CATCHTOT.nc | **2D** (time, box) file of **cumulative** values of catch, discards and recreational catch per each box | tonnes | Frequency of output controlled with [toutfinc]{style="color: orange;"} in *run.prm* |
-| ANNAGECATCH.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per species in the catch and discards. Useful when tracking annual changes in number for species that have multiple years per cohort | numb | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
-| inputs.ts | Amount of tracers coming from all boundary boxes and time series into all dynamic boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
-| exports.ts | Amount of tracers coming from all dynamic boxes and time series into all boundary boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
+| ★ | **Name** | **Contents** | **Units** | **Comments** |
+|:--:|:---------|:-------------|:----------|:-------------|
+| ★ | BiomIndx.txt | **Snapshots** of biomasses of all active species (set in the *functional_groups.csv* file) across the entire model domain, excluding boundary boxes. Usually this is the first file to explore, but don't forget to look at the box-specific biomasses! | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
+| ★ | BoxBiomass.txt | **Snapshots** of biomasses of all active species for each of the model domain boxes, excluding boundary boxes | tonnes | Frequency of output controlled with [tsumout]{style="color: orange;"} in *run.prm* |
+| | AgeBiomass.txt | **Snapshots** of biomasses of all active species per age group across the entire model domain | tonnes | This output is given if [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
+| ★ | DietCheck.txt | Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output | proportion | The total sum for each age group is 1 for all prey items |
+| | DetailedDietCheck.txt | If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead | tonnes or proportion | Very useful for understanding model dynamics. Check out R codes for querying these outputs (@sec-tools) |
+| | Mort.txt | Annual predation (-M) and fishing (-F) mortality of each functional group. This file is currently only useful for looking at **relative M vs F values** for a species, as it does not give accurate mortalities | per year | Note that if a species is set as isImpacted in the *functional_groups.csv* file, it will have some F value even if it is not explicitly targeted by fishing |
+| | SpecificMort.txt | Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values are written **before** Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that **M or F in the file can sometimes exceed 1**. This will be corrected in a future release | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
+| | SpecificPredMort.txt | **Cumulative** predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with SpecificMort.txt, **values can exceed 1** | per year | At this stage the file is useful only as an **indication of relative mortality** for qualitative mortality assessment (high/low) |
+| | YOY.txt | Biomass of recruits per year (same as per spawning event, because a group only spawns once per year) summed over the total model domain. **Snapshot** at the time of spawning, regardless of when the output is written out | tonnes | |
+| | Migration.txt | Total and migrating biomass (and proportion migrating) of migrating groups per adults and juveniles | tonnes | Data is given for groups that are tagged as migratory in *biology.prm* file |
+| | VertSize.txt | Numbers, average sizes and biomass of each migrating age structured group in the model domain at the time of the output. Does not include sizes or numbers of individuals outside the model at the time of the output | | Data is given for groups that are tagged as migratory in *biology.prm* file |
+| ★ | .nc | 3D (time, box, layer) **snapshots** of the tracer values at the time of the output | mg/m³ or numb | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
+| | TOT.nc | 2D (time, box) **snapshots** of tracer values per box (summed over layers) | tonnes/km² or numb | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
+| | PROD.nc | 2D (time, box) **snapshots** of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and other diagnostic indices | mg/m³/day or mg/day/individ | Frequency of output controlled with [toutinc]{style="color: orange;"} in *run.prm* |
+| | ANNAGEBIO.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per box. Useful when tracking annual changes in species that have multiple years per age group. Also records average size of individuals of the associated model age group per box | number/box and g/individ/box | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
+| | BoxLight.txt | Proportion of sun hours per time step (how long during that time step there was light) | | |
+| ★ | Catch.txt | **Cumulative** total catch per functional group over all commercial fisheries | tonnes | |
+| ★ | CatchPerFishery.txt | **Cumulative** total catch per functional group per fishery | tonnes | |
+| ★ | Discard.txt | **Cumulative** total discards per functional group over all commercial fisheries | tonnes | |
+| ★ | DiscardPerFishery.txt | **Cumulative** total discards per functional group per fishery | tonnes | |
+| | Effort.txt | **Cumulative** number of days each fishery spends fishing | days | Output given only if dynamic effort is turned on in *harvest.prm* |
+| | HarvestIndx.txt | Fisheries and management indices, e.g. average size of catch, total landings, total discards, number of changes in gear, bycatch of threatened or endangered species, habitat impacts, total effort expended, social acceptance, conflict between fisheries sectors, management access, management costs | | Many indices only make sense when appropriate fisheries flags are turned on (see chapter on the Harvest submodel) |
+| | RecCatch.txt | **Cumulative** total catch per functional group over all recreational fisheries | tonnes | The fleet must be marked as recreational ([isREC]{style="color: orange;"}) in *fisheries.csv* |
+| | SSB.txt | **Snapshot** of mature biomass at the time of spawning | tonnes | |
+| | TAC.txt | Total allowable catch per species per year. It can be fixed or dynamic dependent on the fishing scenarios | tonnes | Only written when fisheries use TAC for management, set in [flagManage]{style="color: orange;"} in *harvest.prm* |
+| | BrokenStick.txt | Indices related to broken stick harvest strategy (current F, target F, current biomass and resulting scalar to apply as calculated by the broken stick) | | Only written when broken stick harvesting is turned on in *harvest.prm* |
+| ★ | CATCH.nc | **2D** (time, box) file of **cumulative** values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes) | tonnes or number | Frequency of output controlled with [toutfinc]{style="color: orange;"} in *run.prm* |
+| | CATCHTOT.nc | **2D** (time, box) file of **cumulative** values of catch, discards and recreational catch per each box | tonnes | Frequency of output controlled with [toutfinc]{style="color: orange;"} in *run.prm* |
+| | ANNAGECATCH.nc | Numbers in each **annual** age class of a species (**NOT** the model age group) per species in the catch and discards. Useful when tracking annual changes in number for species that have multiple years per cohort | numb | Output is written only when [flag_age_output]{style="color: orange;"} is set to 1 in *run.prm* |
+| | inputs.ts | Amount of tracers coming from all boundary boxes and time series into all dynamic boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
+| | exports.ts | Amount of tracers coming from all dynamic boxes and time series into all boundary boxes | | Frequency of output controlled with [inputs_tout]{style="color: orange;"} in *run.prm* |
+: Main Atlantis output files. Files marked with ★ are the main output files of interest for beginner users. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note that the list of output files is continuously updated, so check the [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files) for any changes. {#tbl-atlantis-outputs tbl-colwidths=[5,15,45,15,20]}
 
-: Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the [wiki](https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files) for any changes. {#tbl-atlantis-outputs tbl-colwidths=[15,50,15,20]}
-
-## **Introduction to NetCDF files**
+## Introduction to NetCDF files 
 
 [NetCDF (Network Common Data Form)](https://en.wikipedia.org/wiki/NetCDF) is a set of software libraries and data formats that allow for the creation, access, and sharing of array-oriented scientific data irrespective of type of computer hardware. They are typically used by oceanographers and atmospheric scientists and modellers to store spatial time series information. The NC file format is the computer-readable version, while the CDF format is its unpacked human-readable version that can be viewed and edited with a text editor (such as Notepad or Textpad). The key characteristics of these files are that they are platform-independent and "self-describing". This means that the file has a header which describes the layout of the rest of the file and array dimensions, followed by sections of data and variable attributes. There are many matlab, R and other tools for interacting with NC files.
 
 The *initial_conditions.nc* file in Atlantis must list all variables to be tracked throughout the simulation, their initial values or concentrations in the spatial domain, and some of their key characteristics. It is important to get them right. The *initial_conditions.nc* file is huge and it is not advisable to edit it by hand (see below for tools available to set and modify it). However, it is useful to open and explore the file by converting the NC file to a CDF file.
 
-Two small programs, **ncdump.exe** and **ncgen.exe,** can be used to convert NC files into CDF files (to create human readable and editable files) and from CDF to NC respectively (in case you modified the CDF file and need to convert it back into the computer-readable format). The two packages are included in the NetCDF libraries required for compiling Atlantis (see step 4 in the Chapter 2.1). To convert the files, open the Command Prompt, navigate into the folder that includes the NC or CDF files you want to convert and call the appropriate command with its parameters, as shown below. For example, if you want to convert NC into CDF, type: ncdump.exe somedata.nc \> otherdata.cdf. Note, the name of the NC file created by the ncgen.exe, will be the same as the name given in the first line of the CDF file (so NOT necessarily the same name as typed in the command prompt). If you install NetCDF and update the paths as described on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/netcdf-4-in-windows.html) the Command Prompt will automatically locate ncdump.exe or ncgen.exe files, so you don't need to have the EXE files in the same folder as the file you want to convert. The names of the NC and CDF files don't have to be the same.
+Two small programs, **ncdump.exe** and **ncgen.exe,** can be used to convert NC files into CDF files (to create human readable and editable files) and from CDF to NC respectively (in case you modified the CDF file and need to convert it back into the computer-readable format). The two packages are included in the NetCDF libraries required for compiling Atlantis (see step 4 @sec-checkout-install). To convert the files, open the Command Prompt, navigate into the folder that includes the NC or CDF files you want to convert and call the appropriate command with its parameters, as shown below. For example, if you want to convert NC into CDF, type: ncdump.exe somedata.nc \> otherdata.cdf. Note, the name of the NC file created by the ncgen.exe, will be the same as the name given in the first line of the CDF file (so NOT necessarily the same name as typed in the command prompt). If you install NetCDF and update the paths as described on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/netcdf-4-in-windows.html) the Command Prompt will automatically locate ncdump.exe or ncgen.exe files, so you don't need to have the EXE files in the same folder as the file you want to convert. The names of the NC and CDF files don't have to be the same.
 
 ncdump.exe My_Data.nc \> My_Data.cdf ncgen.exe -b My_Data.cdf
 
@@ -446,7 +446,7 @@ data:  ## start of the data for each variable
 }
 ```
 
-## **Introduction to Atlantis variables** {#sec-atlantis-variables}
+## Introduction to Atlantis variables {#sec-atlantis-variables}
 
 There are three kinds of obligatory and two kinds of optional variables used in Atlantis. Variable types are defined by the `bmtype` parameter:
 
@@ -478,10 +478,10 @@ The term "**tracer**" will be used often throughout the manual. Most of the vari
 
 | **Parameter** | **What it means** | **Where is it used** |
 |:--------------|:------------------|:---------------------|
-| `inwc` | Tracer present in water column¹ | Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups |
-| `insed` | Tracer present in sediments¹. ¹A tracer can be present both in water column **AND** in sediments | Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer |
-| `dissol` | Tracer dissolved in water² | Used in routines that deal with diffusion and advection processes |
-| `partic` | Tracer is particulate². ²A tracer can only be "dissolved" OR "particulate" | Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers) |
+| `inwc` | Tracer present in water column[^tracer-both] | Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups |
+| `insed` | Tracer present in sediments[^tracer-both] | Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer |
+| `dissol` | Tracer dissolved in water[^tracer-either] | Used in routines that deal with diffusion and advection processes |
+| `partic` | Tracer is particulate[^tracer-either] | Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers) |
 | `passive` | Tracer can be passively advected | Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells). Anything that is particulate and passive also requires particle size, sedimentation velocity (svel), and extra settling velocity (xvel) |
 | `decay` | Exponent in the burial or removal rate per second. Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments | Used in the Physics submodel to calculate decay rates. This parameter is very important and will determine **the rate of tracer removal** from the system. It is typically set to 0 for most tracers |
 | `svel` | Sedimentation velocity, m/second | Used in the Physics submodel to calculate sedimentation rate of particulate tracers |
@@ -491,11 +491,15 @@ The term "**tracer**" will be used often throughout the manual. Most of the vari
 | `i_conc` | Particle initial concentration in the deposits | Used in the Physics submodel to calculate deposition and porosity. It is used in *deposition()* routine only |
 | `f_conc` | Particle final concentration in the deposits, after compaction | **This was only used in old models. Current code does not read this in** |
 | `FillValue` | Default value to use when automatically filling empty cells in the initial_conditions.nc arrays | This is often used when the tracer initial concentration in most cells is identical |
-
 : Parameters used to describe characteristics of Atlantis variables in the *initial_conditions.nc* file. These parameters are read in by the *readBMTracerInfo()* in [attracerIO.c]{.underline}. {#tbl-initial-conditions-params tbl-colwidths=[15,45,40]}
 
+[^tracer-both]: A tracer can be present both in water column **AND** in sediments.
 
-## **Tools and packages to view and analyse Atlantis input and output files** {#sec-tools}
+[^tracer-either]: A tracer can only be "dissolved" OR "particulate".
+
+
+## Tools and packages to view and analyse...
+## Tools and packages to view and analyse Atlantis input and output files {#sec-tools}
 
 The Atlantis community has developed a number of different tools to view and analyse these outputs. The main tools used currently include:
 
@@ -507,7 +511,7 @@ The Atlantis community has developed a number of different tools to view and ana
 
 A number of other packages and tools are in different stages of development. So stay tuned with updates by joining the [Atlantis google group](https://groups.google.com/forum/#!forum/atlantis-ecosystem-model) and regularly checking for updates on the Atlantis wiki. If you have a tool you think others would benefit from please feel free to share it via the wiki or the Atlantis google group.
 
-## **Troubleshooting on installation and running**
+## Troubleshooting on installation and running 
 
 Don't be disappointed if your first run attempt fails. This is very common! Below is a list of some common errors and more are available on the [Atlantis wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/common-windows-build-errors.html):
 
@@ -529,7 +533,7 @@ the run went smoothly
 
 ![](media/image18.png){width="5.092470472440945in" height="3.28in"}
 
-**3. Failed to find a parameter.** If some of the required parameters in the PRM files are missing Atlantis will quit and give an error message. In the case below Atlantis could not find a parameter FCD_mL. This happens when mistakes were made in formatting parameter files (e.g. if you used excel to create your file check to see if the PRM file contains " " around a parameter name, if does remove them and just leave the name) or when new obligatory parameters were added during the code update to account for new functionality (and you have updated the code on your computer)
+**3. Failed to find a parameter.** If some of the required parameters in the PRM files are missing Atlantis will quit and give an error message. In the case below Atlantis could not find a parameter FCD_mL. This happens when mistakes were made in formatting parameter files (e.g. if you used excel to create your file check to see if the PRM file contains " " around a parameter name, if it does remove them and just leave the name) or when new obligatory parameters were added during the code update to account for new functionality (and you have updated the code on your computer)
 
 Keep an eye on the Atlantis wiki [change log](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changelog.html) for information on modifications to the code and any new required parameters. To find the missing parameters search the Atlantis wiki for the parameter name to see what is expected.
 

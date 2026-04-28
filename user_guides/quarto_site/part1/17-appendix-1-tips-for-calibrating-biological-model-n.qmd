@@ -76,7 +76,7 @@ Beth's suggestions on fishing scenarios to run are as follows (these in fact mir
 
 10. Combinations of shocks (typically high fishing + a non-fishing shock)
 
-## **Tips for parameterizing biomass pools (invertebrates)**
+## Tips for parameterizing biomass pools (invertebrates) 
 
 Benthic invertebrate abundance and distribution data are scarce, especially for non-harvested species, and generalized additive models are one approach to addressing this. Generalized additive models start from patchy observations or field sampling, and use habitat and oceanographic descriptors to predict invertebrate abundance or distribution. This was applied to SEAMAP data in the Gulf of Mexico (Ainsworth *et al.* 2015), and is being applied in the Bay of Biscay. Expert knowledge was also relied upon to parameterize these species.
 
@@ -86,7 +86,7 @@ Invertebrate groups have been particularly hard to calibrate in many Atlantis mo
 
 Most Atlantis modelers convert from carbon or dry weight to nitrogen using the Redfield ratio. However, greater attention to these conversions is warranted as the same value may not actually be appropriate across vertebrates and invertebrates of different kinds.
 
-## **Tips for parameterizing age-structured (vertebrate) groups**
+## Tips for parameterizing age-structured (vertebrate) groups 
 
 ### Starvation and respiration
 
@@ -127,13 +127,13 @@ During calibration of the model, most users experienced situations with low grow
 
 In most Atlantis models, linear and quadratic mortality (*mL* and *mQ* in Atlantis) are generally used as calibration parameters of last resort, to represent mortality effects or carrying capacity not explicitly handled the by the model.
 
-## **Tips on parameterizing biogeochemistry**
+## Tips on parameterizing biogeochemistry 
 
 Atlantis requires initial conditions for nutrients, primary producers, zooplankton, and detritus. Several modeling groups have used Nutrient-Phytoplantkon-Zooplankton-Detritus (NPZD) model output as the basis for these Atlantis initial conditions. These include the Baltic Sea and Strait of Sicily Atlantis models. This was suggested as a useful approach, as long as the NPZD models have been evaluated for skill against field observations. Some regions have extensive in-situ sampling and accessible databases, which can also be used as initial conditions for Atlantis. An example is <http://gulfatlas.noaa.gov/> in the Gulf of Mexico.
 
 Nutrient loading has been used in Atlantis models (forcing with nutrient time series), including the, California Current, Guam, Gulf of Mexico (Brand *et al.* 2007; Ainsworth *et al.* 2015; Weijerman *et al.* 2015) and Chesapeake Bay and Strait of Sicily model. One advantage of this approach is that it can be used as a proxy for multi-decadal trends in ocean productivity, even if full multi-decadal oceanography (ROMS etc.) is not available and must be 'looped'. Within the US, the Environmental Protection Agency has provided time series of point-source and non-point-source nutrients and sediments to Atlantis modelers.
 
-## **Tips on handling ocean acidification**
+## Tips on handling ocean acidification 
 
 Several distinct approaches to handling ocean acidification impacts have been tested within Atlantis:
 

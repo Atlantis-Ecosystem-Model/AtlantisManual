@@ -363,3 +363,54 @@ code {
   z-index: 15;
   background-color: var(--primary-color);
 }
+
+/* ============================================
+   Rotated column headers for wide tables
+   Apply with: ::: {.rotated-headers}
+   ============================================ */
+
+.rotated-headers table {
+  border-collapse: separate;
+}
+
+.rotated-headers thead th {
+  vertical-align: bottom;
+  white-space: nowrap;
+  height: 8em;
+  text-align: left;
+  transform: rotate(-45deg);
+  transform-origin: left bottom;
+  padding: 0 0.3em;
+  background-color: transparent;
+  color: inherit;
+}
+
+/* Keep the first column header upright (row labels) */
+.rotated-headers thead th:first-child {
+  transform: none;
+  height: auto;
+  vertical-align: bottom;
+  background-color: var(--primary-color);
+  color: white;
+  padding: var(--spacing-md);
+}
+
+/* Keep the last column header upright (long text) */
+.rotated-headers thead th:last-child {
+  transform: none;
+  height: auto;
+  vertical-align: bottom;
+  background-color: var(--primary-color);
+  color: white;
+  padding: var(--spacing-md);
+}
+
+/* Tighter data cells */
+.rotated-headers td {
+  padding: 0.3rem 0.5rem;
+}
+
+/* Center single-letter cells (P/S/E columns) */
+.rotated-headers tbody td:not(:first-child):not(:last-child) {
+  text-align: center;
+}

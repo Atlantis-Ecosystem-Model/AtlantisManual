@@ -17,7 +17,7 @@ Finally, when species have annual migrations then the spatial distribution is al
 
 Below the options determining spatial distribution are described in further detail
 
-## **Spatial distribution without migration or density dependent movement** {#sec-spatial-dist-no-mig}
+## Spatial distribution without migration or density dependent movement {#sec-spatial-dist-no-mig}
 
 Atlantis updates horizontal and vertical distribution of species at each time step. When no density dependent or migratory movement is used, this is simply done by interpolating the proportion of biomass provided by the user in each box for each quarter of the year given in the FXXX_SY (typically [FXXX_S1]{style="color: orange;"} to [FXXX_S4]{style="color: orange;"}) parameters. Note, that for the remainder of this discussion it will be assumed that [numMoveEntries]{style="color: orange;"} is set to 4 (representing traditional quarterly shifts in movement distributions). The same logic applies if [numMoveEntries]{style="color: orange;"} does not equal 4, just adjust the frequency and number of entries accordingly.
 
@@ -47,7 +47,7 @@ The setting of these sensitivity flags indicates what form of tolerance to inclu
 If [flagenviro_kill]{style="color: orange;"} is set to 0 then the individuals displaced by the environment will not die but simply move. **If none of the cells have suitable conditions the species will disappear from the model domain.** If [flagenviro_kill]{style="color: orange;"} is set to 1 then any individuals that do not find suitable cells die and are added to water column detritus in their source cell.
 :::
 
-## **Spatial distribution with density dependent movement** {#sec-spatial-dist-dens-dep}
+## Spatial distribution with density dependent movement {#sec-spatial-dist-dens-dep}
 
 Vertebrates and pelagic invertebrates can have density dependent movement, which means that the spatial distribution will be determined by the food availability in different boxes. At each time step Atlantis will evaluate potential feeding rates of each age group of a species (for which density dependent movement is turned on) in each box of the model. This will construct a spatial landscape of boxes determined by the potential feeding possibilities they provide. The distribution at each step will then be determined according to this landscape and two parameters, setting the threshold difference and ranking (see below). Two types of density dependent movement are available in Atlantis -- basic ([XXX_ddepend_move]{style="color: orange;"}=2) and "sticky" ([XXX_ddepend_move]{style="color: orange;"}=3). We first describe how the basic density depdent movement works.
 
@@ -108,7 +108,7 @@ When [XXX_ddepend_move]{style="color: orange;"}=5 only prescribed movement for t
 Note, that currently there is no way to eliminate prescribed movement during spawning for "sticky" density dependent movement. This can however be set by selecting a flag [feed_while_spawn]{style="color: orange;"}=1 
 :::
 
-## **Forcing the model distributions with species distribution models**
+## Forcing the model distributions with species distribution models 
 
 You may want to change the species distributions through time based on the output of another model, such as a species distribution model. This can be done by loading in forcing files for the new distributions. To do this in *force.prm* set [use_move_entries]{style="color: orange;"} 1 and then provide the information on the groups to influence and files to use as follows (this example has two groups, FXX and FYY, and 2 stages)
 
@@ -173,9 +173,9 @@ Also note that regardless of the t values provided in the forcing file it will s
 
 The number of time slices per year to include in the forcing file must match the value for [numMoveEntries]{style="color: orange;"} in *functional_groups.csv* to ensure that the species distribution model slices are correctly read in Atlantis. The number of time slices per year should also be reflected by the initial seasonal distributions in the *biology.prm* file seasonal distributions. For instance, in the case of a monthly-resolved species distribution model [FXXX_S1]{style="color: orange;"} to [FXXX_S12]{style="color: orange;"} should be provided.
 
-## **Migration into and out of the model domain**
+## Migration into and out of the model domain 
 
-### ***Annual migrations***
+### Annual migrations* 
 
 It is possible to allow a part or all of an age cohort or biomass pool to leave the model domain for a set period of time. This is used to imitate seasonal migrations to areas outside the model domain. This option is typically used for large mammals such as whales, which only spend a specific period of time within the model domain, but it can be applied to any group. For age-structured groups separate migration parameters are given for juveniles and adults, and one parameter is needed for biomass pools. Migration is handled by the *Ecology_Invert_Migration()* and E*cology_Total_Verts_And\_ Migration()* routines in **atmovement.c**
 
@@ -225,11 +225,11 @@ Within the model, when it is a migration time, the code checks what proportion o
 
 :::
 
-### ***Multi-year migrations***
+### Multi-year migrations* 
 
 To trigger multi-year migrations set [MultiYrMigrations]{style="color: orange;"} to 1 for the group in the *functional_groups.csv* file. The time of year when the group leaves, returns and the periods of time over which migration occur are set as for annual migrations, as is the [MigIOBox_XXX.]{style="color: orange;"} The number of years spent away -- set using [MinTimeAway]{style="color: orange;"} and [MaxTimeAway]{style="color: orange;"} is important for specifying how long these multi-year migrations last and whether there are any staggered returns or the entire set of migrants return together.
 
-## **External population model**
+## External population model 
 
 To represent the juvenile (at sea) period, which occurs outside the model domain, a specific population model is triggered, which deals explicitly with growth and mortality during this external period (rather than the simple handling typical of standard Atlantis external migrations). To trigger this population model set [external_populations]{style="color: orange;"} to 1 in the *run.prm* file and then indicate which species use this option using the [isExternal]{style="color: orange;"} flag in the *functional_groups.csv* file. This will then execute the external population model on all animals for that species in the MIGRATION array (i.e. any individuals of that functional group that are outside the model domain).
 
@@ -249,7 +249,7 @@ where *N~t~* is the number of individuals in an age class at time *t* and the mo
 
 It is possible to allow for an invading species (functional group) to enter the model domain. At present only a couple of simple representations of invasion exist, but further may come later (please check the wiki for the latest options). The parameters required by the current invasion models are given in @tbl-invading-species-parameters.
 
-## **Invading species**
+## Invading species 
 | Parameter | Description |
 |:----------|:------------|
 | [invading_sp_model]{style="color: orange;"} | 0 = no invader; 1 = simple drip-feed entry into one box and spread from there; 2 = points of invasion and spread are determined by habitat and environmental conditions; 3 = complex invasion model (currently not implemented) |
