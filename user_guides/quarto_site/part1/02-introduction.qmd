@@ -112,7 +112,7 @@ More recently Atlantis has been used to consider the impacts of marine and coast
 
 ![Some existing applications of Atlantis modelling framework and specific model domains (see @tbl-atlantis-applications for details on numbered models).](media/image2.png){#fig-atlantis-applications width=8in height=6in}
 
-::: {.rotated-headers}
+::: {.scroll-frozen style="overflow-x: auto;"}
 
 | System | Complexity | Understanding | System-level MSE | Fisheries | Nutrients | Mining | Climate impacts | Catchments | Indicators | Management | Reference |
 |--------|------------|---------------|------------------|-----------|-----------|--------|-----------------|------------|------------|------------|-----------|

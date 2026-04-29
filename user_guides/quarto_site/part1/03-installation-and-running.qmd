@@ -33,7 +33,8 @@ When updating the code, make sure you always update to your main directory where
 **3. Install software for compiling the code.** Compiling Atlantis code in Windows and Linux operating systems is easy. It is **a lot harder to set up on Mac operating systems** (although once installed everything runs smoothly enough).
 
 
-::: callout-warning ... **This information is out of date.**
+::: callout-warning
+**This information is out of date.**
 ~~Windows users can build the code using freely available Microsoft Visual Studio software. Currently supported versions are 2005/2008/2010/2012 and, as of March 2016, you can download 2010 and 2012 Visual Studio installers from the Atlantis wiki by clicking on [the paperclip sign](https://confluence.csiro.au/pages/viewpageattachments.action?pageId=43155524&metadataLink=true) on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html#building-in-visual-studio).~~
 :::
 

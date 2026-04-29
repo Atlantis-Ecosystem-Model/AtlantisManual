@@ -367,6 +367,7 @@ code {
 /* ============================================
    Rotated column headers for wide tables
    Apply with: ::: {.rotated-headers}
+   For horizontal scroll: ::: {.rotated-headers style="overflow-x: auto;"}
    ============================================ */
 
 .rotated-headers table {
@@ -385,7 +386,7 @@ code {
   color: inherit;
 }
 
-/* Keep the first column header upright (row labels) */
+/* First column header stays upright (row label) */
 .rotated-headers thead th:first-child {
   transform: none;
   height: auto;
@@ -395,7 +396,7 @@ code {
   padding: var(--spacing-md);
 }
 
-/* Keep the last column header upright (long text) */
+/* Last column header stays upright (long text) */
 .rotated-headers thead th:last-child {
   transform: none;
   height: auto;
@@ -413,4 +414,55 @@ code {
 /* Center single-letter cells (P/S/E columns) */
 .rotated-headers tbody td:not(:first-child):not(:last-child) {
   text-align: center;
+}
+
+/* Sticky first column when horizontal scroll is active */
+.rotated-headers th:first-child,
+.rotated-headers td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: var(--bs-body-bg, white);
+  z-index: 2;
+  border-right: 1px solid #ddd;
+}
+
+.rotated-headers thead th:first-child {
+  z-index: 3;
+}
+
+/* ============================================
+   Horizontal scroll with frozen first column
+   Apply with: ::: {.scroll-frozen}
+   ============================================ */
+
+.scroll-frozen {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.scroll-frozen table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.scroll-frozen th:first-child,
+.scroll-frozen td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: var(--bs-body-bg, white);
+  z-index: 2;
+  border-right: 2px solid #ccc;
+}
+
+.scroll-frozen thead th:first-child {
+  z-index: 3;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Keep header bar styling consistent with other tables */
+.scroll-frozen thead th {
+  background-color: var(--primary-color);
+  color: white;
+  white-space: nowrap;
 }
